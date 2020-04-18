@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using GestureRecognizer;
 using System.Linq;
 
-public class ExampleGestureHandler : MonoBehaviour {
+public class GestureHandler : MonoBehaviour {
+
+	public Player player;
 
 	public Text textResult;
 	public DrawDetector detector;
@@ -30,8 +32,10 @@ public class ExampleGestureHandler : MonoBehaviour {
 		if (result != RecognitionResult.Empty) {
 			textResult.text = result.gesture.id + "\n" + Mathf.RoundToInt (result.score.score * 100) + "%" + "\n" + string.Format("{0:0.000}s", result.recognitionTime);
 			StartCoroutine (Blink (result.gesture.id));
+			player.BeginCastingSpell(result.gesture.id);
 		} else {
 			textResult.text = "?";
+			player.CastingSpellFailed();
 		}
 	}
 
