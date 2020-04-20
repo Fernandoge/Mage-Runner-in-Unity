@@ -19,7 +19,7 @@ public class PlayerSpellsData : ScriptableObject
     public class HighJump : BaseSpell
     {
         public float jumpSpeed;
-        public float glideGravity;
+        public float glideSpeed;
     }
 
     [System.Serializable]

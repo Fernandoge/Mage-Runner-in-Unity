@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float jumpSpeed;
-    public float jumpTime;
     public int totalMana;
     public bool isGrounded;
     public Transform feetPos;
@@ -13,20 +12,42 @@ public class PlayerController : MonoBehaviour
 
     [System.NonSerialized]
     public int spellsAmount;
+    [System.NonSerialized]
+    public Rigidbody2D rigidBody;
+    [System.NonSerialized]
+    public float originalGravity;
+    [System.NonSerialized]
+    public bool isGliding;
+    [System.NonSerialized]
+    public float glideSpeed;
 
-    private Rigidbody2D _rigidBody;
     private PlayerSpells _spells;
     private Vector2 _beginTouchPosition, _endTouchPosition;
 
     private void Start()
     {
         _spells = new PlayerSpells(this);
-        _rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
+        originalGravity = rigidBody.gravityScale;
     }
 
     private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.01f);
+        if (isGrounded)
+        {
+            if (rigidBody.velocity.y < 0)
+            {
+                isGliding = false;
+                rigidBody.gravityScale = originalGravity;
+            }
+        }
+       
+        if (isGliding && rigidBody.velocity.y < 0)
+        { 
+            rigidBody.gravityScale = 0;
+            rigidBody.velocity = Vector2.down * glideSpeed;
+        }
 
         #if UNITY_EDITOR
             PlayerInputDebug();
@@ -70,7 +91,6 @@ public class PlayerController : MonoBehaviour
                         Jump();
                  // else
                      // gesture handler starts to recognize draw
-
                     break;
             }
         }
@@ -80,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded == true)
         {
-            _rigidBody.velocity = Vector2.up * jumpSpeed;
+            rigidBody.velocity = Vector2.up * jumpSpeed;
         }
     }
 

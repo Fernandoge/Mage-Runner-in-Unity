@@ -42,7 +42,6 @@ public class PlayerSpells
     {
         for (int i = 0; i < _player.spellsAmount; i++)
         {
-            Debug.LogError("loading spell");
             Spell newSpell = GetSpellData(i);
             _spellsDict.Add(newSpell.id, newSpell);
         }
@@ -57,8 +56,12 @@ public class PlayerSpells
                 PlayerSpellsData.HighJump highJump = _player.spellsData.highJump;
                 Action highJumpCast = () =>
                 {
-                    MonoBehaviour.print("Jumping very high");
-                    _player.transform.position = new Vector2(_player.transform.position.x, _player.transform.position.y + 1);
+                    if (_player.isGrounded)
+                    {
+                        _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
+                        _player.glideSpeed = highJump.glideSpeed;
+                        _player.isGliding = true;
+                    }
                 };
                 return new Spell(highJump.gesture.id, highJump.name, highJump.mana, highJumpCast);
            
@@ -67,8 +70,12 @@ public class PlayerSpells
                 PlayerSpellsData.FastFall fastFall = _player.spellsData.fastFall;
                 Action fastFallCast = () =>
                 {
-                    MonoBehaviour.print("Falling quickly to the ground");
-                    _player.transform.position = new Vector2(_player.transform.position.x, _player.transform.position.y - 1);
+                    if (_player.isGrounded == false)
+                    {
+                        _player.isGliding = false;
+                        _player.rigidBody.gravityScale = _player.originalGravity;
+                        _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
+                    }
                 };
                 return new Spell(fastFall.gesture.id, fastFall.name, fastFall.mana, fastFallCast);
 

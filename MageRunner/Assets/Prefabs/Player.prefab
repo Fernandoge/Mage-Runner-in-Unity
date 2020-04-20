@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -144,8 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1788f3d5394c84aa133f320d2f8276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSpeed: 5
-  jumpTime: 0
+  jumpSpeed: 10
   totalMana: 100
   isGrounded: 0
   feetPos: {fileID: 7747460471598273605}
