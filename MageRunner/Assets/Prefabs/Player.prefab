@@ -149,13 +149,7 @@ MonoBehaviour:
   totalMana: 100
   isGrounded: 0
   feetPos: {fileID: 7747460471598273605}
-  spellsData:
-  - name: High Jump
-    mana: 5
-    gesture: {fileID: 11400000, guid: 2b58f08faca317f4b90b42f73e9a858a, type: 2}
-  - name: Fast Fall
-    mana: 2
-    gesture: {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
+  spellsData: {fileID: 11400000, guid: d20b2bcbd62bddc438394bc11669edf1, type: 2}
 --- !u!1 &8667224127504786041
 GameObject:
   m_ObjectHideFlags: 0

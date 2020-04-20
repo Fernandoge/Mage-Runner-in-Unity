@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d72b34db8dcef6418847505455f9bf4, type: 3}
+  m_Name: PlayerSpellsData
+  m_EditorClassIdentifier: 
+  highJump:
+    name: High Jump
+    mana: 5
+    gesture: {fileID: 11400000, guid: 2b58f08faca317f4b90b42f73e9a858a, type: 2}
+    jumpSpeed: 5
+    glideGravity: 2
+  fastFall:
+    name: Fast Fall
+    mana: 2
+    gesture: {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
+    fallSpeed: 5

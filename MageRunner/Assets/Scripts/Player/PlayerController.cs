@@ -9,7 +9,10 @@ public class PlayerController : MonoBehaviour
     public int totalMana;
     public bool isGrounded;
     public Transform feetPos;
-    public List<PlayerSpells.Spell> spellsData;
+    public PlayerSpellsData spellsData;
+
+    [System.NonSerialized]
+    public int spellsAmount;
 
     private Rigidbody2D _rigidBody;
     private PlayerSpells _spells;
