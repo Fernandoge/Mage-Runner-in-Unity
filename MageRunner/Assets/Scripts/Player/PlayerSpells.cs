@@ -29,9 +29,9 @@ public class PlayerSpells
     #endregion Spell struct
 
     private Dictionary<string, Spell> _spellsDict = new Dictionary<string, Spell>();
-    private Player _player;
+    private PlayerController _player;
     
-    public PlayerSpells(Player player)
+    public PlayerSpells(PlayerController player)
     {
         _player = player;
         LoadSpells();
@@ -40,7 +40,7 @@ public class PlayerSpells
     public void CastSpell(string id)
     {
         Spell spell = _spellsDict[id];
-        _player.mana -= spell.mana;
+        _player.totalMana -= spell.mana;
         spell.castSpell();
     }
 
@@ -58,7 +58,7 @@ public class PlayerSpells
     {
         switch (id)
         {
-            //High Jump
+            // High Jump
             case "verticalUp":
                 return () =>
                 {
@@ -66,7 +66,7 @@ public class PlayerSpells
                     _player.transform.position = new Vector2(_player.transform.position.x, _player.transform.position.y + 1);
                 };
            
-            //Fast Fall
+            // Fast Fall
             case "verticalDown":
                 return () =>
                 {

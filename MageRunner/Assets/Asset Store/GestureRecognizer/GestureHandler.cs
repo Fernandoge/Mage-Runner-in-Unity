@@ -7,7 +7,7 @@ using System.Linq;
 
 public class GestureHandler : MonoBehaviour {
 
-	public Player player;
+	public PlayerController player;
 
 	public Text textResult;
 	public DrawDetector detector;
