@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2304417046246402653}
   - component: {fileID: 753229092}
   - component: {fileID: 753229090}
+  - component: {fileID: 130733842}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -149,6 +150,25 @@ MonoBehaviour:
   isGrounded: 0
   feetPos: {fileID: 7747460471598273605}
   spellsData: {fileID: 11400000, guid: d20b2bcbd62bddc438394bc11669edf1, type: 2}
+--- !u!95 &130733842
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692043060404832005}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65e859cfa0a65eb4ab23842bfabda39c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8667224127504786041
 GameObject:
   m_ObjectHideFlags: 0

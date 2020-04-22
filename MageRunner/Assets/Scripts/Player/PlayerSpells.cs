@@ -61,6 +61,8 @@ public class PlayerSpells
                         _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
                         _player.glideSpeed = highJump.glideSpeed;
                         _player.isGliding = true;
+                        _player.animator.SetBool("HighJump", true);
+                        _player.animator.SetBool("Running", false);
                     }
                 };
                 return new Spell(highJump.gesture.id, highJump.name, highJump.mana, highJumpCast);
@@ -75,6 +77,8 @@ public class PlayerSpells
                         _player.isGliding = false;
                         _player.rigidBody.gravityScale = _player.originalGravity;
                         _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
+                        _player.animator.SetBool("FastFall", true);
+                        _player.animator.SetBool("HighJump", false);
                     }
                 };
                 return new Spell(fastFall.gesture.id, fastFall.name, fastFall.mana, fastFallCast);

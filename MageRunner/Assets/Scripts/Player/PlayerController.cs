@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     public PlayerSpellsData spellsData;
 
     [System.NonSerialized]
-    public int spellsAmount;
-    [System.NonSerialized]
     public Rigidbody2D rigidBody;
+    [System.NonSerialized]
+    public Animator animator;
+    [System.NonSerialized]
+    public int spellsAmount;
     [System.NonSerialized]
     public float originalGravity;
     [System.NonSerialized]
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _spells = new PlayerSpells(this);
+        animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
     }
@@ -34,17 +37,17 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.01f);
-        if (isGrounded)
+        if (isGrounded && rigidBody.velocity.y < 0)
         {
-            if (rigidBody.velocity.y < 0)
-            {
-                isGliding = false;
-                rigidBody.gravityScale = originalGravity;
-            }
+            isGliding = false;
+            rigidBody.gravityScale = originalGravity;
+            animator.SetBool("Running", true);
+            animator.SetBool("FastFall", false);
         }
        
         if (isGliding && rigidBody.velocity.y < 0)
-        { 
+        {
+            animator.SetBool("HighJump", false);
             rigidBody.gravityScale = 0;
             rigidBody.velocity = Vector2.down * glideSpeed;
         }
