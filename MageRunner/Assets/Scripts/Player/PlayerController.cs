@@ -43,9 +43,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        print(rigidBody.velocity.y);
         isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.22f);
-        if (isGrounded && rigidBody.velocity.y <= 0)
+        if (!isGrounded)
+        {
+            initialJumpSpeed = originalJumpSpeed;
+            if (jumpPowerIndicator.activeSelf == true)
+            {
+                jumpPowerIndicator.SetActive(false);
+            }
+        }
+        else if (isGrounded && rigidBody.velocity.y <= 0)
         {
             isGliding = false;
             rigidBody.gravityScale = originalGravity;
@@ -112,8 +119,8 @@ public class PlayerController : MonoBehaviour
             {
                 case TouchPhase.Began:
                     _jumpCancelled = false;
-                    _beginTouchPosition = touch.position;
                     initialJumpSpeed = originalJumpSpeed;
+                    _beginTouchPosition = touch.position;
                     break;
 
                 case TouchPhase.Stationary:
@@ -158,9 +165,9 @@ public class PlayerController : MonoBehaviour
         float jumpDifference = (maxJumpSpeed - originalJumpSpeed) * 1/3;
         if (initialJumpSpeed > originalJumpSpeed + jumpDifference * 3)
             jumpPowerIndicator.transform.localScale = new Vector2(10f, 10f);
-        else if (initialJumpSpeed > originalJumpSpeed + jumpDifference * 2)
+        else if (initialJumpSpeed > originalJumpSpeed + jumpDifference * 5/3)
             jumpPowerIndicator.transform.localScale = new Vector2(6f, 6f);
-        else if (initialJumpSpeed > originalJumpSpeed + jumpDifference)
+        else if (initialJumpSpeed > originalJumpSpeed + jumpDifference * 1/2)
         {
             jumpPowerIndicator.transform.localScale = new Vector2(3f, 3f);
             jumpPowerIndicator.SetActive(true);
