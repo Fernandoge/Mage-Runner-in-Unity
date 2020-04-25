@@ -43,8 +43,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.01f);
-        if (isGrounded && rigidBody.velocity.y < 0)
+        print(rigidBody.velocity.y);
+        isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.22f);
+        if (isGrounded && rigidBody.velocity.y <= 0)
         {
             isGliding = false;
             rigidBody.gravityScale = originalGravity;
