@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
     public float jumpBoost;
     public int totalMana;
     public Transform feetPos;
-    public PlayerSpellsData spellsData;
+    public GameObject spellShooter;
     public GameObject jumpPowerIndicator;
+    public PlayerSpellsData spellsData;
 
     [System.NonSerialized]
     public Rigidbody2D rigidBody;
@@ -26,15 +27,17 @@ public class PlayerController : MonoBehaviour
     public bool isGliding;
     [System.NonSerialized]
     public float glideSpeed;
+    [System.NonSerialized]
+    public bool readyToShoot;
 
     private float originalJumpSpeed;
-    private PlayerSpells _spells;
+    private GestureSpells _gestureSpells;
     private bool _jumpCancelled;
     private Vector2 _beginTouchPosition, _endTouchPosition;
 
     private void Start()
     {
-        _spells = new PlayerSpells(this);
+        _gestureSpells = new GestureSpells(this);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
@@ -58,11 +61,13 @@ public class PlayerController : MonoBehaviour
             rigidBody.gravityScale = originalGravity;
             animator.SetBool("Running", true);
             animator.SetBool("FastFall", false);
+            animator.SetBool("Glide", false);
         }
        
         if (isGliding && rigidBody.velocity.y < 0)
         {
             animator.SetBool("HighJump", false);
+            animator.SetBool("Glide", true);
             rigidBody.gravityScale = 0;
             rigidBody.velocity = Vector2.down * glideSpeed;
         }
@@ -78,9 +83,16 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _jumpCancelled = false;
-            initialJumpSpeed = originalJumpSpeed;
-            _beginTouchPosition = Input.mousePosition;
+            if (readyToShoot)
+            {
+                ShootSpell(Input.mousePosition);
+            }
+            else
+            {
+                _jumpCancelled = false;
+                initialJumpSpeed = originalJumpSpeed;
+                _beginTouchPosition = Input.mousePosition;
+            }
         }
 
         if (Input.GetMouseButton(0))
@@ -118,9 +130,16 @@ public class PlayerController : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    _jumpCancelled = false;
-                    initialJumpSpeed = originalJumpSpeed;
-                    _beginTouchPosition = touch.position;
+                    if (readyToShoot)
+                    {
+                        ShootSpell(touch.position);
+                    }
+                    else
+                    {
+                        _jumpCancelled = false;
+                        initialJumpSpeed = originalJumpSpeed;
+                        _beginTouchPosition = touch.position;
+                    }
                     break;
 
                 case TouchPhase.Stationary:
@@ -174,9 +193,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ShootSpell(Vector3 shootPosition)
+    {
+        Vector2 lookDirection = Camera.main.ScreenToWorldPoint(shootPosition) - spellShooter.transform.position;
+        float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        float rotationZ = lookAngle - 90f;
+        if (rotationZ > 0 || rotationZ < -180)
+        {
+            float newZ = rotationZ > 0 ? 0 : -180;
+            spellShooter.transform.rotation = Quaternion.Euler(0f, 0f, newZ);
+        }
+        else
+        {
+            spellShooter.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        }
+        _gestureSpells.ShootSpell();
+    }
+
     public void BeginCastingSpell(string id)
     {
-        _spells.CastSpell(id);
+        _gestureSpells.CastSpell(id);
     }
 
     public void CastingSpellFailed()

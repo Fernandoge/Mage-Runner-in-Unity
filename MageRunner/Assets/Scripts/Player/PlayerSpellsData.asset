@@ -23,3 +23,10 @@ MonoBehaviour:
     mana: 2
     gesture: {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
     fallSpeed: 25
+  fireball:
+    name: Fireball
+    mana: 4
+    gesture: {fileID: 11400000, guid: 1ce29c33de90fe24ea879fdcae633676, type: 2}
+    spellObject: {fileID: 6630576640024018173, guid: a18b1432905365c41bad87d394776fcf,
+      type: 3}
+    speed: 10

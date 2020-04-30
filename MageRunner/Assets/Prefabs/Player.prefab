@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7353611008853207079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2042547326884140604}
+  m_Layer: 0
+  m_Name: Spell Shooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2042547326884140604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353611008853207079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.344, y: 0.307, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_Children: []
+  m_Father: {fileID: 7692043060404832007}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7692043060404832005
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +63,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7747460471598273605}
+  - {fileID: 2042547326884140604}
   - {fileID: 7470440937448340611}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 54e90b695efcf0c41accf22ecd20ab27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41c9afbb2ad3c884e83cabb14f36d4e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,8 +182,9 @@ MonoBehaviour:
   jumpBoost: 5
   totalMana: 100
   feetPos: {fileID: 7747460471598273605}
-  spellsData: {fileID: 11400000, guid: d20b2bcbd62bddc438394bc11669edf1, type: 2}
+  spellShooter: {fileID: 7353611008853207079}
   jumpPowerIndicator: {fileID: 8908461831130517426}
+  spellsData: {fileID: 11400000, guid: d20b2bcbd62bddc438394bc11669edf1, type: 2}
 --- !u!95 &130733842
 Animator:
   serializedVersion: 3
@@ -196,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8667224127504786041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.213, y: -1.052, z: 0}
+  m_LocalPosition: {x: -0.213, y: -1.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7692043060404832007}
@@ -231,7 +263,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 7692043060404832007}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6992070374080923177
 SpriteRenderer:

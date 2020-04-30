@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerSpells
+public class GestureSpells
 {
     private struct Spell
     {
@@ -21,11 +21,12 @@ public class PlayerSpells
         }
     }
 
-
     private Dictionary<string, Spell> _spellsDict = new Dictionary<string, Spell>();
     private PlayerController _player;
+    private GameObject _spellToShoot;
+    private float _shootSpeed;
     
-    public PlayerSpells(PlayerController player)
+    public GestureSpells(PlayerController player)
     {
         _player = player;
         LoadSpells();
@@ -36,6 +37,15 @@ public class PlayerSpells
         Spell spell = _spellsDict[id];
         _player.totalMana -= spell.mana;
         spell.castSpell();
+    }
+
+    public void ShootSpell()
+    {
+        GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation);
+        shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.up * _shootSpeed;
+        UnityEngine.Object.Destroy(shootedSpell, 10f);
+        _player.readyToShoot = false;
+        _player.animator.SetBool("ReadyToShoot", false);
     }
 
     public void LoadSpells()
@@ -82,6 +92,18 @@ public class PlayerSpells
                     }
                 };
                 return new Spell(fastFall.gesture.id, fastFall.name, fastFall.mana, fastFallCast);
+
+            // Fireball
+            case 2:
+                PlayerSpellsData.FireBall fireball = _player.spellsData.fireball;
+                Action fireballCast = () =>
+                {
+                    _spellToShoot = fireball.spellObject;
+                    _shootSpeed = fireball.speed;
+                    _player.readyToShoot = true;
+                    _player.animator.SetBool("ReadyToShoot", true);
+                };
+                return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);
 
             default:
                 Debug.LogError("There are missing spells for the gesture patterns");

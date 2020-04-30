@@ -28,8 +28,17 @@ public class PlayerSpellsData : ScriptableObject
         public float fallSpeed;
     }
 
+    [System.Serializable]
+    public class FireBall: BaseSpell
+    {
+        public GameObject spellObject;
+        public float damage;
+        public float speed;
+    }
+
     public HighJump highJump;
     public FastFall fastFall;
+    public FireBall fireball;
 }
 
   

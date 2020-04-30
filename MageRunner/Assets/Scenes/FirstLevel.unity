@@ -1867,7 +1867,7 @@ Transform:
   - {fileID: 635390097}
   - {fileID: 283261240}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &564180860
 MonoBehaviour:
@@ -1895,7 +1895,7 @@ GameObject:
   - component: {fileID: 566936547}
   - component: {fileID: 566936546}
   m_Layer: 0
-  m_Name: Fall Check
+  m_Name: Death Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1939,7 +1939,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &566936546
 MonoBehaviour:
@@ -4018,7 +4018,7 @@ Transform:
   - {fileID: 1063437821}
   - {fileID: 2060560897}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1125096657
 GameObject:
@@ -5112,7 +5112,7 @@ GameObject:
   - component: {fileID: 1453130666}
   - component: {fileID: 1453130665}
   m_Layer: 0
-  m_Name: GestureRecognizer
+  m_Name: Gesture Recognizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5134,6 +5134,7 @@ MonoBehaviour:
   patterns:
   - {fileID: 11400000, guid: 2b58f08faca317f4b90b42f73e9a858a, type: 2}
   - {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
+  - {fileID: 11400000, guid: 1ce29c33de90fe24ea879fdcae633676, type: 2}
 --- !u!4 &1453130666
 Transform:
   m_ObjectHideFlags: 0
@@ -7001,10 +7002,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
-      propertyPath: foot
-      value: 0.22
-      objectReference: {fileID: 0}
     - target: {fileID: 7692043060404832005, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Name
@@ -7064,11 +7061,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7747460471598273605, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
