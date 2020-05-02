@@ -66,11 +66,12 @@ public class GestureSpells
                 PlayerSpellsData.HighJump highJump = _player.spellsData.highJump;
                 Action highJumpCast = () =>
                 {
-                    if (_player.isGrounded)
+                    if (_player.jumpAvailable)
                     {
                         _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
                         _player.glideSpeed = highJump.glideSpeed;
                         _player.isGliding = true;
+                        _player.jumpAvailable = false;
                         _player.animator.SetBool("HighJump", true);
                         _player.animator.SetBool("Running", false);
                     }

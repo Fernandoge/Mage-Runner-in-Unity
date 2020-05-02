@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public float originalGravity;
     [System.NonSerialized]
+    public bool jumpAvailable;
+    [System.NonSerialized]
     public bool isGrounded;
     [System.NonSerialized]
     public bool isGliding;
@@ -46,25 +48,19 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.22f);
-        if (!isGrounded)
-        {
-            initialJumpSpeed = originalJumpSpeed;
-            if (jumpPowerIndicator.activeSelf == true)
-            {
-                jumpPowerIndicator.SetActive(false);
-            }
-        }
-        else if (isGrounded && rigidBody.velocity.y <= 0)
+        isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.2f);
+
+        if (isGrounded && rigidBody.velocity.y <= 0)
         {
             isGliding = false;
+            jumpAvailable = true;
             rigidBody.gravityScale = originalGravity;
             animator.SetBool("Running", true);
             animator.SetBool("FastFall", false);
             animator.SetBool("Glide", false);
+            animator.SetBool("HighJump", false);
         }
-       
-        if (isGliding && rigidBody.velocity.y < 0)
+        else if (isGliding && rigidBody.velocity.y < 0)
         {
             animator.SetBool("HighJump", false);
             animator.SetBool("Glide", true);
@@ -101,10 +97,10 @@ public class PlayerController : MonoBehaviour
 
             if (_beginTouchPosition != _endTouchPosition)
             {
-                jumpPowerIndicator.SetActive(false);
                 _jumpCancelled = true;
+                jumpPowerIndicator.SetActive(false);
             }
-            else if (initialJumpSpeed < maxJumpSpeed && isGrounded)
+            else if (initialJumpSpeed < maxJumpSpeed && jumpAvailable)
             {
                 initialJumpSpeed += jumpBoost * Time.deltaTime; 
                 UpdateJumpIndicator();
@@ -143,7 +139,7 @@ public class PlayerController : MonoBehaviour
                     break;
 
                 case TouchPhase.Stationary:
-                    if (initialJumpSpeed < maxJumpSpeed && isGrounded)
+                    if (initialJumpSpeed < maxJumpSpeed && jumpAvailable)
                     {
                         initialJumpSpeed += jumpBoost * Time.deltaTime;
                         UpdateJumpIndicator();
@@ -169,9 +165,10 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded == true)
+        if (jumpAvailable)
         {
             rigidBody.velocity = Vector2.up * initialJumpSpeed;
+            jumpAvailable = false;
             jumpPowerIndicator.SetActive(false);
         }
     }
