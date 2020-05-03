@@ -46,6 +46,7 @@ public class GestureSpells
         UnityEngine.Object.Destroy(shootedSpell, 10f);
         _player.readyToShoot = false;
         _player.animator.SetBool("ReadyToShoot", false);
+        _player.animator.SetInteger("StateNumber", 6);
     }
 
     public void LoadSpells()
@@ -70,10 +71,8 @@ public class GestureSpells
                     {
                         _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
                         _player.glideSpeed = highJump.glideSpeed;
-                        _player.isGliding = true;
+                        _player.isHighJumping = true;
                         _player.jumpAvailable = false;
-                        _player.animator.SetBool("HighJump", true);
-                        _player.animator.SetBool("Running", false);
                     }
                 };
                 return new Spell(highJump.gesture.id, highJump.name, highJump.mana, highJumpCast);
@@ -85,11 +84,10 @@ public class GestureSpells
                 {
                     if (_player.isGrounded == false)
                     {
-                        _player.isGliding = false;
+                        _player.isHighJumping = false;
                         _player.rigidBody.gravityScale = _player.originalGravity;
                         _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
-                        _player.animator.SetBool("FastFall", true);
-                        _player.animator.SetBool("HighJump", false);
+                        _player.animator.SetInteger("StateNumber", 4);
                     }
                 };
                 return new Spell(fastFall.gesture.id, fastFall.name, fastFall.mana, fastFallCast);
@@ -102,6 +100,7 @@ public class GestureSpells
                     _spellToShoot = fireball.spellObject;
                     _spellSpeed = fireball.speed;
                     _player.readyToShoot = true;
+                    _player.animator.SetInteger("StateNumber", 5);
                     _player.animator.SetBool("ReadyToShoot", true);
                 };
                 return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);

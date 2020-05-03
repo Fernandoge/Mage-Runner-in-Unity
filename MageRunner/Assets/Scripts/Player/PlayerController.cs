@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized]
     public bool isGrounded;
     [System.NonSerialized]
-    public bool isGliding;
+    public bool isHighJumping;
     [System.NonSerialized]
     public float glideSpeed;
     [System.NonSerialized]
@@ -55,20 +55,21 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && rigidBody.velocity.y <= 0)
         {
-            isGliding = false;
+            isHighJumping = false;
             jumpAvailable = true;
             rigidBody.gravityScale = originalGravity;
-            animator.SetBool("Running", true);
-            animator.SetBool("FastFall", false);
-            animator.SetBool("Glide", false);
-            animator.SetBool("HighJump", false);
+            animator.SetInteger("StateNumber", 1);
         }
-        else if (isGliding && rigidBody.velocity.y < 0)
+        else if (isHighJumping)
         {
-            animator.SetBool("HighJump", false);
-            animator.SetBool("Glide", true);
-            rigidBody.gravityScale = 0;
-            rigidBody.velocity = Vector2.down * glideSpeed;
+            if (rigidBody.velocity.y >= 0)
+                animator.SetInteger("StateNumber", 2);
+            else
+            {
+                animator.SetInteger("StateNumber", 3);
+                rigidBody.gravityScale = 0;
+                rigidBody.velocity = Vector2.down * glideSpeed;
+            }
         }
 
         #if UNITY_EDITOR
@@ -217,5 +218,10 @@ public class PlayerController : MonoBehaviour
     public void CastingSpellFailed()
     {
         print("Casting spell failed");
+    }
+
+    public void SetAnimationState(int stateNumber)
+    {
+        animator.SetInteger("StateNumber", stateNumber);
     }
 }

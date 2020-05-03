@@ -24,15 +24,15 @@ public class EnemyController : MonoBehaviour
     private float _maxFireRate;
 
     private float _fireRate;
-    private BoxCollider2D collider;
+    private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         _fireRate = Random.Range(_minFireRate, _maxFireRate);
-        collider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider.enabled = false;
+        boxCollider.enabled = false;
         spriteRenderer.enabled = false;
     }
 
@@ -47,8 +47,7 @@ public class EnemyController : MonoBehaviour
                     Destroy(gameObject);
                     _player.rigidBody.velocity = Vector2.up * _player.originalJumpSpeed;
                     _player.jumpAvailable = true;
-                    _player.animator.SetBool("Running", true);
-                    _player.animator.SetBool("FastFall", false);
+                    _player.animator.SetInteger("StateNumber", 1);
                 }
                 else
                 {
@@ -67,7 +66,7 @@ public class EnemyController : MonoBehaviour
         if (spriteRenderer.enabled == false && distanceBetweenPlayer <= _distanceToSpawn)
         {
             spriteRenderer.enabled = true;
-            collider.enabled = true;
+            boxCollider.enabled = true;
         }
 
         if (_fireRate > 0 && spriteRenderer.enabled)
