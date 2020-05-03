@@ -31,11 +31,13 @@ public class PlayerController : MonoBehaviour
     public float glideSpeed;
     [System.NonSerialized]
     public bool readyToShoot;
+    [System.NonSerialized]
+    public float originalJumpSpeed;
 
-    private float originalJumpSpeed;
     private GestureSpells _gestureSpells;
     private bool _jumpCancelled;
     private Vector2 _beginTouchPosition, _endTouchPosition;
+    private LayerMask _notGroundLayer;
 
     private void Start()
     {
@@ -44,11 +46,12 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
         originalJumpSpeed = initialJumpSpeed;
+        _notGroundLayer = 1 << LayerMask.NameToLayer("Ground");
     }
 
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.2f);
+        isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.2f, _notGroundLayer);
 
         if (isGrounded && rigidBody.velocity.y <= 0)
         {
@@ -75,7 +78,7 @@ public class PlayerController : MonoBehaviour
         #endif
     }
 
-    public void PlayerInputDebug()
+    private void PlayerInputDebug()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -118,7 +121,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PlayerInput()
+    private void PlayerInput()
     {
         if (Input.touchCount > 0)
         {
@@ -163,7 +166,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Jump()
+    private void Jump()
     {
         if (jumpAvailable)
         {
@@ -173,7 +176,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void UpdateJumpIndicator()
+    private void UpdateJumpIndicator()
     {
         if (_jumpCancelled)
             return;
@@ -190,19 +193,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ShootSpell(Vector3 shootPosition)
+    private void ShootSpell(Vector3 shootPosition)
     {
         Vector2 lookDirection = Camera.main.ScreenToWorldPoint(shootPosition) - spellShooter.transform.position;
         float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        float rotationZ = lookAngle - 90f;
-        if (rotationZ > 0 || rotationZ < -180)
+        if (lookAngle > 90 || lookAngle < -90)
         {
-            float newZ = rotationZ > 0 ? 0 : -180;
+            float newZ = lookAngle > 90 ? 90 : -90;
             spellShooter.transform.rotation = Quaternion.Euler(0f, 0f, newZ);
         }
         else
         {
-            spellShooter.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+            spellShooter.transform.rotation = Quaternion.Euler(0f, 0f, lookAngle);
         }
         _gestureSpells.ShootSpell();
     }

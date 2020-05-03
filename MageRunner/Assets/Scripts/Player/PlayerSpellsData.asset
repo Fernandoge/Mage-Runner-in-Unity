@@ -29,4 +29,5 @@ MonoBehaviour:
     gesture: {fileID: 11400000, guid: 1ce29c33de90fe24ea879fdcae633676, type: 2}
     spellObject: {fileID: 6630576640024018173, guid: a18b1432905365c41bad87d394776fcf,
       type: 3}
-    speed: 10
+    damage: 0
+    speed: 15

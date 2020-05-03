@@ -24,7 +24,7 @@ public class GestureSpells
     private Dictionary<string, Spell> _spellsDict = new Dictionary<string, Spell>();
     private PlayerController _player;
     private GameObject _spellToShoot;
-    private float _shootSpeed;
+    private float _spellSpeed;
     
     public GestureSpells(PlayerController player)
     {
@@ -42,7 +42,7 @@ public class GestureSpells
     public void ShootSpell()
     {
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation);
-        shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.up * _shootSpeed;
+        shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.right * _spellSpeed;
         UnityEngine.Object.Destroy(shootedSpell, 10f);
         _player.readyToShoot = false;
         _player.animator.SetBool("ReadyToShoot", false);
@@ -100,7 +100,7 @@ public class GestureSpells
                 Action fireballCast = () =>
                 {
                     _spellToShoot = fireball.spellObject;
-                    _shootSpeed = fireball.speed;
+                    _spellSpeed = fireball.speed;
                     _player.readyToShoot = true;
                     _player.animator.SetBool("ReadyToShoot", true);
                 };
