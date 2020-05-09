@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Spell", menuName = "PlayerSpellsData")]
 public class PlayerSpellsData : ScriptableObject
 {
+    [System.Serializable]
     public class BaseSpell
     {
         public string name;
@@ -36,9 +37,15 @@ public class PlayerSpellsData : ScriptableObject
         public float speed;
     }
 
+    public BaseSpell block;
+    public BaseSpell reflect;
     public HighJump highJump;
     public FastFall fastFall;
     public FireBall fireball;
+    public BaseSpell ice;
+    public BaseSpell wind;
+    public BaseSpell earth;
+    public BaseSpell lightning;
 }
 
   

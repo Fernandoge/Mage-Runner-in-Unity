@@ -105,6 +105,60 @@ public class GestureSpells
                 };
                 return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);
 
+            // Block
+            case 3:
+                PlayerSpellsData.BaseSpell block = _player.spellsData.block;
+                Action blockCast = () =>
+                {
+                    Debug.Log("block");
+                };
+                return new Spell(block.gesture.id, block.name, block.mana, blockCast);
+
+            // Reflect
+            case 4:
+                PlayerSpellsData.BaseSpell reflect = _player.spellsData.reflect;
+                Action reflectCast = () =>
+                {
+                    Debug.Log("reflect");
+                };
+                return new Spell(reflect.gesture.id, reflect.name, reflect.mana, reflectCast);
+
+            // Ice
+            case 5:
+                PlayerSpellsData.BaseSpell ice = _player.spellsData.ice;
+                Action iceCast = () =>
+                {
+                    Debug.Log("ice");
+                };
+                return new Spell(ice.gesture.id, ice.name, ice.mana, iceCast);
+
+            // Earth
+            case 6:
+                PlayerSpellsData.BaseSpell earth = _player.spellsData.earth;
+                Action earthCast = () =>
+                {
+                    Debug.Log("earth");
+                };
+                return new Spell(earth.gesture.id, earth.name, earth.mana, earthCast);
+
+            // Wind
+            case 7:
+                PlayerSpellsData.BaseSpell wind = _player.spellsData.wind;
+                Action windCast = () =>
+                {
+                    Debug.Log("wind");
+                };
+                return new Spell(wind.gesture.id, wind.name, wind.mana, windCast);
+
+            // Lighting
+            case 8:
+                PlayerSpellsData.BaseSpell lightning = _player.spellsData.lightning;
+                Action boltCast = () =>
+                {
+                    Debug.Log("lightning");
+                };
+                return new Spell(lightning.gesture.id, lightning.name, lightning.mana, boltCast);
+
             default:
                 Debug.LogError("There are missing spells for the gesture patterns");
                 return new Spell();

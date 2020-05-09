@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d72b34db8dcef6418847505455f9bf4, type: 3}
   m_Name: PlayerSpellsData
   m_EditorClassIdentifier: 
+  block:
+    name: Block
+    mana: 0
+    gesture: {fileID: 11400000, guid: e649e6fab8712c545a7b8cdd3e8727f8, type: 2}
+  reflect:
+    name: Reflect
+    mana: 0
+    gesture: {fileID: 11400000, guid: fba0ef350e4b9d94d8e580ab62b0bc9c, type: 2}
   highJump:
     name: High Jump
     mana: 5
@@ -31,3 +39,19 @@ MonoBehaviour:
       type: 3}
     damage: 0
     speed: 15
+  ice:
+    name: Ice
+    mana: 0
+    gesture: {fileID: 11400000, guid: dc95a3d1c6178a24b96968618071c660, type: 2}
+  wind:
+    name: Wind
+    mana: 0
+    gesture: {fileID: 11400000, guid: c402e576db321c94f95fca53a06ebb8e, type: 2}
+  earth:
+    name: Earth
+    mana: 0
+    gesture: {fileID: 11400000, guid: af6276b59495c184f810b6e19d448224, type: 2}
+  bolt:
+    name: Bolt
+    mana: 0
+    gesture: {fileID: 11400000, guid: b97eaa9d4cf084946a4cdddceb3135a2, type: 2}

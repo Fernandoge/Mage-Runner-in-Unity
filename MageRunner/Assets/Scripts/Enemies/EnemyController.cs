@@ -69,10 +69,13 @@ public class EnemyController : MonoBehaviour
             boxCollider.enabled = true;
         }
 
-        if (_fireRate > 0 && spriteRenderer.enabled)
-            _fireRate -= Time.deltaTime;
-        else if (distanceBetweenPlayer >= _minDistanceToShoot && distanceBetweenPlayer <= _maxDistanceToShoot)
-            Shoot();
+        if (distanceBetweenPlayer >= _minDistanceToShoot && distanceBetweenPlayer <= _maxDistanceToShoot)
+        {
+            if (_fireRate > 0)
+                _fireRate -= Time.deltaTime;
+            else
+                Shoot();
+        }
     }
 
     private void Shoot()
