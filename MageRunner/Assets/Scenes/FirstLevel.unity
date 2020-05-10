@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564180858}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 812c5799d53a3014eb8e46f064754a6b, type: 3}
   m_Name: 
@@ -4715,9 +4715,10 @@ PrefabInstance:
       objectReference: {fileID: 753229090}
     - target: {fileID: 5432753869513944484, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}
-      propertyPath: _minDistanceToShoot
-      value: 9999
-      objectReference: {fileID: 0}
+      propertyPath: _objectToShoot
+      value: 
+      objectReference: {fileID: 1316127905198959151, guid: 163b934833c42234bb8e00ac7c1c5869,
+        type: 3}
     - target: {fileID: 8215798905352145268, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7171,6 +7172,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125639125}
   m_CullTransparentMesh: 0
+--- !u!1 &2141942418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4677125598960807813, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7692043060912018404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &2141942419
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141942418}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.010261016, y: -0.083996885}
+  m_Size: {x: 0.10807621, y: 0.0647448}
+  m_Direction: 1
 --- !u!1001 &7692043060912018404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7178,11 +7201,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4678948678083980417, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678948678083980417, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722863470825739402, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7692043060404832005, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7692043060404832006, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 41c9afbb2ad3c884e83cabb14f36d4e0,
+        type: 3}
     - target: {fileID: 7692043060404832007, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7252,20 +7296,15 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 753229090}
-    - target: {fileID: 5432753869513944484, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
-        type: 3}
-      propertyPath: _minDistanceToShoot
-      value: 9999
-      objectReference: {fileID: 0}
     - target: {fileID: 8215798905352145268, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.91
+      value: -1.33
       objectReference: {fileID: 0}
     - target: {fileID: 8215798905352145268, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: -4.48
       objectReference: {fileID: 0}
     - target: {fileID: 8215798905352145268, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}

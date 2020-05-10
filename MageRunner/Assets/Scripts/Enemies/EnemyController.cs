@@ -5,14 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private PlayerController _player;
-    [SerializeField]
-    private GameObject _weapon;
-    [SerializeField]
-    private GameObject _objectToShoot;
-    [SerializeField]
-    private float _objectSpeed;
-    [SerializeField]
     private float _distanceToSpawn;
     [SerializeField]
     private float _minDistanceToShoot;
@@ -22,6 +14,12 @@ public class EnemyController : MonoBehaviour
     private float _minFireRate;
     [SerializeField]
     private float _maxFireRate;
+    [SerializeField]
+    private PlayerController _player;
+    [SerializeField]
+    private GameObject _weapon;
+    [SerializeField]
+    private EnemyAttack _objectToShoot;
 
     private float _fireRate;
     private BoxCollider2D boxCollider;
@@ -85,9 +83,8 @@ public class EnemyController : MonoBehaviour
         float lookAngleRandomized = lookAngle + Random.Range(-20, 20);
         _weapon.transform.rotation = Quaternion.Euler(0f, 0f, lookAngleRandomized);
 
-        GameObject shootedObject = Instantiate(_objectToShoot, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
-        shootedObject.GetComponent<Rigidbody2D>().velocity = _weapon.transform.right * _objectSpeed;
-        Destroy(shootedObject, 10f);
+        GameObject shootedObject = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
+        shootedObject.GetComponent<Rigidbody2D>().velocity = _weapon.transform.right * _objectToShoot.speed;
 
         _fireRate = Random.Range(_minFireRate, _maxFireRate);
     }

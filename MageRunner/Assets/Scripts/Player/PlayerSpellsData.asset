@@ -20,6 +20,7 @@ MonoBehaviour:
     name: Reflect
     mana: 0
     gesture: {fileID: 11400000, guid: fba0ef350e4b9d94d8e580ab62b0bc9c, type: 2}
+    duration: 1.5
   highJump:
     name: High Jump
     mana: 5
@@ -51,7 +52,7 @@ MonoBehaviour:
     name: Earth
     mana: 0
     gesture: {fileID: 11400000, guid: af6276b59495c184f810b6e19d448224, type: 2}
-  bolt:
-    name: Bolt
+  lightning:
+    name: Lightning
     mana: 0
     gesture: {fileID: 11400000, guid: b97eaa9d4cf084946a4cdddceb3135a2, type: 2}

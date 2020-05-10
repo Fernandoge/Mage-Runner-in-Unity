@@ -122,17 +122,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b154f3eaeb48634e8d3f33c267ef6b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _weapon: {fileID: 8409304969534882528}
-  _objectToShoot: {fileID: 6630576640024018173, guid: 163b934833c42234bb8e00ac7c1c5869,
-    type: 3}
-  _objectSpeed: 15
   _distanceToSpawn: 22
   _minDistanceToShoot: 5
   _maxDistanceToShoot: 22
   _minFireRate: 1.2
   _maxFireRate: 2.5
-  _fireRate: 0
+  _player: {fileID: 0}
+  _weapon: {fileID: 8409304969534882528}
+  _objectToShoot: {fileID: 1316127905198959151, guid: 163b934833c42234bb8e00ac7c1c5869,
+    type: 3}
 --- !u!1 &8409304969534882528
 GameObject:
   m_ObjectHideFlags: 0

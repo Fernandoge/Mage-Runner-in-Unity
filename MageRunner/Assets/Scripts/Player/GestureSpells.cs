@@ -97,11 +97,14 @@ public class GestureSpells
                 PlayerSpellsData.FireBall fireball = _player.spellsData.fireball;
                 Action fireballCast = () =>
                 {
-                    _spellToShoot = fireball.spellObject;
-                    _spellSpeed = fireball.speed;
-                    _player.readyToShoot = true;
-                    _player.animator.SetInteger("StateNumber", 5);
-                    _player.animator.SetBool("ReadyToShoot", true);
+                    if (_player.isReflecting == false && _player.readyToShoot == false)
+                    {
+                        _spellToShoot = fireball.spellObject;
+                        _spellSpeed = fireball.speed;
+                        _player.readyToShoot = true;
+                        _player.animator.SetInteger("StateNumber", 5);
+                        _player.animator.SetBool("ReadyToShoot", true);
+                    }
                 };
                 return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);
 
@@ -116,10 +119,14 @@ public class GestureSpells
 
             // Reflect
             case 4:
-                PlayerSpellsData.BaseSpell reflect = _player.spellsData.reflect;
+                PlayerSpellsData.Aura reflect = _player.spellsData.reflect;
                 Action reflectCast = () =>
                 {
-                    Debug.Log("reflect");
+                    _player.reflectingDuration = reflect.duration;
+                    _player.reflectAura.SetActive(true);
+                    _player.isReflecting = true;
+                    _player.animator.SetInteger("StateNumber", 7);
+                    _player.animator.SetBool("Reflecting", true);
                 };
                 return new Spell(reflect.gesture.id, reflect.name, reflect.mana, reflectCast);
 
