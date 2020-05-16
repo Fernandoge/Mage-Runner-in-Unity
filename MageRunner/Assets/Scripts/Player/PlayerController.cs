@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -34,6 +33,8 @@ public class PlayerController : MonoBehaviour
     public bool readyToShoot;
     [System.NonSerialized] 
     public float originalJumpSpeed;
+    [System.NonSerialized]
+    public bool isBlocking;
     [System.NonSerialized] 
     public bool isReflecting;
     [System.NonSerialized]
@@ -262,7 +263,10 @@ public class PlayerController : MonoBehaviour
             {
                 reflectAura.SetActive(false);
                 isReflecting = false;
+                _gestureSpells.lockedCasting = false;
                 animator.SetBool("Reflecting", false);
+
+                // If attacks are ready to be reflected
                 if (reflectedAttacks.Count > 0)
                 {
                     readyToShoot = true;
@@ -273,6 +277,10 @@ public class PlayerController : MonoBehaviour
                         attack.preparingReflect = false;
                     }
                 }
+
+                // Avoiding the player animator in the default state
+                if (animator.GetInteger("StateNumber") == 7)
+                    animator.SetInteger("StateNumber", 1);
             }
         }
     }
@@ -290,5 +298,17 @@ public class PlayerController : MonoBehaviour
     public void SetAnimationState(int stateNumber)
     {
         animator.SetInteger("StateNumber", stateNumber);
+    }
+
+    public void Blocking()
+    {
+        if (isBlocking)
+        {
+            isBlocking = false;
+            _gestureSpells.lockedCasting = false;
+            animator.SetBool("Blocking", false);
+        }
+        else
+            isBlocking = true;
     }
 }

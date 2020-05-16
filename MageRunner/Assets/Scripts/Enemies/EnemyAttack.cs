@@ -35,9 +35,17 @@ public class EnemyAttack : MonoBehaviour
         
         if (collision.CompareTag("Player"))
         {
-            //TODO: Change this when player health is implemented
-            LevelController currentLevel = FindObjectOfType<LevelController>();
-            currentLevel.ResetLevel();
+            //TODO: Change this when GameManager is implemented
+            if (collision.GetComponent<PlayerController>().isBlocking)
+            {
+                Destroy(gameObject);
+            } 
+            else
+            {
+                //TODO: Change this when player health is implemented
+                LevelController currentLevel = FindObjectOfType<LevelController>();
+                currentLevel.ResetLevel();
+            }
         }
     }
 

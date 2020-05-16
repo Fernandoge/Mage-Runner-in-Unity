@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -20,6 +19,8 @@ public class GestureSpells
             this.castSpell = castSpell;
         }
     }
+
+    public bool lockedCasting;
 
     private Dictionary<string, Spell> _spellsDict = new Dictionary<string, Spell>();
     private PlayerController _player;
@@ -97,7 +98,7 @@ public class GestureSpells
                 PlayerSpellsData.FireBall fireball = _player.spellsData.fireball;
                 Action fireballCast = () =>
                 {
-                    if (_player.isReflecting == false && _player.readyToShoot == false)
+                    if (lockedCasting == false)
                     {
                         _spellToShoot = fireball.spellObject;
                         _spellSpeed = fireball.speed;
@@ -113,7 +114,12 @@ public class GestureSpells
                 PlayerSpellsData.BaseSpell block = _player.spellsData.block;
                 Action blockCast = () =>
                 {
-                    Debug.Log("block");
+                    if (lockedCasting == false)
+                    {
+                        lockedCasting = true;
+                        _player.animator.SetInteger("StateNumber", 8);
+                        _player.animator.SetBool("Blocking", true);
+                    }
                 };
                 return new Spell(block.gesture.id, block.name, block.mana, blockCast);
 
@@ -122,11 +128,15 @@ public class GestureSpells
                 PlayerSpellsData.Aura reflect = _player.spellsData.reflect;
                 Action reflectCast = () =>
                 {
-                    _player.reflectingDuration = reflect.duration;
-                    _player.reflectAura.SetActive(true);
-                    _player.isReflecting = true;
-                    _player.animator.SetInteger("StateNumber", 7);
-                    _player.animator.SetBool("Reflecting", true);
+                    if (lockedCasting == false)
+                    {
+                        lockedCasting = true;
+                        _player.reflectingDuration = reflect.duration;
+                        _player.reflectAura.SetActive(true);
+                        _player.isReflecting = true;
+                        _player.animator.SetInteger("StateNumber", 7);
+                        _player.animator.SetBool("Reflecting", true);
+                    }
                 };
                 return new Spell(reflect.gesture.id, reflect.name, reflect.mana, reflectCast);
 
