@@ -21,6 +21,7 @@ public class GestureSpells
     }
 
     public bool lockedCasting;
+    public Collider2D fastFallGroundCollider;
 
     private Dictionary<string, Spell> _spellsDict = new Dictionary<string, Spell>();
     private PlayerController _player;
@@ -83,12 +84,18 @@ public class GestureSpells
                 PlayerSpellsData.FastFall fastFall = _player.spellsData.fastFall;
                 Action fastFallCast = () =>
                 {
-                    if (_player.isGrounded == false)
+                    if (_player.groundCollider == null || _player.groundCollider.CompareTag("BottomGround") == false)
                     {
                         _player.isHighJumping = false;
+                        _player.jumpAvailable = false;
                         _player.rigidBody.gravityScale = _player.originalGravity;
                         _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
                         _player.animator.SetInteger("StateNumber", 4);
+                        if (_player.groundCollider != null)
+                        {
+                            fastFallGroundCollider = _player.groundCollider;
+                            fastFallGroundCollider.enabled = false;
+                        }
                     }
                 };
                 return new Spell(fastFall.gesture.id, fastFall.name, fastFall.mana, fastFallCast);

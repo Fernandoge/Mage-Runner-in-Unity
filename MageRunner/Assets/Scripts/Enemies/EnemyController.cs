@@ -40,12 +40,11 @@ public class EnemyController : MonoBehaviour
         {
             foreach (ContactPoint2D point in collision.contacts)
             {
-                if (point.normal.y == -1f)
+                if (point.normal.y <= -0.9f)
                 {
                     Destroy(gameObject);
                     _player.rigidBody.velocity = Vector2.up * _player.originalJumpSpeed;
-                    _player.jumpAvailable = true;
-                    _player.animator.SetInteger("StateNumber", 1);
+                    _player.Running();
                 }
                 else
                 {

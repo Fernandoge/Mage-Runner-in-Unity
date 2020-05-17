@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public float originalGravity;
     [System.NonSerialized] 
     public bool jumpAvailable;
-    [System.NonSerialized] 
-    public bool isGrounded;
+    [System.NonSerialized]
+    public Collider2D groundCollider;
     [System.NonSerialized] 
     public bool isHighJumping;
     [System.NonSerialized] 
@@ -59,9 +60,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(feetPos.position, 0.2f, _notGroundLayer);
+        groundCollider = Physics2D.OverlapCircle(feetPos.position, 0.2f, _notGroundLayer);
 
-        if (isGrounded && rigidBody.velocity.y <= 0)
+        if (groundCollider != null && rigidBody.velocity.y <= 0)
             Running();
         else if (isHighJumping)
             HighJump();
@@ -163,15 +164,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Running()
+    public void Running()
     {
+        if (_gestureSpells.fastFallGroundCollider?.enabled == false)
+        {
+            _gestureSpells.fastFallGroundCollider.enabled = true;
+        }
         isHighJumping = false;
         jumpAvailable = true;
         rigidBody.gravityScale = originalGravity;
         animator.SetInteger("StateNumber", 1);
     }
 
-    private void Jump()
+    public void Jump()
     {
         if (jumpAvailable)
         {
@@ -295,11 +300,7 @@ public class PlayerController : MonoBehaviour
         print("Casting spell failed");
     }
 
-    public void SetAnimationState(int stateNumber)
-    {
-        animator.SetInteger("StateNumber", stateNumber);
-    }
-
+    // Used in Blocking animation
     public void Blocking()
     {
         if (isBlocking)

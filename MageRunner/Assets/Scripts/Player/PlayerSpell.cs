@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerSpell : MonoBehaviour
 {
+    public LayerMask noDestroyLayers;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("EnemyAttack"))
+        if (((1 << collision.gameObject.layer) & noDestroyLayers) == 0)
         {
             Destroy(gameObject);
         }

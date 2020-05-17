@@ -137,4 +137,4 @@ MonoBehaviour:
   speed: 15
   noDestroyLayers:
     serializedVersion: 2
-    m_Bits: 3584
+    m_Bits: 3840
