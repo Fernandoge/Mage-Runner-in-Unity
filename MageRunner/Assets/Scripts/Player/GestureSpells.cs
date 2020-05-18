@@ -88,6 +88,7 @@ public class GestureSpells
                     {
                         _player.isHighJumping = false;
                         _player.jumpAvailable = false;
+                        _player.isJumping = false;
                         _player.rigidBody.gravityScale = _player.originalGravity;
                         _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
                         _player.animator.SetInteger("StateNumber", 4);
@@ -109,9 +110,7 @@ public class GestureSpells
                     {
                         _spellToShoot = fireball.spellObject;
                         _spellSpeed = fireball.speed;
-                        _player.readyToShoot = true;
-                        _player.animator.SetInteger("StateNumber", 5);
-                        _player.animator.SetBool("ReadyToShoot", true);
+                        _player.ReadyToShoot();
                     }
                 };
                 return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);

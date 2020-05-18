@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
                 if (point.normal.y <= -0.9f)
                 {
                     Destroy(gameObject);
-                    _player.rigidBody.velocity = Vector2.up * _player.originalJumpSpeed;
+                    _player.rigidBody.velocity = Vector2.up * _player.jumpForce;
                     _player.Running();
                 }
                 else

@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float initialJumpSpeed;
-    public float maxJumpSpeed;
-    public float jumpBoost;
+    public float jumpForce;
+    public float jumpTime;
     public int totalMana;
     public Transform feetPos;
     public GameObject spellShooter;
-    public GameObject jumpPowerIndicator;
     public GameObject reflectAura;
+    public Image drawArea;
     public PlayerSpellsData spellsData;
 
     [System.NonSerialized] 
@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] 
     public bool jumpAvailable;
     [System.NonSerialized]
+    public bool isJumping;
+    [System.NonSerialized]
     public Collider2D groundCollider;
     [System.NonSerialized] 
     public bool isHighJumping;
@@ -32,8 +34,6 @@ public class PlayerController : MonoBehaviour
     public float glideSpeed;
     [System.NonSerialized] 
     public bool readyToShoot;
-    [System.NonSerialized] 
-    public float originalJumpSpeed;
     [System.NonSerialized]
     public bool isBlocking;
     [System.NonSerialized] 
@@ -43,9 +43,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] 
     public List<EnemyAttack> reflectedAttacks = new List<EnemyAttack>();
 
+    private float _jumpTimeCounter;
     private GestureSpells _gestureSpells;
-    private bool _jumpCancelled;
-    private Vector2 _beginTouchPosition, _endTouchPosition;
     private LayerMask _notGroundLayer;
 
     private void Start()
@@ -54,14 +53,14 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
-        originalJumpSpeed = initialJumpSpeed;
         _notGroundLayer = 1 << LayerMask.NameToLayer("Ground");
     }
 
     private void Update()
     {
-        groundCollider = Physics2D.OverlapCircle(feetPos.position, 0.2f, _notGroundLayer);
+        groundCollider = Physics2D.OverlapCircle(feetPos.position, 0.1f, _notGroundLayer);
 
+        // Check velocity, because if velocity is higher than 0, High Jump could have been casted and then the animation state of High Jump isn't overrided by Running
         if (groundCollider != null && rigidBody.velocity.y <= 0)
             Running();
         else if (isHighJumping)
@@ -78,128 +77,69 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInputDebug()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (readyToShoot)
-            {
-                Shoot(Input.mousePosition);
-            }
-            else
-            {
-                _jumpCancelled = false;
-                initialJumpSpeed = originalJumpSpeed;
-                _beginTouchPosition = Input.mousePosition;
-            }
-        }
+        if (Input.GetMouseButtonDown(0) && readyToShoot && !EventSystem.current.IsPointerOverGameObject())
+            Shoot(Input.mousePosition); 
 
-        if (Input.GetMouseButton(0))
-        {
-            _endTouchPosition = Input.mousePosition;
+        if (Input.GetKey(KeyCode.Space))
+            Jump();
 
-            if (_beginTouchPosition != _endTouchPosition)
-            {
-                _jumpCancelled = true;
-                jumpPowerIndicator.SetActive(false);
-            }
-            else if (initialJumpSpeed < maxJumpSpeed && jumpAvailable)
-            {
-                initialJumpSpeed += jumpBoost * Time.deltaTime; 
-                UpdateJumpIndicator();
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            _endTouchPosition = Input.mousePosition;
-
-            if (_beginTouchPosition == _endTouchPosition)
-                Jump();
-         // else
-             // gesture handler starts to recognize draw
-        }
+        if (Input.GetKeyUp(KeyCode.Space))
+            isJumping = false;
     }
 
     private void PlayerInput()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    if (readyToShoot)
-                    {
+                    if (readyToShoot && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                         Shoot(touch.position);
-                    }
-                    else
-                    {
-                        _jumpCancelled = false;
-                        initialJumpSpeed = originalJumpSpeed;
-                        _beginTouchPosition = touch.position;
-                    }
-                    break;
-
-                case TouchPhase.Stationary:
-                    if (initialJumpSpeed < maxJumpSpeed && jumpAvailable)
-                    {
-                        initialJumpSpeed += jumpBoost * Time.deltaTime;
-                        UpdateJumpIndicator();
-                    }
-                    break;
-
-                case TouchPhase.Moved:
-                    _jumpCancelled = true;
-                    jumpPowerIndicator.SetActive(false);
-                    break;
-
-                case TouchPhase.Ended:
-                    _endTouchPosition = touch.position;
-
-                    if (_beginTouchPosition == _endTouchPosition)
-                        Jump();
-                 // else
-                     // gesture handler starts to recognize draw
                     break;
             }
+        }
+        else if (Input.touchCount > 1)
+        {
+            Touch touch = Input.GetTouch(1);
+            if (readyToShoot)
+                Shoot(touch.position);
         }
     }
 
     public void Running()
     {
         if (_gestureSpells.fastFallGroundCollider?.enabled == false)
-        {
             _gestureSpells.fastFallGroundCollider.enabled = true;
-        }
+
         isHighJumping = false;
         jumpAvailable = true;
         rigidBody.gravityScale = originalGravity;
         animator.SetInteger("StateNumber", 1);
+        animator.SetBool("Jump", false);
     }
 
     public void Jump()
     {
         if (jumpAvailable)
         {
-            rigidBody.velocity = Vector2.up * initialJumpSpeed;
+            rigidBody.velocity = Vector2.up * jumpForce;
+            _jumpTimeCounter = jumpTime;
+            isJumping = true;
             jumpAvailable = false;
-            jumpPowerIndicator.SetActive(false);
+            animator.SetBool("Jump", true);
         }
-    }
 
-    private void UpdateJumpIndicator()
-    {
-        if (_jumpCancelled)
-            return;
-        
-        float jumpDifference = (maxJumpSpeed - originalJumpSpeed) * 1/3;
-        if (initialJumpSpeed > originalJumpSpeed + jumpDifference * 3)
-            jumpPowerIndicator.transform.localScale = new Vector2(10f, 10f);
-        else if (initialJumpSpeed > originalJumpSpeed + jumpDifference * 5/3)
-            jumpPowerIndicator.transform.localScale = new Vector2(6f, 6f);
-        else if (initialJumpSpeed > originalJumpSpeed + jumpDifference * 1/2)
+        if (isJumping)
         {
-            jumpPowerIndicator.transform.localScale = new Vector2(3f, 3f);
-            jumpPowerIndicator.SetActive(true);
+            if (_jumpTimeCounter > 0)
+            {
+                rigidBody.velocity = Vector2.up * jumpForce;
+                _jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+                isJumping = false;
         }
     }
 
@@ -214,9 +154,11 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = Vector2.down * glideSpeed;
         }
     }
+    
 
     private void Shoot(Vector3 shootPosition)
     {
+        drawArea.raycastTarget = true;
         if (reflectedAttacks.Count == 0)
         {
             AdjustShootRotation(shootPosition, spellShooter);
@@ -274,9 +216,7 @@ public class PlayerController : MonoBehaviour
                 // If attacks are ready to be reflected
                 if (reflectedAttacks.Count > 0)
                 {
-                    readyToShoot = true;
-                    animator.SetInteger("StateNumber", 5);
-                    animator.SetBool("ReadyToShootSimplified", true);
+                    ReadyToShoot(simplified: true);
                     foreach (EnemyAttack attack in reflectedAttacks)
                     {
                         attack.preparingReflect = false;
@@ -288,6 +228,17 @@ public class PlayerController : MonoBehaviour
                     animator.SetInteger("StateNumber", 1);
             }
         }
+    }
+
+    public void ReadyToShoot(bool simplified = false)
+    {
+        readyToShoot = true;
+        drawArea.raycastTarget = false;
+        animator.SetInteger("StateNumber", 5);
+        if (simplified)
+            animator.SetBool("ReadyToShootSimplified", true);
+        else
+            animator.SetBool("ReadyToShoot", true);
     }
 
     public void BeginCastingSpell(string id)
