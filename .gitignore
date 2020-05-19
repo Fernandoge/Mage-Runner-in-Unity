@@ -32,6 +32,9 @@ Builds
 ehthumbs.db
 [Tt]humbs.db
 .vs/
+
+# Exclude rider idea data
+.idea
  
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
