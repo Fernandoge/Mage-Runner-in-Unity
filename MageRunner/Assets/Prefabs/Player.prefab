@@ -233,7 +233,6 @@ MonoBehaviour:
   jumpTime: 0.35
   totalMana: 100
   feetPos: {fileID: 7747460471598273605}
-  jumpButton: {fileID: 0}
   spellShooter: {fileID: 7353611008853207079}
   reflectAura: {fileID: 4677125598960807813}
   spellsData: {fileID: 11400000, guid: d20b2bcbd62bddc438394bc11669edf1, type: 2}
@@ -280,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8667224127504786041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.213, y: -1.16, z: 0}
+  m_LocalPosition: {x: -0.213, y: -1.024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7692043060404832007}

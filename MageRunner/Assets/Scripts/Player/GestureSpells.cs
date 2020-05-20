@@ -46,9 +46,7 @@ public class GestureSpells
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation);
         shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.right * _spellSpeed;
         UnityEngine.Object.Destroy(shootedSpell, 10f);
-        _player.readyToShoot = false;
-        _player.animator.SetBool("ReadyToShoot", false);
-        _player.animator.SetInteger("StateNumber", 6);
+        _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
 
     public void LoadSpells()
@@ -71,10 +69,9 @@ public class GestureSpells
                 {
                     if (_player.jumpAvailable)
                     {
+                        _player.stateHandler.EnableState(EPlayerState.HighJumping);
                         _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
                         _player.glideSpeed = highJump.glideSpeed;
-                        _player.isHighJumping = true;
-                        _player.jumpAvailable = false;
                     }
                 };
                 return new Spell(highJump.gesture.id, highJump.name, highJump.mana, highJumpCast);
@@ -86,17 +83,14 @@ public class GestureSpells
                 {
                     if (_player.groundCollider == null || _player.groundCollider.CompareTag("BottomGround") == false)
                     {
-                        _player.isHighJumping = false;
-                        _player.jumpAvailable = false;
-                        _player.isJumping = false;
-                        _player.rigidBody.gravityScale = _player.originalGravity;
+                        _player.stateHandler.EnableState(EPlayerState.FastFall);
                         _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
-                        _player.animator.SetInteger("StateNumber", 4);
-                        if (_player.groundCollider != null)
-                        {
-                            fastFallGroundCollider = _player.groundCollider;
-                            fastFallGroundCollider.enabled = false;
-                        }
+
+                        if (_player.groundCollider == null)
+                            return;
+                        
+                        fastFallGroundCollider = _player.groundCollider;
+                        fastFallGroundCollider.enabled = false;
                     }
                 };
                 return new Spell(fastFall.gesture.id, fastFall.name, fastFall.mana, fastFallCast);
@@ -110,7 +104,8 @@ public class GestureSpells
                     {
                         _spellToShoot = fireball.spellObject;
                         _spellSpeed = fireball.speed;
-                        _player.ReadyToShoot();
+                        _player.drawArea.raycastTarget = false;
+                        _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
                     }
                 };
                 return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);
@@ -122,9 +117,7 @@ public class GestureSpells
                 {
                     if (lockedCasting == false)
                     {
-                        lockedCasting = true;
-                        _player.animator.SetInteger("StateNumber", 8);
-                        _player.animator.SetBool("Blocking", true);
+                        _player.stateHandler.EnableState(EPlayerState.Blocking);
                     }
                 };
                 return new Spell(block.gesture.id, block.name, block.mana, blockCast);
@@ -136,12 +129,8 @@ public class GestureSpells
                 {
                     if (lockedCasting == false)
                     {
-                        lockedCasting = true;
+                        _player.stateHandler.EnableState(EPlayerState.Reflecting);
                         _player.reflectingDuration = reflect.duration;
-                        _player.reflectAura.SetActive(true);
-                        _player.isReflecting = true;
-                        _player.animator.SetInteger("StateNumber", 7);
-                        _player.animator.SetBool("Reflecting", true);
                     }
                 };
                 return new Spell(reflect.gesture.id, reflect.name, reflect.mana, reflectCast);

@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     public float movingSpeed;
-
-    private void Awake()
+    
+    private void Start()
     {
         GameManager.Instance.level = this;
+        enabled = false;
     }
 
     void Update()

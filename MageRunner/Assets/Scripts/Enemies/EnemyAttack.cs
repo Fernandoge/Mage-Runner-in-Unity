@@ -44,7 +44,7 @@ public class EnemyAttack : MonoBehaviour
         if (collision.CompareTag("Player") == false)
             return;
         
-        if (_player.isBlocking)
+        if (_player.stateHandler.isBlocking)
         {
             Destroy(gameObject);
         } 

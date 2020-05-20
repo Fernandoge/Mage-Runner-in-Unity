@@ -14,42 +14,26 @@ public class PlayerController : MonoBehaviour
     public Image drawArea;
     public PlayerSpellsData spellsData;
 
-    [System.NonSerialized] 
-    public Rigidbody2D rigidBody;
-    [System.NonSerialized] 
-    public Animator animator;
-    [System.NonSerialized] 
-    public int spellsAmount;
-    [System.NonSerialized] 
-    public float originalGravity;
-    [System.NonSerialized] 
-    public bool jumpAvailable;
-    [System.NonSerialized]
-    public bool isJumping;
-    [System.NonSerialized]
-    public Collider2D groundCollider;
-    [System.NonSerialized] 
-    public bool isHighJumping;
-    [System.NonSerialized] 
-    public float glideSpeed;
-    [System.NonSerialized] 
-    public bool readyToShoot;
-    [System.NonSerialized]
-    public bool isBlocking;
-    [System.NonSerialized] 
-    public bool isReflecting;
-    [System.NonSerialized]
-    public float reflectingDuration;
-    [System.NonSerialized] 
-    public List<EnemyAttack> reflectedAttacks = new List<EnemyAttack>();
+    [System.NonSerialized] public int spellsAmount;
+    [System.NonSerialized] public float originalGravity;
+    [System.NonSerialized] public bool jumpAvailable;
+    [System.NonSerialized] public float glideSpeed;
+    [System.NonSerialized] public float reflectingDuration;
+    [System.NonSerialized] public Rigidbody2D rigidBody;
+    [System.NonSerialized] public Animator animator;
+    [System.NonSerialized] public PlayerStateHandler stateHandler;
+    [System.NonSerialized] public Collider2D groundCollider;
+    [System.NonSerialized] public GestureSpells gestureSpells;
+    [System.NonSerialized] public List<EnemyAttack> reflectedAttacks = new List<EnemyAttack>();
 
     private float _jumpTimeCounter;
-    private GestureSpells _gestureSpells;
     private LayerMask _notGroundLayer;
 
     private void Start()
     {
-        _gestureSpells = new GestureSpells(this);
+        GameManager.Instance.player = this;
+        stateHandler = new PlayerStateHandler(this);
+        gestureSpells = new GestureSpells(this);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
@@ -60,31 +44,32 @@ public class PlayerController : MonoBehaviour
     {
         groundCollider = Physics2D.OverlapCircle(feetPos.position, 0.1f, _notGroundLayer);
 
-        // Check velocity, because if velocity is higher than 0, High Jump could have been casted and then the animation state of High Jump isn't overrided by Running
+        // Check velocity, because if velocity is higher than 0, High Jump could have been casted and then the animation state of High Jump isn't override by Running
         if (groundCollider != null && rigidBody.velocity.y <= 0)
             Running();
-        else if (isHighJumping)
+        else if (stateHandler.isHighJumping)
             HighJump();
 
         ReflectingAura();
 
-        #if UNITY_EDITOR
-            PlayerInputDebug();
-        #else
-            PlayerInput();
-        #endif
+#if UNITY_EDITOR
+        PlayerInputDebug();
+#else
+        PlayerInput();
+#endif
     }
 
     private void PlayerInputDebug()
     {
-        if (Input.GetMouseButtonDown(0) && readyToShoot && !EventSystem.current.IsPointerOverGameObject())
+        //for gestures and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
+        if (Input.GetMouseButtonDown(0) && stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject())
             Shoot(Input.mousePosition); 
 
         if (Input.GetKey(KeyCode.Space))
             Jump();
 
         if (Input.GetKeyUp(KeyCode.Space))
-            isJumping = false;
+            stateHandler.DisableState(EPlayerState.Jumping);
     }
 
     private void PlayerInput()
@@ -95,7 +80,8 @@ public class PlayerController : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    if (readyToShoot && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                    //for gestures and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
+                    if (stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject(touch.fingerId)) 
                         Shoot(touch.position);
                     break;
             }
@@ -103,55 +89,46 @@ public class PlayerController : MonoBehaviour
         else if (Input.touchCount > 1)
         {
             Touch touch = Input.GetTouch(1);
-            if (readyToShoot)
+            if (stateHandler.readyToShoot)
                 Shoot(touch.position);
         }
     }
 
     public void Running()
     {
-        if (_gestureSpells.fastFallGroundCollider?.enabled == false)
-            _gestureSpells.fastFallGroundCollider.enabled = true;
-
-        isHighJumping = false;
-        jumpAvailable = true;
-        rigidBody.gravityScale = originalGravity;
-        animator.SetInteger("StateNumber", 1);
-        animator.SetBool("Jump", false);
+        if (gestureSpells.fastFallGroundCollider?.enabled == false)
+            gestureSpells.fastFallGroundCollider.enabled = true;
+        
+        stateHandler.EnableState(EPlayerState.Running);
     }
 
-    public void Jump()
+    private void Jump()
     {
         if (jumpAvailable)
         {
-            rigidBody.velocity = Vector2.up * jumpForce;
+            stateHandler.EnableState(EPlayerState.Jumping);
             _jumpTimeCounter = jumpTime;
-            isJumping = true;
-            jumpAvailable = false;
-            animator.SetBool("Jump", true);
         }
 
-        if (isJumping)
+        if (stateHandler.isJumping == false)
+            return;
+
+        if (_jumpTimeCounter > 0)
         {
-            if (_jumpTimeCounter > 0)
-            {
-                rigidBody.velocity = Vector2.up * jumpForce;
-                _jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-                isJumping = false;
+            rigidBody.velocity = Vector2.up * jumpForce;
+            _jumpTimeCounter -= Time.deltaTime;
         }
+        else
+            stateHandler.DisableState(EPlayerState.Jumping);
     }
 
     private void HighJump()
     {
         if (rigidBody.velocity.y >= 0)
-            animator.SetInteger("StateNumber", 2);
+            stateHandler.EnableState(EPlayerState.HighJumping);
         else
         {
-            animator.SetInteger("StateNumber", 3);
-            rigidBody.gravityScale = 0;
-            rigidBody.velocity = Vector2.down * glideSpeed;
+            stateHandler.EnableState(EPlayerState.Gliding);
         }
     }
     
@@ -162,7 +139,7 @@ public class PlayerController : MonoBehaviour
         if (reflectedAttacks.Count == 0)
         {
             AdjustShootRotation(shootPosition, spellShooter);
-            _gestureSpells.ShootSpell();    
+            gestureSpells.ShootSpell();    
         }
         else
         {
@@ -171,10 +148,8 @@ public class PlayerController : MonoBehaviour
                 AdjustShootRotation(shootPosition, attack.gameObject);
                 ShootAttackReflected(attack);
             }
-            readyToShoot = false;
             reflectedAttacks.Clear();
-            animator.SetInteger("StateNumber", 6);
-            animator.SetBool("ReadyToShootSimplified", false);
+            stateHandler.DisableState(EPlayerState.ReadyToShootSimplified);
         }       
     }
 
@@ -201,66 +176,44 @@ public class PlayerController : MonoBehaviour
 
     private void ReflectingAura()
     {
-        if (!isReflecting)
+        if (!stateHandler.isReflecting)
             return;
-        else
+
+        reflectingDuration -= Time.deltaTime;
+        if (reflectingDuration >= 0)
+            return;
+        
+        // Reflecting ended
+        stateHandler.DisableState(EPlayerState.Reflecting);
+
+        // If attacks are ready to be reflected
+        if (reflectedAttacks.Count > 0)
         {
-            reflectingDuration -= Time.deltaTime;
-            if (reflectingDuration < 0)
+            drawArea.raycastTarget = false;
+            stateHandler.EnableState(EPlayerState.ReadyToShootSimplified);
+            foreach (EnemyAttack attack in reflectedAttacks)
             {
-                reflectAura.SetActive(false);
-                isReflecting = false;
-                _gestureSpells.lockedCasting = false;
-                animator.SetBool("Reflecting", false);
-
-                // If attacks are ready to be reflected
-                if (reflectedAttacks.Count > 0)
-                {
-                    ReadyToShoot(simplified: true);
-                    foreach (EnemyAttack attack in reflectedAttacks)
-                    {
-                        attack.preparingReflect = false;
-                    }
-                }
-
-                // Avoiding the player animator in the default state
-                if (animator.GetInteger("StateNumber") == 7)
-                    animator.SetInteger("StateNumber", 1);
+                attack.preparingReflect = false;
             }
         }
-    }
 
-    public void ReadyToShoot(bool simplified = false)
-    {
-        readyToShoot = true;
-        drawArea.raycastTarget = false;
-        animator.SetInteger("StateNumber", 5);
-        if (simplified)
-            animator.SetBool("ReadyToShootSimplified", true);
-        else
-            animator.SetBool("ReadyToShoot", true);
+        // Avoiding the player animator in the default state
+        if (animator.GetInteger("StateNumber") == 7)
+            animator.SetInteger("StateNumber", 1);
     }
+    
+    public void BeginCastingSpell(string id) => gestureSpells.CastSpell(id);
 
-    public void BeginCastingSpell(string id)
-    {
-        _gestureSpells.CastSpell(id);
-    }
-
-    public void CastingSpellFailed()
-    {
-        print("Casting spell failed");
-    }
+    public void CastingSpellFailed() => print("Casting spell failed");
 
     // Used in Blocking animation
     public void Blocking()
     {
-        if (isBlocking)
+        if (stateHandler.isBlocking)
         {
-            isBlocking = false;
-            _gestureSpells.lockedCasting = false;
-            animator.SetBool("Blocking", false);
+            stateHandler.DisableState(EPlayerState.Blocking);
         }
         else
-            isBlocking = true;
+            stateHandler.isBlocking = true;
     }
 }

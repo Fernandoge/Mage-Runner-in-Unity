@@ -10,6 +10,6 @@ public class JumpButton : MonoBehaviour, IPointerUpHandler
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
         eventData.selectedObject = null;
-        player.isJumping = false;
+        player.stateHandler.isJumping = false;
     }
 }
