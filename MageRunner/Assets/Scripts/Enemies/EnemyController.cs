@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
-    private float _distanceToSpawn;
-    [SerializeField]
-    private float _minDistanceToShoot;
-    [SerializeField]
-    private float _maxDistanceToShoot;
-    [SerializeField]
-    private float _minFireRate;
-    [SerializeField]
-    private float _maxFireRate;
-    [SerializeField]
-    private PlayerController _player;
-    [SerializeField]
-    private GameObject _weapon;
-    [SerializeField]
-    private EnemyAttack _objectToShoot;
+    [SerializeField] private float _distanceToSpawn;
+    [SerializeField] private float _minDistanceToShoot; [SerializeField] private float _maxDistanceToShoot;
+    [SerializeField] private float _minFireRate;
+    [SerializeField] private float _maxFireRate;
+    [SerializeField] private PlayerController _player;
+    [SerializeField] private GameObject _weapon;
+    [SerializeField] private EnemyAttack _objectToShoot;
 
     private float _fireRate;
     private BoxCollider2D boxCollider;
@@ -48,9 +39,7 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    //TODO: Change this when game manager is implemented
-                    LevelController currentLevel = FindObjectOfType<LevelController>();
-                    currentLevel.ResetLevel();
+                    GameManager.Instance.level.ResetLevel();
                 }
             }
         }

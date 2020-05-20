@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -8,6 +9,13 @@ public class EnemyAttack : MonoBehaviour
 
     [System.NonSerialized]
     public bool preparingReflect;
+
+    private PlayerController _player;
+
+    private void Start()
+    {
+        _player = GameManager.Instance.player;
+    }
 
     private void Update()
     {
@@ -32,20 +40,19 @@ public class EnemyAttack : MonoBehaviour
             PlayerController player = collision.gameObject.transform.parent.GetComponent<PlayerController>();
             player.reflectedAttacks.Add(this);
         }
+
+        if (collision.CompareTag("Player") == false)
+            return;
         
-        if (collision.CompareTag("Player"))
+        if (_player.isBlocking)
         {
-            //TODO: Change this when GameManager is implemented
-            if (collision.GetComponent<PlayerController>().isBlocking)
-            {
-                Destroy(gameObject);
-            } 
-            else
-            {
-                //TODO: Change this when player health is implemented
-                LevelController currentLevel = FindObjectOfType<LevelController>();
-                currentLevel.ResetLevel();
-            }
+            Destroy(gameObject);
+        } 
+        else
+        {
+            //TODO: Change this when player health is implemented
+            LevelController currentLevel = FindObjectOfType<LevelController>();
+            currentLevel.ResetLevel();
         }
     }
 
