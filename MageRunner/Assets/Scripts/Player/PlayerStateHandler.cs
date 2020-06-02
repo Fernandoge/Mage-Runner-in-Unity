@@ -13,9 +13,9 @@ public class PlayerStateHandler
 
     private PlayerController _player;
 
-    public PlayerStateHandler(PlayerController player)
+    public PlayerStateHandler()
     {
-        _player = player;
+        _player = GameManager.Instance.player;
     }
 
     public void EnableState(EPlayerState state)

@@ -32,7 +32,7 @@ public class PlayerSpellsData : ScriptableObject
     }
 
     [System.Serializable]
-    public class FireBall: BaseSpell
+    public class AttackSpell: BaseSpell
     {
         public GameObject spellObject;
         public float damage;
@@ -43,11 +43,11 @@ public class PlayerSpellsData : ScriptableObject
     public Aura reflect;
     public HighJump highJump;
     public FastFall fastFall;
-    public FireBall fireball;
+    public AttackSpell fireball;
     public BaseSpell ice;
     public BaseSpell wind;
     public BaseSpell earth;
-    public BaseSpell lightning;
+    public AttackSpell lightning;
 }
 
   

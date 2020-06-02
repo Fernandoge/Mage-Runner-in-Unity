@@ -27,10 +27,10 @@ public class GestureSpells
     private PlayerController _player;
     private GameObject _spellToShoot;
     private float _spellSpeed;
-    
-    public GestureSpells(PlayerController player)
+
+    public GestureSpells()
     {
-        _player = player;
+        _player = GameManager.Instance.player;
         LoadSpells();
     }
     
@@ -45,7 +45,6 @@ public class GestureSpells
     {
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation);
         shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.right * _spellSpeed;
-        UnityEngine.Object.Destroy(shootedSpell, 10f);
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
 
@@ -97,7 +96,7 @@ public class GestureSpells
 
             // Fireball
             case 2:
-                PlayerSpellsData.FireBall fireball = _player.spellsData.fireball;
+                PlayerSpellsData.AttackSpell fireball = _player.spellsData.fireball;
                 Action fireballCast = () =>
                 {
                     if (lockedCasting == false)
@@ -105,6 +104,7 @@ public class GestureSpells
                         _spellToShoot = fireball.spellObject;
                         _spellSpeed = fireball.speed;
                         _player.drawArea.raycastTarget = false;
+                        _player.spellToShootType = EAttackSpellType.Projectile;
                         _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
                     }
                 };
@@ -164,10 +164,17 @@ public class GestureSpells
 
             // Lighting
             case 8:
-                PlayerSpellsData.BaseSpell lightning = _player.spellsData.lightning;
+                PlayerSpellsData.AttackSpell lightning = _player.spellsData.lightning;
                 Action boltCast = () =>
                 {
-                    Debug.Log("lightning");
+                    if (lockedCasting == false)
+                    {
+                        _spellToShoot = lightning.spellObject;
+                        _spellSpeed = lightning.speed;
+                        _player.drawArea.raycastTarget = false;
+                        _player.spellToShootType = EAttackSpellType.Instant;
+                        _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
+                    }
                 };
                 return new Spell(lightning.gesture.id, lightning.name, lightning.mana, boltCast);
 

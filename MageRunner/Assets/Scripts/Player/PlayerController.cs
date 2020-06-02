@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float jumpTime;
     public int totalMana;
+    public LayerMask instantSpellsCollision;
     public Transform feetPos;
     public GameObject spellShooter;
     public GameObject reflectAura;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public bool jumpAvailable;
     [System.NonSerialized] public float glideSpeed;
     [System.NonSerialized] public float reflectingDuration;
+    [System.NonSerialized] public EAttackSpellType spellToShootType;
     [System.NonSerialized] public Rigidbody2D rigidBody;
     [System.NonSerialized] public Animator animator;
     [System.NonSerialized] public PlayerStateHandler stateHandler;
@@ -28,15 +31,17 @@ public class PlayerController : MonoBehaviour
 
     private float _jumpTimeCounter;
     private LayerMask _notGroundLayer;
+    private Vector3 _shooterSpellOriginalPos;
 
     private void Start()
     {
         GameManager.Instance.player = this;
-        stateHandler = new PlayerStateHandler(this);
-        gestureSpells = new GestureSpells(this);
+        stateHandler = new PlayerStateHandler();
+        gestureSpells = new GestureSpells();
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
+        _shooterSpellOriginalPos = spellShooter.transform.localPosition;
         _notGroundLayer = 1 << LayerMask.NameToLayer("Ground");
     }
 
@@ -136,10 +141,22 @@ public class PlayerController : MonoBehaviour
     private void Shoot(Vector3 shootPosition)
     {
         drawArea.raycastTarget = true;
+        spellShooter.transform.localPosition = _shooterSpellOriginalPos;
+        spellShooter.transform.localRotation = Quaternion.identity;
         if (reflectedAttacks.Count == 0)
         {
-            AdjustShootRotation(shootPosition, spellShooter);
-            gestureSpells.ShootSpell();    
+            switch (spellToShootType)
+            {
+                case EAttackSpellType.Projectile:
+                    AdjustShootRotation(shootPosition, spellShooter); break;
+                case EAttackSpellType.Instant:
+                    Vector3 worldPoint = Camera.main.ScreenToWorldPoint((Input.mousePosition));
+                    Vector3 tapPosition = new Vector2(worldPoint.x, worldPoint.y);
+                    RaycastHit2D spellLineHit = Physics2D.Linecast(tapPosition + new Vector3(0f, 50f, 0f), tapPosition + new Vector3(0f, -50f, 0f), instantSpellsCollision);
+                    spellShooter.transform.position = spellLineHit.point;
+                    break;
+            }
+            gestureSpells.ShootSpell();
         }
         else
         {
