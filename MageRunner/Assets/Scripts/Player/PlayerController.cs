@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Image drawArea;
     public PlayerSpellsData spellsData;
 
+    [System.NonSerialized] public bool moving;
     [System.NonSerialized] public int spellsAmount;
     [System.NonSerialized] public float originalGravity;
     [System.NonSerialized] public bool jumpAvailable;
@@ -32,12 +33,12 @@ public class PlayerController : MonoBehaviour
     private float _jumpTimeCounter;
     private LayerMask _notGroundLayer;
     private Vector3 _shooterSpellOriginalPos;
-
+    
     private void Start()
     {
         GameManager.Instance.player = this;
-        stateHandler = new PlayerStateHandler();
-        gestureSpells = new GestureSpells();
+        stateHandler = new PlayerStateHandler(this);
+        gestureSpells = new GestureSpells(this);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;

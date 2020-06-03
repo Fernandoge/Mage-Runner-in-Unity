@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +11,14 @@ public class RepeatingBG : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.player.moving == false)
+            return;
+        
         transform.Translate(Vector2.left * speed * Time.deltaTime);
         
-        if (transform.position.x <= endX)
+        if (transform.localPosition.x <= endX)
         {
-            transform.position = new Vector2(startX, transform.position.y);
+            transform.localPosition = new Vector2(startX, transform.localPosition.y);
         }
     }
 }

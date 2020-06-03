@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class DebugController : MonoBehaviour
 {
-    public void EnableLevel() => GameManager.Instance.level.enabled = !GameManager.Instance.level.isActiveAndEnabled;
+    public void TogglePlayerMovement()
+    {    
+        GameManager.Instance.player.moving = !GameManager.Instance.player.moving;
+    }
 }

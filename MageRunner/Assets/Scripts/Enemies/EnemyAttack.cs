@@ -10,13 +10,6 @@ public class EnemyAttack : MonoBehaviour
     [System.NonSerialized]
     public bool preparingReflect;
 
-    private PlayerController _player;
-
-    private void Start()
-    {
-        _player = GameManager.Instance.player;
-    }
-
     private void Update()
     {
         if (preparingReflect)
@@ -37,22 +30,20 @@ public class EnemyAttack : MonoBehaviour
             rigBody.simulated = false;
             preparingReflect = true;
             transform.SetParent(collision.transform.parent);
-            PlayerController player = collision.gameObject.transform.parent.GetComponent<PlayerController>();
-            player.reflectedAttacks.Add(this);
+            GameManager.Instance.player.reflectedAttacks.Add(this);
         }
 
         if (collision.CompareTag("Player") == false)
             return;
         
-        if (_player.stateHandler.isBlocking)
+        if (GameManager.Instance.player.stateHandler.isBlocking)
         {
             Destroy(gameObject);
         } 
         else
         {
             //TODO: Change this when player health is implemented
-            LevelController currentLevel = FindObjectOfType<LevelController>();
-            currentLevel.ResetLevel();
+            GameManager.Instance.level.ResetLevel();
         }
     }
 

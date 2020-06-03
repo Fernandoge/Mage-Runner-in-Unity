@@ -1,15 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class JumpButton : MonoBehaviour, IPointerUpHandler
 {
-    public PlayerController player;
-
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {
         eventData.selectedObject = null;
-        player.stateHandler.isJumping = false;
+        GameManager.Instance.player.stateHandler.isJumping = false;
     }
 }

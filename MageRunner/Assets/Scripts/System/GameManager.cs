@@ -2,9 +2,10 @@
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance = null;
+    public static GameManager Instance;
     [System.NonSerialized] public PlayerController player;
     [System.NonSerialized] public LevelController level;
+    
     private void Awake()
     {
         if (Instance == null)

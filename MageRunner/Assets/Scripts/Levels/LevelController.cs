@@ -7,16 +7,14 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     public float movingSpeed;
-    
-    private void Start()
-    {
-        GameManager.Instance.level = this;
-        enabled = false;
-    }
+    public Transform movingObjects;
 
-    void Update()
+    private void Start() => GameManager.Instance.level = this;
+
+    private void Update()
     {
-        transform.Translate(Vector2.left * movingSpeed * Time.deltaTime);
+        if (GameManager.Instance.player.moving)
+            movingObjects.Translate(Vector2.right * movingSpeed * Time.deltaTime);
     }
 
     public void ResetLevel()

@@ -8,7 +8,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _minDistanceToShoot; [SerializeField] private float _maxDistanceToShoot;
     [SerializeField] private float _minFireRate;
     [SerializeField] private float _maxFireRate;
-    [SerializeField] private PlayerController _player;
     [SerializeField] private GameObject _weapon;
     [SerializeField] private EnemyAttack _objectToShoot;
 
@@ -34,8 +33,8 @@ public class EnemyController : MonoBehaviour
                 if (point.normal.y <= -0.9f)
                 {
                     Destroy(gameObject);
-                    _player.rigidBody.velocity = Vector2.up * _player.jumpForce;
-                    _player.Running();
+                    GameManager.Instance.player.rigidBody.velocity = Vector2.up * GameManager.Instance.player.jumpForce;
+                    GameManager.Instance.player.Running();
                 }
                 else
                 {
@@ -47,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        float distanceBetweenPlayer = Vector3.Distance(transform.position, _player.transform.position);
+        float distanceBetweenPlayer = Vector3.Distance(transform.position, GameManager.Instance.player.transform.position);
 
         if (spriteRenderer.enabled == false && distanceBetweenPlayer <= _distanceToSpawn)
         {
@@ -66,7 +65,7 @@ public class EnemyController : MonoBehaviour
 
     private void Shoot()
     {
-        Vector2 lookDirection = _player.transform.position - _weapon.transform.position;
+        Vector2 lookDirection = GameManager.Instance.player.transform.position - _weapon.transform.position;
         float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         float lookAngleRandomized = lookAngle + Random.Range(-20, 20);
         _weapon.transform.rotation = Quaternion.Euler(0f, 0f, lookAngleRandomized);

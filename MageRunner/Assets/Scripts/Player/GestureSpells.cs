@@ -28,9 +28,9 @@ public class GestureSpells
     private GameObject _spellToShoot;
     private float _spellSpeed;
 
-    public GestureSpells()
+    public GestureSpells(PlayerController player)
     {
-        _player = GameManager.Instance.player;
+        _player = player;
         LoadSpells();
     }
     
