@@ -49,7 +49,7 @@ public class PlayerSpell : MonoBehaviour
     {
         foreach (ParticleSystem particle in particlesToDetach)
         {
-            particle.transform.parent = null;
+            particle.transform.SetParent(transform.parent);
             Destroy(particle.gameObject, particle.main.startLifetimeMultiplier);
             if (particle.main.loop == true)
                 particle.Stop();

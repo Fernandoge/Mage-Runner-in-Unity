@@ -43,7 +43,8 @@ public class GestureSpells
 
     public void ShootSpell()
     {
-        GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation);
+        Transform spellParent = GameManager.Instance.level.instantiatedObjects;
+        GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
         shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.right * _spellSpeed;
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
