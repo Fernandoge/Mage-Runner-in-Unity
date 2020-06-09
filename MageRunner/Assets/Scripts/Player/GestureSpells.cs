@@ -26,6 +26,7 @@ public class GestureSpells
     private Dictionary<string, Spell> _spellsDict = new Dictionary<string, Spell>();
     private PlayerController _player;
     private GameObject _spellToShoot;
+    private float _spellDuration;
     private float _spellSpeed;
 
     public GestureSpells(PlayerController player)
@@ -43,9 +44,12 @@ public class GestureSpells
 
     public void ShootSpell()
     {
-        Transform spellParent = GameManager.Instance.level.instantiatedObjects;
+        LevelController currentLevel = GameManager.Instance.level;
+        Transform spellParent = currentLevel.movingObjects;
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
-        shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.right * _spellSpeed;
+        float speedReduction = _player.isMoving == false ? 0f : (_spellSpeed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
+        shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.right * (_spellSpeed - speedReduction);
+        shootedSpell.GetComponent<PlayerSpell>().duration = _spellDuration;
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
 
@@ -103,6 +107,7 @@ public class GestureSpells
                     if (lockedCasting == false)
                     {
                         _spellToShoot = fireball.spellObject;
+                        _spellDuration = fireball.duration;
                         _spellSpeed = fireball.speed;
                         _player.drawArea.raycastTarget = false;
                         _player.spellToShootType = EAttackSpellType.Projectile;
@@ -171,6 +176,7 @@ public class GestureSpells
                     if (lockedCasting == false)
                     {
                         _spellToShoot = lightning.spellObject;
+                        _spellDuration = lightning.duration;
                         _spellSpeed = lightning.speed;
                         _player.drawArea.raycastTarget = false;
                         _player.spellToShootType = EAttackSpellType.Instant;

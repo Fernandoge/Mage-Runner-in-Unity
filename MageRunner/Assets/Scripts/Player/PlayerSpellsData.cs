@@ -37,6 +37,7 @@ public class PlayerSpellsData : ScriptableObject
         public GameObject spellObject;
         public float damage;
         public float speed;
+        public float duration;
     }
 
     public BaseSpell block;

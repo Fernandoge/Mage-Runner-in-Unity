@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSpell : MonoBehaviour
 {
-    public float duration;
     public LayerMask noDestroyLayers;
     public ParticleSystem[] particlesToActivate;
     public ParticleSystem[] particlesToDetach;
+    
+    [System.NonSerialized] public float duration;
 
     private void OnDisable()
     {
@@ -34,7 +32,7 @@ public class PlayerSpell : MonoBehaviour
         {
             //TODO: Change this when enemy health is implemented
             ActivateParticles();
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 
@@ -49,7 +47,7 @@ public class PlayerSpell : MonoBehaviour
     {
         foreach (ParticleSystem particle in particlesToDetach)
         {
-            particle.transform.SetParent(transform.parent);
+            particle.transform.SetParent(null);
             Destroy(particle.gameObject, particle.main.startLifetimeMultiplier);
             if (particle.main.loop == true)
                 particle.Stop();

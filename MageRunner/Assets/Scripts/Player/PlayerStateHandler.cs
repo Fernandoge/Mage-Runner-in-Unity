@@ -26,6 +26,7 @@ public class PlayerStateHandler
                 isJumping = true;
                 _player.rigidBody.velocity = Vector2.up * _player.jumpForce;
                 _player.jumpAvailable = false;
+                _player.jumpStillPressed = true;
                 _player.animator.SetBool("Jump", true);
                 break;
             

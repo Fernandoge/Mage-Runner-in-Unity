@@ -6,6 +6,6 @@ public class DebugController : MonoBehaviour
 {
     public void TogglePlayerMovement()
     {    
-        GameManager.Instance.player.moving = !GameManager.Instance.player.moving;
+        GameManager.Instance.player.isMoving = !GameManager.Instance.player.isMoving;
     }
 }

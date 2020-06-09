@@ -133,8 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d7baa882e23c1439228cd29456048a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigBody: {fileID: 4855841097505882927}
   speed: 15
+  durationInvisible: 2
   noDestroyLayers:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 16128
+  rigBody: {fileID: 4855841097505882927}
+  attackCollider: {fileID: 669840166302542175}

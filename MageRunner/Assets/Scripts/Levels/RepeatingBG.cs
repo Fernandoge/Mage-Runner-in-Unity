@@ -8,10 +8,11 @@ public class RepeatingBG : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.player.moving == false)
+        if (GameManager.Instance.player.isMoving == false)
             return;
-        
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+        float totalSpeed = GameManager.Instance.level.movingSpeed * speed;
+        transform.Translate(Vector2.left * totalSpeed * Time.deltaTime);
         
         if (transform.localPosition.x <= endX)
         {

@@ -3,19 +3,28 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public Rigidbody2D rigBody;
     public float speed;
+    public float durationInvisible;
     public LayerMask noDestroyLayers;
+    public Rigidbody2D rigBody;
 
-    [System.NonSerialized]
-    public bool preparingReflect;
+    [System.NonSerialized] public bool preparingReflect;
+
+    [SerializeField] private float _auxDuration;
+    private bool _isVisible;
 
     private void Update()
     {
-        if (preparingReflect)
-        {
-            transform.Translate(Vector2.right * Time.deltaTime / 4);
-        }
+        if (preparingReflect && transform.position.x > GameManager.Instance.player._shooterSpellOriginalPos.x)
+            transform.Translate(Vector2.left * rigBody.velocity * (Time.deltaTime / 40));
+
+        if (_isVisible)
+            return;
+        
+        _auxDuration -= Time.deltaTime;
+        if (_auxDuration <= 0)
+            Destroy(gameObject);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,12 +52,18 @@ public class EnemyAttack : MonoBehaviour
         else
         {
             //TODO: Change this when player health is implemented
-            GameManager.Instance.level.ResetLevel();
+            //GameManager.Instance.level.ResetLevel();
         }
+    }
+
+    private void OnBecameVisible()
+    {
+        _auxDuration = durationInvisible;
+        _isVisible = true;
     }
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        _isVisible = false;
     }
 }

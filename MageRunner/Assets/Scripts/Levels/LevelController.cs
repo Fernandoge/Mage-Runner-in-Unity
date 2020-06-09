@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public struct RepeatingPlatform
+public struct RepeatingSegment
 {
-    public GameObject platformsHolder;
+    public GameObject segment;
     public float StartX;
     public float EndX;
 }
@@ -14,8 +14,7 @@ public class LevelController : MonoBehaviour
 {
     public float movingSpeed;
     public Transform movingObjects;
-    public Transform instantiatedObjects;
-    public List<RepeatingPlatform> repeatingPlatforms;
+    public List<RepeatingSegment> repeatingSegments;
 
     private bool _looping;
     private float _repeatingStartX;
@@ -27,28 +26,28 @@ public class LevelController : MonoBehaviour
     {
         //TODO: Optimize the game objects positions if they are high values to avoid floating-point precision limitations
         
-        if (GameManager.Instance.player.moving)
+        if (GameManager.Instance.player.isMoving)
             movingObjects.Translate(Vector2.right * movingSpeed * Time.deltaTime);
         
-        if (_looping && movingObjects.transform.position.x >= _repeatingEndX)
+        if (_looping && movingObjects.transform.localPosition.x >= _repeatingEndX)
         {
             float distanceReturned = _repeatingEndX - _repeatingStartX;
-            movingObjects.transform.position = new Vector2(_repeatingStartX, movingObjects.transform.position.y);
-            instantiatedObjects.transform.position = new Vector2(instantiatedObjects.transform.position.x - distanceReturned, instantiatedObjects.transform.position.y);
+            transform.position = new Vector2(transform.position.x + distanceReturned, transform.position.y);
+            movingObjects.transform.localPosition = new Vector2(_repeatingStartX, movingObjects.transform.localPosition.y);
         }
     }
 
     public void StartLooping()
     {
-        _repeatingStartX = repeatingPlatforms[0].StartX;
-        _repeatingEndX = repeatingPlatforms[0].EndX;
+        _repeatingStartX = repeatingSegments[0].StartX;
+        _repeatingEndX = repeatingSegments[0].EndX;
         _looping = true;
     }
 
     public void StopLooping()
     {
         _looping = false;
-        repeatingPlatforms.RemoveAt(0);
+        repeatingSegments.RemoveAt(0);
     }
     
     public void ResetLevel()

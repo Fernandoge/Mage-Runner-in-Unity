@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,12 +15,14 @@ public class PlayerController : MonoBehaviour
     public Image drawArea;
     public PlayerSpellsData spellsData;
 
-    [System.NonSerialized] public bool moving;
+    [System.NonSerialized] public bool isMoving;
     [System.NonSerialized] public int spellsAmount;
     [System.NonSerialized] public float originalGravity;
     [System.NonSerialized] public bool jumpAvailable;
+    [System.NonSerialized] public bool jumpStillPressed;
     [System.NonSerialized] public float glideSpeed;
     [System.NonSerialized] public float reflectingDuration;
+    [System.NonSerialized] public Vector3 _shooterSpellOriginalPos;
     [System.NonSerialized] public EAttackSpellType spellToShootType;
     [System.NonSerialized] public Rigidbody2D rigidBody;
     [System.NonSerialized] public Animator animator;
@@ -30,13 +31,14 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public GestureSpells gestureSpells;
     [System.NonSerialized] public List<EnemyAttack> reflectedAttacks = new List<EnemyAttack>();
 
+    private Camera _mainCamera;
     private float _jumpTimeCounter;
     private LayerMask _notGroundLayer;
-    private Vector3 _shooterSpellOriginalPos;
     
     private void Start()
     {
         GameManager.Instance.player = this;
+        _mainCamera = Camera.main;
         stateHandler = new PlayerStateHandler(this);
         gestureSpells = new GestureSpells(this);
         animator = GetComponent<Animator>();
@@ -75,31 +77,30 @@ public class PlayerController : MonoBehaviour
             Jump();
 
         if (Input.GetKeyUp(KeyCode.Space))
+        {
             stateHandler.DisableState(EPlayerState.Jumping);
+            jumpStillPressed = false;
+        }
+            
     }
 
     private void PlayerInput()
     {
-        if (Input.touchCount == 1)
-        {
-            Touch touch = Input.GetTouch(0);
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    //for gestures and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
-                    if (stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject(touch.fingerId)) 
-                        Shoot(touch.position);
-                    break;
-            }
-        }
-        else if (Input.touchCount > 1)
-        {
-            Touch touch = Input.GetTouch(1);
-            if (stateHandler.readyToShoot)
-                Shoot(touch.position);
-        }
+        ShootValidTouch(0);
+        ShootValidTouch(1);
     }
 
+    public void ShootValidTouch(int touchNumber)
+    {
+        if (Input.touchCount > touchNumber)
+        {
+            Touch touch = Input.GetTouch(touchNumber);
+            if (touch.phase == TouchPhase.Began)
+                if (stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                    Shoot(touch.position);
+        }
+    }
+    
     public void Running()
     {
         if (gestureSpells.fastFallGroundCollider?.enabled == false)
@@ -110,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (jumpAvailable)
+        if (jumpAvailable && jumpStillPressed == false)
         {
             stateHandler.EnableState(EPlayerState.Jumping);
             _jumpTimeCounter = jumpTime;
@@ -133,9 +134,7 @@ public class PlayerController : MonoBehaviour
         if (rigidBody.velocity.y >= 0)
             stateHandler.EnableState(EPlayerState.HighJumping);
         else
-        {
             stateHandler.EnableState(EPlayerState.Gliding);
-        }
     }
     
 
@@ -151,7 +150,7 @@ public class PlayerController : MonoBehaviour
                 case EAttackSpellType.Projectile:
                     AdjustShootRotation(shootPosition, spellShooter); break;
                 case EAttackSpellType.Instant:
-                    Vector3 worldPoint = Camera.main.ScreenToWorldPoint((Input.mousePosition));
+                    Vector3 worldPoint = _mainCamera.ScreenToWorldPoint((shootPosition));
                     Vector3 tapPosition = new Vector2(worldPoint.x, worldPoint.y);
                     RaycastHit2D spellLineHit = Physics2D.Linecast(tapPosition + new Vector3(0f, 50f, 0f), tapPosition + new Vector3(0f, -50f, 0f), instantSpellsCollision);
                     spellShooter.transform.position = spellLineHit.point;
@@ -164,20 +163,21 @@ public class PlayerController : MonoBehaviour
             foreach (EnemyAttack attack in reflectedAttacks)
             {
                 AdjustShootRotation(shootPosition, attack.gameObject);
-                ShootAttackReflected(attack);
+                attack.rigBody.velocity = attack.transform.right * attack.speed;
+                attack.rigBody.simulated = true;
             }
             reflectedAttacks.Clear();
             stateHandler.DisableState(EPlayerState.ReadyToShootSimplified);
-        }       
+        }
     }
 
     private void AdjustShootRotation(Vector3 shootPosition, GameObject obj)
     {
-        Vector2 lookDirection = Camera.main.ScreenToWorldPoint(shootPosition) - obj.transform.position;
+        Vector2 lookDirection = _mainCamera.ScreenToWorldPoint(shootPosition) - obj.transform.position;
         float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        if (lookAngle > 90 || lookAngle < -90)
+        if (lookAngle > 60 || lookAngle < -60)
         {
-            float newZ = lookAngle > 90 ? 90 : -90;
+            float newZ = lookAngle > 60 ? 60 : -60;
             obj.transform.rotation = Quaternion.Euler(0f, 0f, newZ);
         }
         else
@@ -185,13 +185,7 @@ public class PlayerController : MonoBehaviour
             obj.transform.rotation = Quaternion.Euler(0f, 0f, lookAngle);
         }
     }
-
-    private void ShootAttackReflected(EnemyAttack attack)
-    {
-        attack.rigBody.velocity = attack.transform.right * attack.speed;
-        attack.rigBody.simulated = true;
-    }
-
+    
     private void ReflectingAura()
     {
         if (!stateHandler.isReflecting)
@@ -228,9 +222,7 @@ public class PlayerController : MonoBehaviour
     public void Blocking()
     {
         if (stateHandler.isBlocking)
-        {
             stateHandler.DisableState(EPlayerState.Blocking);
-        }
         else
             stateHandler.isBlocking = true;
     }
