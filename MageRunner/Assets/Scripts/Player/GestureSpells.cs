@@ -53,7 +53,7 @@ public class GestureSpells
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
 
-    public void LoadSpells()
+    private void LoadSpells()
     {
         for (int i = 0; i < _player.spellsAmount; i++)
         {
@@ -99,25 +99,8 @@ public class GestureSpells
                 };
                 return new Spell(fastFall.gesture.id, fastFall.name, fastFall.mana, fastFallCast);
 
-            // Fireball
-            case 2:
-                PlayerSpellsData.AttackSpell fireball = _player.spellsData.fireball;
-                Action fireballCast = () =>
-                {
-                    if (lockedCasting == false)
-                    {
-                        _spellToShoot = fireball.spellObject;
-                        _spellDuration = fireball.duration;
-                        _spellSpeed = fireball.speed;
-                        _player.drawArea.raycastTarget = false;
-                        _player.spellToShootType = EAttackSpellType.Projectile;
-                        _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
-                    }
-                };
-                return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);
-
             // Block
-            case 3:
+            case 2:
                 PlayerSpellsData.BaseSpell block = _player.spellsData.block;
                 Action blockCast = () =>
                 {
@@ -129,7 +112,7 @@ public class GestureSpells
                 return new Spell(block.gesture.id, block.name, block.mana, blockCast);
 
             // Reflect
-            case 4:
+            case 3:
                 PlayerSpellsData.Aura reflect = _player.spellsData.reflect;
                 Action reflectCast = () =>
                 {
@@ -140,54 +123,53 @@ public class GestureSpells
                     }
                 };
                 return new Spell(reflect.gesture.id, reflect.name, reflect.mana, reflectCast);
+            
+            // Fireball
+            case 4:
+                PlayerSpellsData.AttackSpell fireball = _player.spellsData.fireball;
+                Action fireballCast = () => { PrepareAttack(fireball, EAttackSpellType.Projectile); };
+                return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);
 
             // Ice
             case 5:
-                PlayerSpellsData.BaseSpell ice = _player.spellsData.ice;
-                Action iceCast = () =>
-                {
-                    Debug.Log("ice");
-                };
+                PlayerSpellsData.AttackSpell ice = _player.spellsData.ice;
+                Action iceCast = () => { PrepareAttack(ice, EAttackSpellType.Projectile); };
                 return new Spell(ice.gesture.id, ice.name, ice.mana, iceCast);
 
             // Earth
             case 6:
-                PlayerSpellsData.BaseSpell earth = _player.spellsData.earth;
-                Action earthCast = () =>
-                {
-                    Debug.Log("earth");
-                };
+                PlayerSpellsData.AttackSpell earth = _player.spellsData.earth;
+                Action earthCast = () => { PrepareAttack(earth, EAttackSpellType.Projectile); };
                 return new Spell(earth.gesture.id, earth.name, earth.mana, earthCast);
 
             // Wind
             case 7:
-                PlayerSpellsData.BaseSpell wind = _player.spellsData.wind;
-                Action windCast = () =>
-                {
-                    Debug.Log("wind");
-                };
+                PlayerSpellsData.AttackSpell wind = _player.spellsData.wind;
+                Action windCast = () => { PrepareAttack(wind, EAttackSpellType.Projectile); };
                 return new Spell(wind.gesture.id, wind.name, wind.mana, windCast);
 
             // Lighting
             case 8:
                 PlayerSpellsData.AttackSpell lightning = _player.spellsData.lightning;
-                Action boltCast = () =>
-                {
-                    if (lockedCasting == false)
-                    {
-                        _spellToShoot = lightning.spellObject;
-                        _spellDuration = lightning.duration;
-                        _spellSpeed = lightning.speed;
-                        _player.drawArea.raycastTarget = false;
-                        _player.spellToShootType = EAttackSpellType.Instant;
-                        _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
-                    }
-                };
+                Action boltCast = () => { PrepareAttack(lightning, EAttackSpellType.Instant); };
                 return new Spell(lightning.gesture.id, lightning.name, lightning.mana, boltCast);
 
             default:
                 Debug.LogError("There are missing spells for the gesture patterns");
                 return new Spell();
+        }
+    }
+
+    private void PrepareAttack(PlayerSpellsData.AttackSpell attackSpell, EAttackSpellType spellType)
+    {
+        if (lockedCasting == false)
+        {
+            _spellToShoot = attackSpell.spellObject;
+            _spellDuration = attackSpell.duration;
+            _spellSpeed = attackSpell.speed;
+            _player.drawArea.raycastTarget = false;
+            _player.spellToShootType = spellType;
+            _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
         }
     }
 }

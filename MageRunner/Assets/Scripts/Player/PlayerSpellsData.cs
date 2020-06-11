@@ -45,9 +45,9 @@ public class PlayerSpellsData : ScriptableObject
     public HighJump highJump;
     public FastFall fastFall;
     public AttackSpell fireball;
-    public BaseSpell ice;
-    public BaseSpell wind;
-    public BaseSpell earth;
+    public AttackSpell ice;
+    public AttackSpell wind;
+    public AttackSpell earth;
     public AttackSpell lightning;
 }
 

@@ -39,20 +39,35 @@ MonoBehaviour:
     spellObject: {fileID: 6630576640024018173, guid: a18b1432905365c41bad87d394776fcf,
       type: 3}
     damage: 0
-    speed: 16
+    speed: 20
     duration: 2
   ice:
     name: Ice
     mana: 0
     gesture: {fileID: 11400000, guid: dc95a3d1c6178a24b96968618071c660, type: 2}
+    spellObject: {fileID: 6630576640024018173, guid: 2f8b5bddf76b74b0fbb4f68ff0c57916,
+      type: 3}
+    damage: 0
+    speed: 20
+    duration: 2
   wind:
     name: Wind
     mana: 0
     gesture: {fileID: 11400000, guid: c402e576db321c94f95fca53a06ebb8e, type: 2}
+    spellObject: {fileID: 6630576640024018173, guid: be5b37dabc17544049f1aa9549974d60,
+      type: 3}
+    damage: 0
+    speed: 20
+    duration: 2
   earth:
     name: Earth
     mana: 0
     gesture: {fileID: 11400000, guid: af6276b59495c184f810b6e19d448224, type: 2}
+    spellObject: {fileID: 6630576640024018173, guid: 64a2d28d43ef840869fe9387d6d1fa82,
+      type: 3}
+    damage: 0
+    speed: 20
+    duration: 2
   lightning:
     name: Lightning
     mana: 0
