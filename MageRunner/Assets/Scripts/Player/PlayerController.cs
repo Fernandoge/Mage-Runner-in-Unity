@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public bool isMoving;
     [System.NonSerialized] public int spellsAmount;
     [System.NonSerialized] public float originalGravity;
+    [System.NonSerialized] public int groundLayer;
     [System.NonSerialized] public bool jumpAvailable;
     [System.NonSerialized] public bool jumpStillPressed;
     [System.NonSerialized] public float glideSpeed;
@@ -29,11 +30,11 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public PlayerStateHandler stateHandler;
     [System.NonSerialized] public Collider2D groundCollider;
     [System.NonSerialized] public GestureSpells gestureSpells;
-    [System.NonSerialized] public List<EnemyAttack> reflectedAttacks = new List<EnemyAttack>();
+    [System.NonSerialized] public List<Attack> reflectedAttacks = new List<Attack>();
 
     private Camera _mainCamera;
     private float _jumpTimeCounter;
-    private LayerMask _notGroundLayer;
+    private LayerMask _notGroundLayerMask;
     
     private void Start()
     {
@@ -45,16 +46,19 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
         _shooterSpellOriginalPos = spellShooter.transform.localPosition;
-        _notGroundLayer = 1 << LayerMask.NameToLayer("Ground");
+        _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
     }
 
     private void Update()
     {
-        groundCollider = Physics2D.OverlapCircle(feetPos.position, 0.1f, _notGroundLayer);
+        groundCollider = Physics2D.OverlapCircle(feetPos.position, 0.1f, _notGroundLayerMask);
 
         // Check velocity, because if velocity is higher than 0, High Jump could have been casted and then the animation state of High Jump isn't override by Running
         if (groundCollider != null && rigidBody.velocity.y <= 0)
+        {
             Running();
+            groundLayer = groundCollider.gameObject.layer;
+        }
         else if (stateHandler.isHighJumping)
             HighJump();
 
@@ -71,7 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         //for gestures and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
         if (Input.GetMouseButtonDown(0) && stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject())
-            Shoot(Input.mousePosition); 
+            Shoot(Input.mousePosition);
 
         if (Input.GetKey(KeyCode.Space))
             Jump();
@@ -81,7 +85,6 @@ public class PlayerController : MonoBehaviour
             stateHandler.DisableState(EPlayerState.Jumping);
             jumpStillPressed = false;
         }
-            
     }
 
     private void PlayerInput()
@@ -160,7 +163,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            foreach (EnemyAttack attack in reflectedAttacks)
+            foreach (Attack attack in reflectedAttacks)
             {
                 AdjustShootRotation(shootPosition, attack.gameObject);
                 attack.rigBody.velocity = attack.transform.right * attack.speed;
@@ -203,7 +206,7 @@ public class PlayerController : MonoBehaviour
         {
             drawArea.raycastTarget = false;
             stateHandler.EnableState(EPlayerState.ReadyToShootSimplified);
-            foreach (EnemyAttack attack in reflectedAttacks)
+            foreach (Attack attack in reflectedAttacks)
             {
                 attack.preparingReflect = false;
             }

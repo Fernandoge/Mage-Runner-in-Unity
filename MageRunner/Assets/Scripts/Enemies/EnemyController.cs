@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _maxFireRate;
     [SerializeField] private bool _enablesLevelLoop;
     [SerializeField] private GameObject _weapon;
-    [SerializeField] private EnemyAttack _objectToShoot;
+    [SerializeField] private Attack _objectToShoot;
 
     private float _fireRate;
     private BoxCollider2D _boxCollider;
@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             foreach (ContactPoint2D point in collision.contacts)
             {

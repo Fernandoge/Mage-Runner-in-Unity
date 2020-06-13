@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - BottomGround
+  - StatsHolder
   layers:
   - Default
   - TransparentFX
@@ -21,9 +20,9 @@ TagManager:
   - ReflectAura
   - Ceiling
   - DeathCollision
-  - 
-  - 
-  - 
+  - BottomGround
+  - Player
+  - Enemy
   - 
   - 
   - 

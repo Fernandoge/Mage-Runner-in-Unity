@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 130733842}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: StatsHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   totalMana: 100
   instantSpellsCollision:
     serializedVersion: 2
-    m_Bits: 8448
+    m_Bits: 24832
   feetPos: {fileID: 7747460471598273605}
   spellShooter: {fileID: 7353611008853207079}
   reflectAura: {fileID: 4677125598960807813}

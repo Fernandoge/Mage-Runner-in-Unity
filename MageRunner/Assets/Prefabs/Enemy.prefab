@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8215798905352145275}
   - component: {fileID: 8215798905352145274}
   - component: {fileID: 5432753869513944484}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: StatsHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   _maxDistanceToShoot: 22
   _minFireRate: 1.2
   _maxFireRate: 2.5
-  _player: {fileID: 0}
+  _enablesLevelLoop: 0
   _weapon: {fileID: 8409304969534882528}
-  _objectToShoot: {fileID: 1316127905198959151, guid: 163b934833c42234bb8e00ac7c1c5869,
+  _objectToShoot: {fileID: -511822366750093659, guid: 163b934833c42234bb8e00ac7c1c5869,
     type: 3}
 --- !u!1 &8409304969534882528
 GameObject:

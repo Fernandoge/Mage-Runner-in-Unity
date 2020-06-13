@@ -26,8 +26,6 @@ public class GestureSpells
     private Dictionary<string, Spell> _spellsDict = new Dictionary<string, Spell>();
     private PlayerController _player;
     private GameObject _spellToShoot;
-    private float _spellDuration;
-    private float _spellSpeed;
 
     public GestureSpells(PlayerController player)
     {
@@ -47,9 +45,9 @@ public class GestureSpells
         LevelController currentLevel = GameManager.Instance.level;
         Transform spellParent = currentLevel.movingObjects;
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
-        float speedReduction = _player.isMoving == false ? 0f : (_spellSpeed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
-        shootedSpell.GetComponent<Rigidbody2D>().velocity = _player.spellShooter.transform.right * (_spellSpeed - speedReduction);
-        shootedSpell.GetComponent<PlayerSpell>().duration = _spellDuration;
+        Attack shootedSpellComponent = shootedSpell.GetComponent<Attack>();
+        float speedReduction = _player.isMoving == false ? 0f : (shootedSpellComponent.speed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
+        shootedSpellComponent.rigBody.velocity = _player.spellShooter.transform.right * (shootedSpellComponent.speed - speedReduction);
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
 
@@ -85,7 +83,7 @@ public class GestureSpells
                 PlayerSpellsData.FastFall fastFall = _player.spellsData.fastFall;
                 Action fastFallCast = () =>
                 {
-                    if (_player.groundCollider == null || _player.groundCollider.CompareTag("BottomGround") == false)
+                    if (_player.groundCollider == null || _player.groundLayer != LayerMask.NameToLayer("BottomGround"))
                     {
                         _player.stateHandler.EnableState(EPlayerState.FastFall);
                         _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
@@ -165,8 +163,6 @@ public class GestureSpells
         if (lockedCasting == false)
         {
             _spellToShoot = attackSpell.spellObject;
-            _spellDuration = attackSpell.duration;
-            _spellSpeed = attackSpell.speed;
             _player.drawArea.raycastTarget = false;
             _player.spellToShootType = spellType;
             _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);

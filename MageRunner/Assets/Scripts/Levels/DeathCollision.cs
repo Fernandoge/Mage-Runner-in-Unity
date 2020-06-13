@@ -5,7 +5,7 @@ public class DeathCollision : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             GameManager.Instance.level.ResetLevel();
         }

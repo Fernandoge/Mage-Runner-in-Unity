@@ -50,9 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f450d477bb146a488b52ca79ad3fde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noDestroyLayers:
+  speed: 0
+  durationNoVisible: 0.5
+  reduceDurationVisible: 1
+  noDestroyLayer:
     serializedVersion: 2
     m_Bits: 4294967295
+  rigBody: {fileID: 8294547064922222870}
   particlesToActivate: []
   particlesToDetach:
   - {fileID: 6024977762747342827}
