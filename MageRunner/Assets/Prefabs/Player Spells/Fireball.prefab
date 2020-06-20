@@ -14467,16 +14467,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  durationNoVisible: 2
-  reduceDurationVisible: 0
-  noDestroyLayer:
-    serializedVersion: 2
-    m_Bits: 26880
   rigBody: {fileID: 4855841097505882927}
-  particlesToActivate:
+  _damage: 1
+  _element: 1
+  _durationNoVisible: 2
+  _reduceDurationVisible: 0
+  _destroyLayers:
+    serializedVersion: 2
+    m_Bits: 235008
+  _particlesToActivate:
   - {fileID: 2170987366708310958}
   - {fileID: 4538787163853328835}
-  particlesToDetach:
+  _particlesToDetach:
   - {fileID: 4373080169949753885}
   - {fileID: 361048200316014198}
   - {fileID: 2170987366708310958}

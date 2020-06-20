@@ -1,16 +1,18 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
     public float speed;
-    public float durationNoVisible;
-    public bool reduceDurationVisible;
-    public LayerMask noDestroyLayer;
     public Rigidbody2D rigBody;
-    public ParticleSystem[] particlesToActivate;
-    public ParticleSystem[] particlesToDetach;
-
+    
+    [SerializeField] private int _damage;
+    [SerializeField] private EElement _element;
+    [SerializeField] private float _durationNoVisible;
+    [SerializeField] private bool _reduceDurationVisible;
+    [SerializeField] private LayerMask _destroyLayers;
+    [SerializeField] private ParticleSystem[] _particlesToActivate;
+    [SerializeField] private ParticleSystem[] _particlesToDetach;
+        
     [System.NonSerialized] public bool preparingReflect = false;
     
     private bool _isVisible;
@@ -26,11 +28,11 @@ public class Attack : MonoBehaviour
         if (preparingReflect && transform.position.x > GameManager.Instance.player._shooterSpellOriginalPos.x)
             transform.Translate(Vector2.left * rigBody.velocity * (Time.deltaTime / 40));
 
-        if (_isVisible && reduceDurationVisible == false)
+        if (_isVisible && _reduceDurationVisible == false)
             return;
         
-        durationNoVisible -= Time.deltaTime;
-        if (durationNoVisible <= 0)
+        _durationNoVisible -= Time.deltaTime;
+        if (_durationNoVisible <= 0)
             Destroy(gameObject);
     }
 
@@ -50,22 +52,22 @@ public class Attack : MonoBehaviour
                 Destroy(gameObject);
         }
         
-        // return if the attack collides with a configured no Destroy layer
-        if (((1 << collision.gameObject.layer) & noDestroyLayer) != 0)
-            return;
-        
-        ActivateParticles();
-        Destroy(gameObject);
-
         if (collision.CompareTag("StatsHolder"))
         {
-            //TODO: Change this when stats are implemented
+            Stats collisionStats = collision.GetComponent<Stats>();
+            collisionStats.HandleAttack(_damage, _element);
+        }
+        
+        if (((1 << collision.gameObject.layer) & _destroyLayers) != 0)
+        {
+            ActivateParticles();
+            Destroy(gameObject);
         }
     }
 
     private void ActivateParticles()
     {
-        foreach (ParticleSystem particle in particlesToActivate)
+        foreach (ParticleSystem particle in _particlesToActivate)
         {
             particle.gameObject.SetActive(true);
         }
@@ -73,7 +75,7 @@ public class Attack : MonoBehaviour
     
     private void DetachParticles()
     {
-        foreach (ParticleSystem particle in particlesToDetach)
+        foreach (ParticleSystem particle in _particlesToDetach)
         {
             particle.transform.SetParent(null);
             Destroy(particle.gameObject, particle.main.startLifetimeMultiplier);

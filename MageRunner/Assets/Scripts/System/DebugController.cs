@@ -8,4 +8,9 @@ public class DebugController : MonoBehaviour
     {    
         GameManager.Instance.player.isMoving = !GameManager.Instance.player.isMoving;
     }
+
+    public void ResetLevel()
+    {
+        GameManager.Instance.level.ResetLevel();
+    }
 }

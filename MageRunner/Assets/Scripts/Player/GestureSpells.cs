@@ -151,6 +151,18 @@ public class GestureSpells
                 PlayerSpellsData.AttackSpell lightning = _player.spellsData.lightning;
                 Action boltCast = () => { PrepareAttack(lightning, EAttackSpellType.Instant); };
                 return new Spell(lightning.gesture.id, lightning.name, lightning.mana, boltCast);
+            
+            // Nature
+            case 9:
+                PlayerSpellsData.AttackSpell nature = _player.spellsData.nature;
+                Action natureCast = () => { PrepareAttack(nature, EAttackSpellType.Projectile); };
+                return new Spell(nature.gesture.id, nature.name, nature.mana, natureCast);
+            
+            // Water
+            case 10:
+                PlayerSpellsData.AttackSpell water = _player.spellsData.water;
+                Action waterCast = () => { PrepareAttack(water, EAttackSpellType.Projectile); };
+                return new Spell(water.gesture.id, water.name, water.mana, waterCast);
 
             default:
                 Debug.LogError("There are missing spells for the gesture patterns");
