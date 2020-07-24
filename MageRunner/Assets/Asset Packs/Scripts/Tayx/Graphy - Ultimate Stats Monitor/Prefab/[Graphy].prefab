@@ -2123,23 +2123,23 @@ MonoBehaviour:
   m_toggleActiveKeyCode: 104
   m_toggleActiveCtrl: 1
   m_toggleActiveAlt: 0
-  m_graphModulePosition: 0
-  m_fpsModuleState: 0
+  m_graphModulePosition: 1
+  m_fpsModuleState: 1
   m_timeToResetMinMaxFps: 10
   m_goodFpsColor: {r: 0.4627451, g: 0.83137256, b: 0.22745098, a: 1}
-  m_goodFpsThreshold: 60
+  m_goodFpsThreshold: 50
   m_cautionFpsColor: {r: 0.9529412, g: 0.9098039, b: 0, a: 1}
-  m_cautionFpsThreshold: 30
+  m_cautionFpsThreshold: 25
   m_criticalFpsColor: {r: 0.8627451, g: 0.16078432, b: 0.11764706, a: 1}
   m_fpsGraphResolution: 128
   m_fpsTextUpdateRate: 3
-  m_ramModuleState: 0
+  m_ramModuleState: 4
   m_allocatedRamColor: {r: 1, g: 0.74509805, b: 0.23529412, a: 1}
   m_reservedRamColor: {r: 0.8039216, g: 0.32941177, b: 0.8980392, a: 1}
   m_monoRamColor: {r: 0.3, g: 0.65, b: 1, a: 1}
   m_ramGraphResolution: 128
   m_ramTextUpdateRate: 3
-  m_audioModuleState: 0
+  m_audioModuleState: 4
   m_findAudioListenerInCameraIfNull: 1
   m_audioListener: {fileID: 0}
   m_audioGraphColor: {r: 1, g: 1, b: 1, a: 1}
