@@ -25,7 +25,7 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (preparingReflect && transform.position.x > GameManager.Instance.player._shooterSpellOriginalPos.x)
+        if (preparingReflect && transform.localPosition.x > GameManager.Instance.player._shooterSpellOriginalPos.x)
             transform.Translate(Vector2.left * rigBody.velocity * (Time.deltaTime / 40));
 
         if (_isVisible && _reduceDurationVisible == false)
