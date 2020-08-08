@@ -20,8 +20,12 @@ public class LevelController : MonoBehaviour
     private float _repeatingStartX;
     private float _repeatingEndX;
 
-    private void Start() => GameManager.Instance.level = this;
-
+    private void Start()
+    {
+        GameManager.Instance.level = this;
+        Camera.main.GetComponent<ScaleWidthCamera>().ScaleLevelCamera(transform);
+    } 
+    
     private void Update()
     {
         //TODO: Optimize the game objects positions if they are high values to avoid floating-point precision limitations
