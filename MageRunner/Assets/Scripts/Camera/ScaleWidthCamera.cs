@@ -23,25 +23,24 @@ public class ScaleWidthCamera : MonoBehaviour
 
     public void ScaleLevelCamera(Transform level)
     {
-        switch (_height)
+        // 4:3
+        if (_height >= 1440 && _height < 1536)
         {
-            // 4:3
-            case 1440: 
-                level.localScale = new Vector3(1, 1.2f, 1);
-                level.position = new Vector3(0, 1.02f, 0);
-                transform.position = new Vector3(0, 0, -10);
-                bottomPanel.anchoredPosition = new Vector3(0, 139.5f, 0);
-                bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 278);
-                break;
-            
-            // 5:4
-            case 1536:  
-                level.localScale = new Vector3(1, 1.25f, 1);
-                level.position = new Vector3(0, 1.3f, 0);
-                transform.position = new Vector3(0, 0, -10);
-                bottomPanel.anchoredPosition = new Vector3(0, 148.4f, 0);
-                bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 295.7f);
-                break;
+            level.localScale = new Vector3(1, 1.2f, 1);
+            level.position = new Vector3(0, 1.02f, 0);
+            transform.position = new Vector3(0, 0, -10);
+            bottomPanel.anchoredPosition = new Vector3(0, 143, 0);
+            bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 285);
+        }
+        
+        // 5:4
+        else if (_height >= 1536)
+        {
+            level.localScale = new Vector3(1, 1.25f, 1);
+            level.position = new Vector3(0, 1.3f, 0);
+            transform.position = new Vector3(0, 0, -10);
+            bottomPanel.anchoredPosition = new Vector3(0, 152, 0);
+            bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 302);
         }
     }
 }
