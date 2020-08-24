@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DeathCollision : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             GameManager.Instance.level.ResetLevel();
         }
