@@ -23,5 +23,4 @@ public class Stats : MonoBehaviour
         if (_currentHealthpoints <= 0)
             Destroy(gameObject);
     }
-    
 }

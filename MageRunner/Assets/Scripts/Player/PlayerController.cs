@@ -6,10 +6,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float jumpForce;
-    public float jumpTime;
-    public int totalMana;
-    public LayerMask instantSpellsCollision;
-    public Transform feetPos;
     public GameObject spellShooter;
     public GameObject reflectAura;
     public Image drawArea;
@@ -30,8 +26,15 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public PlayerStateHandler stateHandler;
     [System.NonSerialized] public Collider2D groundCollider;
     [System.NonSerialized] public GestureSpells gestureSpells;
+    [System.NonSerialized] public float currentMana;
     [System.NonSerialized] public List<Attack> reflectedAttacks = new List<Attack>();
 
+    [SerializeField] private Transform _manaBarHolder;
+    [SerializeField] private int _totalMana;
+    [SerializeField] private float _jumpTime;
+    [SerializeField] private Transform _feetPos;
+    [SerializeField] private LayerMask _instantSpellsCollision;
+    
     private Camera _mainCamera;
     private float _jumpTimeCounter;
     private LayerMask _notGroundLayerMask;
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
         gestureSpells = new GestureSpells(this);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+        currentMana = _totalMana;
         originalGravity = rigidBody.gravityScale;
         _shooterSpellOriginalPos = spellShooter.transform.localPosition;
         _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        groundCollider = Physics2D.OverlapCircle(feetPos.position, 0.1f, _notGroundLayerMask);
+        groundCollider = Physics2D.OverlapCircle(_feetPos.position, 0.1f, _notGroundLayerMask);
 
         // Check velocity, because if velocity is higher than 0, High Jump could have been casted and then the animation state of High Jump isn't override by Running
         if (groundCollider != null && rigidBody.velocity.y <= 0)
@@ -117,7 +121,7 @@ public class PlayerController : MonoBehaviour
         if (jumpAvailable && jumpStillPressed == false)
         {
             stateHandler.EnableState(EPlayerState.Jumping);
-            _jumpTimeCounter = jumpTime;
+            _jumpTimeCounter = _jumpTime;
         }
 
         if (stateHandler.isJumping == false)
@@ -155,7 +159,7 @@ public class PlayerController : MonoBehaviour
                 case EAttackSpellType.Instant:
                     Vector3 worldPoint = _mainCamera.ScreenToWorldPoint((shootPosition));
                     Vector3 tapPosition = new Vector2(worldPoint.x, worldPoint.y);
-                    RaycastHit2D spellLineHit = Physics2D.Linecast(tapPosition + new Vector3(0f, 50f, 0f), tapPosition + new Vector3(0f, -50f, 0f), instantSpellsCollision);
+                    RaycastHit2D spellLineHit = Physics2D.Linecast(tapPosition + new Vector3(0f, 50f, 0f), tapPosition + new Vector3(0f, -50f, 0f), _instantSpellsCollision);
                     spellShooter.transform.position = spellLineHit.point;
                     break;
             }
@@ -220,6 +224,13 @@ public class PlayerController : MonoBehaviour
     public void BeginCastingSpell(string id) => gestureSpells.CastSpell(id);
 
     public void CastingSpellFailed() => print("Casting spell failed");
+
+    public void UpdateMana(int value)
+    {
+        currentMana += value;
+        float barValue = currentMana / _totalMana;
+        _manaBarHolder.localScale = new Vector3(barValue, _manaBarHolder.localScale.y, _manaBarHolder.localScale.z);
+    }
 
     // Used in Blocking animation
     public void Blocking()
