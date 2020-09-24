@@ -18,7 +18,7 @@ public class ManaController : MonoBehaviour
 
     public void UpdateMana(int value)
     {
-        _currentMana += value;
+        _currentMana = _currentMana + value > 100 ? 100 : _currentMana + value;
         float barValue = _currentMana / _totalMana;
         _manaBarHolder.localScale = new Vector3(barValue, _manaBarHolder.localScale.y, _manaBarHolder.localScale.z);
     }

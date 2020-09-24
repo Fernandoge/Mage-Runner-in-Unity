@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct RepeatingSegment
@@ -14,8 +15,11 @@ public class LevelController : MonoBehaviour
 {
     public float movingSpeed;
     public Transform movingObjects;
-    public List<RepeatingSegment> repeatingSegments;
 
+    [SerializeField] private List<RepeatingSegment> _repeatingSegments;
+    [SerializeField] private Text _currencyText;
+
+    private int _currency;
     private bool _looping;
     private float _repeatingStartX;
     private float _repeatingEndX;
@@ -43,20 +47,26 @@ public class LevelController : MonoBehaviour
 
     public void StartLooping()
     {
-        _repeatingStartX = repeatingSegments[0].StartX;
-        _repeatingEndX = repeatingSegments[0].EndX;
+        _repeatingStartX = _repeatingSegments[0].StartX;
+        _repeatingEndX = _repeatingSegments[0].EndX;
         _looping = true;
     }
 
     public void StopLooping()
     {
         _looping = false;
-        repeatingSegments.RemoveAt(0);
+        _repeatingSegments.RemoveAt(0);
     }
     
     public void ResetLevel()
     {
         Scene currentScene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void UpdateCurrency(int value)
+    {
+        _currency += value;
+        _currencyText.text = _currency.ToString();
     }
 }
