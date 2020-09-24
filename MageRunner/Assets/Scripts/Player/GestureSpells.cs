@@ -36,13 +36,16 @@ public class GestureSpells
     public void CastSpell(string id)
     {
         Spell spell = _spellsDict[id];
-        if (_player.currentMana >= spell.mana)
+        if (_player.manaController.currentMana >= spell.mana)
         {
-            _player.UpdateMana(-spell.mana);
+            _player.manaController.UpdateMana(-spell.mana);
             spell.castSpell();
         }
         else
+        {
+            _player.manaController.NoManaFeedback();
             Debug.Log("Not enough mana");
+        }
     }
 
     public void ShootSpell()

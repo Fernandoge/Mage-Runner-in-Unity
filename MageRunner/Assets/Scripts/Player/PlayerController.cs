@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public GameObject spellShooter;
     public GameObject reflectAura;
     public Image drawArea;
+    public ManaController manaController;
     public PlayerSpellsData spellsData;
 
     [System.NonSerialized] public bool isMoving;
@@ -26,10 +27,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public PlayerStateHandler stateHandler;
     [System.NonSerialized] public Collider2D groundCollider;
     [System.NonSerialized] public GestureSpells gestureSpells;
-    [System.NonSerialized] public float currentMana;
+    
     [System.NonSerialized] public List<Attack> reflectedAttacks = new List<Attack>();
-
-    [SerializeField] private Transform _manaBarHolder;
     [SerializeField] private int _totalMana;
     [SerializeField] private float _jumpTime;
     [SerializeField] private Transform _feetPos;
@@ -43,11 +42,11 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.player = this;
         _mainCamera = Camera.main;
+        manaController.Initialize(_totalMana);
         stateHandler = new PlayerStateHandler(this);
         gestureSpells = new GestureSpells(this);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-        currentMana = _totalMana;
         originalGravity = rigidBody.gravityScale;
         _shooterSpellOriginalPos = spellShooter.transform.localPosition;
         _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
@@ -204,7 +203,7 @@ public class PlayerController : MonoBehaviour
         
         // Reflecting ended
         stateHandler.DisableState(EPlayerState.Reflecting);
-
+                                                                                                                       
         // If attacks are ready to be reflected
         if (reflectedAttacks.Count > 0)
         {
@@ -224,13 +223,6 @@ public class PlayerController : MonoBehaviour
     public void BeginCastingSpell(string id) => gestureSpells.CastSpell(id);
 
     public void CastingSpellFailed() => print("Casting spell failed");
-
-    public void UpdateMana(int value)
-    {
-        currentMana += value;
-        float barValue = currentMana / _totalMana;
-        _manaBarHolder.localScale = new Vector3(barValue, _manaBarHolder.localScale.y, _manaBarHolder.localScale.z);
-    }
 
     // Used in Blocking animation
     public void Blocking()

@@ -2154,6 +2154,7 @@ GameObject:
   - component: {fileID: 317005192}
   - component: {fileID: 317005194}
   - component: {fileID: 317005193}
+  - component: {fileID: 317005195}
   m_Layer: 5
   m_Name: Player Mana Bar
   m_TagString: Untagged
@@ -2220,6 +2221,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317005191}
   m_CullTransparentMesh: 0
+--- !u!114 &317005195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317005191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02093727700cafd4babef27126ca4584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manaBarHolder: {fileID: 1150189264}
+  _manaBarBackground: {fileID: 1165974577}
 --- !u!1001 &323082198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15030,6 +15045,10 @@ PrefabInstance:
       propertyPath: _manaBarHolder
       value: 
       objectReference: {fileID: 1150189264}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: manaController
+      value: 
+      objectReference: {fileID: 317005195}
     - target: {fileID: 2554711294009284477, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: _healthpointsBarHolder
