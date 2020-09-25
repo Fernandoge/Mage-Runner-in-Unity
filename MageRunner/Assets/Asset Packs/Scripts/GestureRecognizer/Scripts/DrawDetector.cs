@@ -17,6 +17,8 @@ namespace GestureRecognizer {
 		public Recognizer recognizer;
 
 		public UILineRenderer line;
+		[SerializeField] private GameObject _drawParticles;
+		private Camera _mainCamera;
 		private List<UILineRenderer> lines;
 
 		[Range(0f,1f)]
@@ -47,6 +49,7 @@ namespace GestureRecognizer {
 
 
 		void Start(){
+			_mainCamera = Camera.main;
 			line.relativeSize = true;
 			line.LineList = false;
 			lines = new List<UILineRenderer> (){ line };
@@ -111,7 +114,10 @@ namespace GestureRecognizer {
 
 			data.lines.Add (new GestureLine ());
 
+			
 			var fixedPos = FixedPosition (eventData.position);
+			_drawParticles.SetActive(true);
+			_drawParticles.transform.position = fixedPos;
 			if (data.LastLine.points.Count == 0 || data.LastLine.points.Last () != fixedPos) {
 				data.LastLine.points.Add (fixedPos);
 				UpdateLines ();
@@ -120,14 +126,19 @@ namespace GestureRecognizer {
 
 		public void OnDrag (PointerEventData eventData) {
 			var fixedPos = FixedPosition (eventData.position);
+			_drawParticles.transform.position = _mainCamera.ScreenToWorldPoint(fixedPos);
 			if (data.LastLine.points.Count == 0 || data.LastLine.points.Last () != fixedPos) {
 				data.LastLine.points.Add (fixedPos);
 				UpdateLines ();
+				print(data.LastLine.points.Count);
+				if (data.LastLine.points.Count > 1000)
+					data.LastLine.points.Clear();
 			}
 		}
 
 		public void OnEndDrag (PointerEventData eventData)
 		{
+			_drawParticles.SetActive(false);
 			StartCoroutine (OnEndDragCoroutine (eventData));
 		}
 

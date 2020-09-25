@@ -122,5 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ce6d00bfe80a1418c2f2717ec5edf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTarget: {fileID: 0}
+  _manaRestoreValue: 10
   _animationSpeed: 25
+  _animationTarget: {fileID: 0}

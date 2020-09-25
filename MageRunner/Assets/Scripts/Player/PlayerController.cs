@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         groundCollider = Physics2D.OverlapCircle(_feetPos.position, 0.1f, _notGroundLayerMask);
 
-        // Check velocity, because if velocity is higher than 0, High Jump could have been casted and then the animation state of High Jump isn't override by Running
+        // Check velocity, because if velocity is higher than 0 High Jump could have been casted and then the animation state of High Jump isn't override by Running
         if (groundCollider != null && rigidBody.velocity.y <= 0)
         {
             Running();
@@ -76,9 +76,9 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInputDebug()
     {
-        //for gestures and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
         if (Input.GetMouseButtonDown(0) && stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject())
             Shoot(Input.mousePosition);
+        // For gesture and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
 
         if (Input.GetKey(KeyCode.Space))
             Jump();

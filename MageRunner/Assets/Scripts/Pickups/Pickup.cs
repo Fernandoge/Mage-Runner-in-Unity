@@ -16,10 +16,10 @@ public abstract class Pickup : MonoBehaviour
 
     protected IEnumerator MoveToTarget(Transform target, float speed)
     {
-        while (Vector2.Distance(transform.position, target.position) > 0.05f)
+        while (Vector2.Distance(transform.position, target.position) > 0.4f)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            yield return null;
+            yield return null;    
         }
         
         FinishAnimation();
