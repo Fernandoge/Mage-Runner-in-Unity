@@ -51,6 +51,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -147,7 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _element: 0
   _healthpoints: 0
-  _healthpointsBar: {fileID: 0}
   _healthpointsBarHolder: {fileID: 4767085174372254666}
 --- !u!1 &8409304969534882528
 GameObject:

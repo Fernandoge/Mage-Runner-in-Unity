@@ -4,24 +4,25 @@ using Random = UnityEngine.Random;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float _distanceToSpawn;
-    [SerializeField] private float _minDistanceToShoot; [SerializeField] private float _maxDistanceToShoot;
+    [SerializeField] private float _minDistanceToShoot; 
+    [SerializeField] private float _maxDistanceToShoot;
     [SerializeField] private float _minFireRate;
     [SerializeField] private float _maxFireRate;
     [SerializeField] private bool _enablesLevelLoop;
     [SerializeField] private GameObject _weapon;
     [SerializeField] private Attack _objectToShoot;
 
+    protected SpriteRenderer spriteRenderer;
     private float _fireRate;
     private BoxCollider2D _boxCollider;
-    private SpriteRenderer _spriteRenderer;
 
-    private void Start()
+    protected void Start()
     {
         _fireRate = Random.Range(_minFireRate, _maxFireRate);
         _boxCollider = GetComponent<BoxCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider.enabled = false;
-        _spriteRenderer.enabled = false;
+        spriteRenderer.enabled = false;
     }
     
     private void OnDestroy()
@@ -29,16 +30,16 @@ public class EnemyController : MonoBehaviour
         if (_enablesLevelLoop)
             GameManager.Instance.level.StopLooping();
     }
-    
-    private void Update()
+
+    protected virtual void Update()
     {
         float distanceBetweenPlayer = Vector3.Distance(transform.position, GameManager.Instance.player.transform.position);
 
-        if (_spriteRenderer.enabled == false && distanceBetweenPlayer <= _distanceToSpawn)
+        if (spriteRenderer.enabled == false && distanceBetweenPlayer <= _distanceToSpawn)
         {
-            _spriteRenderer.enabled = true;
+            spriteRenderer.enabled = true;
             _boxCollider.enabled = true;
-            transform.SetParent(GameManager.Instance.level.movingObjects);
+            //transform.SetParent(GameManager.Instance.level.movingObjects);
             if (_enablesLevelLoop)
                 GameManager.Instance.level.StartLooping();
         }
@@ -71,7 +72,7 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    
+
     private void Shoot()
     {
         Vector2 lookDirection = GameManager.Instance.player.transform.position - _weapon.transform.position;

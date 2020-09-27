@@ -130,7 +130,6 @@ namespace GestureRecognizer {
 			if (data.LastLine.points.Count == 0 || data.LastLine.points.Last () != fixedPos) {
 				data.LastLine.points.Add (fixedPos);
 				UpdateLines ();
-				print(data.LastLine.points.Count);
 				if (data.LastLine.points.Count > 1000)
 					data.LastLine.points.Clear();
 			}

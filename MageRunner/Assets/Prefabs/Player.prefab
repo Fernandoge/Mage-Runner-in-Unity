@@ -230,14 +230,14 @@ MonoBehaviour:
   spellShooter: {fileID: 7353611008853207079}
   reflectAura: {fileID: 4677125598960807813}
   drawArea: {fileID: 0}
+  manaController: {fileID: 0}
   spellsData: {fileID: 11400000, guid: d20b2bcbd62bddc438394bc11669edf1, type: 2}
-  _manaBarHolder: {fileID: 0}
   _totalMana: 100
   _jumpTime: 0.35
+  _feetPos: {fileID: 7747460471598273605}
   _instantSpellsCollision:
     serializedVersion: 2
     m_Bits: 24832
-  _feetPos: {fileID: 7747460471598273605}
 --- !u!95 &130733842
 Animator:
   serializedVersion: 3
