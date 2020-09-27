@@ -13,16 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distanceToSpawn: 100
-  _minDistanceToShoot: 0
-  _maxDistanceToShoot: 0
-  _minFireRate: 0
-  _maxFireRate: 0
   _enablesLevelLoop: 0
-  _weapon: {fileID: 2907120291313372727}
-  _objectToShoot: {fileID: -511822366750093659, guid: 163b934833c42234bb8e00ac7c1c5869,
-    type: 3}
   _moveSpeed: 2
-  _collisionDamage: 10
+  _collisionDamage: 25
   _groundDetector: {fileID: 4483463374323183666}
 --- !u!1 &7725553111792509533
 GameObject:
@@ -52,7 +45,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3382081563831518627}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6695710047799708887
 PrefabInstance:
@@ -61,11 +54,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -486155800986443433, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
-        type: 3}
-      propertyPath: _healthpoints
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8215798905352145268, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -138,12 +126,6 @@ GameObject:
 --- !u!4 &3382081563831518627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8215798905352145268, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
-    type: 3}
-  m_PrefabInstance: {fileID: 6695710047799708887}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2907120291313372727 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8409304969534882528, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
     type: 3}
   m_PrefabInstance: {fileID: 6695710047799708887}
   m_PrefabAsset: {fileID: 0}

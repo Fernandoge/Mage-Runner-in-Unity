@@ -76,9 +76,9 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInputDebug()
     {
+        // For gesture and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
         if (Input.GetMouseButtonDown(0) && stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject())
             Shoot(Input.mousePosition);
-        // For gesture and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
 
         if (Input.GetKey(KeyCode.Space))
             Jump();

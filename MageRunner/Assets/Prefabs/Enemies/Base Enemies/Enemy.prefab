@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8215798905352145268}
   - component: {fileID: 8215798905352145275}
   - component: {fileID: 8215798905352145274}
-  - component: {fileID: 5432753869513944484}
   - component: {fileID: -486155800986443433}
+  - component: {fileID: 5432753869513944484}
   m_Layer: 16
   m_Name: Enemy
   m_TagString: StatsHolder
@@ -31,7 +31,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1086318990508020159}
   - {fileID: 290980338032965029}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,27 +112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84341866, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &5432753869513944484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8215798905352145273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b154f3eaeb48634e8d3f33c267ef6b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _distanceToSpawn: 22
-  _minDistanceToShoot: 5
-  _maxDistanceToShoot: 22
-  _minFireRate: 1.2
-  _maxFireRate: 2.5
-  _enablesLevelLoop: 0
-  _weapon: {fileID: 8409304969534882528}
-  _objectToShoot: {fileID: -511822366750093659, guid: 163b934833c42234bb8e00ac7c1c5869,
-    type: 3}
 --- !u!114 &-486155800986443433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,38 +125,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _element: 0
-  _healthpoints: 0
+  _healthpoints: 5
   _healthpointsBarHolder: {fileID: 4767085174372254666}
---- !u!1 &8409304969534882528
-GameObject:
+--- !u!114 &5432753869513944484
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1086318990508020159}
-  m_Layer: 0
-  m_Name: Weapon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1086318990508020159
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8409304969534882528}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.86, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8215798905352145268}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 8215798905352145273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b154f3eaeb48634e8d3f33c267ef6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceToSpawn: 22
+  _enablesLevelLoop: 0
 --- !u!1001 &4396644715163756703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 4111153147936562490, guid: f2ec6d507b6de9b4da7d84485f91fda0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4111153147936562490, guid: f2ec6d507b6de9b4da7d84485f91fda0,
         type: 3}

@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class PlatformerEnemyController : EnemyController
 {
-    
+
     [Header("Platformer Fields")]
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private bool _followPlayer;
+    [SerializeField] private bool _patrol;
+    [SerializeField] private float _patrolSpeed;
     [SerializeField] private int _collisionDamage;
     [SerializeField] private Transform _groundDetector;
     // [SerializeField] private Collider2D _platformCollider;
@@ -13,35 +15,48 @@ public class PlatformerEnemyController : EnemyController
     private bool _movingLeft = true;
     private Vector2 _direction = Vector2.left;
     private LayerMask _notGroundLayerMask;
+    
+    protected bool movingLeft => _movingLeft;
 
-    private void Start()
+    protected override void Start()
     {
         base.Start();
         _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
         base.Update();
-        Patrol();
+        if (_patrol)
+            Patrol();
+        if (_followPlayer)
+            FollowPlayer();
+    }
+    
+    private void ChangeDirection(bool flipSprite)
+    {
+        _movingLeft = ! _movingLeft;
+        _direction = _movingLeft ? Vector2.left : Vector2.right;
+        _groundDetector.transform.localPosition = new Vector2(-_groundDetector.transform.localPosition.x, _groundDetector.transform.localPosition.y);
+        if (flipSprite)
+           spriteRenderer.flipX = !spriteRenderer.flipX;
     }
 
     private void Patrol()
     {
-        transform.Translate(_direction * _moveSpeed * Time.deltaTime);
+        transform.Translate(_direction * (_patrolSpeed * Time.deltaTime));
 
         RaycastHit2D groundInfo = Physics2D.Raycast(_groundDetector.position, Vector2.down, 0.2f, _notGroundLayerMask);
         if (groundInfo.collider == null)
-            ChangeDirection();
+            ChangeDirection(! _followPlayer);
     }
 
-    private void ChangeDirection()
+    private void FollowPlayer()
     {
-        _movingLeft = !_movingLeft;
-        spriteRenderer.flipX = !spriteRenderer.flipX;
-        _direction = _movingLeft ? Vector2.left : Vector2.right;
-        _groundDetector.transform.localPosition = new Vector2(-_groundDetector.transform.localPosition.x, _groundDetector.transform.localPosition.y);
+        if (_movingLeft && distanceBetweenPlayerX > 0)
+            ChangeDirection(true);
     }
+    
     
     private void OnTriggerEnter2D(Collider2D col)
     {

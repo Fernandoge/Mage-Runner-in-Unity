@@ -1597,6 +1597,7 @@ Transform:
   m_Children:
   - {fileID: 1933254015}
   - {fileID: 1960788921}
+  - {fileID: 529781525}
   m_Father: {fileID: 215814853}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4146,6 +4147,90 @@ MonoBehaviour:
   speed: 0.25
   startX: 11.12
   endX: -12.295
+--- !u!1001 &404905970
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 175672272}
+    m_Modifications:
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585340291015614782, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: m_Name
+      value: Platformer Shooter Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2763061118821414312, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: _patrol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2763061118821414312, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: _followPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2763061118821414312, guid: bb185979d95a2c040821c4f645d1e840,
+        type: 3}
+      propertyPath: _patrolSpeed
+      value: 0.4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bb185979d95a2c040821c4f645d1e840, type: 3}
 --- !u!1 &406516946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5811,6 +5896,12 @@ Transform:
   m_Father: {fileID: 311521735}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &529781525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 585340291015614771, guid: bb185979d95a2c040821c4f645d1e840,
+    type: 3}
+  m_PrefabInstance: {fileID: 404905970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &539602085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14221,6 +14312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platformer Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382081563831518638, guid: 2eb7431b99682cd4bbd02f63a61f8383,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eb7431b99682cd4bbd02f63a61f8383, type: 3}
