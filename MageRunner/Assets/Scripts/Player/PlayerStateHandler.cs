@@ -8,6 +8,7 @@ public class PlayerStateHandler
     public bool isReflecting;
     public bool isJumping;
     public bool isHighJumping;
+    public bool isFastFalling;
     public bool isBlocking;
     public bool readyToShoot;
 
@@ -34,6 +35,7 @@ public class PlayerStateHandler
                 _player.jumpAvailable = true;
                 _player.rigidBody.gravityScale = _player.originalGravity;
                 _player.stateHandler.DisableState(EPlayerState.HighJumping);
+                _player.stateHandler.DisableState(EPlayerState.FastFall);
                 _player.animator.SetInteger("StateNumber", 1);
                 _player.animator.SetBool("Jump", false);
                 break;
@@ -51,6 +53,7 @@ public class PlayerStateHandler
                 break;
             
             case EPlayerState.FastFall:
+                isFastFalling = true;
                 _player.jumpAvailable = false;
                 _player.rigidBody.gravityScale = _player.originalGravity;
                 _player.stateHandler.DisableState(EPlayerState.HighJumping);
@@ -125,6 +128,7 @@ public class PlayerStateHandler
                 break;
             
             case EPlayerState.FastFall:
+                isFastFalling = false;
                 break;
             
             case EPlayerState.Running:

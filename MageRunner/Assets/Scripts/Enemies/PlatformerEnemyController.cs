@@ -6,6 +6,7 @@ public class PlatformerEnemyController : EnemyController
     
     [Header("Platformer Fields")]
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private int _collisionDamage;
     [SerializeField] private Transform _groundDetector;
     // [SerializeField] private Collider2D _platformCollider;
 
@@ -40,5 +41,23 @@ public class PlatformerEnemyController : EnemyController
         spriteRenderer.flipX = !spriteRenderer.flipX;
         _direction = _movingLeft ? Vector2.left : Vector2.right;
         _groundDetector.transform.localPosition = new Vector2(-_groundDetector.transform.localPosition.x, _groundDetector.transform.localPosition.y);
+    }
+    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.layer != LayerMask.NameToLayer("Player"))
+            return;
+        
+        if (GameManager.Instance.player.stateHandler.isFastFalling)
+        {
+            Destroy(gameObject);
+            GameManager.Instance.player.rigidBody.velocity = Vector2.up * GameManager.Instance.player.jumpForce;
+            GameManager.Instance.player.Running();
+        }
+        else
+        {
+            Stats playerStats = col.GetComponent<Stats>();
+            playerStats.HandleAttack(_collisionDamage, EElement.Neutral);
+        }
     }
 }

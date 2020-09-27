@@ -53,26 +53,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            foreach (ContactPoint2D point in collision.contacts)
-            {
-                if (point.normal.y <= -0.9f)
-                {
-                    Destroy(gameObject);
-                    GameManager.Instance.player.rigidBody.velocity = Vector2.up * GameManager.Instance.player.jumpForce;
-                    GameManager.Instance.player.Running();
-                }
-                else
-                {
-                    GameManager.Instance.level.ResetLevel();
-                }
-            }
-        }
-    }
-
     private void Shoot()
     {
         Vector2 lookDirection = GameManager.Instance.player.transform.position - _weapon.transform.position;

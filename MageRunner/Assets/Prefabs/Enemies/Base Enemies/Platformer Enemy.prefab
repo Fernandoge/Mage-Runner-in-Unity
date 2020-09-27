@@ -22,6 +22,7 @@ MonoBehaviour:
   _objectToShoot: {fileID: -511822366750093659, guid: 163b934833c42234bb8e00ac7c1c5869,
     type: 3}
   _moveSpeed: 2
+  _collisionDamage: 10
   _groundDetector: {fileID: 4483463374323183666}
 --- !u!1 &7725553111792509533
 GameObject:
