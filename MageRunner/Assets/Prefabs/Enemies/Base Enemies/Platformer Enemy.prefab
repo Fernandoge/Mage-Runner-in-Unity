@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _distanceToSpawn: 100
   _enablesLevelLoop: 0
-  _moveSpeed: 2
+  _facingLeft: 1
+  _lookPlayer: 0
+  _patrol: 1
+  _patrolSpeed: 4
   _collisionDamage: 25
   _groundDetector: {fileID: 4483463374323183666}
 --- !u!1 &7725553111792509533

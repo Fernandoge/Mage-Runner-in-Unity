@@ -4,23 +4,21 @@ using UnityEngine;
 public class PlatformerEnemyController : EnemyController
 {
 
-    [Header("Platformer Fields")]
-    [SerializeField] private bool _followPlayer;
+    [Header("Platformer Fields")] 
+    [SerializeField] private bool _facingLeft;
+    [SerializeField] private bool _lookPlayer;
     [SerializeField] private bool _patrol;
     [SerializeField] private float _patrolSpeed;
     [SerializeField] private int _collisionDamage;
     [SerializeField] private Transform _groundDetector;
-    // [SerializeField] private Collider2D _platformCollider;
 
-    private bool _movingLeft = true;
     private Vector2 _direction = Vector2.left;
     private LayerMask _notGroundLayerMask;
-    
-    protected bool movingLeft => _movingLeft;
 
     protected override void Start()
     {
         base.Start();
+        _direction = _facingLeft ? Vector2.left : Vector2.right;
         _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
     }
 
@@ -29,14 +27,16 @@ public class PlatformerEnemyController : EnemyController
         base.Update();
         if (_patrol)
             Patrol();
-        if (_followPlayer)
-            FollowPlayer();
+        if (_lookPlayer)
+            LookPlayer();
     }
-    
+
+    public virtual void PlatformInteract() {}
+
     private void ChangeDirection(bool flipSprite)
     {
-        _movingLeft = ! _movingLeft;
-        _direction = _movingLeft ? Vector2.left : Vector2.right;
+        _facingLeft = ! _facingLeft;
+        _direction = _facingLeft ? Vector2.left : Vector2.right;
         _groundDetector.transform.localPosition = new Vector2(-_groundDetector.transform.localPosition.x, _groundDetector.transform.localPosition.y);
         if (flipSprite)
            spriteRenderer.flipX = !spriteRenderer.flipX;
@@ -48,12 +48,12 @@ public class PlatformerEnemyController : EnemyController
 
         RaycastHit2D groundInfo = Physics2D.Raycast(_groundDetector.position, Vector2.down, 0.2f, _notGroundLayerMask);
         if (groundInfo.collider == null)
-            ChangeDirection(! _followPlayer);
+            ChangeDirection(! _lookPlayer);
     }
 
-    private void FollowPlayer()
+    protected void LookPlayer()
     {
-        if (_movingLeft && distanceBetweenPlayerX > 0)
+        if (_facingLeft && distanceBetweenPlayerX > 0 || _facingLeft == false && distanceBetweenPlayerX < 0)
             ChangeDirection(true);
     }
     
@@ -75,4 +75,5 @@ public class PlatformerEnemyController : EnemyController
             playerStats.HandleAttack(_collisionDamage, EElement.Neutral);
         }
     }
+    
 }

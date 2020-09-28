@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        groundCollider = Physics2D.OverlapCircle(_feetPos.position, 0.1f, _notGroundLayerMask);
+        groundCollider = Physics2D.OverlapCircle(_feetPos.position, 0f, _notGroundLayerMask);
 
         // Check velocity, because if velocity is higher than 0 High Jump could have been casted and then the animation state of High Jump isn't override by Running
         if (groundCollider != null && rigidBody.velocity.y <= 0)
