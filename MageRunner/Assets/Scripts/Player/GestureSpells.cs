@@ -57,6 +57,7 @@ public class GestureSpells
         Attack shootedSpellComponent = shootedSpell.GetComponent<Attack>();
         float speedReduction = _player.isMoving == false ? 0f : (shootedSpellComponent.speed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
         shootedSpellComponent.rigBody.velocity = _player.spellShooter.transform.right * (shootedSpellComponent.speed - speedReduction);
+        shootedSpellComponent.shooterLayer = _player.gameObject.layer;
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
 

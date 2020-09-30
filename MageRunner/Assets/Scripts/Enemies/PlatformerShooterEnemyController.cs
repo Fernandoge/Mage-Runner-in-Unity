@@ -49,9 +49,11 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
         _weapon.transform.rotation = Quaternion.Euler(0f, 0f, weaponLookAngleRandomized);
 
         GameObject shootedObject = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
+        Attack shootedObjectComponent = shootedObject.GetComponent<Attack>();
+        shootedObjectComponent.shooterLayer = gameObject.layer;
         float speedAddition = GameManager.Instance.player.isMoving == false ? 0f : GameManager.Instance.level.movingSpeed / 2;
-        shootedObject.GetComponent<Rigidbody2D>().velocity = _weapon.transform.right * (_objectToShoot.speed + speedAddition);
-
+        shootedObjectComponent.rigBody.velocity = _weapon.transform.right * (_objectToShoot.speed + speedAddition);
+        
         _fireRate = Random.Range(_minFireRate, _maxFireRate);
     }
 }

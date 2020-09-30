@@ -142,6 +142,6 @@ MonoBehaviour:
   _reduceDurationVisible: 0
   _destroyLayers:
     serializedVersion: 2
-    m_Bits: 235008
+    m_Bits: 169472
   _particlesToActivate: []
   _particlesToDetach: []

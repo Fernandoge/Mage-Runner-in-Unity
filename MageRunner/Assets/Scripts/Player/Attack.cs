@@ -1,23 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
     public float speed;
     public Rigidbody2D rigBody;
     
+    [System.NonSerialized] public int shooterLayer;
+    [System.NonSerialized] public bool preparingReflect;
+
     [SerializeField] private int _damage;
     [SerializeField] private EElement _element;
     [SerializeField] private float _durationNoVisible;
     [SerializeField] private bool _reduceDurationVisible;
     [SerializeField] private LayerMask _destroyLayers;
     [SerializeField] private ParticleSystem[] _particlesToActivate;
-    [SerializeField] private ParticleSystem[] _particlesToDetach;
-        
-    [System.NonSerialized] public bool preparingReflect = false;
     
     private bool _isVisible;
-    
-    private void OnDisable() => DetachParticles();
+
+    private void OnDisable() => ActivateParticles();
 
     private void OnBecameVisible() => _isVisible = true;
 
@@ -38,7 +39,10 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("ReflectAura"))
+        int collisionLayer = collision.gameObject.layer;
+            
+        // Player Reflect
+        if (collisionLayer == LayerMask.NameToLayer("ReflectAura"))
         {
             rigBody.simulated = false;
             preparingReflect = true;
@@ -46,40 +50,38 @@ public class Attack : MonoBehaviour
             GameManager.Instance.player.reflectedAttacks.Add(this);
         }
         
-        if (collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+        // Player Block
+        if (collisionLayer != LayerMask.NameToLayer("Player"))
         {
             if (GameManager.Instance.player.stateHandler.isBlocking)
                 Destroy(gameObject);
         }
         
+        // Handle attack according to the collision stats
         if (collision.CompareTag("StatsHolder"))
         {
+            if (collisionLayer == LayerMask.NameToLayer("Enemy") && shooterLayer == LayerMask.NameToLayer("Enemy"))
+                return;
+            
             Stats collisionStats = collision.GetComponent<Stats>();
             collisionStats.HandleAttack(_damage, _element);
         }
         
-        if (((1 << collision.gameObject.layer) & _destroyLayers) != 0)
-        {
-            ActivateParticles();
+        // End the OnTrigger destroying the attack if the collision layer is part of the destroy layers
+        if (((1 << collisionLayer) & _destroyLayers) != 0)
             Destroy(gameObject);
-        }
     }
 
     private void ActivateParticles()
     {
         foreach (ParticleSystem particle in _particlesToActivate)
         {
-            particle.gameObject.SetActive(true);
-        }
-    }
-    
-    private void DetachParticles()
-    {
-        foreach (ParticleSystem particle in _particlesToDetach)
-        {
+            if (particle.gameObject.activeSelf == false)
+                particle.gameObject.SetActive(true);
+            
             particle.transform.SetParent(null);
             Destroy(particle.gameObject, particle.main.startLifetimeMultiplier);
-            if (particle.main.loop == true)
+            if (particle.main.loop)
                 particle.Stop();
         }
     }

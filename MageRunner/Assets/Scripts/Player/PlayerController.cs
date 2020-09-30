@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour
             foreach (Attack attack in reflectedAttacks)
             {
                 AdjustShootRotation(shootPosition, attack.gameObject);
+                attack.shooterLayer = gameObject.layer;
                 attack.rigBody.velocity = attack.transform.right * attack.speed;
                 attack.rigBody.simulated = true;
             }
