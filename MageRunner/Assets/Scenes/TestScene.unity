@@ -23215,6 +23215,16 @@ PrefabInstance:
       propertyPath: _healthpointsBarHolder
       value: 
       objectReference: {fileID: 667514213}
+    - target: {fileID: 5585542745243333528, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585542745243333528, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7692043060404832005, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Name
@@ -23273,6 +23283,21 @@ PrefabInstance:
     - target: {fileID: 7692043060404832007, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698773251011469713, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698773251011469713, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698773251011469713, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
