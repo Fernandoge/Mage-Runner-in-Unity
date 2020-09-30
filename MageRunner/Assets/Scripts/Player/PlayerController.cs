@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public GameObject spellShooter;
     public GameObject reflectAura;
+    public CompanionController companion;
     public Image drawArea;
     public ManaController manaController;
     public PlayerSpellsData spellsData;
@@ -27,8 +28,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public PlayerStateHandler stateHandler;
     [System.NonSerialized] public Collider2D groundCollider;
     [System.NonSerialized] public GestureSpells gestureSpells;
-    
     [System.NonSerialized] public List<Attack> reflectedAttacks = new List<Attack>();
+    
     [SerializeField] private int _totalMana;
     [SerializeField] private float _jumpTime;
     [SerializeField] private Transform _feetPos;
