@@ -56,7 +56,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 585340291015614771}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2805771875956221072
 PrefabInstance:
@@ -124,6 +124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platformer Shooter Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483463374323183666, guid: 2eb7431b99682cd4bbd02f63a61f8383,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6696157628046101895, guid: 2eb7431b99682cd4bbd02f63a61f8383, type: 3}

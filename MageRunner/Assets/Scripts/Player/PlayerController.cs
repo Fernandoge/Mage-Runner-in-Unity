@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public GameObject spellShooter;
     public GameObject reflectAura;
-    public CompanionController companion;
     public Image drawArea;
     public ManaController manaController;
+    public ChatBubbleController companionChatBubble;
     public PlayerSpellsData spellsData;
 
     [System.NonSerialized] public bool isMoving;

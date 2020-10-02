@@ -39,7 +39,7 @@ public class GestureSpells
         if (_player.manaController.currentMana >= spell.mana)
         {
             _player.manaController.UpdateMana(-spell.mana);
-            // _player.companion.StartChat(spell.name, 0.5f);
+            // _player.companionChatBubble.StartChat(spell.name, 0.5f);
             spell.castSpell();
         }
         else
