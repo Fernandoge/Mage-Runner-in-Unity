@@ -23215,6 +23215,11 @@ PrefabInstance:
       propertyPath: _healthpointsBarHolder
       value: 
       objectReference: {fileID: 667514213}
+    - target: {fileID: 5787044329134434526, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7692043060404832005, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Name

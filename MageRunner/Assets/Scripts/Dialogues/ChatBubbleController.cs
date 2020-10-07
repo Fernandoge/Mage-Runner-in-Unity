@@ -1,58 +1,55 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ChatBubbleController : MonoBehaviour
 {
-    [SerializeField] private Image _chatBubbleImage;
+    [SerializeField] private Animator _animator;
     [SerializeField] private TMP_Text _chatBubbleText;
 
     private bool _isTyping;
+    private float _secondsToContinue;
     private readonly List<Tuple<string, float>> textsQueued = new List<Tuple<string, float>>();
-    
-    public void StartChat(string message, float duration)
-    {
-        StartCoroutine(Chat(message, duration));
-    }
 
-    private IEnumerator Chat(string message, float duration)
+    public void StartChat(string message, float secondsToContinue)
     {
-        if (_isTyping) 
-            textsQueued.Add(Tuple.Create(message, duration));
+        if (_isTyping)
+            textsQueued.Add(Tuple.Create(message, secondsToContinue));
         else
         {
-            if (_chatBubbleImage.enabled == false)
-                ActivateChatBubble(true);
-                
-            _chatBubbleText.text = message;
-            
+            _animator.SetBool("Enabled", true);
             _isTyping = true;
-            yield return new WaitForSeconds(duration);
-            _isTyping = false;
-            
-            NextChat();
+            _chatBubbleText.text = message;
+            _secondsToContinue = secondsToContinue;
         }
     }
-
+    
     private void NextChat()
     {
         if (textsQueued.Count == 0)
-            ActivateChatBubble(false);
+        {
+            _animator.SetBool("Enabled", false);
+            _chatBubbleText.gameObject.SetActive(false);
+        }
         else
         {
-            StartCoroutine(Chat(textsQueued[0].Item1, textsQueued[0].Item2));
+            StartChat(textsQueued[0].Item1, textsQueued[0].Item2);
             textsQueued.RemoveAt(0);
         }
     }
 
-    private void ActivateChatBubble(bool state)
+    public void WaitForText() => StartCoroutine(WaitSecondsToContinue());
+    
+    private IEnumerator WaitSecondsToContinue()
     {
-        _chatBubbleImage.enabled = state;
-        _chatBubbleText.gameObject.SetActive(state);
+        yield return new WaitForSeconds(_secondsToContinue);
+        _isTyping = false;
+        
+        NextChat();
     }
     
+    // Method called in the chat bubble animations
+    private void EnableText() => _chatBubbleText.gameObject.SetActive(true);
 }

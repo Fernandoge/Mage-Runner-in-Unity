@@ -452,12 +452,12 @@ PrefabInstance:
     - target: {fileID: 994043356465270369, guid: e1ffbbb718f63764090ee53e278d4c0a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 7.08
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 994043356465270369, guid: e1ffbbb718f63764090ee53e278d4c0a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.41
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 994043356465270369, guid: e1ffbbb718f63764090ee53e278d4c0a,
         type: 3}
@@ -502,17 +502,32 @@ PrefabInstance:
     - target: {fileID: 994043356465270369, guid: e1ffbbb718f63764090ee53e278d4c0a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.025
+      value: 0.048
       objectReference: {fileID: 0}
     - target: {fileID: 994043356465270369, guid: e1ffbbb718f63764090ee53e278d4c0a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.025
+      value: 0.048
       objectReference: {fileID: 0}
     - target: {fileID: 3861590853407421657, guid: e1ffbbb718f63764090ee53e278d4c0a,
         type: 3}
       propertyPath: m_Name
       value: Chat Bubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545572500470144275, guid: e1ffbbb718f63764090ee53e278d4c0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113972624624001944, guid: e1ffbbb718f63764090ee53e278d4c0a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113972624624001944, guid: e1ffbbb718f63764090ee53e278d4c0a,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1ffbbb718f63764090ee53e278d4c0a, type: 3}
