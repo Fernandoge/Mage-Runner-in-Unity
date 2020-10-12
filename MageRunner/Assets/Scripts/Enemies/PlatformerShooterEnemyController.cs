@@ -25,14 +25,12 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
     {
         base.Start();
         _fireRate = Random.Range(_minFireRate, _maxFireRate);
-        _minDistanceToShoot = -_minDistanceToShoot;
-        _maxDistanceToShoot = -_maxDistanceToShoot;
     }
 
     protected override void Update()
     {
         base.Update();
-        if (distanceBetweenPlayerX <= _minDistanceToShoot && distanceBetweenPlayerX >= _maxDistanceToShoot)
+        if (distanceBetweenPlayerX > _minDistanceToShoot && distanceBetweenPlayerX < _maxDistanceToShoot)
         {
             if (_fireRate > 0)
                 _fireRate -= Time.deltaTime;

@@ -53,7 +53,7 @@ public class PlatformerEnemyController : EnemyController
 
     protected void LookPlayer()
     {
-        if (_facingLeft && distanceBetweenPlayerX > 0 || _facingLeft == false && distanceBetweenPlayerX < 0)
+        if (_facingLeft && distanceBetweenPlayerX < 0 || _facingLeft == false && distanceBetweenPlayerX > 0)
             ChangeDirection(true);
     }
     

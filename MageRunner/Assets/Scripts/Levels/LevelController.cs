@@ -4,32 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct RepeatingSegment
-{
-    public GameObject segment;
-    public float StartX;
-    public float EndX;
-}
-
 public class LevelController : MonoBehaviour
 {
     public float movingSpeed;
     public Transform movingObjects;
+    public TimeFrame[] timeFrames;
 
     [NonSerialized] public bool isMoving;
     
     [SerializeField] private List<RepeatingSegment> _repeatingSegments;
     [SerializeField] private Text _currencyText;
 
+    private int _currentTimeFrameIndex;
     private int _currency;
     private bool _looping;
     private float _repeatingStartX;
     private float _repeatingEndX;
 
+    public int currentTimeFrameIndex => _currentTimeFrameIndex;
+    
     private void Start()
     {
         GameManager.Instance.level = this;
+        EnemiesManager.Instance.InitializeEnemies();
         Camera.main.GetComponent<ScaleWidthCamera>().ScaleLevelCamera(transform);
     } 
     
@@ -71,5 +68,16 @@ public class LevelController : MonoBehaviour
     {
         _currency += value;
         _currencyText.text = _currency.ToString();
+    }
+
+    public void ChangeTimeFrame()
+    {
+        timeFrames[currentTimeFrameIndex].movingGO.SetActive(false);
+        timeFrames[currentTimeFrameIndex].staticGO.SetActive(false);
+        GameManager.Instance.level.movingObjects.position = Vector3.zero;
+        _currentTimeFrameIndex += 1;
+        timeFrames[currentTimeFrameIndex].movingGO.SetActive(true);
+        timeFrames[currentTimeFrameIndex].staticGO.SetActive(true);
+        EnemiesManager.Instance.ChangeEnemiesList();
     }
 }

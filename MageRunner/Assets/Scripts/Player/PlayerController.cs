@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public ManaController manaController;
     public ChatBubbleController companionChatBubble;
     public PlayerSpellsData spellsData;
-    
+
     [System.NonSerialized] public int spellsAmount;
     [System.NonSerialized] public float originalGravity;
     [System.NonSerialized] public int groundLayer;
@@ -114,13 +114,8 @@ public class PlayerController : MonoBehaviour
     {
         if (gestureSpells.fastFallGroundCollider?.enabled == false)
             gestureSpells.fastFallGroundCollider.enabled = true;
-        
+
         stateHandler.EnableState(EPlayerState.Running);
-        
-        if (GameManager.Instance.level.isMoving)
-            stateHandler.DisableState(EPlayerState.Idle);
-        else
-            stateHandler.EnableState(EPlayerState.Idle);
     }
 
     private void Jump()
