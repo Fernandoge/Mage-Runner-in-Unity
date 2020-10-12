@@ -8,5 +8,6 @@
     HighJumping,
     Gliding,
     ReadyToShoot,
-    ReadyToShootSimplified
+    ReadyToShootSimplified,
+    Idle
 }

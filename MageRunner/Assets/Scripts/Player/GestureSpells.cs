@@ -39,7 +39,7 @@ public class GestureSpells
         if (_player.manaController.currentMana >= spell.mana)
         {
             _player.manaController.UpdateMana(-spell.mana);
-            _player.companionChatBubble.StartChat(spell.name, 1.2f);
+            // _player.companionChatBubble.StartChat(new Message(spell.name, 1.2f, false));
             spell.castSpell();
         }
         else
@@ -55,7 +55,7 @@ public class GestureSpells
         Transform spellParent = currentLevel.movingObjects;
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
         Attack shootedSpellComponent = shootedSpell.GetComponent<Attack>();
-        float speedReduction = _player.isMoving == false ? 0f : (shootedSpellComponent.speed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
+        float speedReduction = currentLevel.isMoving == false ? 0f : (shootedSpellComponent.speed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
         shootedSpellComponent.rigBody.velocity = _player.spellShooter.transform.right * (shootedSpellComponent.speed - speedReduction);
         shootedSpellComponent.shooterLayer = _player.gameObject.layer;
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);

@@ -36,7 +36,7 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
         {
             if (_fireRate > 0)
                 _fireRate -= Time.deltaTime;
-            else
+            else if (GameManager.Instance.level.isMoving)
                 Shoot();
         }
     }
@@ -51,7 +51,7 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
         GameObject shootedObject = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
         Attack shootedObjectComponent = shootedObject.GetComponent<Attack>();
         shootedObjectComponent.shooterLayer = gameObject.layer;
-        float speedAddition = GameManager.Instance.player.isMoving == false ? 0f : GameManager.Instance.level.movingSpeed / 2;
+        float speedAddition = GameManager.Instance.level.isMoving == false ? 0f : GameManager.Instance.level.movingSpeed / 2;
         shootedObjectComponent.rigBody.velocity = _weapon.transform.right * (_objectToShoot.speed + speedAddition);
         
         _fireRate = Random.Range(_minFireRate, _maxFireRate);

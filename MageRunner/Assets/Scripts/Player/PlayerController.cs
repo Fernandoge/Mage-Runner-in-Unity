@@ -12,8 +12,7 @@ public class PlayerController : MonoBehaviour
     public ManaController manaController;
     public ChatBubbleController companionChatBubble;
     public PlayerSpellsData spellsData;
-
-    [System.NonSerialized] public bool isMoving;
+    
     [System.NonSerialized] public int spellsAmount;
     [System.NonSerialized] public float originalGravity;
     [System.NonSerialized] public int groundLayer;
@@ -68,6 +67,9 @@ public class PlayerController : MonoBehaviour
 
         ReflectingAura();
 
+        if (GameManager.Instance.level.isMoving == false)
+            return;
+        
 #if UNITY_EDITOR
         PlayerInputDebug();
 #else
@@ -114,10 +116,18 @@ public class PlayerController : MonoBehaviour
             gestureSpells.fastFallGroundCollider.enabled = true;
         
         stateHandler.EnableState(EPlayerState.Running);
+        
+        if (GameManager.Instance.level.isMoving)
+            stateHandler.DisableState(EPlayerState.Idle);
+        else
+            stateHandler.EnableState(EPlayerState.Idle);
     }
 
     private void Jump()
     {
+        if (GameManager.Instance.level.isMoving == false)
+            return;
+        
         if (jumpAvailable && jumpStillPressed == false)
         {
             stateHandler.EnableState(EPlayerState.Jumping);

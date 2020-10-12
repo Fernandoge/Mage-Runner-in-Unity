@@ -86,6 +86,10 @@ public class PlayerStateHandler
                 _player.animator.SetInteger("StateNumber", 8);
                 _player.animator.SetBool("Blocking", true);
                 break;
+            
+            case EPlayerState.Idle:
+                _player.animator.SetBool("Idle", true);
+                break;
         }
     }
 
@@ -135,6 +139,10 @@ public class PlayerStateHandler
                 break;
             
             case EPlayerState.Gliding:
+                break;
+            
+            case EPlayerState.Idle:
+                _player.animator.SetBool("Idle", false);
                 break;
         }
     }

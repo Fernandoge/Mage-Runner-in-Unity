@@ -116,8 +116,13 @@ namespace GestureRecognizer {
 
 			
 			var fixedPos = FixedPosition (eventData.position);
-			_drawParticles.SetActive(true);
-			_drawParticles.transform.position = fixedPos;
+			
+			if (GameManager.Instance.level.isMoving)
+			{
+				_drawParticles.SetActive(true);
+				_drawParticles.transform.position = fixedPos;
+			}
+			
 			if (data.LastLine.points.Count == 0 || data.LastLine.points.Last () != fixedPos) {
 				data.LastLine.points.Add (fixedPos);
 				UpdateLines ();

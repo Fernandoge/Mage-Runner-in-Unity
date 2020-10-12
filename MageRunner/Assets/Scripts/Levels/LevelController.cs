@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class LevelController : MonoBehaviour
     public float movingSpeed;
     public Transform movingObjects;
 
+    [NonSerialized] public bool isMoving;
+    
     [SerializeField] private List<RepeatingSegment> _repeatingSegments;
     [SerializeField] private Text _currencyText;
 
@@ -34,7 +37,7 @@ public class LevelController : MonoBehaviour
     {
         //TODO: Optimize the game objects positions if they are high values to avoid floating-point precision limitations
         
-        if (GameManager.Instance.player.isMoving)
+        if (GameManager.Instance.level.isMoving)
             movingObjects.Translate(Vector2.right * movingSpeed * Time.deltaTime);
         
         if (_looping && movingObjects.transform.localPosition.x >= _repeatingEndX)

@@ -8,7 +8,7 @@ public class RepeatingBG : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.player.isMoving == false)
+        if (GameManager.Instance.level.isMoving == false)
             return;
 
         float totalSpeed = GameManager.Instance.level.movingSpeed * speed;

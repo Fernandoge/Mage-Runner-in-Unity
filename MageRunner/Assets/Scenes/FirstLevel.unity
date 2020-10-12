@@ -16146,7 +16146,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 852230535}
         m_TargetAssemblyTypeName: 
-        m_MethodName: TogglePlayerMovement
+        m_MethodName: ToggleLevelMovement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

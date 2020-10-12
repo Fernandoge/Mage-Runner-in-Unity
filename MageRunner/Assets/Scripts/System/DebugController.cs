@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DebugController : MonoBehaviour
 {
-    public void TogglePlayerMovement()
+    public void ToggleLevelMovement()
     {    
-        GameManager.Instance.player.isMoving = !GameManager.Instance.player.isMoving;
+        GameManager.Instance.level.isMoving = !GameManager.Instance.level.isMoving;
     }
 
     public void ResetLevel()

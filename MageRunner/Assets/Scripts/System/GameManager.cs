@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 
     [NonSerialized] public PlayerController player;
     [NonSerialized] public LevelController level;
-    
+    [NonSerialized] public DialogueController dialoguePlaying;
+
     private void Awake()
     {
         if (Instance == null)

@@ -30,7 +30,11 @@ public class GestureHandler : MonoBehaviour {
 		}
 	}
 
-	public void OnRecognize(RecognitionResult result){
+	public void OnRecognize(RecognitionResult result)
+	{
+		if (GameManager.Instance.level.isMoving == false)
+			return;
+		
 		StopAllCoroutines ();
 		ShowAll ();
 		detector.ClearLines();

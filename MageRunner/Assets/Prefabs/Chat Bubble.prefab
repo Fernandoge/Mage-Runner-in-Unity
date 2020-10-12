@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec804d4250da414c99b220ea61b4653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chatBubbleText: {fileID: 7587581867010693271}
   _animator: {fileID: 2112018143186884652}
-  _chatBubbleText: {fileID: 7587581867010693271}
 --- !u!95 &2112018143186884652
 Animator:
   serializedVersion: 3
@@ -358,8 +358,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
