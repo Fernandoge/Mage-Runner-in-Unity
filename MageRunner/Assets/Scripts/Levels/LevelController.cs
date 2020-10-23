@@ -13,7 +13,6 @@ public class LevelController : MonoBehaviour
     [NonSerialized] public bool isMoving;
     
     [SerializeField] private List<RepeatingSegment> _repeatingSegments;
-    [SerializeField] private Text _currencyText;
 
     private int _currentTimeFrameIndex;
     private int _currency;
@@ -22,12 +21,16 @@ public class LevelController : MonoBehaviour
     private float _repeatingEndX;
 
     public int currentTimeFrameIndex => _currentTimeFrameIndex;
-    
+
+    private void Awake() => GameManager.Instance.level = this;
+
     private void Start()
     {
-        GameManager.Instance.level = this;
         EnemiesManager.Instance.InitializeEnemies();
-        Camera.main.GetComponent<ScaleWidthCamera>().ScaleLevelCamera(transform);
+        GameManager.Instance.player.transform.SetParent(movingObjects);
+        Camera mainCamera = Camera.main;
+        mainCamera.GetComponent<ScaleWidthCamera>().ScaleLevelCamera(transform);
+        mainCamera.transform.SetParent(movingObjects);
     } 
     
     private void Update()
@@ -62,12 +65,6 @@ public class LevelController : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(currentScene.name);
-    }
-
-    public void UpdateCurrency(int value)
-    {
-        _currency += value;
-        _currencyText.text = _currency.ToString();
     }
 
     public void ChangeTimeFrame()

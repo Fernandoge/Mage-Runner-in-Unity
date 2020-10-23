@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +7,19 @@ public class CurrencyPickup : Pickup
 {
     [SerializeField] private int _currencyAddedValue;
     [SerializeField] private float _animationSpeed;
-    [SerializeField] private Transform _animationTarget;
     
-    protected override void PickObject()
+    private Transform _animationTarget;
+
+    private void Start()
     {
-        StartCoroutine(MoveToTarget(_animationTarget, _animationSpeed));
+        _animationTarget = GameManager.Instance.currencyText.transform;
     }
+
+    protected override void PickObject() => StartCoroutine(MoveToTarget(_animationTarget, _animationSpeed));
 
     protected override void FinishAnimation()
     {
         base.FinishAnimation();
-        GameManager.Instance.level.UpdateCurrency(_currencyAddedValue);
+        GameManager.Instance.UpdateCurrency(_currencyAddedValue);
     }
 }

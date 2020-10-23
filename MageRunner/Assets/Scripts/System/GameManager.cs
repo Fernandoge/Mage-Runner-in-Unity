@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     public ElementsData elementsData;
+    public Text currencyText;
     public Dictionary<(EElement, EElement), int> elementsMultipliersDict = new Dictionary<(EElement, EElement), int>();
 
     [NonSerialized] public PlayerController player;
     [NonSerialized] public LevelController level;
     [NonSerialized] public DialogueController dialoguePlaying;
+
+    private int _currency;
 
     private void Awake()
     {
@@ -19,8 +23,14 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             LoadElementsMultipliers();
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
+    }
+    
+    public void UpdateCurrency(int value)
+    {
+        _currency += value;
+        currencyText.text = _currency.ToString();
     }
 
     public void LoadElementsMultipliers()

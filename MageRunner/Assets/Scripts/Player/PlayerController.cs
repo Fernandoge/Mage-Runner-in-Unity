@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             HighJump();
 
         ReflectingAura();
-
+        
         if (GameManager.Instance.level.isMoving == false)
             return;
         
