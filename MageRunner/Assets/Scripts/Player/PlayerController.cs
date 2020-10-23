@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         stateHandler.EnableState(EPlayerState.Running);
     }
 
-    private void Jump()
+    public void Jump()
     {
         if (GameManager.Instance.level.isMoving == false)
             return;
