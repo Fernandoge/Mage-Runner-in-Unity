@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GestureHandOverride
+  m_Controller: {fileID: 9100000, guid: 8f431b1b2498b0c479ec9b2f4de7954a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8c83a4fc7aa1bca41907156fee6fb0ad, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b581510be9024ae478697eb1694d43dc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 044a448fdd349d344a5ef46b8f92ba70, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8c83a4fc7aa1bca41907156fee6fb0ad, type: 2}

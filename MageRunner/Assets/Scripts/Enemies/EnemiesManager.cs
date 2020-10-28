@@ -15,10 +15,7 @@ public class EnemiesManager : MonoBehaviour
     private bool _spawningEnemy;
     private float _distanceBetweenPlayerX;
     
-    private void Awake()
-    {
-        Instance = this;
-    }
+    private void Awake() => Instance = this;
 
     private void Update()
     {
