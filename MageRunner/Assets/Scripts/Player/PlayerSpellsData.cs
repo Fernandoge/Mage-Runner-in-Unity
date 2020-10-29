@@ -28,12 +28,19 @@ public class PlayerSpellsData : ScriptableObject
     
     [Header("Attacks")]
     public AttackSpell fireball;
+    public AttackSpell fireballHeavy;
     public AttackSpell ice;
+    public AttackSpell iceHeavy;
     public AttackSpell wind;
+    public AttackSpell windHeavy;
     public AttackSpell earth;
+    public AttackSpell earthHeavy;
     public AttackSpell lightning;
+    public AttackSpell lightningHeavy;
     public AttackSpell nature;
+    public AttackSpell natureHeavy;
     public AttackSpell water;
+    public AttackSpell waterHeavy;
 }
 
   

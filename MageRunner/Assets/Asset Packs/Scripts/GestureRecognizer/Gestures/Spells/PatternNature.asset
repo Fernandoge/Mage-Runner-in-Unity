@@ -29,4 +29,4 @@ MonoBehaviour:
       - {x: 0.055, y: 0.5}
       closedLine: 0
   useLinesOrder: 0
-  useLinesDirections: 0
+  useLinesDirections: 1

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0fdb4e39b5744abf0c061bd2a3e30, type: 3}
+  m_Name: PatternWaterHeavy
+  m_EditorClassIdentifier: 
+  id: waterHeavy
+  points: []
+  gesture:
+    lines:
+    - points:
+      - {x: 0.5074627, y: 0.70149255}
+      - {x: 0.6119403, y: 0.39800996}
+      - {x: 0.6169154, y: 0.27860695}
+      - {x: 0.54228854, y: 0.20895523}
+      - {x: 0.41293532, y: 0.20895523}
+      - {x: 0.31840795, y: 0.2835821}
+      - {x: 0.3233831, y: 0.39800996}
+      - {x: 0.45273632, y: 0.6318408}
+      - {x: 0.48756218, y: 0.74129355}
+      closedLine: 0
+  useLinesOrder: 0
+  useLinesDirections: 1

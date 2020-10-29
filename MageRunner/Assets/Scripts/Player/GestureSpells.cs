@@ -60,6 +60,18 @@ public class GestureSpells
         shootedSpellComponent.shooterLayer = _player.gameObject.layer;
         _player.stateHandler.DisableState(EPlayerState.ReadyToShoot);
     }
+    
+    private void PrepareAttack(PlayerSpellsData.AttackSpell attackSpell, EAttackSpellType spellType)
+    {
+        if (lockedCasting == false)
+        {
+            _spellToShoot = attackSpell.spellObject;
+            _player.drawArea.raycastTarget = false;
+            _player.spellToShootType = spellType;
+            _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
+        }
+    }
+    
 
     private void LoadSpells()
     {
@@ -69,7 +81,7 @@ public class GestureSpells
             _spellsDict.Add(newSpell.id, newSpell);
         }
     }
-
+    
     private Spell GetSpellData(int spellNumber)
     {
         switch (spellNumber)
@@ -133,61 +145,66 @@ public class GestureSpells
                 return new Spell(reflect.gesture.id, reflect.name, reflect.mana, reflectCast);
             
             // Fireball
-            case 4:
-                PlayerSpellsData.AttackSpell fireball = _player.spellsData.fireball;
-                Action fireballCast = () => { PrepareAttack(fireball, EAttackSpellType.Projectile); };
-                return new Spell(fireball.gesture.id, fireball.name, fireball.mana, fireballCast);
+            case 4: return LoadAttackSpell(_player.spellsData.fireball, EAttackSpellType.Projectile);
+            
+            // Fireball Heavy
+            case 5: return LoadAttackSpell(_player.spellsData.fireballHeavy, EAttackSpellType.Projectile);
 
             // Ice
-            case 5:
-                PlayerSpellsData.AttackSpell ice = _player.spellsData.ice;
-                Action iceCast = () => { PrepareAttack(ice, EAttackSpellType.Projectile); };
-                return new Spell(ice.gesture.id, ice.name, ice.mana, iceCast);
+            case 6: return LoadAttackSpell(_player.spellsData.ice, EAttackSpellType.Projectile);
 
+            // Ice Heavy
+            case 7: return LoadAttackSpell(_player.spellsData.iceHeavy, EAttackSpellType.Projectile);
+            
             // Earth
-            case 6:
-                PlayerSpellsData.AttackSpell earth = _player.spellsData.earth;
-                Action earthCast = () => { PrepareAttack(earth, EAttackSpellType.Projectile); };
-                return new Spell(earth.gesture.id, earth.name, earth.mana, earthCast);
+            case 8: return LoadAttackSpell(_player.spellsData.earth, EAttackSpellType.Projectile);
 
+            // Earth Heavy
+            case 9: return LoadAttackSpell(_player.spellsData.earthHeavy, EAttackSpellType.Projectile);
+            
             // Wind
-            case 7:
-                PlayerSpellsData.AttackSpell wind = _player.spellsData.wind;
-                Action windCast = () => { PrepareAttack(wind, EAttackSpellType.Projectile); };
-                return new Spell(wind.gesture.id, wind.name, wind.mana, windCast);
+            case 10: return LoadAttackSpell(_player.spellsData.wind, EAttackSpellType.Projectile);
+
+            // Wind Heavy
+            case 11: return LoadAttackSpell(_player.spellsData.windHeavy, EAttackSpellType.Projectile);
 
             // Lighting
-            case 8:
-                PlayerSpellsData.AttackSpell lightning = _player.spellsData.lightning;
-                Action boltCast = () => { PrepareAttack(lightning, EAttackSpellType.Instant); };
-                return new Spell(lightning.gesture.id, lightning.name, lightning.mana, boltCast);
-            
-            // Nature
-            case 9:
-                PlayerSpellsData.AttackSpell nature = _player.spellsData.nature;
-                Action natureCast = () => { PrepareAttack(nature, EAttackSpellType.Projectile); };
-                return new Spell(nature.gesture.id, nature.name, nature.mana, natureCast);
-            
-            // Water
-            case 10:
-                PlayerSpellsData.AttackSpell water = _player.spellsData.water;
-                Action waterCast = () => { PrepareAttack(water, EAttackSpellType.Projectile); };
-                return new Spell(water.gesture.id, water.name, water.mana, waterCast);
+            case 12: return LoadAttackSpell(_player.spellsData.lightning, EAttackSpellType.Instant);
 
+            // Lightning Heavy
+            case 13: return LoadAttackSpell(_player.spellsData.lightningHeavy, EAttackSpellType.Instant);
+
+            // Nature
+            case 14: return LoadAttackSpell(_player.spellsData.nature, EAttackSpellType.Projectile);
+            
+            // Nature Heavy
+            case 15: return LoadAttackSpell(_player.spellsData.natureHeavy, EAttackSpellType.Projectile);
+
+            // Water
+            case 16: return LoadAttackSpell(_player.spellsData.water, EAttackSpellType.Projectile);
+            
+            // Water Heavy
+            case 17: return LoadAttackSpell(_player.spellsData.waterHeavy, EAttackSpellType.Projectile);
+            
             default:
                 Debug.LogError("There are missing spells for the gesture patterns");
                 return new Spell();
         }
     }
-
-    private void PrepareAttack(PlayerSpellsData.AttackSpell attackSpell, EAttackSpellType spellType)
+    
+    private Spell LoadAttackSpell(PlayerSpellsData.AttackSpell attackSpell, EAttackSpellType attackSpellType)
     {
-        if (lockedCasting == false)
+        Action attackSpellCast = () =>
         {
-            _spellToShoot = attackSpell.spellObject;
-            _player.drawArea.raycastTarget = false;
-            _player.spellToShootType = spellType;
-            _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
-        }
+            if (lockedCasting == false)
+            {
+                _spellToShoot = attackSpell.spellObject;
+                _player.drawArea.raycastTarget = false;
+                _player.spellToShootType = attackSpellType;
+                _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
+            }
+        };
+        
+        return new Spell(attackSpell.gesture.id, attackSpell.name, attackSpell.mana, attackSpellCast);
     }
 }
