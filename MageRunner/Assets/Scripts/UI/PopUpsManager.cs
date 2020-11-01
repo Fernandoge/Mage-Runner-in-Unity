@@ -30,5 +30,4 @@ public class PopUpsManager : MonoBehaviour
         activePopUps.Clear();
         Time.timeScale = 1;
     }
-    
 }

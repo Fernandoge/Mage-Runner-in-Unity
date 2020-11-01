@@ -10,9 +10,10 @@ public class PlayerController : MonoBehaviour
     public GameObject reflectAura;
     public Image drawArea;
     public ManaController manaController;
-    public ChatBubbleController companionChatBubble;
+    public Transform companion;
     public PlayerSpellsData spellsData;
 
+    [System.NonSerialized] public ChatBubbleController companionChatBubble;
     [System.NonSerialized] public int spellsAmount;
     [System.NonSerialized] public float originalGravity;
     [System.NonSerialized] public int groundLayer;

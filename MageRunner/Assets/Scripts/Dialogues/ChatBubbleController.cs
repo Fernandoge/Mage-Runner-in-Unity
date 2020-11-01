@@ -6,14 +6,25 @@ using UnityEngine;
 public class ChatBubbleController : MonoBehaviour
 {
     public TMP_Text chatBubbleText;
-
+    
     [SerializeField] private Animator _animator;
+    [SerializeField] private bool _isPlayerChatBubble;
 
     private bool _isTyping;
     private float _secondsToContinue;
     private bool _changeLevelMovingState;
     private bool _levelMovingStateChangedInThisChat;
     private readonly List<Message> messagesQueued = new List<Message>();
+
+    private void Start()
+    {
+        if (_isPlayerChatBubble)
+        {
+            transform.SetParent(GameManager.Instance.player.companion);
+            GameManager.Instance.player.companionChatBubble = this;
+            GetComponent<Canvas>().worldCamera = Camera.main;
+        }
+    }
 
     public void StartChat(Message message)
     {

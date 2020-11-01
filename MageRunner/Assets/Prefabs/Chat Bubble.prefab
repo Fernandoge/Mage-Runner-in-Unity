@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1224116794425020643}
   - component: {fileID: 286064123317221562}
   - component: {fileID: 160124805332018181}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 5205436963184502888}
   - component: {fileID: 4425301082295471025}
   - component: {fileID: 2112018143186884652}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Chat Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7802755921180099026}
   - component: {fileID: 3384271123121501779}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Bubble Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 7587581867010693271}
   - component: {fileID: 245221238841466766}
   - component: {fileID: 7875400013872774408}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

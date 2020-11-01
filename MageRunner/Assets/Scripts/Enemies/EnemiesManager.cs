@@ -7,9 +7,8 @@ public class EnemiesManager : MonoBehaviour
 {
     public static EnemiesManager Instance;
     
-    [NonSerialized] public List<List<EnemyController>> timeFramesEnemies = new List<List<EnemyController>>();
-    public List<EnemyController> enemies = new List<EnemyController>();
-
+    private List<List<EnemyController>> _timeFramesEnemies = new List<List<EnemyController>>();
+    private List<EnemyController> _enemies = new List<EnemyController>();
     private int _currentEnemyIndex;
     private bool _isEnemyListSorted;
     private bool _spawningEnemy;
@@ -19,10 +18,10 @@ public class EnemiesManager : MonoBehaviour
 
     private void Update()
     {
-        if (_currentEnemyIndex == enemies.Count)
+        if (_currentEnemyIndex == _enemies.Count)
             return;
         
-        EnemyController currentEnemy = enemies[_currentEnemyIndex];
+        EnemyController currentEnemy = _enemies[_currentEnemyIndex];
         
         _distanceBetweenPlayerX = currentEnemy.transform.position.x - GameManager.Instance.player.transform.position.x;
 
@@ -47,15 +46,15 @@ public class EnemiesManager : MonoBehaviour
             foreach (EnemyController enemy in currentTimeFrameEnemies)
                 enemy.gameObject.SetActive(false);
             
-            timeFramesEnemies.Add(currentTimeFrameEnemies);
+            _timeFramesEnemies.Add(currentTimeFrameEnemies);
         }
 
-        enemies = timeFramesEnemies[0];
+        _enemies = _timeFramesEnemies[0];
     }
 
     public void ChangeEnemiesList()
     {
-        enemies = timeFramesEnemies[GameManager.Instance.level.currentTimeFrameIndex];
+        _enemies = _timeFramesEnemies[GameManager.Instance.level.currentTimeFrameIndex];
         _currentEnemyIndex = 0;
     }
 }
