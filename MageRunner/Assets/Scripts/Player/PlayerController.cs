@@ -10,15 +10,15 @@ public class PlayerController : MonoBehaviour
     public GameObject reflectAura;
     public Image drawArea;
     public ManaController manaController;
-    public Transform companion;
+    public ChatBubbleController companionChatBubble;
     public PlayerSpellsData spellsData;
-
-    [System.NonSerialized] public ChatBubbleController companionChatBubble;
+    
     [System.NonSerialized] public int spellsAmount;
     [System.NonSerialized] public float originalGravity;
     [System.NonSerialized] public int groundLayer;
     [System.NonSerialized] public bool jumpAvailable;
     [System.NonSerialized] public bool jumpStillPressed;
+    [System.NonSerialized] public bool idleCastEnabled;
     [System.NonSerialized] public float glideSpeed;
     [System.NonSerialized] public float reflectingDuration;
     [System.NonSerialized] public Vector3 _shooterSpellOriginalPos;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int _totalMana;
     [SerializeField] private float _jumpTime;
     [SerializeField] private Transform _feetPos;
+    [SerializeField] private Selectable _jumpButton;
     [SerializeField] private LayerMask _instantSpellsCollision;
     
     private Camera _mainCamera;
@@ -67,9 +68,8 @@ public class PlayerController : MonoBehaviour
             HighJump();
 
         ReflectingAura();
-        
-        if (GameManager.Instance.level.isMoving == false)
-            return;
+
+        _jumpButton.interactable = GameManager.Instance.level.isMoving;
         
 #if UNITY_EDITOR
         PlayerInputDebug();

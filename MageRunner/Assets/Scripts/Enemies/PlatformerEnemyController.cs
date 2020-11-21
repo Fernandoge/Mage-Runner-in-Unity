@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlatformerEnemyController : EnemyController
 {
-
     [Header("Platformer Fields")] 
     [SerializeField] private bool _facingLeft;
     [SerializeField] private bool _lookPlayer;
@@ -75,5 +74,4 @@ public class PlatformerEnemyController : EnemyController
             playerStats.HandleAttack(_collisionDamage, EElement.Neutral);
         }
     }
-    
 }

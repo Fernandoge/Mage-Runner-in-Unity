@@ -11,7 +11,7 @@ public class Stats : MonoBehaviour
 
     private void Start() => _currentHealthpoints = _healthpoints;
 
-    public void HandleAttack(int attackDamage, EElement attackElement)
+    public virtual void HandleAttack(int attackDamage, EElement attackElement)
     {
         _currentHealthpoints -= attackDamage * GameManager.Instance.elementsMultipliersDict[(_element, attackElement)];
         float barValue = _currentHealthpoints / _healthpoints;
@@ -21,6 +21,11 @@ public class Stats : MonoBehaviour
             _healthpointsBarHolder.parent.gameObject.SetActive(true);
         
         if (_currentHealthpoints <= 0)
-            Destroy(gameObject);
+            DestroyGameObject();
+    }
+
+    public virtual void DestroyGameObject()
+    {
+        Destroy(gameObject);
     }
 }

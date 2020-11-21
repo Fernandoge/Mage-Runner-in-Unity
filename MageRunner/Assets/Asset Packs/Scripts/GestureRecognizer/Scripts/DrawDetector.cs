@@ -117,7 +117,7 @@ namespace GestureRecognizer {
 			
 			var fixedPos = FixedPosition (eventData.position);
 			
-			if (GameManager.Instance.level.isMoving)
+			if (GameManager.Instance.level.isMoving || GameManager.Instance.player.idleCastEnabled)
 			{
 				_drawParticles.SetActive(true);
 				_drawParticles.transform.position = fixedPos;

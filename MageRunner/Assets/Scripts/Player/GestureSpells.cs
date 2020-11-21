@@ -145,7 +145,13 @@ public class GestureSpells
                 return new Spell(reflect.gesture.id, reflect.name, reflect.mana, reflectCast);
             
             // Fireball
-            case 4: return LoadAttackSpell(_player.spellsData.fireball, EAttackSpellType.Projectile);
+            case 4:
+                Action checkFtueStep = () =>
+                {
+                    if (GameManager.Instance.ftueController.ftueStepIndex == 6)
+                        GameManager.Instance.ftueController.NextFtueStep();
+                };
+                return LoadAttackSpell(_player.spellsData.fireball, EAttackSpellType.Projectile, checkFtueStep);
             
             // Fireball Heavy
             case 5: return LoadAttackSpell(_player.spellsData.fireballHeavy, EAttackSpellType.Projectile);
@@ -192,7 +198,7 @@ public class GestureSpells
         }
     }
     
-    private Spell LoadAttackSpell(PlayerSpellsData.AttackSpell attackSpell, EAttackSpellType attackSpellType)
+    private Spell LoadAttackSpell(PlayerSpellsData.AttackSpell attackSpell, EAttackSpellType attackSpellType, Action extraAction = null)
     {
         Action attackSpellCast = () =>
         {
@@ -202,6 +208,9 @@ public class GestureSpells
                 _player.drawArea.raycastTarget = false;
                 _player.spellToShootType = attackSpellType;
                 _player.stateHandler.EnableState(EPlayerState.ReadyToShoot);
+                // ReSharper disable once UseNullPropagation
+                if (extraAction != null)
+                    extraAction();
             }
         };
         

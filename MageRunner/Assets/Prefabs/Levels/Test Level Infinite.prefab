@@ -120,7 +120,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 61699438153569202}
   m_Father: {fileID: 392786454869372001}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -294,6 +295,446 @@ Transform:
   m_Father: {fileID: 392786454869372001}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4582446656362134275
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3776664677422664190}
+    m_Modifications:
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097128976180214848, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: m_Name
+      value: Dialogue Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[4].messages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[5].messages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _isFtueStep
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].companionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[0].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[0].secondsToContinue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[0].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].companionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[0].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[0].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[0].changeLevelMovingState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].companionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[0].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[0].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[0].changeLevelMovingState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].companionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[0].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[0].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[0].changeLevelMovingState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].isCompanionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[1].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[1].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[1].changeLevelMovingState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[2].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[2].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[2].changeLevelMovingState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[3].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[3].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[0].messages.Array.data[3].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].isCompanionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[1].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[1].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[1].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[2].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[2].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[2].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[3].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[3].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[1].messages.Array.data[3].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].isCompanionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[1].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[1].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[1].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[2].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[2].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[2].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[3].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[3].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[2].messages.Array.data[3].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].isCompanionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[1].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[1].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[1].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[2].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[2].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[2].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[3].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[3].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[3].messages.Array.data[3].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[4].isCompanionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[4].messages.Array.data[0].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[4].messages.Array.data[0].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[4].messages.Array.data[0].changeLevelMovingState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[5].isCompanionChatBubble
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[5].messages.Array.data[0].text
+      value: This will start the first ftue step!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[5].messages.Array.data[0].secondsToContinue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _dialogueSections.Array.data[5].messages.Array.data[0].changeLevelMovingState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484037192099336299, guid: 4498bef614d5bad44b816bdf84b5d477,
+        type: 3}
+      propertyPath: _startsNewFtue
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4498bef614d5bad44b816bdf84b5d477, type: 3}
+--- !u!4 &61699438153569202 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
+    type: 3}
+  m_PrefabInstance: {fileID: 4582446656362134275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7988390480053729922
 PrefabInstance:
   m_ObjectHideFlags: 0

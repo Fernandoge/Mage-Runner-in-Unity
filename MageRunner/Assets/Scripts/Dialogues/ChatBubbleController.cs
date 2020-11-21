@@ -8,42 +8,44 @@ public class ChatBubbleController : MonoBehaviour
     public TMP_Text chatBubbleText;
     
     [SerializeField] private Animator _animator;
-    [SerializeField] private bool _isPlayerChatBubble;
 
     private bool _isTyping;
     private float _secondsToContinue;
     private bool _changeLevelMovingState;
+    private bool _waitForAction;
     private bool _levelMovingStateChangedInThisChat;
+    private bool _isFullyClosed = true;
     private readonly List<Message> messagesQueued = new List<Message>();
-
-    private void Start()
-    {
-        if (_isPlayerChatBubble)
-        {
-            transform.SetParent(GameManager.Instance.player.companion);
-            GameManager.Instance.player.companionChatBubble = this;
-            GetComponent<Canvas>().worldCamera = Camera.main;
-        }
-    }
-
+    
     public void StartChat(Message message)
     {
         if (_isTyping)
             messagesQueued.Add(message);
         else
         {
+            // If chat bubble is fully closed let the bubble animation enable it,
+            // otherwise since the chat bubble may still be open, enable it by code
+            if (_isFullyClosed == false)
+                EnableText();
+
             _animator.SetBool("Enabled", true);
             _isTyping = true;
+            _isFullyClosed = false;
             _levelMovingStateChangedInThisChat = false;  
             chatBubbleText.text = message.text;
             _secondsToContinue = message.secondsToContinue;
             _changeLevelMovingState = message.changeLevelMovingState;
+            _waitForAction = message.waitForAction;
+            
+            GameManager.Instance.player.idleCastEnabled = message.enablePlayerIdleCast;
+            
             if (_changeLevelMovingState && GameManager.Instance.level.isMoving)
             {
                 GameManager.Instance.level.isMoving = false;
                 GameManager.Instance.player.stateHandler.EnableState(EPlayerState.Idle);
                 _levelMovingStateChangedInThisChat = true;
             }
+            
         }
     }
     
@@ -74,8 +76,9 @@ public class ChatBubbleController : MonoBehaviour
             GameManager.Instance.level.isMoving = true;
             GameManager.Instance.player.stateHandler.DisableState(EPlayerState.Idle);
         }
-        
-        NextChat();
+
+        if (_waitForAction == false)
+            NextChat();
     }
 
     public void ForceClose()
@@ -85,8 +88,9 @@ public class ChatBubbleController : MonoBehaviour
         messagesQueued.Clear();
     }
     
-    
-    // Method called in the chat bubble animations
-    private void EnableText() => chatBubbleText.gameObject.SetActive(true);
-    
+    // Methods called in the chat bubble animation too
+    public void EnableText() => chatBubbleText.gameObject.SetActive(true);
+
+    public void ChatBubbleFullyClosed() => _isFullyClosed = true;
+
 }

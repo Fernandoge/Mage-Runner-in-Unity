@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [NonSerialized] public PlayerController player;
     [NonSerialized] public LevelController level;
     [NonSerialized] public DialogueController dialoguePlaying;
+    [NonSerialized] public FtueController ftueController;
 
     private int _currency;
 

@@ -18,6 +18,10 @@ public class Attack : MonoBehaviour
     
     private bool _isVisible;
 
+    public int damage => _damage;
+    
+    public EElement element => _element;
+
     private void OnDisable() => ActivateParticles();
 
     private void OnBecameVisible() => _isVisible = true;
@@ -64,7 +68,7 @@ public class Attack : MonoBehaviour
                 return;
             
             Stats collisionStats = collision.GetComponent<Stats>();
-            collisionStats.HandleAttack(_damage, _element);
+            collisionStats.HandleAttack(damage, element);
         }
         
         // End the OnTrigger destroying the attack if the collision layer is part of the destroy layers

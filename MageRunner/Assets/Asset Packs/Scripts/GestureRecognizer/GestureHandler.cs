@@ -32,7 +32,7 @@ public class GestureHandler : MonoBehaviour {
 
 	public void OnRecognize(RecognitionResult result)
 	{
-		if (GameManager.Instance.level.isMoving == false)
+		if (GameManager.Instance.level.isMoving == false && GameManager.Instance.player.idleCastEnabled == false)
 			return;
 		
 		StopAllCoroutines ();
