@@ -10,14 +10,16 @@ public class PopUpsManager : MonoBehaviour
     public void ActivatePopUp(GameObject popUp)
     {
         popUp.SetActive(true);
-        activePopUps.Add(popUp);
         Time.timeScale = 0;
+        if (activePopUps.Contains(popUp) == false)
+            activePopUps.Add(popUp);
     }
 
     public void DeactivatePopUp(GameObject popUp)
     {
         popUp.SetActive(false);
-        activePopUps.Remove(popUp);
+        if (activePopUps.Contains(popUp))
+            activePopUps.Remove(popUp);
     }
 
     public void CloseActivePopUps()
