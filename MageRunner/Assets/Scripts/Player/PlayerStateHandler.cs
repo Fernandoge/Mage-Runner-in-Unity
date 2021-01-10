@@ -61,9 +61,9 @@ public class PlayerStateHandler
                 _player.animator.SetInteger("StateNumber", 4);
                 break;
             
-            case EPlayerState.ReadyToShoot:
+            case EPlayerState.Shooting:
                 readyToShoot = true;
-                _player.animator.SetInteger("StateNumber", 5);
+                _player.animator.SetInteger("StateNumber", 6);
                 _player.animator.SetBool("ReadyToShoot", true);
                 break;
             
@@ -75,14 +75,14 @@ public class PlayerStateHandler
             
             case EPlayerState.Reflecting:
                 isReflecting = true;
-                _player.gestureSpells.lockedCasting = true;
+                _player.gestureSpellsController.lockedCasting = true;
                 _player.reflectAura.SetActive(true);
                 _player.animator.SetInteger("StateNumber", 7);
                 _player.animator.SetBool("Reflecting", true);
                 break;
             
             case EPlayerState.Blocking:
-                _player.gestureSpells.lockedCasting = true;
+                _player.gestureSpellsController.lockedCasting = true;
                 _player.animator.SetInteger("StateNumber", 8);
                 _player.animator.SetBool("Blocking", true);
                 break;
@@ -108,18 +108,18 @@ public class PlayerStateHandler
             
             case EPlayerState.Reflecting:
                 isReflecting = false;
-                _player.gestureSpells.lockedCasting = false;
+                _player.gestureSpellsController.lockedCasting = false;
                 _player.reflectAura.SetActive(false);
                 _player.animator.SetBool("Reflecting", false);
                 break;
             
             case EPlayerState.Blocking:
                 isBlocking = false;
-                _player.gestureSpells.lockedCasting = false;
+                _player.gestureSpellsController.lockedCasting = false;
                 _player.animator.SetBool("Blocking", false);
                 break;
             
-            case EPlayerState.ReadyToShoot:
+            case EPlayerState.Shooting:
                 readyToShoot = false;
                 _player.animator.SetInteger("StateNumber", 6);
                 _player.animator.SetBool("ReadyToShoot", false);

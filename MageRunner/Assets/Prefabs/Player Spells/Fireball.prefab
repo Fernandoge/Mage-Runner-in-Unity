@@ -14651,13 +14651,8 @@ MonoBehaviour:
   _reduceDurationVisible: 0
   _destroyLayers:
     serializedVersion: 2
-    m_Bits: 235008
+    m_Bits: 233472
   _particlesToActivate:
-  - {fileID: 4373080169949753885}
-  - {fileID: 361048200316014198}
-  - {fileID: 2170987366708310958}
-  - {fileID: 4538787163853328835}
-  _particlesToDetach:
   - {fileID: 4373080169949753885}
   - {fileID: 361048200316014198}
   - {fileID: 2170987366708310958}

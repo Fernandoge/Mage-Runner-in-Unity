@@ -67,13 +67,16 @@ public class Attack : MonoBehaviour
             if (collisionLayer == LayerMask.NameToLayer("Enemy") && shooterLayer == LayerMask.NameToLayer("Enemy"))
                 return;
             
-            Stats collisionStats = collision.GetComponent<Stats>();
-            collisionStats.HandleAttack(damage, element);
+            // Kill Player or do gesture interaction
+            
+            
+            // Stats collisionStats = collision.GetComponent<Stats>();
+            // collisionStats.HandleAttack(damage, element);
         }
         
         // End the OnTrigger destroying the attack if the collision layer is part of the destroy layers
-        if (((1 << collisionLayer) & _destroyLayers) != 0)
-            Destroy(gameObject);
+        // if (((1 << collisionLayer) & _destroyLayers) != 0)
+        //     Destroy(gameObject);
     }
 
     private void ActivateParticles()

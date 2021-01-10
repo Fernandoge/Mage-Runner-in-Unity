@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PatternNature
   m_EditorClassIdentifier: 
   id: nature
+  icon: {fileID: 21300000, guid: b9d09101ece6f2747b7769d930ebebf5, type: 3}
   points: []
   gesture:
     lines:

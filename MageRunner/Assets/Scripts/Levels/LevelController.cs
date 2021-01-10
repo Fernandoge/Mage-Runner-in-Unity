@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,6 +20,10 @@ public class LevelController : MonoBehaviour
     private bool _looping;
     private float _repeatingStartX;
     private float _repeatingEndX;
+    private List<List<GesturesHolder>> _timeFramesGesturesHolders = new List<List<GesturesHolder>>();
+    private List<GesturesHolder> _gesturesHolders = new List<GesturesHolder>();
+    private int _currentGesturesHolderIndex;
+    private float _distanceBetweenPlayerX;
 
     public int currentTimeFrameIndex => _currentTimeFrameIndex;
 
@@ -26,7 +31,7 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
-        EnemiesManager.Instance.InitializeEnemies();
+        InitializeGesturesHolders();
         GameManager.Instance.player.transform.SetParent(movingObjects);
         Camera mainCamera = Camera.main;
         mainCamera.GetComponent<ScaleWidthCamera>().ScaleLevelCamera(transform);
@@ -40,11 +45,29 @@ public class LevelController : MonoBehaviour
         if (GameManager.Instance.level.isMoving)
             movingObjects.Translate(Vector2.right * movingSpeed * Time.deltaTime);
         
+        // Level looping logic
+        
         if (_looping && movingObjects.transform.localPosition.x >= _repeatingEndX)
         {
             float distanceReturned = _repeatingEndX - _repeatingStartX;
             transform.position = new Vector2(transform.position.x + distanceReturned, transform.position.y);
             movingObjects.transform.localPosition = new Vector2(_repeatingStartX, movingObjects.transform.localPosition.y);
+        }
+        
+        // Gestures holders activation
+        
+        if (_currentGesturesHolderIndex == _gesturesHolders.Count)
+            return;
+        
+        GesturesHolder currentGesturesHolder = _gesturesHolders[_currentGesturesHolderIndex];
+        _distanceBetweenPlayerX = currentGesturesHolder.transform.position.x - GameManager.Instance.player.transform.position.x;
+        if (_distanceBetweenPlayerX <= currentGesturesHolder.DistanceToSpawn)
+        {
+            _currentGesturesHolderIndex += 1;
+            currentGesturesHolder.gameObject.SetActive(true);
+            currentGesturesHolder.LoadGestures();
+            // if (currentEnemy.enablesLevelLoop)
+            //     GameManager.Instance.level.StartLooping();
         }
     }
 
@@ -75,6 +98,30 @@ public class LevelController : MonoBehaviour
         _currentTimeFrameIndex += 1;
         timeFrames[currentTimeFrameIndex].movingGO.SetActive(true);
         timeFrames[currentTimeFrameIndex].staticGO.SetActive(true);
-        EnemiesManager.Instance.ChangeEnemiesList();
+        ChangeGesturesHoldersList();
+    }
+    
+    private void InitializeGesturesHolders()
+    {
+        foreach (TimeFrame timeframe in GameManager.Instance.level.timeFrames)
+        {
+            List<GesturesHolder> currentTimeFrameGesturesHolder = new List<GesturesHolder>();
+            currentTimeFrameGesturesHolder.AddRange(timeframe.movingGO.GetComponentsInChildren<GesturesHolder>());
+            currentTimeFrameGesturesHolder.AddRange(timeframe.staticGO.GetComponentsInChildren<GesturesHolder>());
+            currentTimeFrameGesturesHolder = currentTimeFrameGesturesHolder.OrderBy(gesturesHolder => gesturesHolder.transform.position.x).ToList();
+            
+            foreach (GesturesHolder gesturesHolder in currentTimeFrameGesturesHolder)
+                gesturesHolder.gameObject.SetActive(false);
+            
+            _timeFramesGesturesHolders.Add(currentTimeFrameGesturesHolder);
+        }
+
+        _gesturesHolders = _timeFramesGesturesHolders[0];
+    }
+    
+    private void ChangeGesturesHoldersList()
+    {
+        _gesturesHolders = _timeFramesGesturesHolders[GameManager.Instance.level.currentTimeFrameIndex];
+        _currentGesturesHolderIndex = 0;
     }
 }

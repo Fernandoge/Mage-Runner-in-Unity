@@ -7,7 +7,7 @@
     Blocking,
     HighJumping,
     Gliding,
-    ReadyToShoot,
+    Shooting,
     ReadyToShootSimplified,
     Idle
 }

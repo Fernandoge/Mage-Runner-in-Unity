@@ -12,6 +12,7 @@ namespace GestureRecognizer {
 	public class GesturePattern : ScriptableObject {
 	
 		public string id;
+		public Sprite icon;
 
 		[System.Obsolete("'points' is deprecated, please use 'gesture' instead.")]
 		[HideInInspector]

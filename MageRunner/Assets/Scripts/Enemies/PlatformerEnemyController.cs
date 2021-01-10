@@ -70,8 +70,10 @@ public class PlatformerEnemyController : EnemyController
         }
         else
         {
-            Stats playerStats = col.GetComponent<Stats>();
-            playerStats.HandleAttack(_collisionDamage, EElement.Neutral);
+            // Kill Player
+            
+            // Stats playerStats = col.GetComponent<Stats>();
+            // playerStats.HandleAttack(_collisionDamage, EElement.Neutral);
         }
     }
 }

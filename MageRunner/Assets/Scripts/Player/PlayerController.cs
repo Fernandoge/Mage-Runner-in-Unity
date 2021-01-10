@@ -22,12 +22,13 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public float glideSpeed;
     [System.NonSerialized] public float reflectingDuration;
     [System.NonSerialized] public Vector3 _shooterSpellOriginalPos;
+    [System.NonSerialized] public Vector3 targetPosition;
     [System.NonSerialized] public EAttackSpellType spellToShootType;
     [System.NonSerialized] public Rigidbody2D rigidBody;
     [System.NonSerialized] public Animator animator;
     [System.NonSerialized] public PlayerStateHandler stateHandler;
     [System.NonSerialized] public Collider2D groundCollider;
-    [System.NonSerialized] public GestureSpells gestureSpells;
+    [System.NonSerialized] public GestureSpellsController gestureSpellsController;
     [System.NonSerialized] public List<Attack> reflectedAttacks = new List<Attack>();
     
     [SerializeField] private int _totalMana;
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
         _mainCamera = Camera.main;
         manaController.Initialize(_totalMana);
         stateHandler = new PlayerStateHandler(this);
-        gestureSpells = new GestureSpells(this);
+        gestureSpellsController = new GestureSpellsController(this);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
@@ -113,8 +114,8 @@ public class PlayerController : MonoBehaviour
     
     public void Running()
     {
-        if (gestureSpells.fastFallGroundCollider?.enabled == false)
-            gestureSpells.fastFallGroundCollider.enabled = true;
+        if (gestureSpellsController.fastFallGroundCollider?.enabled == false)
+            gestureSpellsController.fastFallGroundCollider.enabled = true;
 
         stateHandler.EnableState(EPlayerState.Running);
     }
@@ -151,9 +152,10 @@ public class PlayerController : MonoBehaviour
     }
     
 
-    private void Shoot(Vector3 shootPosition)
+    public void Shoot(Vector3 shootPosition)
     {
-        drawArea.raycastTarget = true;
+        shootPosition = targetPosition;
+        print(targetPosition);
         spellShooter.transform.localPosition = _shooterSpellOriginalPos;
         spellShooter.transform.localRotation = Quaternion.identity;
         if (reflectedAttacks.Count == 0)
@@ -161,15 +163,19 @@ public class PlayerController : MonoBehaviour
             switch (spellToShootType)
             {
                 case EAttackSpellType.Projectile:
-                    AdjustShootRotation(shootPosition, spellShooter); break;
+                    AdjustShootRotation(targetPosition, spellShooter);
+                    break;
                 case EAttackSpellType.Instant:
-                    Vector3 worldPoint = _mainCamera.ScreenToWorldPoint((shootPosition));
+                    // Vector3 worldPoint = _mainCamera.ScreenToWorldPoint((targetPosition));
+                    Vector3 worldPoint = shootPosition;
                     Vector3 tapPosition = new Vector2(worldPoint.x, worldPoint.y);
-                    RaycastHit2D spellLineHit = Physics2D.Linecast(tapPosition + new Vector3(0f, 50f, 0f), tapPosition + new Vector3(0f, -50f, 0f), _instantSpellsCollision);
+                    RaycastHit2D spellLineHit = Physics2D.Linecast(tapPosition + new Vector3(0f, 50f, 0f),
+                        tapPosition + new Vector3(0f, -50f, 0f), _instantSpellsCollision);
                     spellShooter.transform.position = spellLineHit.point;
                     break;
             }
-            gestureSpells.ShootSpell();
+
+            gestureSpellsController.ShootSpell();
         }
         else
         {
@@ -187,7 +193,8 @@ public class PlayerController : MonoBehaviour
 
     private void AdjustShootRotation(Vector3 shootPosition, GameObject obj)
     {
-        Vector2 lookDirection = _mainCamera.ScreenToWorldPoint(shootPosition) - obj.transform.position;
+        // Vector2 lookDirection = _mainCamera.ScreenToWorldPoint(shootPosition) - obj.transform.position;
+        Vector2 lookDirection = shootPosition - obj.transform.position;
         float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         if (lookAngle > 60 || lookAngle < -60)
         {
@@ -228,7 +235,7 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("StateNumber", 1);
     }
     
-    public void BeginCastingSpell(string id) => gestureSpells.CastSpell(id);
+    public void BeginCastingSpell(string id) => gestureSpellsController.CastSpell(id);
 
     public void CastingSpellFailed() => print("Casting spell failed");
 
@@ -240,4 +247,7 @@ public class PlayerController : MonoBehaviour
         else
             stateHandler.isBlocking = true;
     }
+    
+    // Used in Shooting animation
+    public void StopShooting() => stateHandler.DisableState(EPlayerState.Shooting);
 }

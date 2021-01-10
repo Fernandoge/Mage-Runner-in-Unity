@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomStats : Stats
+public class CustomGesturesHolder : GesturesHolder
 {
     [SerializeField] private Attack _requiredAttackToHit; 
     
