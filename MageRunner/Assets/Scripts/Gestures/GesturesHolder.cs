@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GestureRecognizer;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GesturesHolder : MonoBehaviour
 {
@@ -16,23 +18,25 @@ public class GesturesHolder : MonoBehaviour
     
     public float DistanceToSpawn => _distanceToSpawn;
 
-    private void Start()
+
+    private void Awake()
     {
         _currentHealthpoints = _healthpoints;
+        LoadGestures();
     }
-
-    public virtual void HandleAttack(int attackDamage, EElement attackElement)
-    {
-        // _currentHealthpoints -= attackDamage * GameManager.Instance.elementsMultipliersDict[(_element, attackElement)];
-        float barValue = _currentHealthpoints / _healthpoints;
-        _healthpointsBarHolder.localScale = new Vector3(barValue, _healthpointsBarHolder.localScale.y, _healthpointsBarHolder.localScale.z);
-
-        if (_healthpointsBarHolder.parent.gameObject.activeSelf == false)
-            _healthpointsBarHolder.parent.gameObject.SetActive(true);
-        
-        if (_currentHealthpoints <= 0)
-            DestroyGameObject();
-    }
+    
+    // public virtual void HandleAttack(int attackDamage, EElement attackElement)
+    // {
+    //     // _currentHealthpoints -= attackDamage * GameManager.Instance.elementsMultipliersDict[(_element, attackElement)];
+    //     float barValue = _currentHealthpoints / _healthpoints;
+    //     _healthpointsBarHolder.localScale = new Vector3(barValue, _healthpointsBarHolder.localScale.y, _healthpointsBarHolder.localScale.z);
+    //
+    //     if (_healthpointsBarHolder.parent.gameObject.activeSelf == false)
+    //         _healthpointsBarHolder.parent.gameObject.SetActive(true);
+    //     
+    //     if (_currentHealthpoints <= 0)
+    //         DestroyGameObject();
+    // }
 
     public virtual void DestroyGameObject()
     {
@@ -41,11 +45,21 @@ public class GesturesHolder : MonoBehaviour
 
     public void LoadGestures()
     {
-        foreach (Gesture gesture in gestures)
+        foreach (Gesture gesture in gestures.ToArray())
         {
+            gestures.Remove(gesture);
             GesturePattern pattern = PickRandomGesture(gesture.difficulty);
             gesture.iconRenderer.sprite = pattern.icon;
-            GameManager.Instance.activeGestures.Add(gesture, pattern);
+            Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, transform, false);
+            gestures.Add(loadedGesture);
+        }
+    }
+
+    public void ActivateGestures()
+    {
+        foreach (Gesture gesture in gestures)
+        {
+            GameManager.Instance.activeGestures.Add(gesture);
         }
     }
     

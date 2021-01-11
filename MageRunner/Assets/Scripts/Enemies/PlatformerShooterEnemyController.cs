@@ -17,7 +17,7 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
     [SerializeField] private int _aimAccuracyHandicap;
     
     [SerializeField] private GameObject _weapon;
-    [SerializeField] private Attack _objectToShoot;
+    [SerializeField] private PlayerSpell _objectToShoot;
     
     private float _fireRate;
 
@@ -47,7 +47,7 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
         _weapon.transform.rotation = Quaternion.Euler(0f, 0f, weaponLookAngleRandomized);
 
         GameObject shootedObject = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
-        Attack shootedObjectComponent = shootedObject.GetComponent<Attack>();
+        PlayerSpell shootedObjectComponent = shootedObject.GetComponent<PlayerSpell>();
         shootedObjectComponent.shooterLayer = gameObject.layer;
         float speedAddition = GameManager.Instance.level.isMoving == false ? 0f : GameManager.Instance.level.movingSpeed / 2;
         shootedObjectComponent.rigBody.velocity = _weapon.transform.right * (_objectToShoot.speed + speedAddition);

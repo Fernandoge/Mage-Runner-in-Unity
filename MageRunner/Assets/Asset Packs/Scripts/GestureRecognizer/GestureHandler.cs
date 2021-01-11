@@ -15,11 +15,6 @@ public class GestureHandler : MonoBehaviour {
 
 	GesturePatternDraw[] references;
 
-	private void Awake()
-	{
-		player.spellsAmount = detector.recognizer.patterns.Count;
-	}
-
 	void Start () {
 		references = referenceRoot.GetComponentsInChildren<GesturePatternDraw> ();
 	}

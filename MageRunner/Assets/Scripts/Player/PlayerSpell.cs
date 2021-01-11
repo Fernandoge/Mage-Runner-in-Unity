@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class PlayerSpell : MonoBehaviour
 {
     public float speed;
     public Rigidbody2D rigBody;
@@ -10,17 +9,13 @@ public class Attack : MonoBehaviour
     [System.NonSerialized] public bool preparingReflect;
 
     [SerializeField] private int _damage;
-    [SerializeField] private EElement _element;
     [SerializeField] private float _durationNoVisible;
     [SerializeField] private bool _reduceDurationVisible;
-    [SerializeField] private LayerMask _destroyLayers;
     [SerializeField] private ParticleSystem[] _particlesToActivate;
     
     private bool _isVisible;
 
     public int damage => _damage;
-    
-    public EElement element => _element;
 
     private void OnDisable() => ActivateParticles();
 
@@ -30,9 +25,6 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (preparingReflect && transform.localPosition.x > GameManager.Instance.player._shooterSpellOriginalPos.x)
-            transform.Translate(Vector2.left * rigBody.velocity * (Time.deltaTime / 40));
-
         if (_isVisible && _reduceDurationVisible == false)
             return;
         
@@ -44,16 +36,7 @@ public class Attack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         int collisionLayer = collision.gameObject.layer;
-            
-        // Player Reflect
-        if (collisionLayer == LayerMask.NameToLayer("ReflectAura"))
-        {
-            rigBody.simulated = false;
-            preparingReflect = true;
-            transform.SetParent(collision.transform.parent);
-            GameManager.Instance.player.reflectedAttacks.Add(this);
-        }
-        
+
         // Player Block
         if (collisionLayer != LayerMask.NameToLayer("Player"))
         {

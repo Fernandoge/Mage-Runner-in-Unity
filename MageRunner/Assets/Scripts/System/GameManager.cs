@@ -8,11 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public List<Gesture> activeGestures = new List<Gesture>();
     public GesturesDifficultyData gesturesDifficultyData;
-    public ElementsData elementsData;
     public Text currencyText;
     // public List<Gesture> activeGestures = new List<Gesture>();
-    public Dictionary<Gesture, GesturePattern> activeGestures = new Dictionary<Gesture, GesturePattern>();
     
     [NonSerialized] public PlayerController player;
     [NonSerialized] public LevelController level;

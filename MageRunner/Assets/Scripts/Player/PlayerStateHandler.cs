@@ -75,14 +75,12 @@ public class PlayerStateHandler
             
             case EPlayerState.Reflecting:
                 isReflecting = true;
-                _player.gestureSpellsController.lockedCasting = true;
                 _player.reflectAura.SetActive(true);
                 _player.animator.SetInteger("StateNumber", 7);
                 _player.animator.SetBool("Reflecting", true);
                 break;
             
             case EPlayerState.Blocking:
-                _player.gestureSpellsController.lockedCasting = true;
                 _player.animator.SetInteger("StateNumber", 8);
                 _player.animator.SetBool("Blocking", true);
                 break;
@@ -108,14 +106,12 @@ public class PlayerStateHandler
             
             case EPlayerState.Reflecting:
                 isReflecting = false;
-                _player.gestureSpellsController.lockedCasting = false;
                 _player.reflectAura.SetActive(false);
                 _player.animator.SetBool("Reflecting", false);
                 break;
             
             case EPlayerState.Blocking:
                 isBlocking = false;
-                _player.gestureSpellsController.lockedCasting = false;
                 _player.animator.SetBool("Blocking", false);
                 break;
             

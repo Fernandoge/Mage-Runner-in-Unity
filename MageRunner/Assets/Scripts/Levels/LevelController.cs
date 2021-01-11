@@ -65,7 +65,7 @@ public class LevelController : MonoBehaviour
         {
             _currentGesturesHolderIndex += 1;
             currentGesturesHolder.gameObject.SetActive(true);
-            currentGesturesHolder.LoadGestures();
+            currentGesturesHolder.ActivateGestures();
             // if (currentEnemy.enablesLevelLoop)
             //     GameManager.Instance.level.StartLooping();
         }

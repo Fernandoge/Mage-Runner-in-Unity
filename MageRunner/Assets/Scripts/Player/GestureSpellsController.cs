@@ -6,18 +6,21 @@ using GestureRecognizer;
 
 public class GestureSpellsController
 {
-    public bool lockedCasting;
     public Collider2D fastFallGroundCollider;
 
     private string[] _basicSpellsIds = {"highJump", "fastFall", "reflect", "block"};
     private Dictionary<string, Action> _basicSpellsDict = new Dictionary<string, Action>();
     private Dictionary<EPlayerSpells, Action> _spellsDict = new Dictionary<EPlayerSpells, Action>();
+    private EAttackSpellType _spellToShootType;
+    private Vector3 _playerShooterSpellOriginalPos;
+    private Vector3 _gesturesHolderPosition;
     private PlayerController _player;
     private GameObject _spellToShoot;
 
     public GestureSpellsController(PlayerController player)
     {
         _player = player;
+        _playerShooterSpellOriginalPos = _player.spellShooter.transform.localPosition;
         LoadSpells();
     }
     
@@ -29,17 +32,17 @@ public class GestureSpellsController
         else
         {
             bool gestureFound = false;
-            foreach (KeyValuePair<Gesture, GesturePattern> gesture in GameManager.Instance.activeGestures.ToArray())
+            foreach (Gesture gesture in GameManager.Instance.activeGestures.ToArray())
             {
-                if (gesture.Value.id == id)
+                if (gesture.pattern.id == id)
                 {
                     gestureFound = true;
-                    GameObject gestureGO = gesture.Key.iconRenderer.gameObject;
-                    _player.targetPosition = gestureGO.transform.parent.position;
-                    GameManager.Instance.activeGestures.Remove(gesture.Key);
+                    GameObject gestureGO = gesture.iconRenderer.gameObject;
+                    _gesturesHolderPosition = gesture.holder.position;
+                    GameManager.Instance.activeGestures.Remove(gesture);
                     gestureGO.SetActive(false);
                     
-                    _spellsDict[gesture.Key.spell]();
+                    _spellsDict[gesture.spell]();
                 }
             }
 
@@ -48,12 +51,32 @@ public class GestureSpellsController
         }
     }
 
+    
+    public void PrepareToShoot()
+    {
+        _player.spellShooter.transform.localPosition = _playerShooterSpellOriginalPos;
+        _player.spellShooter.transform.localRotation = Quaternion.identity;
+        switch (_spellToShootType)
+        {
+            case EAttackSpellType.Projectile:
+                Vector2 lookDirection = _gesturesHolderPosition - _player.spellShooter.transform.position;
+                float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+                _player.spellShooter.transform.rotation = Quaternion.Euler(0f, 0f, lookAngle);
+                break;
+            case EAttackSpellType.Instant:
+                _player.spellShooter.transform.position = _gesturesHolderPosition;
+                break;
+        }
+
+        ShootSpell();
+    }
+    
     public void ShootSpell()
     {
         LevelController currentLevel = GameManager.Instance.level;
         Transform spellParent = currentLevel.movingObjects;
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
-        Attack shootedSpellComponent = shootedSpell.GetComponent<Attack>();
+        PlayerSpell shootedSpellComponent = shootedSpell.GetComponent<PlayerSpell>();
         float speedReduction = currentLevel.isMoving == false ? 0f : (shootedSpellComponent.speed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
         shootedSpellComponent.rigBody.velocity = _player.spellShooter.transform.right * (shootedSpellComponent.speed - speedReduction);
         shootedSpellComponent.shooterLayer = _player.gameObject.layer;
@@ -107,10 +130,7 @@ public class GestureSpellsController
         PlayerSpellsData.BaseSpell block = _player.spellsData.block;
         Action blockCast = () =>
         {
-            if (lockedCasting == false)
-            {
-                _player.stateHandler.EnableState(EPlayerState.Blocking);
-            }
+            _player.stateHandler.EnableState(EPlayerState.Blocking);
         };
         _basicSpellsDict.Add(block.gesture.id, blockCast);
 
@@ -118,11 +138,7 @@ public class GestureSpellsController
         PlayerSpellsData.Aura reflect = _player.spellsData.reflect;
         Action reflectCast = () =>
         {
-            if (lockedCasting == false)
-            {
-                _player.stateHandler.EnableState(EPlayerState.Reflecting);
-                _player.reflectingDuration = reflect.duration;
-            }
+            Debug.LogError("Need to implement Blink");
         };
         _basicSpellsDict.Add(reflect.gesture.id, reflectCast);
     }
@@ -166,17 +182,13 @@ public class GestureSpellsController
     {
         Action attackSpellCast = () =>
         {
-            if (lockedCasting == false)
-            {
-                _spellToShoot = attackSpell.spellObject;
-                // _player.drawArea.raycastTarget = false;
-                _player.spellToShootType = attackSpellType;
-                _player.Shoot(Vector3.back);
+            _spellToShoot = attackSpell.spellObject;
+                _spellToShootType = attackSpellType;
+                PrepareToShoot();
                 _player.stateHandler.EnableState(EPlayerState.Shooting);
                 // ReSharper disable once UseNullPropagation
                 if (extraAction != null)
                     extraAction();
-            }
         };
         
         return attackSpellCast;
