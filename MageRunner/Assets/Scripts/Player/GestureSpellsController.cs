@@ -114,7 +114,7 @@ public class GestureSpellsController
         {
             if (_player.groundCollider == null || _player.groundLayer != LayerMask.NameToLayer("BottomGround"))
             {
-                _player.stateHandler.EnableState(EPlayerState.FastFall);
+                _player.stateHandler.EnableState(EPlayerState.FastFalling);
                 _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
 
                 if (_player.groundCollider == null)

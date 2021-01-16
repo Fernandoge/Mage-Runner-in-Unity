@@ -1,13 +1,12 @@
 ﻿public enum EPlayerState
 {
     Jumping,
-    FastFall,
+    FastFalling,
     Running,
-    Reflecting,
+    Blinking,
     Blocking,
     HighJumping,
     Gliding,
     Shooting,
-    ReadyToShootSimplified,
     Idle
 }

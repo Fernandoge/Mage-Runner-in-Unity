@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpForce;
     public GameObject spellShooter;
-    public GameObject reflectAura;
     public ManaController manaController;
     public ChatBubbleController companionChatBubble;
     public PlayerSpellsData spellsData;
