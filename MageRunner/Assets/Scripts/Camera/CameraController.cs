@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class ScaleWidthCamera : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField] private int targetWidth;
     [SerializeField] private float pixelsToUnits;

@@ -2,13 +2,12 @@
 using UnityEngine;
 using System;
 using System.Linq;
-using GestureRecognizer;
 
 public class GestureSpellsController
 {
     public Collider2D fastFallGroundCollider;
 
-    private string[] _basicSpellsIds = {"highJump", "fastFall", "reflect", "block"};
+    private string[] _basicSpellsIds = {"highJump", "fastFall", "dash", "block"};
     private Dictionary<string, Action> _basicSpellsDict = new Dictionary<string, Action>();
     private Dictionary<EPlayerSpells, Action> _spellsDict = new Dictionary<EPlayerSpells, Action>();
     private EAttackSpellType _spellToShootType;
@@ -101,9 +100,10 @@ public class GestureSpellsController
         {
             if (_player.jumpAvailable)
             {
-                _player.stateHandler.EnableState(EPlayerState.HighJumping);
-                _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
                 _player.glideSpeed = highJump.glideSpeed;
+                _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
+                _player.stateHandler.EnableState(EPlayerState.HighJumping);
+                _player.stateHandler.DisableState(EPlayerState.Dashing);
             }
         };
         _basicSpellsDict.Add(highJump.gesture.id, highJumpCast);
@@ -134,13 +134,14 @@ public class GestureSpellsController
         };
         _basicSpellsDict.Add(block.gesture.id, blockCast);
 
-        // Reflect
-        PlayerSpellsData.Aura reflect = _player.spellsData.reflect;
-        Action reflectCast = () =>
+        // Dash
+        PlayerSpellsData.Dash dash = _player.spellsData.dash;
+        Action dashCast = () =>
         {
-            Debug.LogError("Need to implement Blink");
+            _player.stateHandler.EnableState(EPlayerState.Dashing);
+            _player.StartCoroutine(_player.Dash(dash.duration, dash.speed));
         };
-        _basicSpellsDict.Add(reflect.gesture.id, reflectCast);
+        _basicSpellsDict.Add(dash.gesture.id, dashCast);
     }
     
     private Action GetSpellData(EPlayerSpells playerSpell)

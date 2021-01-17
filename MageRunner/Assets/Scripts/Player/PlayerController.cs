@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public bool jumpAvailable;
     [System.NonSerialized] public bool jumpStillPressed;
     [System.NonSerialized] public bool idleCastEnabled;
+    [System.NonSerialized] public bool isDashing;
     [System.NonSerialized] public float glideSpeed;
     [System.NonSerialized] public Rigidbody2D rigidBody;
     [System.NonSerialized] public Animator animator;
@@ -28,12 +30,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Selectable _jumpButton;
     
     private float _jumpTimeCounter;
+    private Camera _mainCamera;
     private LayerMask _notGroundLayerMask;
     private GestureSpellsController _gestureSpellsController;
     
     private void Start()
     {
         GameManager.Instance.player = this;
+        _mainCamera = Camera.main;
         manaController.Initialize(_totalMana);
         stateHandler = new PlayerStateHandler(this);
         _gestureSpellsController = new GestureSpellsController(this);
@@ -135,6 +139,25 @@ public class PlayerController : MonoBehaviour
             stateHandler.EnableState(EPlayerState.HighJumping);
         else
             stateHandler.EnableState(EPlayerState.Gliding);
+    }
+
+    public IEnumerator Dash(float dashDuration, float dashSpeed)
+    {
+        foreach (RepeatingBG bg in GameManager.Instance.level.RepeatingBgs)
+        {
+            bg.startX += dashDuration;
+            bg.endX += dashDuration;
+        }
+        
+        Vector3 newPlayerPosition = new Vector3(transform.localPosition.x + dashDuration, transform.localPosition.y, transform.localPosition.z);
+        while (transform.localPosition.x - newPlayerPosition.x < 0f)
+        {
+            transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
+            _mainCamera.transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
+            yield return null;    
+        }
+        
+        stateHandler.DisableState(EPlayerState.Dashing);
     }
 
     public void BeginCastingSpell(string id) => _gestureSpellsController.CastSpell(id);

@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class RepeatingBG : MonoBehaviour
 {
     public float speed;
     public float startX;
     public float endX;
+
+    private void Start() => GameManager.Instance.level.RepeatingBgs.Add(this);
 
     private void Update()
     {
@@ -16,7 +19,8 @@ public class RepeatingBG : MonoBehaviour
         
         if (transform.localPosition.x <= endX)
         {
-            transform.localPosition = new Vector2(startX, transform.localPosition.y);
+            float diff = transform.localPosition.x - endX;
+            transform.localPosition = new Vector2(startX + diff, transform.localPosition.y);
         }
     }
 }

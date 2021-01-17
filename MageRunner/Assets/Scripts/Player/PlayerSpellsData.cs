@@ -12,7 +12,7 @@ public class PlayerSpellsData : ScriptableObject
         public GesturePattern gesture;
     }
     
-    [System.Serializable] public class Aura : BaseSpell { public float duration; }
+    [System.Serializable] public class Dash : BaseSpell { public float speed; public float duration; }
 
     [System.Serializable] public class HighJump : BaseSpell { public float jumpSpeed; public float glideSpeed; }
 
@@ -22,7 +22,7 @@ public class PlayerSpellsData : ScriptableObject
     
     [Header("Basic Spells")]
     public BaseSpell block;
-    public Aura reflect;
+    public Dash dash;
     public HighJump highJump;
     public FastFall fastFall;
     

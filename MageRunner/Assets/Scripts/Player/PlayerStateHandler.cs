@@ -11,10 +11,12 @@ public class PlayerStateHandler
     public bool isBlocking;
 
     private PlayerController _player;
+    private Camera _mainCamera;
 
     public PlayerStateHandler(PlayerController player)
     {
         _player = player;
+        _mainCamera = Camera.main;
     }
 
     public void EnableState(EPlayerState state)
@@ -51,28 +53,30 @@ public class PlayerStateHandler
                 break;
             
             case EPlayerState.FastFalling:
+                DisableState(EPlayerState.HighJumping);
+                DisableState(EPlayerState.Jumping);
                 isFastFalling = true;
                 _player.jumpAvailable = false;
                 _player.rigidBody.gravityScale = _player.originalGravity;
-                DisableState(EPlayerState.HighJumping);
-                DisableState(EPlayerState.Jumping);
                 _player.animator.SetInteger("StateNumber", 4);
                 break;
             
             case EPlayerState.Shooting:
                 DisableState(EPlayerState.Blocking);
-                DisableState(EPlayerState.Blinking);
                 _player.animator.SetInteger("StateNumber", 5);
                 _player.animator.SetBool("Shooting", true);
                 break;
 
-            case EPlayerState.Blinking:
+            case EPlayerState.Dashing:
+                DisableState(EPlayerState.FastFalling);
+                _player.isDashing = true;
+                _player.rigidBody.gravityScale = 0;
+                _player.rigidBody.velocity = Vector2.zero;
                 _player.animator.SetInteger("StateNumber", 6);
-                _player.animator.SetBool("Blinking", true);
+                _player.animator.SetBool("Dashing", true);
                 break;
             
             case EPlayerState.Blocking:
-                DisableState(EPlayerState.Blinking);
                 _player.animator.SetInteger("StateNumber", 7);
                 _player.animator.SetBool("Blocking", true);
                 break;
@@ -96,8 +100,10 @@ public class PlayerStateHandler
                 _player.stateHandler.isHighJumping = false;
                 break;
             
-            case EPlayerState.Blinking:
-                _player.animator.SetBool("Blinking", false);
+            case EPlayerState.Dashing:
+                _player.isDashing = false;
+                _player.rigidBody.gravityScale = _player.originalGravity;
+                _player.animator.SetBool("Dashing", false);
                 break;
             
             case EPlayerState.Blocking:

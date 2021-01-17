@@ -11,6 +11,7 @@ public class LevelController : MonoBehaviour
     public Transform movingObjects;
     public TimeFrame[] timeFrames;
 
+    [NonSerialized] public List<RepeatingBG> RepeatingBgs = new List<RepeatingBG>();
     [NonSerialized] public bool isMoving;
     
     [SerializeField] private List<RepeatingSegment> _repeatingSegments;
@@ -34,7 +35,7 @@ public class LevelController : MonoBehaviour
         InitializeGesturesHolders();
         GameManager.Instance.player.transform.SetParent(movingObjects);
         Camera mainCamera = Camera.main;
-        mainCamera.GetComponent<ScaleWidthCamera>().ScaleLevelCamera(transform);
+        mainCamera.GetComponent<CameraController>().ScaleLevelCamera(transform);
         mainCamera.transform.SetParent(movingObjects);
     } 
     

@@ -3,7 +3,7 @@
     Jumping,
     FastFalling,
     Running,
-    Blinking,
+    Dashing,
     Blocking,
     HighJumping,
     Gliding,

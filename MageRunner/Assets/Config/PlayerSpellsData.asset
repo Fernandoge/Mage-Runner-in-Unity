@@ -16,11 +16,12 @@ MonoBehaviour:
     name: Block
     mana: 0
     gesture: {fileID: 11400000, guid: e649e6fab8712c545a7b8cdd3e8727f8, type: 2}
-  reflect:
-    name: Reflect
+  dash:
+    name: Dash
     mana: 0
     gesture: {fileID: 11400000, guid: fba0ef350e4b9d94d8e580ab62b0bc9c, type: 2}
-    duration: 1.5
+    speed: 14
+    duration: 6
   highJump:
     name: High Jump
     mana: 0
