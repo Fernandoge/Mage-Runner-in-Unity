@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -143,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Dash(float dashDuration, float dashSpeed)
     {
-        foreach (RepeatingBG bg in GameManager.Instance.level.RepeatingBgs)
+        foreach (RepeatingBG bg in GameManager.Instance.level.MovingBgs.OfType<RepeatingBG>())
         {
             bg.startX += dashDuration;
             bg.endX += dashDuration;
@@ -154,6 +155,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
             _mainCamera.transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
+            foreach (MovingBG bg in GameManager.Instance.level.MovingBgs)
+                bg.transform.Translate(Vector2.right * (dashSpeed - bg.speed) * Time.deltaTime);
+            
             yield return null;    
         }
         

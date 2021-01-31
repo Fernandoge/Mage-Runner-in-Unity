@@ -1,21 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-public class RepeatingBG : MonoBehaviour
+public class RepeatingBG : MovingBG
 {
-    public float speed;
     public float startX;
     public float endX;
 
-    private void Start() => GameManager.Instance.level.RepeatingBgs.Add(this);
-
-    private void Update()
+    protected override void Update()
     {
-        if (GameManager.Instance.level.isMoving == false)
-            return;
-
-        float totalSpeed = GameManager.Instance.level.movingSpeed * speed;
-        transform.Translate(Vector2.left * totalSpeed * Time.deltaTime);
+        base.Update();
         
         if (transform.localPosition.x <= endX)
         {

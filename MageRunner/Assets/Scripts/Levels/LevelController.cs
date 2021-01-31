@@ -11,7 +11,7 @@ public class LevelController : MonoBehaviour
     public Transform movingObjects;
     public TimeFrame[] timeFrames;
 
-    [NonSerialized] public List<RepeatingBG> RepeatingBgs = new List<RepeatingBG>();
+    [NonSerialized] public List<MovingBG> MovingBgs = new List<MovingBG>();
     [NonSerialized] public bool isMoving;
     
     [SerializeField] private List<RepeatingSegment> _repeatingSegments;
@@ -96,6 +96,7 @@ public class LevelController : MonoBehaviour
         timeFrames[currentTimeFrameIndex].movingGO.SetActive(false);
         timeFrames[currentTimeFrameIndex].staticGO.SetActive(false);
         GameManager.Instance.level.movingObjects.position = Vector3.zero;
+        GameManager.Instance.level.MovingBgs.Clear();
         _currentTimeFrameIndex += 1;
         timeFrames[currentTimeFrameIndex].movingGO.SetActive(true);
         timeFrames[currentTimeFrameIndex].staticGO.SetActive(true);
