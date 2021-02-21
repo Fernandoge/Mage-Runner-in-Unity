@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomGesturesHolder : GesturesHolder
+public class CustomGesturesHolderController : GesturesHolderController
 {
-    [SerializeField] private PlayerSpell requiredPlayerSpellToHit; 
+    [SerializeField] private PlayerAttackSpell requiredPlayerAttackSpellToHit; 
     
     // public override void HandleAttack(int attackDamage, EElement attackElement)
     // {
@@ -19,9 +19,9 @@ public class CustomGesturesHolder : GesturesHolder
     //     }
     // }
 
-    public override void DestroyGameObject()
-    {
-        base.DestroyGameObject();
-        GameManager.Instance.ftueController.NextFtueStep();
-    }
+    // public override void DestroyGameObject()
+    // {
+    //     Destroy();
+    //     GameManager.Instance.ftueController.NextFtueStep();
+    // }
 }

@@ -1,21 +1,18 @@
 ﻿using UnityEngine;
 
-public class PlayerSpell : MonoBehaviour
+public class PlayerAttackSpell : MonoBehaviour
 {
     public float speed;
     public Rigidbody2D rigBody;
     
-    [System.NonSerialized] public int shooterLayer;
+    [System.NonSerialized] public GameObject target;
     [System.NonSerialized] public bool preparingReflect;
-
-    [SerializeField] private int _damage;
+    
     [SerializeField] private float _durationNoVisible;
     [SerializeField] private bool _reduceDurationVisible;
     [SerializeField] private ParticleSystem[] _particlesToActivate;
     
     private bool _isVisible;
-
-    public int damage => _damage;
 
     private void OnDisable() => ActivateParticles();
 
@@ -45,21 +42,18 @@ public class PlayerSpell : MonoBehaviour
         }
         
         // Handle attack according to the collision stats
-        if (collision.CompareTag("StatsHolder"))
+        if (collision.gameObject == target)
         {
-            if (collisionLayer == LayerMask.NameToLayer("Enemy") && shooterLayer == LayerMask.NameToLayer("Enemy"))
+            Destroy(gameObject);
+            GesturesHolderController gesturesHolderController = collision.GetComponent<GesturesHolderController>();
+            
+            if (gesturesHolderController == null) 
                 return;
             
-            // Kill Player or do gesture interaction
-            
-            
-            // Stats collisionStats = collision.GetComponent<Stats>();
-            // collisionStats.HandleAttack(damage, element);
+            gesturesHolderController.activeGestures -= 1;
+            if (gesturesHolderController.activeGestures == 0)
+                collision.gameObject.SetActive(false);
         }
-        
-        // End the OnTrigger destroying the attack if the collision layer is part of the destroy layers
-        // if (((1 << collisionLayer) & _destroyLayers) != 0)
-        //     Destroy(gameObject);
     }
 
     private void ActivateParticles()

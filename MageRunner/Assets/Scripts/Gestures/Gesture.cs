@@ -11,10 +11,10 @@ public struct Gesture
     public EGestureDifficulty difficulty;
     public SpriteRenderer iconRenderer;
     [NonSerialized] public GesturePattern pattern;
-    [NonSerialized] public Transform holder;
+    [NonSerialized] public GameObject holder;
     [NonSerialized] public bool isBossGesture;
 
-    public Gesture(EPlayerSpells spell, EGestureDifficulty difficulty, SpriteRenderer iconRenderer, GesturePattern pattern, Transform holder, bool isBossGesture)
+    public Gesture(EPlayerSpells spell, EGestureDifficulty difficulty, SpriteRenderer iconRenderer, GesturePattern pattern, GameObject holder, bool isBossGesture)
     {
         this.spell = spell;
         this.difficulty = difficulty;

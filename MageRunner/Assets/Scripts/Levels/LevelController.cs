@@ -21,8 +21,8 @@ public class LevelController : MonoBehaviour
     private bool _looping;
     private float _repeatingStartX;
     private float _repeatingEndX;
-    private List<List<GesturesHolder>> _timeFramesGesturesHolders = new List<List<GesturesHolder>>();
-    private List<GesturesHolder> _gesturesHolders = new List<GesturesHolder>();
+    private List<List<GesturesHolderController>> _timeFramesGesturesHolders = new List<List<GesturesHolderController>>();
+    private List<GesturesHolderController> _gesturesHolders = new List<GesturesHolderController>();
     private int _currentGesturesHolderIndex;
     private float _distanceBetweenPlayerX;
 
@@ -60,13 +60,13 @@ public class LevelController : MonoBehaviour
         if (_currentGesturesHolderIndex == _gesturesHolders.Count)
             return;
         
-        GesturesHolder currentGesturesHolder = _gesturesHolders[_currentGesturesHolderIndex];
+        GesturesHolderController currentGesturesHolder = _gesturesHolders[_currentGesturesHolderIndex];
         _distanceBetweenPlayerX = currentGesturesHolder.transform.position.x - GameManager.Instance.player.transform.position.x;
-        if (_distanceBetweenPlayerX <= currentGesturesHolder.DistanceToSpawn)
+        if (_distanceBetweenPlayerX <= currentGesturesHolder.distanceToSpawn)
         {
-            _currentGesturesHolderIndex += 1;
             currentGesturesHolder.gameObject.SetActive(true);
             currentGesturesHolder.ActivateGestures();
+            _currentGesturesHolderIndex += 1;
             // if (currentEnemy.enablesLevelLoop)
             //     GameManager.Instance.level.StartLooping();
         }
@@ -107,12 +107,12 @@ public class LevelController : MonoBehaviour
     {
         foreach (TimeFrame timeframe in GameManager.Instance.level.timeFrames)
         {
-            List<GesturesHolder> currentTimeFrameGesturesHolder = new List<GesturesHolder>();
-            currentTimeFrameGesturesHolder.AddRange(timeframe.movingGO.GetComponentsInChildren<GesturesHolder>());
-            currentTimeFrameGesturesHolder.AddRange(timeframe.staticGO.GetComponentsInChildren<GesturesHolder>());
+            List<GesturesHolderController> currentTimeFrameGesturesHolder = new List<GesturesHolderController>();
+            currentTimeFrameGesturesHolder.AddRange(timeframe.movingGO.GetComponentsInChildren<GesturesHolderController>());
+            currentTimeFrameGesturesHolder.AddRange(timeframe.staticGO.GetComponentsInChildren<GesturesHolderController>());
             currentTimeFrameGesturesHolder = currentTimeFrameGesturesHolder.OrderBy(gesturesHolder => gesturesHolder.transform.position.x).ToList();
             
-            foreach (GesturesHolder gesturesHolder in currentTimeFrameGesturesHolder)
+            foreach (GesturesHolderController gesturesHolder in currentTimeFrameGesturesHolder)
                 gesturesHolder.gameObject.SetActive(false);
             
             _timeFramesGesturesHolders.Add(currentTimeFrameGesturesHolder);

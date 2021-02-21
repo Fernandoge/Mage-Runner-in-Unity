@@ -37,83 +37,97 @@ MonoBehaviour:
     name: Fireball
     mana: 0
     gesture: {fileID: 11400000, guid: 1ce29c33de90fe24ea879fdcae633676, type: 2}
+    speed: 20
     spellObject: {fileID: 6630576640024018173, guid: a18b1432905365c41bad87d394776fcf,
       type: 3}
   fireballHeavy:
     name: Fireball Heavy
     mana: 0
     gesture: {fileID: 11400000, guid: a288721a576008d48a2d9fca588eb72c, type: 2}
+    speed: 0
     spellObject: {fileID: 6630576640024018173, guid: d97f6ea30d05a0d459cda68c7a2c8d77,
       type: 3}
   ice:
     name: Ice
     mana: 0
     gesture: {fileID: 11400000, guid: dc95a3d1c6178a24b96968618071c660, type: 2}
+    speed: 20
     spellObject: {fileID: 6630576640024018173, guid: 2f8b5bddf76b74b0fbb4f68ff0c57916,
       type: 3}
   iceHeavy:
     name: Ice Heavy
     mana: 0
     gesture: {fileID: 11400000, guid: f6454d9aaf240e64d9102606adb791aa, type: 2}
+    speed: 0
     spellObject: {fileID: 6630576640024018173, guid: ac056a369e4a4a0478f47f45e410d197,
       type: 3}
   wind:
     name: Wind
     mana: 0
     gesture: {fileID: 11400000, guid: c402e576db321c94f95fca53a06ebb8e, type: 2}
+    speed: 20
     spellObject: {fileID: 6630576640024018173, guid: be5b37dabc17544049f1aa9549974d60,
       type: 3}
   windHeavy:
     name: Wind Heavy
     mana: 0
     gesture: {fileID: 11400000, guid: 6c21b965ae4f3974f8830cf3dea16e66, type: 2}
+    speed: 0
     spellObject: {fileID: 6630576640024018173, guid: dadc73c1dc5c55d43bb095e6a9f9704f,
       type: 3}
   earth:
     name: Earth
     mana: 0
     gesture: {fileID: 11400000, guid: af6276b59495c184f810b6e19d448224, type: 2}
+    speed: 20
     spellObject: {fileID: 6630576640024018173, guid: 64a2d28d43ef840869fe9387d6d1fa82,
       type: 3}
   earthHeavy:
     name: Earth Heavy
     mana: 0
     gesture: {fileID: 11400000, guid: cbccc0b68799fba47835f8666ba7b400, type: 2}
+    speed: 0
     spellObject: {fileID: 6630576640024018173, guid: 86b98cb2a9abee64ea6d04c601f9e3dd,
       type: 3}
   lightning:
     name: Lightning
     mana: 10
     gesture: {fileID: 11400000, guid: b97eaa9d4cf084946a4cdddceb3135a2, type: 2}
+    speed: 20
     spellObject: {fileID: 3532885428120450025, guid: 6edcf320918d932498d9a052149ac69c,
       type: 3}
   lightningHeavy:
     name: Lightning Heavy
     mana: 0
     gesture: {fileID: 11400000, guid: 686755ba1cf86a34999c3b6bfca91540, type: 2}
+    speed: 0
     spellObject: {fileID: 3532885428120450025, guid: 8b0ae58524607574face62f9ef5ede79,
       type: 3}
   nature:
     name: Nature
     mana: 0
     gesture: {fileID: 11400000, guid: 7b0c0d1df8254f841beebc618b46794d, type: 2}
+    speed: 20
     spellObject: {fileID: 6630576640024018173, guid: 49e0e98d35378194595ef9a23c590178,
       type: 3}
   natureHeavy:
     name: Nature Heavy
     mana: 0
     gesture: {fileID: 11400000, guid: b73f1eea818fa12459a986dc29f0a3ab, type: 2}
+    speed: 0
     spellObject: {fileID: 6630576640024018173, guid: 3f61fa239f343b344a89accc72f3a1bd,
       type: 3}
   water:
     name: Water
     mana: 0
     gesture: {fileID: 11400000, guid: 207b06fec1da9f345878611ef88859ae, type: 2}
+    speed: 20
     spellObject: {fileID: 6630576640024018173, guid: b3d67389bfb0e05458367aa2b59fc985,
       type: 3}
   waterHeavy:
     name: Water Heavy
     mana: 0
     gesture: {fileID: 11400000, guid: 26331e3f38589b9478bd28b6558fec97, type: 2}
+    speed: 0
     spellObject: {fileID: 6630576640024018173, guid: 272ec2ad6eda53d4fa805c51fdca756a,
       type: 3}

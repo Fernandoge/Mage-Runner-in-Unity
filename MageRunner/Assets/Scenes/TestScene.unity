@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa40f78a646c1bf4689f7abe9aca6f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _level: {fileID: 490690312840728425, guid: d02046d63e53c2249ad2819306ead5df, type: 3}
+  _level: {fileID: 490690312840728425, guid: efaf9c79dab10b44ea30f077071b55cb, type: 3}
 --- !u!1 &838162221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,8 +1589,9 @@ MonoBehaviour:
   gestures: []
   _distanceToSpawn: 0
   _healthpoints: 1
+  _enablesLevelLoop: 0
   _healthpointsBarHolder: {fileID: 380181501}
-  requiredPlayerSpellToHit: {fileID: 0}
+  requiredPlayerAttackSpellToHit: {fileID: 0}
 --- !u!1 &1912213607
 GameObject:
   m_ObjectHideFlags: 0

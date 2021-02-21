@@ -18,7 +18,7 @@ public class PlayerSpellsData : ScriptableObject
 
     [System.Serializable] public class FastFall : BaseSpell { public float fallSpeed; }
     
-    [System.Serializable] public class AttackSpell : BaseSpell { public GameObject spellObject; }
+    [System.Serializable] public class AttackSpell : BaseSpell { public float speed; public GameObject spellObject; }
     
     [Header("Basic Spells")]
     public BaseSpell block;

@@ -11,6 +11,8 @@ public class PlatformerEnemyController : EnemyController
     [SerializeField] private int _collisionDamage;
     [SerializeField] private Transform _groundDetector;
 
+    protected GesturesHolderController gesturesHolderController;
+    
     private Vector2 _direction = Vector2.left;
     private LayerMask _notGroundLayerMask;
 
@@ -19,11 +21,11 @@ public class PlatformerEnemyController : EnemyController
         base.Start();
         _direction = _facingLeft ? Vector2.left : Vector2.right;
         _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
+        gesturesHolderController = GetComponent<GesturesHolderController>();
     }
 
-    protected override void Update()
+    protected virtual void Update()
     {
-        base.Update();
         if (_patrol)
             Patrol();
         if (_lookPlayer)
@@ -52,7 +54,7 @@ public class PlatformerEnemyController : EnemyController
 
     protected void LookPlayer()
     {
-        if (_facingLeft && distanceBetweenPlayerX < 0 || _facingLeft == false && distanceBetweenPlayerX > 0)
+        if (_facingLeft && gesturesHolderController.distanceBetweenPlayerX < 0 || _facingLeft == false && gesturesHolderController.distanceBetweenPlayerX > 0)
             ChangeDirection(true);
     }
     

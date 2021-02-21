@@ -12,9 +12,10 @@ public class GestureSpellsController
     private Dictionary<EPlayerSpells, Action> _spellsDict = new Dictionary<EPlayerSpells, Action>();
     private EAttackSpellType _spellToShootType;
     private Vector3 _playerShooterSpellOriginalPos;
-    private Vector3 _gesturesHolderPosition;
+    private GameObject _targetedGesturesHolder;
     private PlayerController _player;
     private GameObject _spellToShoot;
+    private float _spellToShootSpeed;
 
     public GestureSpellsController(PlayerController player)
     {
@@ -31,16 +32,20 @@ public class GestureSpellsController
         else
         {
             bool gestureFound = false;
+            List<GameObject> gesturesHoldersTargeted = new List<GameObject>();
             foreach (Gesture gesture in GameManager.Instance.activeGestures.ToArray())
             {
                 if (gesture.pattern.id == id)
                 {
-                    gestureFound = true;
-                    GameObject gestureGO = gesture.iconRenderer.gameObject;
-                    _gesturesHolderPosition = gesture.holder.position;
-                    GameManager.Instance.activeGestures.Remove(gesture);
-                    gestureGO.SetActive(false);
+                    if (gesturesHoldersTargeted.Contains(gesture.holder))
+                        continue;
                     
+                    gestureFound = true;
+                    gesture.iconRenderer.gameObject.SetActive(false);
+                    _targetedGesturesHolder = gesture.holder;
+                    GameManager.Instance.activeGestures.Remove(gesture);
+                    
+                    gesturesHoldersTargeted.Add(_targetedGesturesHolder);
                     _spellsDict[gesture.spell]();
                 }
             }
@@ -51,34 +56,29 @@ public class GestureSpellsController
     }
 
     
-    public void PrepareToShoot()
+    public void ShootSpell()
     {
         _player.spellShooter.transform.localPosition = _playerShooterSpellOriginalPos;
         _player.spellShooter.transform.localRotation = Quaternion.identity;
         switch (_spellToShootType)
         {
             case EAttackSpellType.Projectile:
-                Vector2 lookDirection = _gesturesHolderPosition - _player.spellShooter.transform.position;
+                Vector2 lookDirection = _targetedGesturesHolder.transform.position - _player.spellShooter.transform.position;
                 float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
                 _player.spellShooter.transform.rotation = Quaternion.Euler(0f, 0f, lookAngle);
                 break;
             case EAttackSpellType.Instant:
-                _player.spellShooter.transform.position = _gesturesHolderPosition;
+                _player.spellShooter.transform.position = _targetedGesturesHolder.transform.position;
                 break;
         }
 
-        ShootSpell();
-    }
-    
-    public void ShootSpell()
-    {
         LevelController currentLevel = GameManager.Instance.level;
         Transform spellParent = currentLevel.movingObjects;
         GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
-        PlayerSpell shootedSpellComponent = shootedSpell.GetComponent<PlayerSpell>();
-        float speedReduction = currentLevel.isMoving == false ? 0f : (shootedSpellComponent.speed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
-        shootedSpellComponent.rigBody.velocity = _player.spellShooter.transform.right * (shootedSpellComponent.speed - speedReduction);
-        shootedSpellComponent.shooterLayer = _player.gameObject.layer;
+        PlayerAttackSpell shootedAttackSpellComponent = shootedSpell.GetComponent<PlayerAttackSpell>();
+        float speedReduction = currentLevel.isMoving == false ? 0f : (_spellToShootSpeed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
+        shootedAttackSpellComponent.rigBody.velocity = _player.spellShooter.transform.right * (_spellToShootSpeed - speedReduction);
+        shootedAttackSpellComponent.target = _targetedGesturesHolder;
     }
 
     private void LoadSpells()
@@ -184,12 +184,12 @@ public class GestureSpellsController
         Action attackSpellCast = () =>
         {
             _spellToShoot = attackSpell.spellObject;
-                _spellToShootType = attackSpellType;
-                PrepareToShoot();
-                _player.stateHandler.EnableState(EPlayerState.Shooting);
-                // ReSharper disable once UseNullPropagation
-                if (extraAction != null)
-                    extraAction();
+            _spellToShootSpeed = attackSpell.speed;
+            _spellToShootType = attackSpellType;
+            ShootSpell();
+            _player.stateHandler.EnableState(EPlayerState.Shooting);
+
+            extraAction?.Invoke();
         };
         
         return attackSpellCast;

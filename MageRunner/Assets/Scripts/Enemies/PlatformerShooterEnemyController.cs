@@ -17,7 +17,7 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
     [SerializeField] private int _aimAccuracyHandicap;
     
     [SerializeField] private GameObject _weapon;
-    [SerializeField] private PlayerSpell _objectToShoot;
+    [SerializeField] private PlayerAttackSpell _objectToShoot;
     
     private float _fireRate;
 
@@ -30,7 +30,7 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
     protected override void Update()
     {
         base.Update();
-        if (distanceBetweenPlayerX > _minDistanceToShoot && distanceBetweenPlayerX < _maxDistanceToShoot)
+        if (gesturesHolderController.distanceBetweenPlayerX > _minDistanceToShoot && gesturesHolderController.distanceBetweenPlayerX < _maxDistanceToShoot)
         {
             if (_fireRate > 0)
                 _fireRate -= Time.deltaTime;
@@ -47,8 +47,8 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
         _weapon.transform.rotation = Quaternion.Euler(0f, 0f, weaponLookAngleRandomized);
 
         GameObject shootedObject = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
-        PlayerSpell shootedObjectComponent = shootedObject.GetComponent<PlayerSpell>();
-        shootedObjectComponent.shooterLayer = gameObject.layer;
+        PlayerAttackSpell shootedObjectComponent = shootedObject.GetComponent<PlayerAttackSpell>();
+        // shootedObjectComponent.shooterLayer = gameObject.layer;
         float speedAddition = GameManager.Instance.level.isMoving == false ? 0f : GameManager.Instance.level.movingSpeed / 2;
         shootedObjectComponent.rigBody.velocity = _weapon.transform.right * (_objectToShoot.speed + speedAddition);
         
