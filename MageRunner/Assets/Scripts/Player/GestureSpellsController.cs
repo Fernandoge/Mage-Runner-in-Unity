@@ -130,7 +130,9 @@ public class GestureSpellsController
         PlayerSpellsData.BaseSpell block = _player.spellsData.block;
         Action blockCast = () =>
         {
-            _player.stateHandler.EnableState(EPlayerState.Blocking);
+            if (_player.stateHandler.isBlocking == false)
+                _player.stateHandler.EnableState(EPlayerState.Blocking);
+                
         };
         _basicSpellsDict.Add(block.gesture.id, blockCast);
 

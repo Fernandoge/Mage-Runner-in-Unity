@@ -12,22 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78f57a392b30bd4398edfb2e18c2468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distanceToSpawn: 100
-  _enablesLevelLoop: 0
   _facingLeft: 1
   _lookPlayer: 1
   _patrol: 0
   _patrolSpeed: 0
   _collisionDamage: 25
   _groundDetector: {fileID: 1785796587602515106}
+  _objectToShoot: {fileID: 7716728969473167676, guid: 163b934833c42234bb8e00ac7c1c5869,
+    type: 3}
+  _objectToShootSpeed: 10
   _minDistanceToShoot: 2
   _maxDistanceToShoot: 1000
   _minFireRate: 1
   _maxFireRate: 2
   _aimAccuracyHandicap: 12
   _weapon: {fileID: 5092682326974997625}
-  _objectToShoot: {fileID: -511822366750093659, guid: 163b934833c42234bb8e00ac7c1c5869,
-    type: 3}
 --- !u!1 &5092682326974997625
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platformer Shooter Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826464422968688006, guid: 2eb7431b99682cd4bbd02f63a61f8383,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4483463374323183666, guid: 2eb7431b99682cd4bbd02f63a61f8383,
         type: 3}

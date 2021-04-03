@@ -7,8 +7,15 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Values")]
+    [SerializeField] private int _totalHealthpoints;
+    [SerializeField] private int _totalMana;
+    [SerializeField] private float _jumpTime;
     public float jumpForce;
+    
+    [Header("References")]
     public GameObject spellShooter;
+    public HealthController healthController;
     public ManaController manaController;
     public ChatBubbleController companionChatBubble;
     public PlayerSpellsData spellsData;
@@ -23,10 +30,8 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public Rigidbody2D rigidBody;
     [System.NonSerialized] public Animator animator;
     [System.NonSerialized] public PlayerStateHandler stateHandler;
-    [System.NonSerialized] public Collider2D groundCollider; 
-
-    [SerializeField] private int _totalMana;
-    [SerializeField] private float _jumpTime;
+    [System.NonSerialized] public Collider2D groundCollider;
+    
     [SerializeField] private Transform _feetPos;
     [SerializeField] private Selectable _jumpButton;
     
@@ -39,9 +44,10 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.player = this;
         _mainCamera = Camera.main;
-        manaController.Initialize(_totalMana);
         stateHandler = new PlayerStateHandler(this);
         _gestureSpellsController = new GestureSpellsController(this);
+        healthController.Initialize(_totalHealthpoints);
+        manaController.Initialize(_totalMana);
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         originalGravity = rigidBody.gravityScale;
@@ -169,14 +175,8 @@ public class PlayerController : MonoBehaviour
     public void CastingSpellFailed() => print("Casting spell failed");
 
     // Used in Blocking animation
-    public void Blocking()
-    {
-        if (stateHandler.isBlocking)
-            stateHandler.DisableState(EPlayerState.Blocking);
-        else
-            stateHandler.isBlocking = true;
-    }
-    
+    public void StopBlocking() => stateHandler.DisableState(EPlayerState.Blocking);
+
     // Used in Shooting animation
     public void StopShooting() => stateHandler.DisableState(EPlayerState.Shooting);
 }

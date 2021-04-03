@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6203613532808074243}
   - component: {fileID: 669840166302542175}
   - component: {fileID: 4855841097505882927}
-  - component: {fileID: -511822366750093659}
+  - component: {fileID: 7716728969473167676}
   m_Layer: 10
   m_Name: EnemyBall
   m_TagString: Untagged
@@ -122,7 +122,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-511822366750093659
+--- !u!114 &7716728969473167676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,16 +131,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6630576640024018173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f450d477bb146a488b52ca79ad3fde7, type: 3}
+  m_Script: {fileID: 11500000, guid: 10003202b263a63429dabb884db9d00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  attackDamage: 1
   rigBody: {fileID: 4855841097505882927}
-  _damage: 1
-  _element: 0
-  _durationNoVisible: 2
-  _reduceDurationVisible: 0
-  _destroyLayers:
-    serializedVersion: 2
-    m_Bits: 235008
-  _particlesToActivate: []

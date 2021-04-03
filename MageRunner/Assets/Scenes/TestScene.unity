@@ -141,6 +141,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8088917236104284712}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &139039238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9083924135692321028, guid: a40f68619b360a7489b5ac2f764ed991,
+    type: 3}
+  m_PrefabInstance: {fileID: 8088917236104284712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &139039242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139039238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04aa7390bcdaa04eaa391fa7d3a081a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthpointsBarHolder: {fileID: 1253226945}
+  _healthpointsBarBackground: {fileID: 1259134089}
+  _currentHealthpoints: 0
+  _totalHealthpoints: 0
 --- !u!850595691 &161234344
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -286,6 +308,10 @@ PrefabInstance:
       propertyPath: _jumpButton
       value: 
       objectReference: {fileID: 736003011}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: healthController
+      value: 
+      objectReference: {fileID: 139039242}
     - target: {fileID: 2554711294009284477, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: _healthpointsBarHolder
@@ -1027,6 +1053,12 @@ MonoBehaviour:
 --- !u!224 &1253226945 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9083924134956403228, guid: a40f68619b360a7489b5ac2f764ed991,
+    type: 3}
+  m_PrefabInstance: {fileID: 8088917236104284712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1259134089 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8324468916852559843, guid: a40f68619b360a7489b5ac2f764ed991,
     type: 3}
   m_PrefabInstance: {fileID: 8088917236104284712}
   m_PrefabAsset: {fileID: 0}
@@ -1843,7 +1875,7 @@ PrefabInstance:
     - target: {fileID: 187347531351334702, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -269.77185
+      value: -269.7718
       objectReference: {fileID: 0}
     - target: {fileID: 617016827936124657, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
@@ -1943,7 +1975,7 @@ PrefabInstance:
     - target: {fileID: 6767827316907526426, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -455.39685
+      value: -455.3968
       objectReference: {fileID: 0}
     - target: {fileID: 7805769094999685344, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
@@ -2899,7 +2931,7 @@ PrefabInstance:
     - target: {fileID: 9083924135692321031, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -173.00061
+      value: -173.00067
       objectReference: {fileID: 0}
     - target: {fileID: 9083924135724868577, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}

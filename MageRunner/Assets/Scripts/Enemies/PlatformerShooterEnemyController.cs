@@ -4,6 +4,9 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
 {
     [Header("Shooter Fields")]
     
+    [SerializeField] private EnemyAttack _objectToShoot;
+    [SerializeField] private float _objectToShootSpeed;
+    
     [Tooltip("Distance required to shoot")]
     [SerializeField] private float _minDistanceToShoot;
     
@@ -17,7 +20,6 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
     [SerializeField] private int _aimAccuracyHandicap;
     
     [SerializeField] private GameObject _weapon;
-    [SerializeField] private PlayerAttackSpell _objectToShoot;
     
     private float _fireRate;
 
@@ -47,10 +49,10 @@ public class PlatformerShooterEnemyController : PlatformerEnemyController
         _weapon.transform.rotation = Quaternion.Euler(0f, 0f, weaponLookAngleRandomized);
 
         GameObject shootedObject = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
-        PlayerAttackSpell shootedObjectComponent = shootedObject.GetComponent<PlayerAttackSpell>();
+        EnemyAttack shootedObjectComponent = shootedObject.GetComponent<EnemyAttack>();
         // shootedObjectComponent.shooterLayer = gameObject.layer;
         float speedAddition = GameManager.Instance.level.isMoving == false ? 0f : GameManager.Instance.level.movingSpeed / 2;
-        shootedObjectComponent.rigBody.velocity = _weapon.transform.right * (_objectToShoot.speed + speedAddition);
+        shootedObjectComponent.rigBody.velocity = _weapon.transform.right * (_objectToShootSpeed + speedAddition);
         
         _fireRate = Random.Range(_minFireRate, _maxFireRate);
     }

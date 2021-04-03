@@ -77,6 +77,8 @@ public class PlayerStateHandler
                 break;
             
             case EPlayerState.Blocking:
+                isBlocking = true;
+                Debug.Log("enabling block");
                 _player.animator.SetInteger("StateNumber", 7);
                 _player.animator.SetBool("Blocking", true);
                 break;

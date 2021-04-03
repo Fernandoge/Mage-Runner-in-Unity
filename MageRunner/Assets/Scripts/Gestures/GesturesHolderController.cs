@@ -103,17 +103,4 @@ public class GesturesHolderController : MonoBehaviour
             }
         }
     }
-
-    // public virtual void HandleAttack(int attackDamage, EElement attackElement)
-    // {
-    //     // _currentHealthpoints -= attackDamage * GameManager.Instance.elementsMultipliersDict[(_element, attackElement)];
-    //     float barValue = _currentHealthpoints / _healthpoints;
-    //     _healthpointsBarHolder.localScale = new Vector3(barValue, _healthpointsBarHolder.localScale.y, _healthpointsBarHolder.localScale.z);
-    //
-    //     if (_healthpointsBarHolder.parent.gameObject.activeSelf == false)
-    //         _healthpointsBarHolder.parent.gameObject.SetActive(true);
-    //     
-    //     if (_currentHealthpoints <= 0)
-    //         DestroyGameObject();
-    // }
 }

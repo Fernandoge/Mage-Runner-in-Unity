@@ -30,29 +30,22 @@ public class PlayerAttackSpell : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        int collisionLayer = collision.gameObject.layer;
+        int collisionLayer = collider.gameObject.layer;
 
-        // Player Block
-        if (collisionLayer != LayerMask.NameToLayer("Player"))
-        {
-            if (GameManager.Instance.player.stateHandler.isBlocking)
-                Destroy(gameObject);
-        }
-        
-        // Handle attack according to the collision stats
-        if (collision.gameObject == target)
+        // Handle attack to interact with the target gestures
+        if (collider.gameObject == target)
         {
             Destroy(gameObject);
-            GesturesHolderController gesturesHolderController = collision.GetComponent<GesturesHolderController>();
+            GesturesHolderController gesturesHolderController = collider.GetComponent<GesturesHolderController>();
             
             if (gesturesHolderController == null) 
                 return;
             
             gesturesHolderController.activeGestures -= 1;
             if (gesturesHolderController.activeGestures == 0)
-                collision.gameObject.SetActive(false);
+                collider.gameObject.SetActive(false);
         }
     }
 
