@@ -103,7 +103,6 @@ public class GestureSpellsController
                 _player.glideSpeed = highJump.glideSpeed;
                 _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
                 _player.stateHandler.EnableState(EPlayerState.HighJumping);
-                _player.stateHandler.DisableState(EPlayerState.Dashing);
             }
         };
         _basicSpellsDict.Add(highJump.gesture.id, highJumpCast);
@@ -132,7 +131,6 @@ public class GestureSpellsController
         {
             if (_player.stateHandler.isBlocking == false)
                 _player.stateHandler.EnableState(EPlayerState.Blocking);
-                
         };
         _basicSpellsDict.Add(block.gesture.id, blockCast);
 

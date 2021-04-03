@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public bool jumpAvailable;
     [System.NonSerialized] public bool jumpStillPressed;
     [System.NonSerialized] public bool idleCastEnabled;
-    [System.NonSerialized] public bool isDashing;
     [System.NonSerialized] public float glideSpeed;
     [System.NonSerialized] public Rigidbody2D rigidBody;
     [System.NonSerialized] public Animator animator;

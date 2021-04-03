@@ -62,6 +62,10 @@ public class PlayerStateHandler
                 break;
             
             case EPlayerState.Shooting:
+                if (_player.animator.GetBool("Shooting"))
+                {
+                    _player.animator.Play("Shoot", -1, 0f);
+                }
                 DisableState(EPlayerState.Blocking);
                 _player.animator.SetInteger("StateNumber", 5);
                 _player.animator.SetBool("Shooting", true);
@@ -69,7 +73,6 @@ public class PlayerStateHandler
 
             case EPlayerState.Dashing:
                 DisableState(EPlayerState.FastFalling);
-                _player.isDashing = true;
                 _player.rigidBody.gravityScale = 0;
                 _player.rigidBody.velocity = Vector2.zero;
                 _player.animator.SetInteger("StateNumber", 6);
@@ -103,7 +106,6 @@ public class PlayerStateHandler
                 break;
             
             case EPlayerState.Dashing:
-                _player.isDashing = false;
                 _player.rigidBody.gravityScale = _player.originalGravity;
                 _player.animator.SetBool("Dashing", false);
                 break;
