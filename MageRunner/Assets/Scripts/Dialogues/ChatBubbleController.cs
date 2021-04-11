@@ -41,7 +41,7 @@ public class ChatBubbleController : MonoBehaviour
             
             if (_changeLevelMovingState && GameManager.Instance.level.isMoving)
             {
-                GameManager.Instance.level.isMoving = false;
+                GameManager.Instance.level.DisableMovement();
                 GameManager.Instance.player.stateHandler.EnableState(EPlayerState.Idle);
                 _levelMovingStateChangedInThisChat = true;
             }
@@ -73,7 +73,7 @@ public class ChatBubbleController : MonoBehaviour
         _isTyping = false;
         if (_changeLevelMovingState && GameManager.Instance.level.isMoving == false && _levelMovingStateChangedInThisChat == false)
         {
-            GameManager.Instance.level.isMoving = true;
+            GameManager.Instance.level.EnableMovement();
             GameManager.Instance.player.stateHandler.DisableState(EPlayerState.Idle);
         }
 

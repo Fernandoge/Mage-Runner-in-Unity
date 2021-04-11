@@ -11,7 +11,8 @@ public class LevelController : MonoBehaviour
     public Transform movingObjects;
     public TimeFrame[] timeFrames;
 
-    [NonSerialized] public List<MovingBG> MovingBgs = new List<MovingBG>();
+    [NonSerialized] public List<MovingBG> movingBgs = new List<MovingBG>();
+    [NonSerialized] public List<MovingParticles> movingParticles = new List<MovingParticles>();
     [NonSerialized] public bool isMoving;
     
     [SerializeField] private List<RepeatingSegment> _repeatingSegments;
@@ -72,6 +73,20 @@ public class LevelController : MonoBehaviour
         }
     }
 
+    public void EnableMovement()
+    {
+        isMoving = true;
+        foreach (MovingParticles particle in movingParticles)
+            particle.EnableVelocityOverLifetime();
+    }
+
+    public void DisableMovement()
+    {
+        isMoving = false;
+        foreach (MovingParticles particle in movingParticles)
+            particle.DisableVelocityOverLifetime();
+    }
+
     public void StartLooping()
     {
         _repeatingStartX = _repeatingSegments[0].StartX;
@@ -96,7 +111,8 @@ public class LevelController : MonoBehaviour
         timeFrames[currentTimeFrameIndex].movingGO.SetActive(false);
         timeFrames[currentTimeFrameIndex].staticGO.SetActive(false);
         GameManager.Instance.level.movingObjects.position = Vector3.zero;
-        GameManager.Instance.level.MovingBgs.Clear();
+        GameManager.Instance.level.movingBgs.Clear();
+        GameManager.Instance.level.movingParticles.Clear();
         _currentTimeFrameIndex += 1;
         timeFrames[currentTimeFrameIndex].movingGO.SetActive(true);
         timeFrames[currentTimeFrameIndex].staticGO.SetActive(true);

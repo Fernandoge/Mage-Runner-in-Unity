@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 #if UNITY_EDITOR
         PlayerInputDebug();
 #else
-        PlayerInput();
+        // PlayerInput();
 #endif
     }
 
@@ -149,23 +149,34 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Dash(float dashDuration, float dashSpeed)
     {
-        foreach (RepeatingBG bg in GameManager.Instance.level.MovingBgs.OfType<RepeatingBG>())
+        foreach (RepeatingBG bg in GameManager.Instance.level.movingBgs.OfType<RepeatingBG>())
         {
             bg.startX += dashDuration;
             bg.endX += dashDuration;
         }
+    
+        foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)
+            particle.ModifyVelocityOverLifetimeSpeed(dashSpeed);
         
         Vector3 newPlayerPosition = new Vector3(transform.localPosition.x + dashDuration, transform.localPosition.y, transform.localPosition.z);
+        
         while (transform.localPosition.x - newPlayerPosition.x < 0f)
         {
             transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
             _mainCamera.transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
-            foreach (MovingBG bg in GameManager.Instance.level.MovingBgs)
+    
+            foreach (MovingBG bg in GameManager.Instance.level.movingBgs)
                 bg.transform.Translate(Vector2.right * (dashSpeed - bg.speed) * Time.deltaTime);
-            
-            yield return null;    
+    
+            foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)
+                particle.transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
+    
+            yield return null;
         }
-        
+    
+        foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)   
+            particle.ResetVelocityOverLifetimeSpeed();
+    
         stateHandler.DisableState(EPlayerState.Dashing);
     }
 

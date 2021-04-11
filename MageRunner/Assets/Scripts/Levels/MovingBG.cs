@@ -4,7 +4,7 @@ public class MovingBG : MonoBehaviour
 {
     public float speed;
     
-    private void Start() => GameManager.Instance.level.MovingBgs.Add(this);
+    private void Start() => GameManager.Instance.level.movingBgs.Add(this);
     
     protected virtual void Update()
     {

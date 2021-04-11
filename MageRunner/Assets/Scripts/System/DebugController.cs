@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DebugController : MonoBehaviour
 {
     public void ToggleLevelMovement()
-    {    
-        GameManager.Instance.level.isMoving = !GameManager.Instance.level.isMoving;
+    {
+        if (GameManager.Instance.level.isMoving)
+            GameManager.Instance.level.DisableMovement();
+        else
+            GameManager.Instance.level.EnableMovement();
     }
 
-    public void ResetLevel()
-    {
-        GameManager.Instance.level.ResetLevel();
-    }
+    public void ResetLevel() => GameManager.Instance.level.ResetLevel();
 }
