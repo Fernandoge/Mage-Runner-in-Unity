@@ -1,37 +1,40 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ManaController : MonoBehaviour
+namespace MageRunner.Combat
 {
-    [SerializeField] private Transform _manaBarHolder;
-    [SerializeField] private Transform _manaBarBackground;
-    private float _currentMana;
-    private int _totalMana;
-
-    public void Initialize(int playerMana)
+    public class ManaController : MonoBehaviour
     {
-        _totalMana = playerMana;
-        _currentMana = _totalMana;
-    }
+        [SerializeField] private Transform _manaBarHolder;
+        [SerializeField] private Transform _manaBarBackground;
+        private float _currentMana;
+        private int _totalMana;
 
-    public void UpdateMana(int value)
-    {
-        _currentMana = _currentMana + value > _totalMana ? _totalMana : _currentMana + value;
-        float barValue = _currentMana / _totalMana;
-        _manaBarHolder.localScale = new Vector3(barValue, _manaBarHolder.localScale.y, _manaBarHolder.localScale.z);
-    }
-
-    public void NoManaFeedback() => StartCoroutine(BlinkManaBar());
-
-    private IEnumerator BlinkManaBar()
-    {
-        var seconds = new WaitForSeconds(0.1f);
-        for (int i = 0; i <= 5; i++)
+        public void Initialize(int playerMana)
         {
-            _manaBarBackground.gameObject.SetActive(i % 2 == 0);
-            yield return seconds;
+            _totalMana = playerMana;
+            _currentMana = _totalMana;
         }
 
-        _manaBarBackground.gameObject.SetActive(true);
+        public void UpdateMana(int value)
+        {
+            _currentMana = _currentMana + value > _totalMana ? _totalMana : _currentMana + value;
+            float barValue = _currentMana / _totalMana;
+            _manaBarHolder.localScale = new Vector3(barValue, _manaBarHolder.localScale.y, _manaBarHolder.localScale.z);
+        }
+
+        public void NoManaFeedback() => StartCoroutine(BlinkManaBar());
+
+        private IEnumerator BlinkManaBar()
+        {
+            var seconds = new WaitForSeconds(0.1f);
+            for (int i = 0; i <= 5; i++)
+            {
+                _manaBarBackground.gameObject.SetActive(i % 2 == 0);
+                yield return seconds;
+            }
+
+            _manaBarBackground.gameObject.SetActive(true);
+        }
     }
 }

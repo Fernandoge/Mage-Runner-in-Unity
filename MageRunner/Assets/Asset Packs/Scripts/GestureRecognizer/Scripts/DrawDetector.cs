@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using MageRunner.Managers.GameManager;
 using UnityEngine.UI;
 using UnityEngine.Events;
 

@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-public struct RepeatingSegment
+namespace MageRunner.Levels
 {
-    public GameObject segment;
-    public float StartX;
-    public float EndX;
+    [System.Serializable]
+    public struct RepeatingSegment
+    {
+        public GameObject segment;
+        public float StartX;
+        public float EndX;
+    }
 }

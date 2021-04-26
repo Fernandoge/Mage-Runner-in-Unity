@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-public struct TimeFrame
+namespace MageRunner.Levels
 {
-    public GameObject movingGO;
-    public GameObject staticGO;
+    [System.Serializable]
+    public struct TimeFrame
+    {
+        public GameObject movingGO;
+        public GameObject staticGO;
+    }
 }

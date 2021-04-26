@@ -1,21 +1,24 @@
 ﻿using System;
 using UnityEngine;
 
-[Serializable]
-public struct Message
+namespace MageRunner.Dialogues
 {
-    [TextArea] public string text;
-    public float secondsToContinue;
-    public bool waitForAction;
-    public bool enablePlayerIdleCast;
-    public bool changeLevelMovingState;
-
-    public Message (string text, float secondsToContinue, bool waitForAction, bool enablePlayerIdleCast, bool changeLevelMovingState)
+    [Serializable]
+    public struct Message
     {
-        this.text = text;
-        this.secondsToContinue = secondsToContinue;
-        this.waitForAction = waitForAction;
-        this.enablePlayerIdleCast = enablePlayerIdleCast;
-        this.changeLevelMovingState = changeLevelMovingState;
+        [TextArea] public string text;
+        public float secondsToContinue;
+        public bool waitForAction;
+        public bool enablePlayerIdleCast;
+        public bool changeLevelMovingState;
+
+        public Message (string text, float secondsToContinue, bool waitForAction, bool enablePlayerIdleCast, bool changeLevelMovingState)
+        {
+            this.text = text;
+            this.secondsToContinue = secondsToContinue;
+            this.waitForAction = waitForAction;
+            this.enablePlayerIdleCast = enablePlayerIdleCast;
+            this.changeLevelMovingState = changeLevelMovingState;
+        }
     }
 }

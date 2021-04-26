@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-public class LevelSceneController : MonoBehaviour
+namespace MageRunner.Scenes
 {
-    [SerializeField] private GameObject _level;
-
-    private void Start()
+    public class LevelSceneController : MonoBehaviour
     {
-        Instantiate(_level);
+        [SerializeField] private GameObject _level;
+
+        private void Start()
+        {
+            Instantiate(_level);
+        }
     }
 }

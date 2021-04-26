@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using MageRunner.Managers.GameManager;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class JumpButton : MonoBehaviour, IPointerUpHandler
+namespace MageRunner.Player
 {
-    void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
+    public class JumpButton : MonoBehaviour, IPointerUpHandler
     {
-        eventData.selectedObject = null;
-        GameManager.Instance.player.jumpStillPressed = false;
-        GameManager.Instance.player.stateHandler.isJumping = false;
+        void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
+        {
+            eventData.selectedObject = null;
+            GameManager.Instance.player.jumpStillPressed = false;
+            GameManager.Instance.player.stateHandler.isJumping = false;
+        }
     }
 }

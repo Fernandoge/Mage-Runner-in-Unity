@@ -1,9 +1,12 @@
 ﻿using GestureRecognizer;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GesturesDifficultyData")]
-public class GesturesDifficultyData : ScriptableObject
+namespace MageRunner.Gestures
 {
-    public GesturePattern[] easy;
-    public GesturePattern[] medium;
+    [CreateAssetMenu(menuName = "GesturesDifficultyData")]
+    public class GesturesDifficultyData : ScriptableObject
+    {
+        public GesturePattern[] easy;
+        public GesturePattern[] medium;
+    }
 }

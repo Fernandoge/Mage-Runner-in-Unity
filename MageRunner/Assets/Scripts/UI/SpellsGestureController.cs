@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class SpellsGestureController : MonoBehaviour
+namespace MageRunner.UI
 {
-    [SerializeField] private AnimatorOverrideController gestureAnimator;
-    
-    [SerializeField] private AnimationClip fireball;
-    [SerializeField] private AnimationClip ice;
-
-    public void SwitchAnimation(AnimationClip animationClip)
+    public class SpellsGestureController : MonoBehaviour
     {
-        gestureAnimator["Base Hand"] = animationClip;
+        [SerializeField] private AnimatorOverrideController gestureAnimator;
+    
+        [SerializeField] private AnimationClip fireball;
+        [SerializeField] private AnimationClip ice;
+
+        public void SwitchAnimation(AnimationClip animationClip)
+        {
+            gestureAnimator["Base Hand"] = animationClip;
+        }
     }
 }

@@ -1,10 +1,13 @@
-﻿public enum EPlayerSpells 
+﻿namespace MageRunner.Player
 {
-    Fireball,
-    Ice,
-    Earth,
-    Wind,
-    Lightning,
-    Nature,
-    Water
+    public enum EPlayerSpells 
+    {
+        Fireball,
+        Ice,
+        Earth,
+        Wind,
+        Lightning,
+        Nature,
+        Water
+    }
 }

@@ -1,19 +1,21 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RepeatingBG : MovingBG
+namespace MageRunner.Levels
 {
-    public float startX;
-    public float endX;
-
-    protected override void Update()
+    public class RepeatingBG : MovingBG
     {
-        base.Update();
-        
-        if (transform.localPosition.x <= endX)
+        public float startX;
+        public float endX;
+
+        protected override void Update()
         {
-            float diff = transform.localPosition.x - endX;
-            transform.localPosition = new Vector2(startX + diff, transform.localPosition.y);
+            base.Update();
+        
+            if (transform.localPosition.x <= endX)
+            {
+                float diff = transform.localPosition.x - endX;
+                transform.localPosition = new Vector2(startX + diff, transform.localPosition.y);
+            }
         }
     }
 }

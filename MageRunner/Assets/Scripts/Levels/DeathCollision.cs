@@ -1,13 +1,16 @@
-﻿using System;
+﻿using MageRunner.Managers.GameManager;
 using UnityEngine;
 
-public class DeathCollision : MonoBehaviour
+namespace MageRunner.Levels
 {
-    private void OnTriggerEnter2D(Collider2D col)
+    public class DeathCollision : MonoBehaviour
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            GameManager.Instance.level.ResetLevel();
+            if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                GameManager.Instance.level.ResetLevel();
+            }
         }
     }
 }

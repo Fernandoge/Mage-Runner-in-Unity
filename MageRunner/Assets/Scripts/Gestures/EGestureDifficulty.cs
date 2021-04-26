@@ -1,6 +1,9 @@
-﻿public enum EGestureDifficulty
+﻿namespace MageRunner.Gestures
 {
-    Easy,
-    Medium
+    public enum EGestureDifficulty
+    {
+        Easy,
+        Medium
+    }
 }
     

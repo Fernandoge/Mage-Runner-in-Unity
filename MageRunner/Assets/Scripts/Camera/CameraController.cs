@@ -1,45 +1,45 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace MageRunner.Camera
 {
-    [SerializeField] private int targetWidth;
-    [SerializeField] private float pixelsToUnits;
-    [SerializeField] private RectTransform bottomPanel;
-
-    private int _height;
-
-    private void Awake()
+    public class CameraController : MonoBehaviour
     {
-        _height = Mathf.RoundToInt(targetWidth / (float) Screen.width * Screen.height);
-        print (Screen.width + "   " + Screen.height + "    " + _height);
+        [SerializeField] private int targetWidth;
+        [SerializeField] private float pixelsToUnits;
+        [SerializeField] private RectTransform bottomPanel;
 
-        if (_height > 1080)
-            Camera.main.orthographicSize = _height / pixelsToUnits / 2;
-    }
+        private int _height;
 
-    public void ScaleLevelCamera(Transform level)
-    {
-        // 4:3
-        if (_height >= 1440 && _height < 1536)
+        private void Awake()
         {
-            level.localScale = new Vector3(1, 1.2f, 1);
-            level.position = new Vector3(0, 1.02f, 0);
-            transform.position = new Vector3(0, 0, -10);
-            bottomPanel.anchoredPosition = new Vector3(0, 143, 0);
-            bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 285);
+            _height = Mathf.RoundToInt(targetWidth / (float) Screen.width * Screen.height);
+            print (Screen.width + "   " + Screen.height + "    " + _height);
+
+            if (_height > 1080)
+                UnityEngine.Camera.main.orthographicSize = _height / pixelsToUnits / 2;
         }
-        
-        // 5:4
-        else if (_height >= 1536)
+
+        public void ScaleLevelCamera(Transform level)
         {
-            level.localScale = new Vector3(1, 1.25f, 1);
-            level.position = new Vector3(0, 1.3f, 0);
-            transform.position = new Vector3(0, 0, -10);
-            bottomPanel.anchoredPosition = new Vector3(0, 152, 0);
-            bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 302);
+            // 4:3
+            if (_height >= 1440 && _height < 1536)
+            {
+                level.localScale = new Vector3(1, 1.2f, 1);
+                level.position = new Vector3(0, 1.02f, 0);
+                transform.position = new Vector3(0, 0, -10);
+                bottomPanel.anchoredPosition = new Vector3(0, 143, 0);
+                bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 285);
+            }
+        
+            // 5:4
+            else if (_height >= 1536)
+            {
+                level.localScale = new Vector3(1, 1.25f, 1);
+                level.position = new Vector3(0, 1.3f, 0);
+                transform.position = new Vector3(0, 0, -10);
+                bottomPanel.anchoredPosition = new Vector3(0, 152, 0);
+                bottomPanel.sizeDelta = new Vector2(bottomPanel.sizeDelta.x, 302);
+            }
         }
     }
 }

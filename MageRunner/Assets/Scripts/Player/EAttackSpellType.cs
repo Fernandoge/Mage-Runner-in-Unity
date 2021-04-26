@@ -1,5 +1,8 @@
-﻿public enum EAttackSpellType
+﻿namespace MageRunner.Player
 {
-    Projectile,
-    Instant
+    public enum EAttackSpellType
+    {
+        Projectile,
+        Instant
+    }
 }

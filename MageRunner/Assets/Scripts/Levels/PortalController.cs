@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using MageRunner.Managers.GameManager;
+using UnityEngine;
 
-public class PortalController : MonoBehaviour
+namespace MageRunner.Levels
 {
-    private void OnTriggerEnter2D(Collider2D col)
+    public class PortalController : MonoBehaviour
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
-            GameManager.Instance.level.ChangeTimeFrame();
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.layer == LayerMask.NameToLayer("Player"))
+                GameManager.Instance.level.ChangeTimeFrame();
+        }
     }
 }

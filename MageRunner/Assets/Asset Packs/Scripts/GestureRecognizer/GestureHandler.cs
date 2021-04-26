@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using GestureRecognizer;
 using System.Linq;
+using MageRunner.Managers.GameManager;
+using MageRunner.Player;
 
 public class GestureHandler : MonoBehaviour {
 

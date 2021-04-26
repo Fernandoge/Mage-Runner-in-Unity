@@ -1,65 +1,69 @@
-﻿using UnityEngine;
+﻿using MageRunner.Gestures;
+using UnityEngine;
 
-public class PlayerAttackSpell : MonoBehaviour
+namespace MageRunner.Player
 {
-    public float speed;
-    public Rigidbody2D rigBody;
-    
-    [System.NonSerialized] public GameObject target;
-    [System.NonSerialized] public bool preparingReflect;
-    
-    [SerializeField] private float _durationNoVisible;
-    [SerializeField] private bool _reduceDurationVisible;
-    [SerializeField] private ParticleSystem[] _particlesToActivate;
-    
-    private bool _isVisible;
-
-    private void OnDisable() => ActivateParticles();
-
-    private void OnBecameVisible() => _isVisible = true;
-
-    private void OnBecameInvisible() => _isVisible = false;
-
-    private void Update()
+    public class PlayerAttackSpell : MonoBehaviour
     {
-        if (_isVisible && _reduceDurationVisible == false)
-            return;
-        
-        _durationNoVisible -= Time.deltaTime;
-        if (_durationNoVisible <= 0)
-            Destroy(gameObject);
-    }
+        public float speed;
+        public Rigidbody2D rigBody;
+    
+        [System.NonSerialized] public GameObject target;
+        [System.NonSerialized] public bool preparingReflect;
+    
+        [SerializeField] private float _durationNoVisible;
+        [SerializeField] private bool _reduceDurationVisible;
+        [SerializeField] private ParticleSystem[] _particlesToActivate;
+    
+        private bool _isVisible;
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        int collisionLayer = collider.gameObject.layer;
+        private void OnDisable() => ActivateParticles();
 
-        // Handle attack to interact with the target gestures
-        if (collider.gameObject == target)
+        private void OnBecameVisible() => _isVisible = true;
+
+        private void OnBecameInvisible() => _isVisible = false;
+
+        private void Update()
         {
-            Destroy(gameObject);
-            GesturesHolderController gesturesHolderController = collider.GetComponent<GesturesHolderController>();
-            
-            if (gesturesHolderController == null) 
+            if (_isVisible && _reduceDurationVisible == false)
                 return;
-            
-            gesturesHolderController.activeGestures -= 1;
-            if (gesturesHolderController.activeGestures == 0)
-                collider.gameObject.SetActive(false);
+        
+            _durationNoVisible -= Time.deltaTime;
+            if (_durationNoVisible <= 0)
+                Destroy(gameObject);
         }
-    }
 
-    private void ActivateParticles()
-    {
-        foreach (ParticleSystem particle in _particlesToActivate)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (particle.gameObject.activeSelf == false)
-                particle.gameObject.SetActive(true);
+            int collisionLayer = collider.gameObject.layer;
+
+            // Handle attack to interact with the target gestures
+            if (collider.gameObject == target)
+            {
+                Destroy(gameObject);
+                GesturesHolderController gesturesHolderController = collider.GetComponent<GesturesHolderController>();
             
-            particle.transform.SetParent(null);
-            Destroy(particle.gameObject, particle.main.startLifetimeMultiplier);
-            if (particle.main.loop)
-                particle.Stop();
+                if (gesturesHolderController == null) 
+                    return;
+            
+                gesturesHolderController.activeGestures -= 1;
+                if (gesturesHolderController.activeGestures == 0)
+                    collider.gameObject.SetActive(false);
+            }
+        }
+
+        private void ActivateParticles()
+        {
+            foreach (ParticleSystem particle in _particlesToActivate)
+            {
+                if (particle.gameObject.activeSelf == false)
+                    particle.gameObject.SetActive(true);
+            
+                particle.transform.SetParent(null);
+                Destroy(particle.gameObject, particle.main.startLifetimeMultiplier);
+                if (particle.main.loop)
+                    particle.Stop();
+            }
         }
     }
 }

@@ -1,16 +1,20 @@
-﻿using UnityEngine;
+﻿using MageRunner.Managers.GameManager;
+using UnityEngine;
 
-public class MovingBG : MonoBehaviour
+namespace MageRunner.Levels
 {
-    public float speed;
-    
-    private void Start() => GameManager.Instance.level.movingBgs.Add(this);
-    
-    protected virtual void Update()
+    public class MovingBG : MonoBehaviour
     {
-        if (GameManager.Instance.level.isMoving == false)
-            return;
+        public float speed;
+    
+        private void Start() => GameManager.Instance.level.movingBgs.Add(this);
+    
+        protected virtual void Update()
+        {
+            if (GameManager.Instance.level.isMoving == false)
+                return;
         
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
     }
 }
