@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Febucci.UI;
 using MageRunner.Managers.GameManager;
 using MageRunner.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MageRunner.Dialogues
 {
@@ -12,6 +14,7 @@ namespace MageRunner.Dialogues
         public TMP_Text chatBubbleText;
     
         [SerializeField] private Animator _animator;
+        [SerializeField] private TextAnimatorPlayer _animatorPlayer;
 
         private bool _isTyping;
         private float _secondsToContinue;
@@ -20,41 +23,52 @@ namespace MageRunner.Dialogues
         private bool _levelMovingStateChangedInThisChat;
         private bool _isFullyClosed = true;
         private readonly List<Message> messagesQueued = new List<Message>();
-    
-        public void StartChat(Message message)
+        private UnityAction _activeListener;
+
+        public void StartChatCoroutine(Message message) => StartCoroutine(Chat(message));
+
+        private IEnumerator Chat(Message message)
         {
             if (_isTyping)
                 messagesQueued.Add(message);
             else
             {
+                _isTyping = true;
+                yield return new WaitForSeconds(message.secondsToStart);
+                
                 // If chat bubble is fully closed let the bubble animation enable it,
                 // otherwise since the chat bubble may still be open, enable it by code
                 if (_isFullyClosed == false)
                     EnableText();
-
+                
                 _animator.SetBool("Enabled", true);
-                _isTyping = true;
                 _isFullyClosed = false;
                 _levelMovingStateChangedInThisChat = false;  
+                
                 chatBubbleText.text = message.text;
                 _secondsToContinue = message.secondsToContinue;
                 _changeLevelMovingState = message.changeLevelMovingState;
                 _waitForAction = message.waitForAction;
-            
+                if (message.onTextShowed != null)
+                {
+                    _animatorPlayer.onTextShowed.AddListener(message.onTextShowed.Invoke);
+                    _activeListener = message.onTextShowed.Invoke;
+                }
                 GameManager.Instance.player.idleCastEnabled = message.enablePlayerIdleCast;
-            
+
                 if (_changeLevelMovingState && GameManager.Instance.level.isMoving)
                 {
                     GameManager.Instance.level.DisableMovement();
-                    GameManager.Instance.player.stateHandler.EnableState(EPlayerState.Idle);
                     _levelMovingStateChangedInThisChat = true;
                 }
-            
             }
         }
-    
+
         private void NextChat()
         {
+            if (_activeListener != null)
+                _animatorPlayer.onTextShowed.RemoveListener(_activeListener);
+            
             if (messagesQueued.Count == 0)
             {
                 _animator.SetBool("Enabled", false);
@@ -64,22 +78,20 @@ namespace MageRunner.Dialogues
             }
             else
             {
-                StartChat(messagesQueued[0]);
+                StartChatCoroutine(messagesQueued[0]);
                 messagesQueued.RemoveAt(0);
             }
         }
 
-        public void WaitForText() => StartCoroutine(WaitSecondsToContinue());
+        public void StartCloseCurrentChatCoroutine() => StartCoroutine(CloseCurrentChat());
     
-        private IEnumerator WaitSecondsToContinue()
+        private IEnumerator CloseCurrentChat()
         {
             yield return new WaitForSeconds(_secondsToContinue);
             _isTyping = false;
+            
             if (_changeLevelMovingState && GameManager.Instance.level.isMoving == false && _levelMovingStateChangedInThisChat == false)
-            {
                 GameManager.Instance.level.EnableMovement();
-                GameManager.Instance.player.stateHandler.DisableState(EPlayerState.Idle);
-            }
 
             if (_waitForAction == false)
                 NextChat();
@@ -90,6 +102,7 @@ namespace MageRunner.Dialogues
             StopAllCoroutines();
             _isTyping = false;
             messagesQueued.Clear();
+            NextChat();
         }
     
         // Methods called in the chat bubble animation too

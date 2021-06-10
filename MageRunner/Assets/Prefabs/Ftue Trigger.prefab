@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4558537530745039025}
-  - component: {fileID: 8484037192099336299}
+  - component: {fileID: 3664347728313207856}
   - component: {fileID: 7645453236355320790}
   m_Layer: 0
-  m_Name: Dialogue Trigger
+  m_Name: Ftue Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8484037192099336299
+--- !u!114 &3664347728313207856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7097128976180214848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startsNewFtue: 0
-  _dialogueSections: []
+  _ftueNumber: 0
 --- !u!61 &7645453236355320790
 BoxCollider2D:
   m_ObjectHideFlags: 0

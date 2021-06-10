@@ -36,7 +36,8 @@ namespace MageRunner.Levels
 
         public void ModifyVelocityOverLifetimeSpeed(float value)
         {
-            _particleSystemVelocityModule.xMultiplier = (value + _particleSystemVelocityModule.xMultiplier) - (value - GameManager.Instance.level.movingSpeed);
+            // _particleSystemVelocityModule.xMultiplier = (value + _particleSystemVelocityModule.xMultiplier) - (value - GameManager.Instance.level.movingSpeed);
+            _particleSystemVelocityModule.xMultiplier = (value + _particleSystemVelocityModule.xMultiplier) - (GameManager.Instance.level.movingSpeed - _particleSystemVelocityModule.xMultiplier);
         }
 
         public void ResetVelocityOverLifetimeSpeed()

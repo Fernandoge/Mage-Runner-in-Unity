@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MageRunner.Camera;
+using MageRunner.Cameras;
 using MageRunner.Gestures;
 using MageRunner.Managers.GameManager;
+using MageRunner.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,7 +40,7 @@ namespace MageRunner.Levels
         {
             InitializeGesturesHolders();
             GameManager.Instance.player.transform.SetParent(movingObjects);
-            UnityEngine.Camera mainCamera = UnityEngine.Camera.main;
+            Camera mainCamera = UnityEngine.Camera.main;
             mainCamera.GetComponent<CameraController>().ScaleLevelCamera(transform);
             mainCamera.transform.SetParent(movingObjects);
         } 
@@ -80,6 +81,7 @@ namespace MageRunner.Levels
         public void EnableMovement()
         {
             isMoving = true;
+            GameManager.Instance.player.stateHandler.DisableState(EPlayerState.Idle);
             foreach (MovingParticles particle in movingParticles)
                 particle.EnableVelocityOverLifetime();
         }
@@ -87,6 +89,7 @@ namespace MageRunner.Levels
         public void DisableMovement()
         {
             isMoving = false;
+            GameManager.Instance.player.stateHandler.EnableState(EPlayerState.Idle);
             foreach (MovingParticles particle in movingParticles)
                 particle.DisableVelocityOverLifetime();
         }

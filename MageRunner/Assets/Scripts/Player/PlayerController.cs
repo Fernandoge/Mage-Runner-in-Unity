@@ -164,7 +164,7 @@ namespace MageRunner.Player
         
             Vector3 newPlayerPosition = new Vector3(transform.localPosition.x + dashDuration, transform.localPosition.y, transform.localPosition.z);
         
-            while (transform.localPosition.x - newPlayerPosition.x < 0f)
+            while (transform.localPosition.x - newPlayerPosition.x < 0f && stateHandler.isDashing)
             {
                 transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
                 _mainCamera.transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);

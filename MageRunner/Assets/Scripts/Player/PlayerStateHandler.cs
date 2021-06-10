@@ -8,6 +8,7 @@ namespace MageRunner.Player
         public bool isHighJumping;
         public bool isFastFalling;
         public bool isBlocking;
+        public bool isDashing;
 
         private PlayerController _player;
         private UnityEngine.Camera _mainCamera;
@@ -72,6 +73,7 @@ namespace MageRunner.Player
 
                 case EPlayerState.Dashing:
                     DisableState(EPlayerState.FastFalling);
+                    isDashing = true;
                     _player.rigidBody.gravityScale = 0;
                     _player.rigidBody.velocity = Vector2.zero;
                     _player.animator.SetInteger("StateNumber", 6);
@@ -80,12 +82,12 @@ namespace MageRunner.Player
             
                 case EPlayerState.Blocking:
                     isBlocking = true;
-                    Debug.Log("enabling block");
                     _player.animator.SetInteger("StateNumber", 7);
                     _player.animator.SetBool("Blocking", true);
                     break;
             
                 case EPlayerState.Idle:
+                    DisableState(EPlayerState.Dashing);
                     _player.animator.SetBool("Idle", true);
                     break;
             }
@@ -105,6 +107,7 @@ namespace MageRunner.Player
                     break;
             
                 case EPlayerState.Dashing:
+                    isDashing = false;
                     _player.rigidBody.gravityScale = _player.originalGravity;
                     _player.animator.SetBool("Dashing", false);
                     break;

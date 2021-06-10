@@ -154,12 +154,7 @@ namespace MageRunner.Player
             switch (playerSpell)
             {
                 case EPlayerSpells.Fireball:
-                    Action checkFtueStep = () =>
-                    {
-                        if (GameManager.Instance.ftueController.ftueStepIndex == 6)
-                            GameManager.Instance.ftueController.NextFtueStep();
-                    };
-                    return LoadAttackSpell(_player.spellsData.fireball, EAttackSpellType.Projectile, checkFtueStep);
+                    return LoadAttackSpell(_player.spellsData.fireball, EAttackSpellType.Projectile);
 
                 case EPlayerSpells.Ice:
                     return LoadAttackSpell(_player.spellsData.ice, EAttackSpellType.Projectile);

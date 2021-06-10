@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MageRunner.Camera
+namespace MageRunner.Cameras
 {
     public class CameraController : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace MageRunner.Camera
             print (Screen.width + "   " + Screen.height + "    " + _height);
 
             if (_height > 1080)
-                UnityEngine.Camera.main.orthographicSize = _height / pixelsToUnits / 2;
+                Camera.main.orthographicSize = _height / pixelsToUnits / 2;
         }
 
         public void ScaleLevelCamera(Transform level)

@@ -458,6 +458,11 @@ PrefabInstance:
       propertyPath: _isPlayerChatBubble
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4425301082295471025, guid: e1ffbbb718f63764090ee53e278d4c0a,
+        type: 3}
+      propertyPath: _animatorPlayer
+      value: 
+      objectReference: {fileID: 203827739202182633}
     - target: {fileID: 6545572500470144275, guid: e1ffbbb718f63764090ee53e278d4c0a,
         type: 3}
       propertyPath: m_IsActive
@@ -496,5 +501,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ec804d4250da414c99b220ea61b4653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &203827739202182633 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7875400013872774408, guid: e1ffbbb718f63764090ee53e278d4c0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8043198766993006817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a6945b90dcd0c4b81619c0d8b5c283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

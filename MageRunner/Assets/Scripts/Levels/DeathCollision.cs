@@ -5,6 +5,8 @@ namespace MageRunner.Levels
 {
     public class DeathCollision : MonoBehaviour
     {
+        private void Start() => transform.parent = Camera.main.transform;
+        
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.layer == LayerMask.NameToLayer("Player"))

@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chatBubbleText: {fileID: 7587581867010693271}
   _animator: {fileID: 2112018143186884652}
+  _animatorPlayer: {fileID: 7875400013872774408}
 --- !u!95 &2112018143186884652
 Animator:
   serializedVersion: 3
@@ -413,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAnimPlayerOnChange: 1
-  effectIntensityMultiplier: 50
+  effectIntensityMultiplier: 20
   appearancesContainer:
     tags:
     - rot
@@ -485,8 +486,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4425301082295471025}
-        m_TargetAssemblyTypeName: ChatBubbleController, Assembly-CSharp
-        m_MethodName: WaitForText
+        m_TargetAssemblyTypeName: MageRunner.Dialogues.ChatBubbleController, Assembly-CSharp
+        m_MethodName: StartCloseCurrentChatCoroutine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
