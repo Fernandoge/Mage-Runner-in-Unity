@@ -4263,7 +4263,6 @@ GameObject:
   - component: {fileID: 9083924134055926145}
   - component: {fileID: 9083924134055926156}
   - component: {fileID: 9083924134055926158}
-  - component: {fileID: 9083924134055926144}
   m_Layer: 5
   m_Name: Jump Button
   m_TagString: Untagged
@@ -4382,7 +4381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 8
+  - eventID: 2
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -4398,18 +4397,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &9083924134055926144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9083924134055926154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff35001a4ecb8cc4c861afb8e464cfeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9083924134070297505
 GameObject:
   m_ObjectHideFlags: 0

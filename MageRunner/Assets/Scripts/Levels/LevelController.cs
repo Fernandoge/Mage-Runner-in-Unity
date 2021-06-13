@@ -22,7 +22,6 @@ namespace MageRunner.Levels
     
         [SerializeField] private List<RepeatingSegment> _repeatingSegments;
 
-        private int _currentTimeFrameIndex;
         private int _currency;
         private bool _looping;
         private float _repeatingStartX;
@@ -32,7 +31,7 @@ namespace MageRunner.Levels
         private int _currentGesturesHolderIndex;
         private float _distanceBetweenPlayerX;
 
-        public int currentTimeFrameIndex => _currentTimeFrameIndex;
+        public int currentTimeFrameIndex { get; private set; }
 
         private void Awake() => GameManager.Instance.level = this;
 
@@ -62,7 +61,6 @@ namespace MageRunner.Levels
             }
         
             // Gestures holders activation
-        
             if (_currentGesturesHolderIndex == _gesturesHolders.Count)
                 return;
         
@@ -82,6 +80,7 @@ namespace MageRunner.Levels
         {
             isMoving = true;
             GameManager.Instance.player.stateHandler.DisableState(EPlayerState.Idle);
+            GameManager.Instance.player.jumpButton.interactable = true;
             foreach (MovingParticles particle in movingParticles)
                 particle.EnableVelocityOverLifetime();
         }
@@ -90,6 +89,7 @@ namespace MageRunner.Levels
         {
             isMoving = false;
             GameManager.Instance.player.stateHandler.EnableState(EPlayerState.Idle);
+            GameManager.Instance.player.jumpButton.interactable = false;
             foreach (MovingParticles particle in movingParticles)
                 particle.DisableVelocityOverLifetime();
         }
@@ -120,7 +120,7 @@ namespace MageRunner.Levels
             GameManager.Instance.level.movingObjects.position = Vector3.zero;
             GameManager.Instance.level.movingBgs.Clear();
             GameManager.Instance.level.movingParticles.Clear();
-            _currentTimeFrameIndex += 1;
+            currentTimeFrameIndex += 1;
             timeFrames[currentTimeFrameIndex].movingGO.SetActive(true);
             timeFrames[currentTimeFrameIndex].staticGO.SetActive(true);
             ChangeGesturesHoldersList();

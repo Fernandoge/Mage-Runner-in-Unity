@@ -4,6 +4,7 @@ using MageRunner.Combat;
 using MageRunner.Dialogues;
 using MageRunner.Levels;
 using MageRunner.Managers.GameManager;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +15,8 @@ namespace MageRunner.Player
         [Header("Values")]
         [SerializeField] private int _totalHealthpoints;
         [SerializeField] private int _totalMana;
-        [SerializeField] private float _jumpTime;
-        public float jumpForce;
+        public float groundJumpForce; 
+        public float airJumpForce;
     
         [Header("References")]
         public GameObject spellShooter;
@@ -23,11 +24,12 @@ namespace MageRunner.Player
         public ManaController manaController;
         public ChatBubbleController companionChatBubble;
         public PlayerSpellsData spellsData;
+        public Selectable jumpButton;
     
         [System.NonSerialized] public float originalGravity;
-        [System.NonSerialized] public int groundLayer;
-        [System.NonSerialized] public bool jumpAvailable;
-        [System.NonSerialized] public bool jumpStillPressed;
+        [System.NonSerialized] public bool groundJumpAvailable;
+        [System.NonSerialized] public bool airJumpAvailable;
+        [System.NonSerialized] public bool highJumpAvailable;
         [System.NonSerialized] public bool idleCastEnabled;
         [System.NonSerialized] public float glideSpeed;
         [System.NonSerialized] public Rigidbody2D rigidBody;
@@ -36,17 +38,15 @@ namespace MageRunner.Player
         [System.NonSerialized] public Collider2D groundCollider;
     
         [SerializeField] private Transform _feetPos;
-        [SerializeField] private Selectable _jumpButton;
-    
-        private float _jumpTimeCounter;
-        private UnityEngine.Camera _mainCamera;
+        
+        private Camera _mainCamera;
         private LayerMask _notGroundLayerMask;
         private GestureSpellsController _gestureSpellsController;
     
         private void Start()
         {
             GameManager.Instance.player = this;
-            _mainCamera = UnityEngine.Camera.main;
+            _mainCamera = Camera.main;
             stateHandler = new PlayerStateHandler(this);
             _gestureSpellsController = new GestureSpellsController(this);
             healthController.Initialize(_totalHealthpoints);
@@ -61,57 +61,25 @@ namespace MageRunner.Player
         {
             groundCollider = Physics2D.OverlapCircle(_feetPos.position, 0f, _notGroundLayerMask);
 
-            // Check velocity, because if velocity is higher than 0 High Jump could have been casted and then the animation state of High Jump isn't override by Running
+            // Check velocity, because if velocity is higher than 0 High Jump could have been casted and with this check the animation state of High Jump isn't override by Running
             if (groundCollider != null && rigidBody.velocity.y <= 0)
-            {
                 Running();
-                groundLayer = groundCollider.gameObject.layer;
-            }
             else if (stateHandler.isHighJumping)
                 HighJump();
+            else
+                groundJumpAvailable = false;
 
-            _jumpButton.interactable = GameManager.Instance.level.isMoving;
-        
 #if UNITY_EDITOR
             PlayerInputDebug();
-#else
-        // PlayerInput();
 #endif
         }
 
         private void PlayerInputDebug()
         {
-            // For gesture and shooting with the same tap remove drawArea field and use this: EventSystem.current.currentSelectedGameObject == null)
-            // if (Input.GetMouseButtonDown(0) && stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject())
-            //     Shoot(Input.mousePosition);
-
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
                 Jump();
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                stateHandler.DisableState(EPlayerState.Jumping);
-                jumpStillPressed = false;
-            }
         }
 
-        // private void PlayerInput()
-        // {
-        //     ShootValidTouch(0);
-        //     ShootValidTouch(1);
-        // }
-        //
-        // public void ShootValidTouch(int touchNumber)
-        // {
-        //     if (Input.touchCount > touchNumber)
-        //     {
-        //         Touch touch = Input.GetTouch(touchNumber);
-        //         if (touch.phase == TouchPhase.Began)
-        //             if (stateHandler.readyToShoot && !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-        //                 Shoot(touch.position);
-        //     }
-        // }
-    
         public void Running()
         {
             if (_gestureSpellsController.fastFallGroundCollider?.enabled == false)
@@ -122,25 +90,13 @@ namespace MageRunner.Player
 
         public void Jump()
         {
-            if (GameManager.Instance.level.isMoving == false)
-                return;
-        
-            if (jumpAvailable && jumpStillPressed == false)
-            {
-                stateHandler.EnableState(EPlayerState.Jumping);
-                _jumpTimeCounter = _jumpTime;
-            }
-
-            if (stateHandler.isJumping == false)
+            if (GameManager.Instance.level.isMoving == false || stateHandler.isDashing)
                 return;
 
-            if (_jumpTimeCounter > 0)
-            {
-                rigidBody.velocity = Vector2.up * jumpForce;
-                _jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-                stateHandler.DisableState(EPlayerState.Jumping);
+            if (groundJumpAvailable)
+                stateHandler.EnableState(EPlayerState.GroundJumping);
+            else if (airJumpAvailable)
+                stateHandler.EnableState(EPlayerState.AirJumping);
         }
 
         private void HighJump()
@@ -149,6 +105,18 @@ namespace MageRunner.Player
                 stateHandler.EnableState(EPlayerState.HighJumping);
             else
                 stateHandler.EnableState(EPlayerState.Gliding);
+        }
+        
+        public IEnumerator Block(float blockDuration)
+        {
+            while (blockDuration > 0)
+            {
+                blockDuration -= Time.deltaTime;
+                print(blockDuration);
+                yield return null;
+            }
+            
+            stateHandler.DisableState(EPlayerState.Blocking);
         }
 
         public IEnumerator Dash(float dashDuration, float dashSpeed)
@@ -187,11 +155,5 @@ namespace MageRunner.Player
         public void BeginCastingSpell(string id) => _gestureSpellsController.CastSpell(id);
 
         public void CastingSpellFailed() => print("Casting spell failed");
-
-        // Used in Blocking animation
-        public void StopBlocking() => stateHandler.DisableState(EPlayerState.Blocking);
-
-        // Used in Shooting animation
-        public void StopShooting() => stateHandler.DisableState(EPlayerState.Shooting);
     }
 }

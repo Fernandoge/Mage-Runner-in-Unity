@@ -1,5 +1,6 @@
 ﻿using MageRunner.Gestures;
 using MageRunner.Managers.GameManager;
+using MageRunner.Player;
 using UnityEngine;
 
 namespace MageRunner.Enemies
@@ -70,7 +71,7 @@ namespace MageRunner.Enemies
             if (GameManager.Instance.player.stateHandler.isFastFalling)
             {
                 Destroy(gameObject);
-                GameManager.Instance.player.rigidBody.velocity = Vector2.up * GameManager.Instance.player.jumpForce;
+                GameManager.Instance.player.stateHandler.EnableState(EPlayerState.GroundJumping);
                 GameManager.Instance.player.Running();
             }
             else

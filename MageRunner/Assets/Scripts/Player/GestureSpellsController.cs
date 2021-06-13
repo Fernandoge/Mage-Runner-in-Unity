@@ -78,7 +78,7 @@ namespace MageRunner.Player
             }
 
             LevelController currentLevel = GameManager.Instance.level;
-            Transform spellParent = currentLevel.movingObjects;
+            Transform spellParent = currentLevel.timeFrames[currentLevel.currentTimeFrameIndex].staticGO.transform;
             GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
             PlayerAttackSpell shootedAttackSpellComponent = shootedSpell.GetComponent<PlayerAttackSpell>();
             float speedReduction = currentLevel.isMoving == false ? 0f : (_spellToShootSpeed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
@@ -103,12 +103,13 @@ namespace MageRunner.Player
             PlayerSpellsData.HighJump highJump = _player.spellsData.highJump;
             Action highJumpCast = () =>
             {
-                if (_player.jumpAvailable)
-                {
-                    _player.glideSpeed = highJump.glideSpeed;
-                    _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
-                    _player.stateHandler.EnableState(EPlayerState.HighJumping);
-                }
+                if (_player.highJumpAvailable == false || _player.stateHandler.isDashing)
+                    return;
+                
+                _player.glideSpeed = highJump.glideSpeed;
+                _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
+                _player.stateHandler.EnableState(EPlayerState.HighJumping);
+                _player.stateHandler.DisableState(EPlayerState.Blocking);
             };
             _basicSpellsDict.Add(highJump.gesture.id, highJumpCast);
        
@@ -116,26 +117,31 @@ namespace MageRunner.Player
             PlayerSpellsData.FastFall fastFall = _player.spellsData.fastFall;
             Action fastFallCast = () =>
             {
-                if (_player.groundCollider == null || _player.groundLayer != LayerMask.NameToLayer("BottomGround"))
-                {
-                    _player.stateHandler.EnableState(EPlayerState.FastFalling);
-                    _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
-
-                    if (_player.groundCollider == null)
-                        return;
+                if ((_player.groundCollider != null && _player.groundCollider.gameObject.layer == LayerMask.NameToLayer("BottomGround")) || _player.stateHandler.isDashing)
+                    return;
                 
-                    fastFallGroundCollider = _player.groundCollider;
-                    fastFallGroundCollider.enabled = false;
-                }
+                _player.stateHandler.EnableState(EPlayerState.FastFalling);
+                _player.stateHandler.DisableState(EPlayerState.Blocking);
+                _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
+
+                if (_player.groundCollider == null)
+                    return;
+            
+                fastFallGroundCollider = _player.groundCollider;
+                fastFallGroundCollider.enabled = false;
+                
             };
             _basicSpellsDict.Add(fastFall.gesture.id, fastFallCast);
 
             // Block
-            PlayerSpellsData.BaseSpell block = _player.spellsData.block;
+            PlayerSpellsData.Block block = _player.spellsData.block;
             Action blockCast = () =>
             {
-                if (_player.stateHandler.isBlocking == false)
-                    _player.stateHandler.EnableState(EPlayerState.Blocking);
+                if (_player.stateHandler.isBlocking)
+                    return;
+                
+                _player.stateHandler.EnableState(EPlayerState.Blocking);
+                _player.StartCoroutine(_player.Block(block.duration));
             };
             _basicSpellsDict.Add(block.gesture.id, blockCast);
 
@@ -144,6 +150,7 @@ namespace MageRunner.Player
             Action dashCast = () =>
             {
                 _player.stateHandler.EnableState(EPlayerState.Dashing);
+                _player.stateHandler.DisableState(EPlayerState.Blocking);
                 _player.StartCoroutine(_player.Dash(dash.duration, dash.speed));
             };
             _basicSpellsDict.Add(dash.gesture.id, dashCast);

@@ -16,6 +16,7 @@ MonoBehaviour:
     name: Block
     mana: 0
     gesture: {fileID: 11400000, guid: e649e6fab8712c545a7b8cdd3e8727f8, type: 2}
+    duration: 0.65
   dash:
     name: Dash
     mana: 0

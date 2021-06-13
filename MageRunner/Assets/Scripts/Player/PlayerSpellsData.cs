@@ -14,6 +14,8 @@ namespace MageRunner.Player
             public GesturePattern gesture;
         }
     
+        [System.Serializable] public class Block : BaseSpell { public float duration; }
+        
         [System.Serializable] public class Dash : BaseSpell { public float speed; public float duration; }
 
         [System.Serializable] public class HighJump : BaseSpell { public float jumpSpeed; public float glideSpeed; }
@@ -23,7 +25,7 @@ namespace MageRunner.Player
         [System.Serializable] public class AttackSpell : BaseSpell { public float speed; public GameObject spellObject; }
     
         [Header("Basic Spells")]
-        public BaseSpell block;
+        public Block block;
         public Dash dash;
         public HighJump highJump;
         public FastFall fastFall;

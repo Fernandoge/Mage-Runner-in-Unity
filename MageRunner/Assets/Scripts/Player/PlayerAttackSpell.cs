@@ -59,7 +59,7 @@ namespace MageRunner.Player
                 if (particle.gameObject.activeSelf == false)
                     particle.gameObject.SetActive(true);
             
-                particle.transform.SetParent(null);
+                particle.transform.SetParent(transform.parent);
                 Destroy(particle.gameObject, particle.main.startLifetimeMultiplier);
                 if (particle.main.loop)
                     particle.Stop();

@@ -2,7 +2,8 @@
 {
     public enum EPlayerState
     {
-        Jumping,
+        GroundJumping,
+        AirJumping,
         FastFalling,
         Running,
         Dashing,

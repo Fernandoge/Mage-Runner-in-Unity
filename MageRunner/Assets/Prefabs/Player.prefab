@@ -263,15 +263,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalHealthpoints: 10
   _totalMana: 100
-  _jumpTime: 0.35
-  jumpForce: 6
+  groundJumpForce: 9.2
+  airJumpForce: 10
   spellShooter: {fileID: 7353611008853207079}
   healthController: {fileID: 0}
   manaController: {fileID: 0}
   companionChatBubble: {fileID: 5978244052572040016}
   spellsData: {fileID: 11400000, guid: d20b2bcbd62bddc438394bc11669edf1, type: 2}
+  jumpButton: {fileID: 0}
   _feetPos: {fileID: 7747460471598273605}
-  _jumpButton: {fileID: 0}
 --- !u!95 &130733842
 Animator:
   serializedVersion: 3
