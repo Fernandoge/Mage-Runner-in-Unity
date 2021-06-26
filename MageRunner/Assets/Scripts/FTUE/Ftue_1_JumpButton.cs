@@ -2,13 +2,14 @@
 using MageRunner.Managers.FtueManager;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MageRunner.FTUE
 {
-    public class FtueJumpButton : FtueSection
+    public class Ftue_1_JumpButton : FtueSection
     {
-        [SerializeField] private Selectable _ftueJumpButton;
+        [SerializeField] private Button _ftueJumpButton;
         [SerializeField] private DialogueController _firstStepDialogue;
 
         // Dialogue to start FTUE
@@ -20,6 +21,7 @@ namespace MageRunner.FTUE
         {
             FtueManager.Instance.ftuePanel.SetActive(true);
             _ftueJumpButton.gameObject.SetActive(true);
+            _ftueJumpButton.onClick.AddListener(ThirdStep);
             _ftueJumpButton.transform.SetParent(FtueManager.Instance.ftuePanel.transform); 
         }
 
@@ -31,6 +33,7 @@ namespace MageRunner.FTUE
             GameManager.Instance.player.companionChatBubble.ForceClose();
             FtueManager.Instance.ftuePanel.SetActive(false);
             _ftueJumpButton.gameObject.SetActive(false);
+            _ftueJumpButton.onClick.RemoveListener(ThirdStep);
             
             GameManager.Instance.player.Jump();
             

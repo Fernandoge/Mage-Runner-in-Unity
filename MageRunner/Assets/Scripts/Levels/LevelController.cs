@@ -39,7 +39,7 @@ namespace MageRunner.Levels
         {
             InitializeGesturesHolders();
             GameManager.Instance.player.transform.SetParent(movingObjects);
-            Camera mainCamera = UnityEngine.Camera.main;
+            Camera mainCamera = Camera.main;
             mainCamera.GetComponent<CameraController>().ScaleLevelCamera(transform);
             mainCamera.transform.SetParent(movingObjects);
         } 

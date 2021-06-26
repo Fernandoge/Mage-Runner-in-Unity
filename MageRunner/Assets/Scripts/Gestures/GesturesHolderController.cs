@@ -96,7 +96,7 @@ namespace MageRunner.Gestures
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
                 if (hit.collider?.transform == transform)
                 {

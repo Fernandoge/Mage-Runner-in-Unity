@@ -389,18 +389,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &665573046 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1189295543595475687, guid: a40f68619b360a7489b5ac2f764ed991,
-    type: 3}
-  m_PrefabInstance: {fileID: 8088917236104284712}
+--- !u!1 &578547625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 578547626}
+  - component: {fileID: 578547627}
+  m_Layer: 0
+  m_Name: FTUE 2 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &578547626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578547625}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 915679389}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &578547627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578547625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: Here comes a bigger jump
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+    - text: Tap the Jump button in the air to do an Air Jump!
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!114 &736003011 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9083924134055926145, guid: a40f68619b360a7489b5ac2f764ed991,
@@ -456,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa40f78a646c1bf4689f7abe9aca6f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _level: {fileID: 490690312840728425, guid: efaf9c79dab10b44ea30f077071b55cb, type: 3}
+  _level: {fileID: 490690312840728425, guid: a2061c906d57eb5418a8997bd365ec8e, type: 3}
 --- !u!1001 &860755712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,9 +700,8 @@ GameObject:
   m_Component:
   - component: {fileID: 915679389}
   - component: {fileID: 915679391}
-  - component: {fileID: 915679390}
   m_Layer: 0
-  m_Name: '[2] Hold Jump FTUE'
+  m_Name: '[2] Double Jump FTUE'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,44 +717,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 578547626}
   m_Father: {fileID: 1462247415}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &915679390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915679388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueSections:
-  - isCompanionChatBubble: 1
-    chatBubble: {fileID: 0}
-    messages:
-    - text: Here comes a bigger jump
-      secondsToStart: 0
-      secondsToContinue: 1.2
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
-    - text: 'Hold it to jump higher :thumbsup:'
-      secondsToStart: 0
-      secondsToContinue: 0
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
 --- !u!114 &915679391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FtueID: 2
-  _firstStepDialogue: {fileID: 915679390}
+  _firstStepDialogue: {fileID: 578547627}
 --- !u!1 &1202645790
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +746,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1202645791}
   - component: {fileID: 1202645793}
-  - component: {fileID: 1202645792}
   m_Layer: 0
   m_Name: '[1] Jump Button FTUE'
   m_TagString: Untagged
@@ -745,56 +763,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1993025465}
   m_Father: {fileID: 1462247415}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1202645792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202645790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueSections:
-  - isCompanionChatBubble: 1
-    chatBubble: {fileID: 0}
-    messages:
-    - text: <rainb> <shake> oh no
-      secondsToStart: 0
-      secondsToContinue: 1
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 1
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
-    - text: Remember how to jumpfghfgh?
-      secondsToStart: 0
-      secondsToContinue: 0
-      waitForAction: 1
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1202645793}
-            m_TargetAssemblyTypeName: MageRunner.FTUE.FtueOne, Assembly-CSharp
-            m_MethodName: SecondStep
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!114 &1202645793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,8 +781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FtueID: 1
-  _ftueJumpButton: {fileID: 665573046}
-  _firstStepDialogue: {fileID: 1202645792}
+  _ftueJumpButton: {fileID: 1605908562}
+  _firstStepDialogue: {fileID: 1993025466}
 --- !u!224 &1253226945 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9083924134956403228, guid: a40f68619b360a7489b5ac2f764ed991,
@@ -911,6 +884,7 @@ Transform:
   m_Children:
   - {fileID: 1202645791}
   - {fileID: 915679389}
+  - {fileID: 2106722647}
   m_Father: {fileID: 2118329892}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -962,6 +936,144 @@ MonoBehaviour:
   targetWidth: 1920
   pixelsToUnits: 67.5
   bottomPanel: {fileID: 1337814200}
+--- !u!1 &1568459604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1568459605}
+  - component: {fileID: 1568459606}
+  m_Layer: 0
+  m_Name: FTUE 3 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1568459605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568459604}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2106722647}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568459606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568459604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: If you fall from a platform, you can still do an Air Jump
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+    - text: You can fall on purpose to dodge obstacles like the one ahead
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+--- !u!1 &1605908557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6838335535703769626, guid: a40f68619b360a7489b5ac2f764ed991,
+    type: 3}
+  m_PrefabInstance: {fileID: 8088917236104284712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1605908558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7826831131912906727, guid: a40f68619b360a7489b5ac2f764ed991,
+    type: 3}
+  m_PrefabInstance: {fileID: 8088917236104284712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605908557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1605908559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605908557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1605908558}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1605908562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5633966002047621380, guid: a40f68619b360a7489b5ac2f764ed991,
+    type: 3}
+  m_PrefabInstance: {fileID: 8088917236104284712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605908557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1613751019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4954044649379433184, guid: b75cf3a701898b942be981795f985142,
@@ -1149,6 +1261,158 @@ Transform:
   m_Father: {fileID: 2118329892}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1993025464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1993025465}
+  - component: {fileID: 1993025466}
+  m_Layer: 0
+  m_Name: FTUE 1 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1993025465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993025464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1202645791}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1993025466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993025464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: <rainb> <shake> oh no
+      secondsToStart: 0
+      secondsToContinue: 1
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 1
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+    - text: Remember how to jump?
+      secondsToStart: 0
+      secondsToContinue: 0
+      waitForAction: 1
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1202645793}
+            m_TargetAssemblyTypeName: MageRunner.FTUE.FtueOne, Assembly-CSharp
+            m_MethodName: SecondStep
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+--- !u!1 &2106722646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2106722647}
+  - component: {fileID: 2106722649}
+  - component: {fileID: 2106722650}
+  m_Layer: 0
+  m_Name: '[3] Air Jump FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2106722647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106722646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1568459605}
+  m_Father: {fileID: 1462247415}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106722649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106722646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7575db2748f231f4eaff6b7b93ed0f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 3
+  _jumpButton: {fileID: 736003011}
+  _ftueJumpButton: {fileID: 1605908562}
+  _firstStepDialogue: {fileID: 1568459606}
+--- !u!61 &2106722650
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106722646}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 188.36, y: -5.76}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.84, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2118329891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1597,16 @@ PrefabInstance:
     - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
@@ -1373,12 +1647,52 @@ PrefabInstance:
     - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ThirdStep
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].eventID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1202645793}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MageRunner.FTUE.FtueOne, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ThirdStep
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4313805529934697078, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
@@ -1678,10 +1992,12 @@ PrefabInstance:
     - target: {fileID: 9083924135692321031, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -866.00006
+      value: -866
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7863934010258472973, guid: a40f68619b360a7489b5ac2f764ed991, type: 3}
+    - {fileID: 3419540557264373911, guid: a40f68619b360a7489b5ac2f764ed991, type: 3}
+    - {fileID: 1189295543595475687, guid: a40f68619b360a7489b5ac2f764ed991, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a40f68619b360a7489b5ac2f764ed991, type: 3}
 --- !u!114 &8088917236104284713 stripped
 MonoBehaviour:

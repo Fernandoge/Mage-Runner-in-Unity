@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MageRunner.FTUE
 {
-    public class FtueHoldJump : FtueSection
+    public class Ftue_2_DoubleJump : FtueSection
     { 
         [SerializeField] private DialogueController _firstStepDialogue;
 

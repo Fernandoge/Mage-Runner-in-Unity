@@ -263,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalHealthpoints: 10
   _totalMana: 100
-  groundJumpForce: 9.2
+  groundJumpForce: 9.5
   airJumpForce: 10
   spellShooter: {fileID: 7353611008853207079}
   healthController: {fileID: 0}

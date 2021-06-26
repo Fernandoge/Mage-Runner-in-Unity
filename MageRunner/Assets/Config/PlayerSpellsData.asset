@@ -27,7 +27,7 @@ MonoBehaviour:
     name: High Jump
     mana: 0
     gesture: {fileID: 11400000, guid: 2b58f08faca317f4b90b42f73e9a858a, type: 2}
-    jumpSpeed: 20
+    jumpSpeed: 18.5
     glideSpeed: 2.5
   fastFall:
     name: Fast Fall
