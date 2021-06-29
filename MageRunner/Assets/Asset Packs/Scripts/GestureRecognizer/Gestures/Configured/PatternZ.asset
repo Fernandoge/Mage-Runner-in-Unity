@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PatternZ
   m_EditorClassIdentifier: 
   id: Z
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 12b85b67217456f4bbd60a3e48b58d93, type: 3}
   points: []
   gesture:
     lines:

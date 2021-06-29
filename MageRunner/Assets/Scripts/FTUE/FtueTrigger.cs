@@ -1,18 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using MageRunner.Managers.FtueManager;
-using MageRunner.Managers.GameManager;
+﻿using MageRunner.Managers.FtueManager;
 using UnityEngine;
 
-public class FtueTrigger : MonoBehaviour
+namespace MageRunner.FTUE
 {
-    [SerializeField] private int _ftueNumber;
-    
-    private void OnTriggerEnter2D(Collider2D col)
+    public class FtueTrigger : MonoBehaviour
     {
-        if (col.gameObject.layer != LayerMask.NameToLayer("Player")) 
-            return;
+        [SerializeField] private int _ftueNumber;
+    
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.layer != LayerMask.NameToLayer("Player")) 
+                return;
         
-        FtueManager.Instance.StartFtue(_ftueNumber);
+            FtueManager.Instance.StartFtue(_ftueNumber);
+        }
     }
 }

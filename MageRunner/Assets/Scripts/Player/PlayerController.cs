@@ -4,7 +4,6 @@ using MageRunner.Combat;
 using MageRunner.Dialogues;
 using MageRunner.Levels;
 using MageRunner.Managers.GameManager;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.UI;
 

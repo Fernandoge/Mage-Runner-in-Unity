@@ -73,7 +73,7 @@ namespace MageRunner.Gestures
             foreach (Gesture gesture in gestures)
             {
                 activeGestures += 1;
-                GameManager.Instance.activeGestures.Add(gesture);
+                GameManager.Instance.AddGesture(gesture);
             }
         }
 
@@ -81,8 +81,8 @@ namespace MageRunner.Gestures
         {
             foreach (Gesture gesture in gestures)
             {
-                GameManager.Instance.activeGestures.Remove(gesture);
                 gesture.iconRenderer.gameObject.SetActive(false);
+                GameManager.Instance.RemoveGesture(gesture);
             }
         }
 

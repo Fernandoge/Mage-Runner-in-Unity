@@ -37,20 +37,15 @@ namespace MageRunner.Player
             else
             {
                 bool gestureFound = false;
-                List<GameObject> gesturesHoldersTargeted = new List<GameObject>();
-                foreach (Gesture gesture in GameManager.Instance.activeGestures.ToArray())
+                foreach (Gesture gesture in GameManager.Instance.activeGestures.ToList())
                 {
                     if (gesture.pattern.id == id)
                     {
-                        if (gesturesHoldersTargeted.Contains(gesture.holder))
-                            continue;
-                    
                         gestureFound = true;
                         gesture.iconRenderer.gameObject.SetActive(false);
                         _targetedGesturesHolder = gesture.holder;
-                        GameManager.Instance.activeGestures.Remove(gesture);
-                    
-                        gesturesHoldersTargeted.Add(_targetedGesturesHolder);
+                        GameManager.Instance.RemoveGesture(gesture);
+                        
                         _spellsDict[gesture.spell]();
                     }
                 }

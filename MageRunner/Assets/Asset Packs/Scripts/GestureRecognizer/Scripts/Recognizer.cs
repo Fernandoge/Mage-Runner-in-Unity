@@ -1,10 +1,12 @@
 ﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Threading;
+using MageRunner.Managers.GameManager;
 
 namespace GestureRecognizer
 {
@@ -91,7 +93,6 @@ namespace GestureRecognizer
 
         public RecognitionResult Recognize(GestureData data, bool normalizeScale = true)
         {
-
             var timer = new System.Diagnostics.Stopwatch();
             timer.Start();
 
