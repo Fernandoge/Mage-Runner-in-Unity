@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce0fdb4e39b5744abf0c061bd2a3e30, type: 3}
-  m_Name: PatternLightning
+  m_Name: PatternZ
   m_EditorClassIdentifier: 
-  id: lightning
+  id: Z
+  icon: {fileID: 0}
   points: []
   gesture:
     lines:
     - points:
-      - {x: 0.6875, y: 1}
-      - {x: 0.3125, y: 0.6875}
-      - {x: 0.6875, y: 0.3125}
-      - {x: 0.3125, y: 0}
+      - {x: 0.1875, y: 0.875}
+      - {x: 0.8125, y: 0.875}
+      - {x: 0.1875, y: 0.125}
+      - {x: 0.8125, y: 0.125}
       closedLine: 0
   useLinesOrder: 0
-  useLinesDirections: 1
+  useLinesDirections: 0

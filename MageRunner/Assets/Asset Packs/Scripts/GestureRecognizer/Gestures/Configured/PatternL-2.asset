@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce0fdb4e39b5744abf0c061bd2a3e30, type: 3}
-  m_Name: PatternFireball
+  m_Name: PatternL-2
   m_EditorClassIdentifier: 
-  id: fireball
-  icon: {fileID: 21300000, guid: 1801b6bf080d7174f96683772e02835e, type: 3}
+  id: L-2
+  icon: {fileID: 21300000, guid: ade9ef764e8aac149a80b380fb2625b8, type: 3}
   points: []
   gesture:
     lines:
     - points:
-      - {x: 0.25, y: 0.75}
-      - {x: 0.75, y: 0.75}
+      - {x: 0.25, y: 0.25}
       - {x: 0.75, y: 0.25}
+      - {x: 0.75, y: 0.75}
       closedLine: 0
   useLinesOrder: 0
-  useLinesDirections: 1
+  useLinesDirections: 0

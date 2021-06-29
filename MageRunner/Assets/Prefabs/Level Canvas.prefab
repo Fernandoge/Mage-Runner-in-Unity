@@ -4455,7 +4455,7 @@ MonoBehaviour:
   LineList: 1
   LineCaps: 1
   LineJoins: 0
-  pattern: {fileID: 11400000, guid: 7b0c0d1df8254f841beebc618b46794d, type: 2}
+  pattern: {fileID: 0}
   endingSize: 0
 --- !u!1 &9083924134097904382
 GameObject:
@@ -8141,22 +8141,13 @@ MonoBehaviour:
   patterns:
   - {fileID: 11400000, guid: e649e6fab8712c545a7b8cdd3e8727f8, type: 2}
   - {fileID: 11400000, guid: af6276b59495c184f810b6e19d448224, type: 2}
-  - {fileID: 11400000, guid: cbccc0b68799fba47835f8666ba7b400, type: 2}
   - {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
   - {fileID: 11400000, guid: 1ce29c33de90fe24ea879fdcae633676, type: 2}
-  - {fileID: 11400000, guid: a288721a576008d48a2d9fca588eb72c, type: 2}
   - {fileID: 11400000, guid: 2b58f08faca317f4b90b42f73e9a858a, type: 2}
   - {fileID: 11400000, guid: dc95a3d1c6178a24b96968618071c660, type: 2}
-  - {fileID: 11400000, guid: f6454d9aaf240e64d9102606adb791aa, type: 2}
   - {fileID: 11400000, guid: b97eaa9d4cf084946a4cdddceb3135a2, type: 2}
-  - {fileID: 11400000, guid: 686755ba1cf86a34999c3b6bfca91540, type: 2}
-  - {fileID: 11400000, guid: 7b0c0d1df8254f841beebc618b46794d, type: 2}
-  - {fileID: 11400000, guid: b73f1eea818fa12459a986dc29f0a3ab, type: 2}
   - {fileID: 11400000, guid: fba0ef350e4b9d94d8e580ab62b0bc9c, type: 2}
-  - {fileID: 11400000, guid: 207b06fec1da9f345878611ef88859ae, type: 2}
-  - {fileID: 11400000, guid: 26331e3f38589b9478bd28b6558fec97, type: 2}
   - {fileID: 11400000, guid: c402e576db321c94f95fca53a06ebb8e, type: 2}
-  - {fileID: 11400000, guid: 6c21b965ae4f3974f8830cf3dea16e66, type: 2}
 --- !u!1 &9083924135256083049
 GameObject:
   m_ObjectHideFlags: 0

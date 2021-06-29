@@ -130,15 +130,19 @@ namespace MageRunner.Levels
         {
             foreach (TimeFrame timeframe in GameManager.Instance.level.timeFrames)
             {
-                List<GesturesHolderController> currentTimeFrameGesturesHolder = new List<GesturesHolderController>();
-                currentTimeFrameGesturesHolder.AddRange(timeframe.movingGO.GetComponentsInChildren<GesturesHolderController>());
-                currentTimeFrameGesturesHolder.AddRange(timeframe.staticGO.GetComponentsInChildren<GesturesHolderController>());
-                currentTimeFrameGesturesHolder = currentTimeFrameGesturesHolder.OrderBy(gesturesHolder => gesturesHolder.transform.position.x).ToList();
-            
-                foreach (GesturesHolderController gesturesHolder in currentTimeFrameGesturesHolder)
+                List<GesturesHolderController> currentTimeFrameGesturesHolders = new List<GesturesHolderController>();
+                currentTimeFrameGesturesHolders.AddRange(timeframe.movingGO.GetComponentsInChildren<GesturesHolderController>());
+                currentTimeFrameGesturesHolders.AddRange(timeframe.staticGO.GetComponentsInChildren<GesturesHolderController>());
+                currentTimeFrameGesturesHolders = currentTimeFrameGesturesHolders.OrderBy(gesturesHolder => gesturesHolder.transform.position.x).ToList();
+
+                foreach (GesturesHolderController gesturesHolder in currentTimeFrameGesturesHolders)
+                {
                     gesturesHolder.gameObject.SetActive(false);
+                    gesturesHolder.FindGesturesHoldersNear(currentTimeFrameGesturesHolders);
+                    gesturesHolder.LoadGestures();
+                }
             
-                _timeFramesGesturesHolders.Add(currentTimeFrameGesturesHolder);
+                _timeFramesGesturesHolders.Add(currentTimeFrameGesturesHolders);
             }
 
             _gesturesHolders = _timeFramesGesturesHolders[0];

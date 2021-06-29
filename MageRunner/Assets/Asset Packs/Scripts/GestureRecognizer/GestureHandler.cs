@@ -37,7 +37,7 @@ public class GestureHandler : MonoBehaviour {
 		detector.ClearLines();
 		if (result != RecognitionResult.Empty) {
 			textResult.text = result.gesture.id + "\n" + Mathf.RoundToInt (result.score.score * 100) + "%" + "\n" + string.Format("{0:0.000}s", result.recognitionTime);
-			StartCoroutine (Blink (result.gesture.id));
+			// StartCoroutine (Blink (result.gesture.id));
 			player.BeginCastingSpell(result.gesture.id);
 		} else {
 			textResult.text = "?";

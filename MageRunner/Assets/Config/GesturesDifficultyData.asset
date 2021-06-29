@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: GesturesDifficultyData
   m_EditorClassIdentifier: 
   easy:
+  - {fileID: 11400000, guid: dc95a3d1c6178a24b96968618071c660, type: 2}
   - {fileID: 11400000, guid: 1ce29c33de90fe24ea879fdcae633676, type: 2}
-  - {fileID: 11400000, guid: 7b0c0d1df8254f841beebc618b46794d, type: 2}
+  - {fileID: 11400000, guid: c402e576db321c94f95fca53a06ebb8e, type: 2}
+  - {fileID: 11400000, guid: af6276b59495c184f810b6e19d448224, type: 2}
+  - {fileID: 11400000, guid: b97eaa9d4cf084946a4cdddceb3135a2, type: 2}
+  - {fileID: 11400000, guid: d17ca6f4a7c931546b3462e1472e44b9, type: 2}
   medium: []

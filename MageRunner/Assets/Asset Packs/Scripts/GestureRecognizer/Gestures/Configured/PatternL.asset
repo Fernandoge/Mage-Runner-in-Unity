@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce0fdb4e39b5744abf0c061bd2a3e30, type: 3}
-  m_Name: PatternEarth
+  m_Name: PatternL
   m_EditorClassIdentifier: 
-  id: earth
+  id: L
+  icon: {fileID: 21300000, guid: d3e111a7274ebfb46b27bb791cb9066f, type: 3}
   points: []
   gesture:
     lines:
@@ -22,4 +23,4 @@ MonoBehaviour:
       - {x: 0.75, y: 0.25}
       closedLine: 0
   useLinesOrder: 0
-  useLinesDirections: 1
+  useLinesDirections: 0

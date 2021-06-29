@@ -10,22 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce0fdb4e39b5744abf0c061bd2a3e30, type: 3}
-  m_Name: PatternWater
+  m_Name: PatternLightning
   m_EditorClassIdentifier: 
-  id: water
+  id: Lightning
+  icon: {fileID: 21300000, guid: 7c7d3ee4cbae4cb4c9f8d1f3a1302e88, type: 3}
   points: []
   gesture:
     lines:
     - points:
-      - {x: 0.48756218, y: 0.74129355}
-      - {x: 0.45273632, y: 0.6318408}
-      - {x: 0.3233831, y: 0.39800996}
-      - {x: 0.31840795, y: 0.2835821}
-      - {x: 0.41293532, y: 0.20895523}
-      - {x: 0.54228854, y: 0.20895523}
-      - {x: 0.6169154, y: 0.27860695}
-      - {x: 0.6119403, y: 0.39800996}
-      - {x: 0.5074627, y: 0.70149255}
+      - {x: 0.6875, y: 1}
+      - {x: 0.3125, y: 0.6875}
+      - {x: 0.6875, y: 0.3125}
+      - {x: 0.3125, y: 0}
       closedLine: 0
   useLinesOrder: 0
-  useLinesDirections: 1
+  useLinesDirections: 0
