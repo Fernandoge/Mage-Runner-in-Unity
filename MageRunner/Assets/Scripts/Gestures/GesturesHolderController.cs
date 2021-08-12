@@ -20,6 +20,7 @@ namespace MageRunner.Gestures
 
         private float _currentHealthpoints;
         private float _distanceBetweenPlayerX;
+        private bool _isBehindThePlayer;
         private List<GesturesHolderController> _gesturesHoldersNear = new List<GesturesHolderController>();
 
         public GesturesDifficultyData gesturesDifficultyDataModified;
@@ -34,18 +35,23 @@ namespace MageRunner.Gestures
                 GameManager.Instance.level.StopLooping();
         }
 
-        protected virtual void Awake()
+        private void OnBecameInvisible()
         {
-            _currentHealthpoints = _healthpoints;
-            
+            if (_isBehindThePlayer)
+                gameObject.SetActive(false);
         }
+
+        protected void Awake() => _currentHealthpoints = _healthpoints;
 
         private void Update()
         {
             _distanceBetweenPlayerX = transform.position.x - GameManager.Instance.player.transform.position.x;
 
-            if (_distanceBetweenPlayerX < -0.5)
+            if (_distanceBetweenPlayerX < -0.5 && _isBehindThePlayer == false)
+            {
+                _isBehindThePlayer = true;
                 DeactivateGestures();
+            }
         
 #if UNITY_EDITOR
             DebugDistanceOnClick();
@@ -54,16 +60,18 @@ namespace MageRunner.Gestures
 
         public void LoadGestures()
         {
+            activeGestures = 0;
             gesturesDifficultyDataModified = RemoveNearGesturesFromData();
 
             foreach (Gesture gesture in gestures.ToArray())
             {
                 gestures.Remove(gesture);
+                gesture.iconRenderer.gameObject.SetActive(true);
                 GesturePattern pattern = PickRandomGesture(gesture.difficulty, gesturesDifficultyDataModified);
                 gesture.iconRenderer.sprite = pattern.icon;
                 Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, gameObject, false);
 
-                RemoveGestureFromData(loadedGesture, gesturesDifficultyDataModified);
+                RemoveGestureFromData(loadedGesture, gesturesDifficultyDataModified); ;
                 gestures.Add(loadedGesture);
             }
         }
@@ -85,6 +93,7 @@ namespace MageRunner.Gestures
                 GameManager.Instance.RemoveGesture(gesture);
             }
         }
+        
 
         public void FindGesturesHoldersNear(List<GesturesHolderController> timeFrameGesturesHolders)
         {

@@ -13,12 +13,19 @@ namespace MageRunner.FTUE
         [SerializeField] private DialogueController _firstStepDialogue;
 
         // Dialogue to start FTUE
-        public override void FirstStep() => _firstStepDialogue.StartDialogue();
+        public override void FirstStep()
+        {
+            GameManager.Instance.ToggleCinematicMode(true);
+            _firstStepDialogue.StartDialogue();
+        }
+        
+
 
         // Highlighting jump button and activating the FTUE hand
         // Called in the last message of FirstStep dialogue
         public void SecondStep()
         {
+            GameManager.Instance.ToggleCinematicMode(false);
             FtueManager.Instance.ftuePanel.SetActive(true);
             _ftueJumpButton.gameObject.SetActive(true);
             _ftueJumpButton.onClick.AddListener(ThirdStep);

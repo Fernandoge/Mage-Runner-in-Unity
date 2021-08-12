@@ -8,14 +8,13 @@ namespace MageRunner.FTUE
 {
     public class Ftue_3_AirJump : FtueSection
     {
-        [SerializeField] private Selectable _jumpButton;
         [SerializeField] private Button _ftueJumpButton;
         [SerializeField] private DialogueController _firstStepDialogue;
         
         // Dialogue to start FTUE
         public override void FirstStep()
         {
-            _jumpButton.gameObject.SetActive(false);
+            GameManager.Instance.ToggleCinematicMode(true);
             _firstStepDialogue.StartDialogue();
         }
         
@@ -34,9 +33,9 @@ namespace MageRunner.FTUE
         public void ThirdStep()
         {
             Time.timeScale = 1;
+            GameManager.Instance.ToggleCinematicMode(false);
             FtueManager.Instance.ftuePanel.SetActive(false);
             _ftueJumpButton.onClick.RemoveListener(ThirdStep);
-            _jumpButton.gameObject.SetActive(true);
             
             GameManager.Instance.player.Jump();
             

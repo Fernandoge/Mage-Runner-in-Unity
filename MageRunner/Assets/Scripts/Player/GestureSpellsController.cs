@@ -13,7 +13,6 @@ namespace MageRunner.Player
         public Collider2D fastFallGroundCollider;
 
         private string[] _basicSpellsIds = {"highJump", "fastFall", "dash", "block"};
-        private Dictionary<string, Action> _basicSpellsDict = new Dictionary<string, Action>();
         private Dictionary<EPlayerSpells, Action> _spellsDict = new Dictionary<EPlayerSpells, Action>();
         private EAttackSpellType _spellToShootType;
         private Vector3 _playerShooterSpellOriginalPos;
@@ -21,6 +20,8 @@ namespace MageRunner.Player
         private PlayerController _player;
         private GameObject _spellToShoot;
         private float _spellToShootSpeed;
+        
+        public Dictionary<string, Action> basicSpellsDict = new Dictionary<string, Action>();
 
         public GestureSpellsController(PlayerController player)
         {
@@ -32,7 +33,7 @@ namespace MageRunner.Player
         public void CastSpell(string id)
         {
             if (_basicSpellsIds.Contains(id))
-                _basicSpellsDict[id]();
+                basicSpellsDict[id]();
         
             else
             {
@@ -106,7 +107,7 @@ namespace MageRunner.Player
                 _player.stateHandler.EnableState(EPlayerState.HighJumping);
                 _player.stateHandler.DisableState(EPlayerState.Blocking);
             };
-            _basicSpellsDict.Add(highJump.gesture.id, highJumpCast);
+            basicSpellsDict.Add(highJump.gesture.id, highJumpCast);
        
             // Fast Fall
             PlayerSpellsData.FastFall fastFall = _player.spellsData.fastFall;
@@ -126,7 +127,7 @@ namespace MageRunner.Player
                 fastFallGroundCollider.enabled = false;
                 
             };
-            _basicSpellsDict.Add(fastFall.gesture.id, fastFallCast);
+            basicSpellsDict.Add(fastFall.gesture.id, fastFallCast);
 
             // Block
             PlayerSpellsData.Block block = _player.spellsData.block;
@@ -138,7 +139,7 @@ namespace MageRunner.Player
                 _player.stateHandler.EnableState(EPlayerState.Blocking);
                 _player.StartCoroutine(_player.Block(block.duration));
             };
-            _basicSpellsDict.Add(block.gesture.id, blockCast);
+            basicSpellsDict.Add(block.gesture.id, blockCast);
 
             // Dash
             PlayerSpellsData.Dash dash = _player.spellsData.dash;
@@ -148,7 +149,7 @@ namespace MageRunner.Player
                 _player.stateHandler.DisableState(EPlayerState.Blocking);
                 _player.StartCoroutine(_player.Dash(dash.duration, dash.speed));
             };
-            _basicSpellsDict.Add(dash.gesture.id, dashCast);
+            basicSpellsDict.Add(dash.gesture.id, dashCast);
         }
     
         private Action GetSpellData(EPlayerSpells playerSpell)

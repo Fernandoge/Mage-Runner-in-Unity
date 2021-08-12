@@ -19,19 +19,20 @@ namespace MageRunner.Levels
         [NonSerialized] public List<MovingBG> movingBgs = new List<MovingBG>();
         [NonSerialized] public List<MovingParticles> movingParticles = new List<MovingParticles>();
         [NonSerialized] public bool isMoving;
-    
+        [NonSerialized] public CheckpointController currentCheckpoint;
+
         [SerializeField] private List<RepeatingSegment> _repeatingSegments;
 
         private int _currency;
         private bool _looping;
         private float _repeatingStartX;
         private float _repeatingEndX;
-        private List<List<GesturesHolderController>> _timeFramesGesturesHolders = new List<List<GesturesHolderController>>();
-        private List<GesturesHolderController> _gesturesHolders = new List<GesturesHolderController>();
-        private int _currentGesturesHolderIndex;
+        private readonly List<List<GesturesHolderController>> _timeFramesGesturesHolders = new List<List<GesturesHolderController>>();
         private float _distanceBetweenPlayerX;
 
+        public List<GesturesHolderController> gesturesHolders { get; private set; } = new List<GesturesHolderController>();
         public int currentTimeFrameIndex { get; private set; }
+        public  int currentGesturesHolderIndex { get; private set; }
 
         private void Awake() => GameManager.Instance.level = this;
 
@@ -61,19 +62,25 @@ namespace MageRunner.Levels
             }
         
             // Gestures holders activation
-            if (_currentGesturesHolderIndex == _gesturesHolders.Count)
+            if (currentGesturesHolderIndex == gesturesHolders.Count)
                 return;
         
-            GesturesHolderController currentGesturesHolder = _gesturesHolders[_currentGesturesHolderIndex];
+            ActivateNextGesturesHolder();
+        }
+
+        private void ActivateNextGesturesHolder()
+        {
+            GesturesHolderController currentGesturesHolder = gesturesHolders[currentGesturesHolderIndex];
             _distanceBetweenPlayerX = currentGesturesHolder.transform.position.x - GameManager.Instance.player.transform.position.x;
-            if (_distanceBetweenPlayerX <= currentGesturesHolder.distanceToSpawn)
-            {
-                currentGesturesHolder.gameObject.SetActive(true);
-                currentGesturesHolder.ActivateGestures();
-                _currentGesturesHolderIndex += 1;
-                // if (currentEnemy.enablesLevelLoop)
-                //     GameManager.Instance.level.StartLooping();
-            }
+            
+            if (_distanceBetweenPlayerX > currentGesturesHolder.distanceToSpawn) 
+                return;
+            
+            currentGesturesHolder.gameObject.SetActive(true);
+            currentGesturesHolder.ActivateGestures();
+            currentGesturesHolderIndex += 1;
+            // if (currentEnemy.enablesLevelLoop)
+            //     GameManager.Instance.level.StartLooping();
         }
 
         public void EnableMovement()
@@ -109,8 +116,17 @@ namespace MageRunner.Levels
     
         public void ResetLevel()
         {
-            Scene currentScene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(currentScene.name);
+            if (currentCheckpoint == null)
+            {
+                Scene currentScene = SceneManager.GetActiveScene(); 
+                SceneManager.LoadScene(currentScene.name);
+            }
+            else
+            {
+                currentCheckpoint.SpawnPlayerInCheckpoint();
+                currentGesturesHolderIndex = 0;
+            }
+            
         }
 
         public void ChangeTimeFrame()
@@ -145,13 +161,13 @@ namespace MageRunner.Levels
                 _timeFramesGesturesHolders.Add(currentTimeFrameGesturesHolders);
             }
 
-            _gesturesHolders = _timeFramesGesturesHolders[0];
+            gesturesHolders = _timeFramesGesturesHolders[0];
         }
     
         private void ChangeGesturesHoldersList()
         {
-            _gesturesHolders = _timeFramesGesturesHolders[GameManager.Instance.level.currentTimeFrameIndex];
-            _currentGesturesHolderIndex = 0;
+            gesturesHolders = _timeFramesGesturesHolders[GameManager.Instance.level.currentTimeFrameIndex];
+            currentGesturesHolderIndex = 0;
         }
     }
 }

@@ -42,13 +42,12 @@ namespace MageRunner.Player
             {
                 Destroy(gameObject);
                 GesturesHolderController gesturesHolderController = collider.GetComponent<GesturesHolderController>();
-            
-                if (gesturesHolderController == null) 
-                    return;
-            
                 gesturesHolderController.activeGestures -= 1;
-                if (gesturesHolderController.activeGestures == 0)
-                    collider.gameObject.SetActive(false);
+                
+                if (gesturesHolderController.activeGestures != 0) 
+                    return;
+                
+                gesturesHolderController.gameObject.SetActive(false);
             }
         }
 

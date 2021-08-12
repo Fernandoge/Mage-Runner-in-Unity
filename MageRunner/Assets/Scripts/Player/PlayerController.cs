@@ -40,14 +40,15 @@ namespace MageRunner.Player
         
         private Camera _mainCamera;
         private LayerMask _notGroundLayerMask;
-        private GestureSpellsController _gestureSpellsController;
-    
+        
+        public GestureSpellsController gestureSpellsController { get; private set; }
+
         private void Start()
         {
             GameManager.Instance.player = this;
             _mainCamera = Camera.main;
             stateHandler = new PlayerStateHandler(this);
-            _gestureSpellsController = new GestureSpellsController(this);
+            gestureSpellsController = new GestureSpellsController(this);
             healthController.Initialize(_totalHealthpoints);
             manaController.Initialize(_totalMana);
             animator = GetComponent<Animator>();
@@ -81,8 +82,8 @@ namespace MageRunner.Player
 
         public void Running()
         {
-            if (_gestureSpellsController.fastFallGroundCollider?.enabled == false)
-                _gestureSpellsController.fastFallGroundCollider.enabled = true;
+            if (gestureSpellsController.fastFallGroundCollider?.enabled == false)
+                gestureSpellsController.fastFallGroundCollider.enabled = true;
 
             stateHandler.EnableState(EPlayerState.Running);
         }
@@ -151,7 +152,7 @@ namespace MageRunner.Player
             stateHandler.DisableState(EPlayerState.Dashing);
         }
 
-        public void BeginCastingSpell(string id) => _gestureSpellsController.CastSpell(id);
+        public void BeginCastingSpell(string id) => gestureSpellsController.CastSpell(id);
 
         public void CastingSpellFailed() => print("Casting spell failed");
     }

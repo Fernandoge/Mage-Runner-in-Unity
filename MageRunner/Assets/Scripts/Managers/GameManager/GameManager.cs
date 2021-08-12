@@ -44,12 +44,20 @@ namespace MageRunner.Managers.GameManager
             activeGestures.Remove(gesture);
             _recognizer.patterns.Remove(gesture.pattern);
         }
-            
+
+        public void ResetGestures() => _recognizer.patterns = _recognizer.patterns.GetRange(0, player.gestureSpellsController.basicSpellsDict.Count);
+
         public void UpdateCurrency(int value)
         {
             _currency += value;
             currencyText.text = _currency.ToString();
         }
-        
+
+        public void ToggleCinematicMode(bool state)
+        {
+            player.jumpButton.gameObject.SetActive(!state);
+            player.healthController.gameObject.SetActive(!state);
+            player.manaController.gameObject.SetActive(!state);
+        }
     }
 }

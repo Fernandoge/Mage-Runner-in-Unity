@@ -7,7 +7,7 @@ namespace MageRunner.Levels
     {
         public float speed;
     
-        private void Start() => GameManager.Instance.level.movingBgs.Add(this);
+        protected virtual void Start() => GameManager.Instance.level.movingBgs.Add(this);
     
         protected virtual void Update()
         {

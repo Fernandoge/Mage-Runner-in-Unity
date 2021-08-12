@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace MageRunner.Levels
 {
@@ -7,6 +8,18 @@ namespace MageRunner.Levels
         public float startX;
         public float endX;
 
+        [NonSerialized] public Vector3 originalLocalPosition;
+        [NonSerialized] public float originalStartX;
+        [NonSerialized] public float originalEndX;
+
+        protected override void Start()
+        {
+            base.Start();
+            originalStartX = startX;
+            originalEndX = endX;
+            originalLocalPosition = transform.localPosition;
+        }
+        
         protected override void Update()
         {
             base.Update();
@@ -16,6 +29,13 @@ namespace MageRunner.Levels
                 float diff = transform.localPosition.x - endX;
                 transform.localPosition = new Vector2(startX + diff, transform.localPosition.y);
             }
+        }
+
+        public void ResetOriginalValues()
+        {
+            startX = originalStartX;
+            endX = originalEndX;
+            transform.localPosition = originalLocalPosition;
         }
     }
 }

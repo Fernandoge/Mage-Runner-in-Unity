@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace MageRunner.Player
 {
@@ -124,6 +125,12 @@ namespace MageRunner.Player
                     _player.animator.SetBool("Idle", false);
                     break;
             }
+        }
+
+        public void DisableAllStates()
+        {
+            foreach (EPlayerState playerState in Enum.GetValues(typeof(EPlayerState)))
+                DisableState(playerState);
         }
     }
 }
