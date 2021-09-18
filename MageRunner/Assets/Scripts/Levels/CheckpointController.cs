@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MageRunner.Dialogues;
 using MageRunner.Gestures;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
@@ -37,8 +39,10 @@ namespace MageRunner.Levels
             // Clear lists, disable player states and reset backgrounds positions
             GameManager.Instance.activeGestures.Clear();
             GameManager.Instance.ResetGestures();
+            GameManager.Instance.ToggleCinematicMode(false);
             GameManager.Instance.player.stateHandler.DisableAllStates();
             GameManager.Instance.player.Running();
+            GameManager.Instance.player.companionChatBubble.ForceClose();
             foreach (RepeatingBG bg in GameManager.Instance.level.movingBgs.OfType<RepeatingBG>())
                 bg.ResetOriginalValues();
             

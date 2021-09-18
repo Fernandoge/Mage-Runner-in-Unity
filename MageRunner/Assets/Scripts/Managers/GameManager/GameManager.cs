@@ -16,7 +16,8 @@ namespace MageRunner.Managers.GameManager
         
         public GesturesDifficultyData gesturesDifficultyData;
         public Text currencyText;
-
+        
+        [SerializeField] private GameObject _spellsDrawArea;
         [SerializeField] private Recognizer _recognizer;
         
         [NonSerialized] public PlayerController player;
@@ -58,6 +59,7 @@ namespace MageRunner.Managers.GameManager
             player.jumpButton.gameObject.SetActive(!state);
             player.healthController.gameObject.SetActive(!state);
             player.manaController.gameObject.SetActive(!state);
+            _spellsDrawArea.gameObject.SetActive(!state);
         }
     }
 }
