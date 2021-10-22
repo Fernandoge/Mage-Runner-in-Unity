@@ -16,6 +16,7 @@ namespace MageRunner.Managers.FtueManager
         [SerializeField] private GameObject _bottomChatPanel;
         [SerializeField] private TMP_Text _bottomChatText;
 
+        private int _currentFtueNumber;
         private Transform _originalButtonParent;
         private Image _ftuePanelImage;
         private Image _originalFtuePanelImage;
@@ -32,6 +33,12 @@ namespace MageRunner.Managers.FtueManager
             _originalFtuePanelImage = _ftuePanelImage;
         }
 
-         public void StartFtue(int ftueNumber) => ftueDict[ftueNumber].FirstStep();
+         public void StartFtue(int ftueNumber)
+         {
+             _currentFtueNumber = ftueNumber;
+             ftueDict[ftueNumber].FirstStep();
+         }
+
+         public void FinishFtue() => ftueDict[_currentFtueNumber].LastStep();
     }
 }

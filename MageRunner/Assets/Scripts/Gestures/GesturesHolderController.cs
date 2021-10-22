@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using GestureRecognizer;
+using MageRunner.FTUE;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,14 +16,14 @@ namespace MageRunner.Gestures
         [SerializeField] private float _distanceToSpawn;
         [SerializeField] private int _healthpoints;
         [SerializeField] bool _enablesLevelLoop;
-        [SerializeField] private Transform _healthpointsBarHolder;
+        // [SerializeField] private Transform _healthpointsBarHolder;
 
         private float _currentHealthpoints;
         private float _distanceBetweenPlayerX;
         private bool _isBehindThePlayer;
         private List<GesturesHolderController> _gesturesHoldersNear = new List<GesturesHolderController>();
+        private GesturesDifficultyData _gesturesDifficultyDataModified;
 
-        public GesturesDifficultyData gesturesDifficultyDataModified;
 
         public float distanceToSpawn => _distanceToSpawn;
         public float distanceBetweenPlayerX => _distanceBetweenPlayerX;
@@ -60,20 +60,32 @@ namespace MageRunner.Gestures
 
         public void LoadGestures()
         {
-            activeGestures = 0;
-            gesturesDifficultyDataModified = RemoveNearGesturesFromData();
-
-            foreach (Gesture gesture in gestures.ToArray())
+            ForceFtueGesture forceFtueGesture = GetComponent<ForceFtueGesture>();
+            if (forceFtueGesture != null)
+                LoadFtueGesture(forceFtueGesture);
+            else
             {
-                gestures.Remove(gesture);
-                gesture.iconRenderer.gameObject.SetActive(true);
-                GesturePattern pattern = PickRandomGesture(gesture.difficulty, gesturesDifficultyDataModified);
-                gesture.iconRenderer.sprite = pattern.icon;
-                Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, gameObject, false);
+                activeGestures = 0;
+                _gesturesDifficultyDataModified = RemoveNearGesturesFromData();
 
-                RemoveGestureFromData(loadedGesture, gesturesDifficultyDataModified); ;
-                gestures.Add(loadedGesture);
+                foreach (Gesture gesture in gestures.ToArray())
+                {
+                    gestures.Remove(gesture);
+                    gesture.iconRenderer.gameObject.SetActive(true);
+                    GesturePattern pattern = PickRandomGesture(gesture.difficulty, _gesturesDifficultyDataModified);
+                    gesture.iconRenderer.sprite = pattern.icon;
+                    Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, gameObject, false);
+                    RemoveGestureFromData(loadedGesture, _gesturesDifficultyDataModified); ;
+                    gestures.Add(loadedGesture);
+                } 
             }
+        }
+
+        private void LoadFtueGesture(ForceFtueGesture forceFtueGesture)
+        {
+            gestures.Remove(forceFtueGesture.gesture);
+            Gesture loadedFtueGesture = new Gesture(forceFtueGesture.gesture.spell, forceFtueGesture.gesture.difficulty, forceFtueGesture.gesture.iconRenderer, forceFtueGesture.gesturePattern, forceFtueGesture.gameObject, false);
+            gestures.Add(loadedFtueGesture);
         }
 
         public void ActivateGestures()

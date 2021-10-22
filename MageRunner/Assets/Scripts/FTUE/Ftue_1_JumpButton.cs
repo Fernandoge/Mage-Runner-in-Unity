@@ -19,8 +19,6 @@ namespace MageRunner.FTUE
             _firstStepDialogue.StartDialogue();
         }
         
-
-
         // Highlighting jump button and activating the FTUE hand
         // Called in the last message of FirstStep dialogue
         public void SecondStep()

@@ -1,4 +1,6 @@
-﻿using MageRunner.Gestures;
+﻿using MageRunner.FTUE;
+using MageRunner.Gestures;
+using MageRunner.Managers.FtueManager;
 using UnityEngine;
 
 namespace MageRunner.Player
@@ -48,6 +50,9 @@ namespace MageRunner.Player
                     return;
                 
                 gesturesHolderController.gameObject.SetActive(false);
+                
+                if (collider.GetComponent<ForceFtueGesture>() != null)
+                    FtueManager.Instance.FinishFtue();
             }
         }
 

@@ -10,5 +10,7 @@ namespace MageRunner.FTUE
         protected void Start() => FtueManager.Instance.ftueDict.Add(FtueID, this);
 
         public abstract void FirstStep();
+
+        public virtual void LastStep() {}
     }
 }
