@@ -50,15 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f450d477bb146a488b52ca79ad3fde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rigBody: {fileID: 8294547064922222870}
-  _damage: 1
-  _element: 6
   _durationNoVisible: 0.5
   _reduceDurationVisible: 1
-  _destroyLayers:
-    serializedVersion: 2
-    m_Bits: 0
   _particlesToActivate:
   - {fileID: 6024977762747342827}
   - {fileID: 2648377079711115973}

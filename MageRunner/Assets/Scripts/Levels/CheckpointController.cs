@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MageRunner.Dialogues;
+using MageRunner.Enemies;
 using MageRunner.Gestures;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
@@ -15,9 +16,10 @@ namespace MageRunner.Levels
         private int _gesturesHolderIndexAtActivation;
         private bool _wasSpawnedBefore;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            ActivateCheckpoint();
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+                ActivateCheckpoint();
         }
 
         private void ActivateCheckpoint()
@@ -29,10 +31,13 @@ namespace MageRunner.Levels
 
         public void SpawnPlayerInCheckpoint()
         {
-            // Remove gestures holders behind the checkpoint if it's the first time spawning in this checkpoint
+            // Remove gestures holders behind the checkpoint and reset active flying enemies if it's the first time spawning in this checkpoint
             if (_wasSpawnedBefore == false)
             {
                 GameManager.Instance.level.gesturesHolders.RemoveRange(0, _gesturesHolderIndexAtActivation);
+                foreach (GesturesHolderController flyingEnemyGesturesHolderController in GameManager.Instance.level.flyingEnemiesGesturesHolderController)
+                    flyingEnemyGesturesHolderController.ResetOriginalPosition();
+                
                 _wasSpawnedBefore = true;
             }
             
@@ -50,12 +55,12 @@ namespace MageRunner.Levels
             GameManager.Instance.level.movingObjects.transform.position = _movingObjectsPosition;
             GameManager.Instance.player.transform.localPosition = _playerSpawnPosition;
             Camera.main.transform.localPosition = new Vector3(0f,0f,-10f);
-            
-            // TODO: Reset gestures holders to their original position
+
             // Load new gestures and deactivate gestures holders
             foreach (GesturesHolderController gesturesHolderController in GameManager.Instance.level.gesturesHolders)
             {
                 gesturesHolderController.gameObject.SetActive(false);
+                gesturesHolderController.ResetOriginalPosition();
                 gesturesHolderController.LoadGestures();
             }
         }

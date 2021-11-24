@@ -1,23 +1,22 @@
-﻿using MageRunner.FTUE;
+﻿using System.Collections;
+using MageRunner.FTUE;
 using MageRunner.Gestures;
 using MageRunner.Managers.FtueManager;
+using MageRunner.Managers.GameManager;
 using UnityEngine;
 
 namespace MageRunner.Player
 {
     public class PlayerAttackSpell : MonoBehaviour
     {
-        public float speed;
         public Rigidbody2D rigBody;
-    
-        [System.NonSerialized] public GameObject target;
-        [System.NonSerialized] public bool preparingReflect;
-    
+        
         [SerializeField] private float _durationNoVisible;
         [SerializeField] private bool _reduceDurationVisible;
         [SerializeField] private ParticleSystem[] _particlesToActivate;
-    
+        
         private bool _isVisible;
+        private GesturesHolderController _target;
 
         private void OnDisable() => ActivateParticles();
 
@@ -37,23 +36,30 @@ namespace MageRunner.Player
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            int collisionLayer = collider.gameObject.layer;
+            // Handle attack to interact with the attackTarget gestures
 
-            // Handle attack to interact with the target gestures
-            if (collider.gameObject == target)
-            {
+            if (collider.gameObject != _target.gameObject)
+                return;
+            
+            if (_reduceDurationVisible == false)
                 Destroy(gameObject);
-                GesturesHolderController gesturesHolderController = collider.GetComponent<GesturesHolderController>();
-                gesturesHolderController.activeGestures -= 1;
+
+            _target.activeGestures -= 1;
                 
-                if (gesturesHolderController.activeGestures != 0) 
-                    return;
+            if (_target.activeGestures != 0) 
+                return;
                 
-                gesturesHolderController.gameObject.SetActive(false);
+            // TODO: Improve gestures holder dead
+            _target.gameObject.SetActive(false);
                 
-                if (collider.GetComponent<ForceFtueGesture>() != null)
-                    FtueManager.Instance.FinishFtue();
-            }
+            if (collider.GetComponent<ForceFtueGesture>() != null)
+                FtueManager.Instance.CurrentFtueDestroyedStep();
+        }
+
+        public void StartMovingToTarget(GesturesHolderController attackTarget, float speed, GameObject playerSpellShooter)
+        {
+            _target = attackTarget;
+            rigBody.velocity = playerSpellShooter.transform.right * speed;
         }
 
         private void ActivateParticles()

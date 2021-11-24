@@ -20,6 +20,7 @@ namespace MageRunner.Levels
         [NonSerialized] public List<MovingParticles> movingParticles = new List<MovingParticles>();
         [NonSerialized] public bool isMoving;
         [NonSerialized] public CheckpointController currentCheckpoint;
+        [NonSerialized] public List<GesturesHolderController> flyingEnemiesGesturesHolderController = new List<GesturesHolderController>();
 
         [SerializeField] private List<RepeatingSegment> _repeatingSegments;
 
@@ -126,7 +127,6 @@ namespace MageRunner.Levels
                 currentCheckpoint.SpawnPlayerInCheckpoint();
                 currentGesturesHolderIndex = 0;
             }
-            
         }
 
         public void ChangeTimeFrame()
@@ -160,7 +160,6 @@ namespace MageRunner.Levels
             
                 _timeFramesGesturesHolders.Add(currentTimeFrameGesturesHolders);
             }
-
             gesturesHolders = _timeFramesGesturesHolders[0];
         }
     

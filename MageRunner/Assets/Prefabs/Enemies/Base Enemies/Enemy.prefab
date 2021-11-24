@@ -215,7 +215,6 @@ MonoBehaviour:
   _distanceToSpawn: 0
   _healthpoints: 5
   _enablesLevelLoop: 0
-  _healthpointsBarHolder: {fileID: 4767085174372254666}
 --- !u!114 &5432753869513944484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,12 +519,6 @@ PrefabInstance:
 --- !u!4 &290980338032965029 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4111153147936562490, guid: f2ec6d507b6de9b4da7d84485f91fda0,
-    type: 3}
-  m_PrefabInstance: {fileID: 4396644715163756703}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4767085174372254666 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9163720951694781269, guid: f2ec6d507b6de9b4da7d84485f91fda0,
     type: 3}
   m_PrefabInstance: {fileID: 4396644715163756703}
   m_PrefabAsset: {fileID: 0}

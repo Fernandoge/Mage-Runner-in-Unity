@@ -51,11 +51,11 @@ namespace MageRunner.Enemies
             float weaponLookAngleRandomized = weaponLookAngle + Random.Range( - _aimAccuracyHandicap, _aimAccuracyHandicap);
             _weapon.transform.rotation = Quaternion.Euler(0f, 0f, weaponLookAngleRandomized);
 
-            GameObject shootedObject = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
-            EnemyAttack shootedObjectComponent = shootedObject.GetComponent<EnemyAttack>();
-            // shootedObjectComponent.shooterLayer = gameObject.layer;
+            GameObject objectShot = Instantiate(_objectToShoot.gameObject, _weapon.transform.position, _weapon.transform.rotation, transform.parent);
+            EnemyAttack enemyAttackShot = objectShot.GetComponent<EnemyAttack>();
+            // enemyAttackShot.shooterLayer = gameObject.layer;
             float speedAddition = GameManager.Instance.level.isMoving == false ? 0f : GameManager.Instance.level.movingSpeed / 2;
-            shootedObjectComponent.rigBody.velocity = _weapon.transform.right * (_objectToShootSpeed + speedAddition);
+            enemyAttackShot.rigBody.velocity = _weapon.transform.right * (_objectToShootSpeed + speedAddition);
         
             _fireRate = Random.Range(_minFireRate, _maxFireRate);
         }

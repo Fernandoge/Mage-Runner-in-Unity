@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GestureRecognizer;
 using MageRunner.FTUE;
 using MageRunner.Managers.GameManager;
+using MageRunner.Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,23 +13,26 @@ namespace MageRunner.Gestures
     public class GesturesHolderController : MonoBehaviour
     {
         public List<Gesture> gestures = new List<Gesture>();
-    
+        
         [Header("")]
         [SerializeField] private float _distanceToSpawn;
         [SerializeField] private int _healthpoints;
-        [SerializeField] bool _enablesLevelLoop;
+        [SerializeField] private bool _enablesLevelLoop;
         // [SerializeField] private Transform _healthpointsBarHolder;
 
         private float _currentHealthpoints;
         private float _distanceBetweenPlayerX;
+        private Vector3 _originalPosition;
+        private Transform _originalParent;
         private bool _isBehindThePlayer;
         private List<GesturesHolderController> _gesturesHoldersNear = new List<GesturesHolderController>();
         private GesturesDifficultyData _gesturesDifficultyDataModified;
-
-
+        
         public float distanceToSpawn => _distanceToSpawn;
         public float distanceBetweenPlayerX => _distanceBetweenPlayerX;
         public int activeGestures { get; set; }
+        public bool isMoving { get; set; }
+        public event Action gesturesActivation;
 
         private void OnDestroy()
         {
@@ -41,7 +46,12 @@ namespace MageRunner.Gestures
                 gameObject.SetActive(false);
         }
 
-        protected void Awake() => _currentHealthpoints = _healthpoints;
+        protected void Awake()
+        {
+            _currentHealthpoints = _healthpoints;
+            _originalPosition = transform.position;
+            _originalParent = transform.parent;
+        }
 
         private void Update()
         {
@@ -56,6 +66,12 @@ namespace MageRunner.Gestures
 #if UNITY_EDITOR
             DebugDistanceOnClick();
 #endif
+        }
+
+        public void ResetOriginalPosition()
+        {
+            transform.position = _originalPosition;
+            transform.SetParent(_originalParent);
         }
 
         public void LoadGestures()
@@ -74,8 +90,8 @@ namespace MageRunner.Gestures
                     gesture.iconRenderer.gameObject.SetActive(true);
                     GesturePattern pattern = PickRandomGesture(gesture.difficulty, _gesturesDifficultyDataModified);
                     gesture.iconRenderer.sprite = pattern.icon;
-                    Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, gameObject, false);
-                    RemoveGestureFromData(loadedGesture, _gesturesDifficultyDataModified); ;
+                    Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, this, false);
+                    RemoveGestureFromData(loadedGesture, _gesturesDifficultyDataModified);
                     gestures.Add(loadedGesture);
                 } 
             }
@@ -84,12 +100,13 @@ namespace MageRunner.Gestures
         private void LoadFtueGesture(ForceFtueGesture forceFtueGesture)
         {
             gestures.Remove(forceFtueGesture.gesture);
-            Gesture loadedFtueGesture = new Gesture(forceFtueGesture.gesture.spell, forceFtueGesture.gesture.difficulty, forceFtueGesture.gesture.iconRenderer, forceFtueGesture.gesturePattern, forceFtueGesture.gameObject, false);
+            Gesture loadedFtueGesture = new Gesture(forceFtueGesture.gesture.spell, forceFtueGesture.gesture.difficulty, forceFtueGesture.gesture.iconRenderer, forceFtueGesture.gesturePattern, this, false);
             gestures.Add(loadedFtueGesture);
         }
 
         public void ActivateGestures()
         {
+            gesturesActivation?.Invoke();
             foreach (Gesture gesture in gestures)
             {
                 activeGestures += 1;
@@ -106,7 +123,6 @@ namespace MageRunner.Gestures
             }
         }
         
-
         public void FindGesturesHoldersNear(List<GesturesHolderController> timeFrameGesturesHolders)
         {
             int gesturesHolderIndex = timeFrameGesturesHolders.IndexOf(this);
@@ -181,7 +197,7 @@ namespace MageRunner.Gestures
                     return ScriptableObject.CreateInstance<GesturePattern>();
             }
         }
-    
+
         private void DebugDistanceOnClick()
         {
             if (Input.GetMouseButtonDown(0))

@@ -16,7 +16,7 @@ namespace MageRunner.Player
         private Dictionary<EPlayerSpells, Action> _spellsDict = new Dictionary<EPlayerSpells, Action>();
         private EAttackSpellType _spellToShootType;
         private Vector3 _playerShooterSpellOriginalPos;
-        private GameObject _targetedGesturesHolder;
+        private GesturesHolderController _targetedGesturesHolder;
         private PlayerController _player;
         private GameObject _spellToShoot;
         private float _spellToShootSpeed;
@@ -75,11 +75,14 @@ namespace MageRunner.Player
 
             LevelController currentLevel = GameManager.Instance.level;
             Transform spellParent = currentLevel.timeFrames[currentLevel.currentTimeFrameIndex].staticGO.transform;
-            GameObject shootedSpell = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
-            PlayerAttackSpell shootedAttackSpellComponent = shootedSpell.GetComponent<PlayerAttackSpell>();
-            float speedReduction = currentLevel.isMoving == false ? 0f : (_spellToShootSpeed.Equals(0f) ? currentLevel.movingSpeed : currentLevel.movingSpeed / 2);
-            shootedAttackSpellComponent.rigBody.velocity = _player.spellShooter.transform.right * (_spellToShootSpeed - speedReduction);
-            shootedAttackSpellComponent.target = _targetedGesturesHolder;
+            if (_targetedGesturesHolder.isMoving)
+                spellParent = currentLevel.timeFrames[currentLevel.currentTimeFrameIndex].movingGO.transform;
+            
+            GameObject objectShot = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
+            PlayerAttackSpell attackSpellShot = objectShot.GetComponent<PlayerAttackSpell>();
+            float speedBoost = _targetedGesturesHolder.isMoving ? 0f : currentLevel.movingSpeed;
+            float speedReduction = currentLevel.isMoving == false ? 0f : (_spellToShootSpeed.Equals(0f) ? 0f : currentLevel.movingSpeed / 2);
+            attackSpellShot.StartMovingToTarget(_targetedGesturesHolder, _spellToShootSpeed + speedBoost - speedReduction, _player.spellShooter);
         }
 
         private void LoadSpells()

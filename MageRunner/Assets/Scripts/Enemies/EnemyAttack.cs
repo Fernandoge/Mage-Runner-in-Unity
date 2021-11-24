@@ -11,16 +11,13 @@ namespace MageRunner.Enemies
     
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            int collisionLayer = collider.gameObject.layer;
-
-            // Player Block
-            if (collisionLayer == LayerMask.NameToLayer("Player"))
-            {
-                if (GameManager.Instance.player.stateHandler.isBlocking)
-                    Destroy(gameObject);
-                else
-                    DamagePlayer();
-            }
+            if (collider.gameObject.layer != LayerMask.NameToLayer("Player")) 
+                return;
+            
+            if (GameManager.Instance.player.stateHandler.isBlocking)
+                Destroy(gameObject);
+            else
+                DamagePlayer();
         }
 
         private void DamagePlayer()

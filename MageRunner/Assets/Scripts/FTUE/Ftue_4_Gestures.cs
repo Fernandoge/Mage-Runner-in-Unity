@@ -20,7 +20,7 @@ namespace MageRunner.FTUE
             _ftueHand.SetActive(true);
         }
 
-        public override void LastStep()
+        public override void StepAfterDestroyed()
         {
             _ftueHand.SetActive(false);
             GameManager.Instance.level.EnableMovement();

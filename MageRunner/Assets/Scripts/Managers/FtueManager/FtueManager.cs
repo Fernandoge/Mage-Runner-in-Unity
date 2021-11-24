@@ -39,6 +39,6 @@ namespace MageRunner.Managers.FtueManager
              ftueDict[ftueNumber].FirstStep();
          }
 
-         public void FinishFtue() => ftueDict[_currentFtueNumber].LastStep();
+         public void CurrentFtueDestroyedStep() => ftueDict[_currentFtueNumber].StepAfterDestroyed();
     }
 }

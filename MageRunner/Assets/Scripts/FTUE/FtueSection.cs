@@ -11,6 +11,6 @@ namespace MageRunner.FTUE
 
         public abstract void FirstStep();
 
-        public virtual void LastStep() {}
+        public virtual void StepAfterDestroyed() {}
     }
 }

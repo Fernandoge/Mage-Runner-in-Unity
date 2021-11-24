@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using MageRunner.Combat;
 using MageRunner.Dialogues;
@@ -25,16 +26,16 @@ namespace MageRunner.Player
         public PlayerSpellsData spellsData;
         public Selectable jumpButton;
     
-        [System.NonSerialized] public float originalGravity;
-        [System.NonSerialized] public bool groundJumpAvailable;
-        [System.NonSerialized] public bool airJumpAvailable;
-        [System.NonSerialized] public bool highJumpAvailable;
-        [System.NonSerialized] public bool idleCastEnabled;
-        [System.NonSerialized] public float glideSpeed;
-        [System.NonSerialized] public Rigidbody2D rigidBody;
-        [System.NonSerialized] public Animator animator;
-        [System.NonSerialized] public PlayerStateHandler stateHandler;
-        [System.NonSerialized] public Collider2D groundCollider;
+        [NonSerialized] public float originalGravity;
+        [NonSerialized] public bool groundJumpAvailable;
+        [NonSerialized] public bool airJumpAvailable;
+        [NonSerialized] public bool highJumpAvailable;
+        [NonSerialized] public bool idleCastEnabled;
+        [NonSerialized] public float glideSpeed;
+        [NonSerialized] public Rigidbody2D rigidBody;
+        [NonSerialized] public Animator animator;
+        [NonSerialized] public PlayerStateHandler stateHandler;
+        [NonSerialized] public Collider2D groundCollider; 
     
         [SerializeField] private Transform _feetPos;
         
@@ -42,6 +43,7 @@ namespace MageRunner.Player
         private LayerMask _notGroundLayerMask;
         
         public GestureSpellsController gestureSpellsController { get; private set; }
+        public event Action playerDash;
 
         private void Start()
         {
@@ -82,10 +84,14 @@ namespace MageRunner.Player
 
         public void Running()
         {
-            if (gestureSpellsController.fastFallGroundCollider?.enabled == false)
+            stateHandler.EnableState(EPlayerState.Running);
+            
+            if (gestureSpellsController.fastFallGroundCollider == null)
+                return;
+            
+            if (gestureSpellsController.fastFallGroundCollider.enabled == false)
                 gestureSpellsController.fastFallGroundCollider.enabled = true;
 
-            stateHandler.EnableState(EPlayerState.Running);
         }
 
         public void Jump()
@@ -134,18 +140,20 @@ namespace MageRunner.Player
         
             while (transform.localPosition.x - newPlayerPosition.x < 0f && stateHandler.isDashing)
             {
-                transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
-                _mainCamera.transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
+                transform.Translate(Vector2.right * (dashSpeed * Time.deltaTime));
+                _mainCamera.transform.Translate(Vector2.right * (dashSpeed * Time.deltaTime));
     
                 foreach (MovingBG bg in GameManager.Instance.level.movingBgs)
-                    bg.transform.Translate(Vector2.right * (dashSpeed - bg.speed) * Time.deltaTime);
+                    bg.transform.Translate(Vector2.right * ((dashSpeed - bg.speed) * Time.deltaTime));
     
                 foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)
-                    particle.transform.Translate(Vector2.right * dashSpeed * Time.deltaTime);
+                    particle.transform.Translate(Vector2.right * (dashSpeed * Time.deltaTime));
     
                 yield return null;
             }
-    
+
+            playerDash?.Invoke();
+            
             foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)   
                 particle.ResetVelocityOverLifetimeSpeed();
     

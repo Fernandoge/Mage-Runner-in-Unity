@@ -29,8 +29,7 @@ namespace MageRunner.FTUE
             _ftueJumpButton.transform.SetParent(FtueManager.Instance.ftuePanel.transform); 
         }
 
-        
-        public void ThirdStep()
+        private void ThirdStep()
         {
             Time.timeScale = 1;
             GameManager.Instance.ToggleCinematicMode(false);
