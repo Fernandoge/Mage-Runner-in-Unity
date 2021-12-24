@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using MageRunner.Enemies;
 using MageRunner.FTUE;
 using MageRunner.Gestures;
 using MageRunner.Managers.FtueManager;
@@ -50,8 +51,8 @@ namespace MageRunner.Player
                 return;
                 
             // TODO: Improve gestures holder dead
-            _target.gameObject.SetActive(false);
-                
+            _target.Deactivate();
+
             if (collider.GetComponent<ForceFtueGesture>() != null)
                 FtueManager.Instance.CurrentFtueDestroyedStep();
         }

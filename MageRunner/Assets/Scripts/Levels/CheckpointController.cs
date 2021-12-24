@@ -54,14 +54,16 @@ namespace MageRunner.Levels
             // Set the checkpoint spawn positions
             GameManager.Instance.level.movingObjects.transform.position = _movingObjectsPosition;
             GameManager.Instance.player.transform.localPosition = _playerSpawnPosition;
-            Camera.main.transform.localPosition = new Vector3(0f,0f,-10f);
+            GameManager.Instance.transform.localPosition = new Vector3(0f,0f,-10f);
 
-            // Load new gestures and deactivate gestures holders
+            // Reset gestures holders
             foreach (GesturesHolderController gesturesHolderController in GameManager.Instance.level.gesturesHolders)
             {
+                gesturesHolderController.gesturesLoaded = false;
                 gesturesHolderController.gameObject.SetActive(false);
                 gesturesHolderController.ResetOriginalPosition();
-                gesturesHolderController.LoadGestures();
+                foreach (Gesture gesture in gesturesHolderController.gestures)
+                    gesture.iconRenderer.gameObject.SetActive(false);
             }
         }
     }

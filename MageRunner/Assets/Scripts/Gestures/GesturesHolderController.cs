@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GestureRecognizer;
@@ -22,28 +23,35 @@ namespace MageRunner.Gestures
 
         private float _currentHealthpoints;
         private float _distanceBetweenPlayerX;
+        private float _timeInvisible;
         private Vector3 _originalPosition;
         private Transform _originalParent;
-        private bool _isBehindThePlayer;
-        private List<GesturesHolderController> _gesturesHoldersNear = new List<GesturesHolderController>();
-        private GesturesDifficultyData _gesturesDifficultyDataModified;
+        private bool _gesturesDeactivated;
+        private bool _isInvisible;
+
+        public bool activateGesturesManually;
         
         public float distanceToSpawn => _distanceToSpawn;
         public float distanceBetweenPlayerX => _distanceBetweenPlayerX;
+        public bool gesturesLoaded { private get; set; }
         public int activeGestures { get; set; }
         public bool isMoving { get; set; }
-        public event Action gesturesActivation;
+        
+        public event Action deactivate;
 
         private void OnDestroy()
         {
             if (_enablesLevelLoop)
                 GameManager.Instance.level.StopLooping();
         }
-
+        
         private void OnBecameInvisible()
         {
-            if (_isBehindThePlayer)
-                gameObject.SetActive(false);
+            if (_distanceBetweenPlayerX > 0)
+                return;
+            
+            _isInvisible = true;
+            _timeInvisible = 2f;
         }
 
         protected void Awake()
@@ -57,12 +65,19 @@ namespace MageRunner.Gestures
         {
             _distanceBetweenPlayerX = transform.position.x - GameManager.Instance.player.transform.position.x;
 
-            if (_distanceBetweenPlayerX < -0.5 && _isBehindThePlayer == false)
+            if (_distanceBetweenPlayerX < -0.5 && _gesturesDeactivated == false)
             {
-                _isBehindThePlayer = true;
+                _gesturesDeactivated = true;
                 DeactivateGestures();
             }
-        
+            
+            if (_isInvisible)
+            {
+                _timeInvisible -= Time.deltaTime;
+                if (_timeInvisible < 0f)
+                    gameObject.SetActive(false);
+            }
+            
 #if UNITY_EDITOR
             DebugDistanceOnClick();
 #endif
@@ -73,45 +88,50 @@ namespace MageRunner.Gestures
             transform.position = _originalPosition;
             transform.SetParent(_originalParent);
         }
-
-        public void LoadGestures()
+        
+        private void LoadFtueGesture(ForceFtueGesture forceFtueGesture)
         {
+            gestures.Remove(forceFtueGesture.gesture);
+            Gesture loadedFtueGesture = new Gesture(forceFtueGesture.gesture.spell, forceFtueGesture.gesture.difficulty, forceFtueGesture.gesture.iconRenderer, forceFtueGesture.gesturePattern, this, false);
+            gestures.Add(loadedFtueGesture);
+            activeGestures += 1;
+            GameManager.Instance.AddGesture(loadedFtueGesture);
+            loadedFtueGesture.iconRenderer.gameObject.SetActive(true);
+        }
+
+        public void ActivateGestures()
+        {
+            if (gesturesLoaded)
+                return;
+
+            _isInvisible = false; 
+            
             ForceFtueGesture forceFtueGesture = GetComponent<ForceFtueGesture>();
             if (forceFtueGesture != null)
                 LoadFtueGesture(forceFtueGesture);
             else
             {
                 activeGestures = 0;
-                _gesturesDifficultyDataModified = RemoveNearGesturesFromData();
-
+                
+                GesturesDifficultyData gesturesDataModified = Instantiate(GameManager.Instance.gesturesDifficultyData);
+                foreach (Gesture gesture in GameManager.Instance.activeGestures)
+                    RemoveGestureFromData(gesture, gesturesDataModified);
+                
                 foreach (Gesture gesture in gestures.ToArray())
                 {
                     gestures.Remove(gesture);
-                    gesture.iconRenderer.gameObject.SetActive(true);
-                    GesturePattern pattern = PickRandomGesture(gesture.difficulty, _gesturesDifficultyDataModified);
+                    GesturePattern pattern = PickRandomGesture(gesture.difficulty, gesturesDataModified);
                     gesture.iconRenderer.sprite = pattern.icon;
                     Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, this, false);
-                    RemoveGestureFromData(loadedGesture, _gesturesDifficultyDataModified);
+                    RemoveGestureFromData(loadedGesture, gesturesDataModified);
                     gestures.Add(loadedGesture);
-                } 
+                
+                    activeGestures += 1;
+                    GameManager.Instance.AddGesture(loadedGesture);
+                    gesture.iconRenderer.gameObject.SetActive(true);
+                }
             }
-        }
-
-        private void LoadFtueGesture(ForceFtueGesture forceFtueGesture)
-        {
-            gestures.Remove(forceFtueGesture.gesture);
-            Gesture loadedFtueGesture = new Gesture(forceFtueGesture.gesture.spell, forceFtueGesture.gesture.difficulty, forceFtueGesture.gesture.iconRenderer, forceFtueGesture.gesturePattern, this, false);
-            gestures.Add(loadedFtueGesture);
-        }
-
-        public void ActivateGestures()
-        {
-            gesturesActivation?.Invoke();
-            foreach (Gesture gesture in gestures)
-            {
-                activeGestures += 1;
-                GameManager.Instance.AddGesture(gesture);
-            }
+            gesturesLoaded = true;
         }
 
         private void DeactivateGestures()
@@ -122,56 +142,13 @@ namespace MageRunner.Gestures
                 GameManager.Instance.RemoveGesture(gesture);
             }
         }
-        
-        public void FindGesturesHoldersNear(List<GesturesHolderController> timeFrameGesturesHolders)
-        {
-            int gesturesHolderIndex = timeFrameGesturesHolders.IndexOf(this);
-            
-            // Get the ones in the left
-            for (int i = gesturesHolderIndex - 1; i >= 0; i--)
-            {
-                if (transform.position.x - timeFrameGesturesHolders[i].transform.position.x < 40)
-                    _gesturesHoldersNear.Add(timeFrameGesturesHolders[i]);
-                else
-                    break;
-            }
-            
-            // Get the ones in the right
-            for (int i = gesturesHolderIndex + 1; i < timeFrameGesturesHolders.Count; i++)
-            {
-                if (transform.position.x - timeFrameGesturesHolders[i].transform.position.x > -40)
-                    _gesturesHoldersNear.Add(timeFrameGesturesHolders[i]);
-                else
-                    break;
-            }
-        }
 
-        private List<Gesture> GetActiveGesturesNear()
+        public void Deactivate()
         {
-            List<Gesture> activeGesturesNear = new List<Gesture>();
-            foreach (GesturesHolderController gesturesHolder in _gesturesHoldersNear)
-            {
-                foreach (var gesture in gesturesHolder.gestures.Where(
-                    gesture => gesture.pattern != null && activeGesturesNear.Contains(gesture) == false))
-                {
-                    activeGesturesNear.Add(gesture);
-                }
-            }
-
-            return activeGesturesNear;
+            deactivate?.Invoke();
+            gameObject.SetActive(false);
         }
         
-        private GesturesDifficultyData RemoveNearGesturesFromData()
-        {
-            List<Gesture> activeGesturesNear = GetActiveGesturesNear();
-            GesturesDifficultyData gesturesDataModified = Instantiate(GameManager.Instance.gesturesDifficultyData);
-
-            foreach (Gesture gesture in activeGesturesNear)
-                RemoveGestureFromData(gesture, gesturesDataModified);
-            
-            return gesturesDataModified;
-        }
-
         private void RemoveGestureFromData(Gesture gesture, GesturesDifficultyData gesturesDataModified)
         {
             switch (gesture.difficulty)
@@ -188,14 +165,21 @@ namespace MageRunner.Gestures
             switch (difficulty)
             {
                 case EGestureDifficulty.Easy:
-                    List<GesturePattern> easyGestures = modifiedGestureDifficultyData.easy;
-                    return easyGestures[Random.Range(0, easyGestures.Count)];
+                    return RandomGesture(modifiedGestureDifficultyData.easy, GameManager.Instance.gesturesDifficultyData.easy);
                 case EGestureDifficulty.Medium:
-                    List<GesturePattern> mediumGestures = modifiedGestureDifficultyData.medium;
-                    return mediumGestures[Random.Range(0, mediumGestures.Count)];
+                    return RandomGesture(modifiedGestureDifficultyData.medium, GameManager.Instance.gesturesDifficultyData.medium);
                 default:
                     return ScriptableObject.CreateInstance<GesturePattern>();
             }
+        }
+
+        private GesturePattern RandomGesture(List<GesturePattern> gesturePatterns, List<GesturePattern> originalGesturePatterns)
+        {
+            if (gesturePatterns.Count > 0)
+                return gesturePatterns[Random.Range(0, gesturePatterns.Count)];
+            
+            print("Too many gestures on screen, repeating one");
+            return originalGesturePatterns[Random.Range(0, originalGesturePatterns.Count)];
         }
 
         private void DebugDistanceOnClick()

@@ -74,10 +74,8 @@ namespace MageRunner.Player
             }
 
             LevelController currentLevel = GameManager.Instance.level;
-            Transform spellParent = currentLevel.timeFrames[currentLevel.currentTimeFrameIndex].staticGO.transform;
-            if (_targetedGesturesHolder.isMoving)
-                spellParent = currentLevel.timeFrames[currentLevel.currentTimeFrameIndex].movingGO.transform;
-            
+            TimeFrame currentTimeFrame = currentLevel.timeFrames[currentLevel.currentTimeFrameIndex];
+            Transform spellParent = _targetedGesturesHolder.isMoving ? currentTimeFrame.movingGO.transform : currentTimeFrame.staticGO.transform;
             GameObject objectShot = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
             PlayerAttackSpell attackSpellShot = objectShot.GetComponent<PlayerAttackSpell>();
             float speedBoost = _targetedGesturesHolder.isMoving ? 0f : currentLevel.movingSpeed;

@@ -48,7 +48,7 @@ namespace MageRunner.Player
         private void Start()
         {
             GameManager.Instance.player = this;
-            _mainCamera = Camera.main;
+            _mainCamera = GameManager.Instance.mainCamera;
             stateHandler = new PlayerStateHandler(this);
             gestureSpellsController = new GestureSpellsController(this);
             healthController.Initialize(_totalHealthpoints);
@@ -118,7 +118,6 @@ namespace MageRunner.Player
             while (blockDuration > 0)
             {
                 blockDuration -= Time.deltaTime;
-                print(blockDuration);
                 yield return null;
             }
             

@@ -41,7 +41,7 @@ namespace MageRunner.Levels
         {
             InitializeGesturesHolders();
             GameManager.Instance.player.transform.SetParent(movingObjects);
-            Camera mainCamera = Camera.main;
+            Camera mainCamera = GameManager.Instance.mainCamera;
             mainCamera.GetComponent<CameraController>().ScaleLevelCamera(transform);
             mainCamera.transform.SetParent(movingObjects);
         } 
@@ -54,7 +54,6 @@ namespace MageRunner.Levels
                 movingObjects.Translate(Vector2.right * movingSpeed * Time.deltaTime);
         
             // Level looping logic
-        
             if (_looping && movingObjects.transform.localPosition.x >= _repeatingEndX)
             {
                 float distanceReturned = _repeatingEndX - _repeatingStartX;
@@ -76,10 +75,13 @@ namespace MageRunner.Levels
             
             if (_distanceBetweenPlayerX > currentGesturesHolder.distanceToSpawn) 
                 return;
-            
+
+            if (currentGesturesHolder.activateGesturesManually == false)
+                currentGesturesHolder.ActivateGestures();
+
             currentGesturesHolder.gameObject.SetActive(true);
-            currentGesturesHolder.ActivateGestures();
             currentGesturesHolderIndex += 1;
+            
             // if (currentEnemy.enablesLevelLoop)
             //     GameManager.Instance.level.StartLooping();
         }
@@ -154,10 +156,10 @@ namespace MageRunner.Levels
                 foreach (GesturesHolderController gesturesHolder in currentTimeFrameGesturesHolders)
                 {
                     gesturesHolder.gameObject.SetActive(false);
-                    gesturesHolder.FindGesturesHoldersNear(currentTimeFrameGesturesHolders);
-                    gesturesHolder.LoadGestures();
+                    foreach (Gesture gesture in gesturesHolder.gestures)
+                        gesture.iconRenderer.gameObject.SetActive(false);
                 }
-            
+                
                 _timeFramesGesturesHolders.Add(currentTimeFrameGesturesHolders);
             }
             gesturesHolders = _timeFramesGesturesHolders[0];
