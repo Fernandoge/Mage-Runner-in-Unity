@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using DG.Tweening;
 using MageRunner.Combat;
 using MageRunner.Dialogues;
+using MageRunner.Enemies;
+using MageRunner.Gestures;
 using MageRunner.Levels;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
@@ -64,7 +67,7 @@ namespace MageRunner.Player
             groundCollider = Physics2D.OverlapCircle(_feetPos.position, 0f, _notGroundLayerMask);
 
             // Check velocity, because if velocity is higher than 0 High Jump could have been casted and with this check the animation state of High Jump isn't override by Running
-            if (groundCollider != null && rigidBody.velocity.y <= 0)
+            if (groundCollider != null && rigidBody.velocity.y <= 0 && !stateHandler.isDashing)
                 Running();
             else if (stateHandler.isHighJumping)
                 HighJump();
@@ -132,20 +135,23 @@ namespace MageRunner.Player
                 bg.endX += dashDuration;
             }
     
-            foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)
+            foreach (MovingParticle particle in GameManager.Instance.level.movingParticles)
                 particle.ModifyVelocityOverLifetimeSpeed(dashSpeed);
         
             Vector3 newPlayerPosition = new Vector3(transform.localPosition.x + dashDuration, transform.localPosition.y, transform.localPosition.z);
-        
-            while (transform.localPosition.x - newPlayerPosition.x < 0f && stateHandler.isDashing)
+
+            while (newPlayerPosition.x - transform.localPosition.x > 0 && stateHandler.isDashing)
             {
                 transform.Translate(Vector2.right * (dashSpeed * Time.deltaTime));
                 _mainCamera.transform.Translate(Vector2.right * (dashSpeed * Time.deltaTime));
-    
+                
                 foreach (MovingBG bg in GameManager.Instance.level.movingBgs)
                     bg.transform.Translate(Vector2.right * ((dashSpeed - bg.speed) * Time.deltaTime));
-    
-                foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)
+
+                foreach (GesturesHolderController flyingEnemy in GameManager.Instance.level.flyingEnemiesGesturesHolderController)
+                    flyingEnemy.transform.Translate(Vector2.left * (dashSpeed * Time.deltaTime));
+                
+                foreach (MovingParticle particle in GameManager.Instance.level.movingParticles)
                     particle.transform.Translate(Vector2.right * (dashSpeed * Time.deltaTime));
     
                 yield return null;
@@ -153,7 +159,7 @@ namespace MageRunner.Player
 
             playerDash?.Invoke();
             
-            foreach (MovingParticles particle in GameManager.Instance.level.movingParticles)   
+            foreach (MovingParticle particle in GameManager.Instance.level.movingParticles)   
                 particle.ResetVelocityOverLifetimeSpeed();
     
             stateHandler.DisableState(EPlayerState.Dashing);

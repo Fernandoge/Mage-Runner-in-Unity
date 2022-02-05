@@ -18,7 +18,6 @@ namespace MageRunner.Gestures
         [Header("")]
         [SerializeField] private float _distanceToSpawn;
         [SerializeField] private int _healthpoints;
-        [SerializeField] private bool _enablesLevelLoop;
         // [SerializeField] private Transform _healthpointsBarHolder;
 
         private float _currentHealthpoints;
@@ -33,7 +32,7 @@ namespace MageRunner.Gestures
         
         public float distanceToSpawn => _distanceToSpawn;
         public float distanceBetweenPlayerX => _distanceBetweenPlayerX;
-        public bool gesturesLoaded { private get; set; }
+        public bool gesturesLoaded { get; set; }
         public int activeGestures { get; set; }
         public bool isMoving { get; set; }
         
@@ -41,8 +40,8 @@ namespace MageRunner.Gestures
 
         private void OnDestroy()
         {
-            if (_enablesLevelLoop)
-                GameManager.Instance.level.StopLooping();
+            if (GameManager.Instance.level.isLooping)
+                GameManager.Instance.level.isLooping = false;
         }
         
         private void OnBecameInvisible()

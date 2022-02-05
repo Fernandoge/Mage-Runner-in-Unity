@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using MageRunner.Gestures;
+using DG.Tweening;
 using MageRunner.Managers.GameManager;
 using MageRunner.Scenes;
 using UnityEngine;
@@ -11,14 +11,13 @@ namespace MageRunner.Enemies
         [Header("Flying Enemy Fields")]
         [SerializeField] private int _idealPosition;
         [SerializeField] private float _flyingSpeed;
-        [SerializeField] private GesturesHolderController _gesturesHolderController;
 
         private FlyingEnemyAreasColumn _enemyAreasColumn;
         private FlyingEnemyArea _enemyArea;
         
         private void OnEnable()
         {
-            _gesturesHolderController.deactivate += OnDeactivate;
+            gesturesHolderController.deactivate += OnDeactivate;
             if (GameManager.Instance.player != null) 
                 GameManager.Instance.player.playerDash += OnPlayerDash;
 
@@ -26,41 +25,44 @@ namespace MageRunner.Enemies
         
         private void OnDisable()
         {
-            _gesturesHolderController.deactivate -= OnDeactivate;
+            gesturesHolderController.deactivate -= OnDeactivate;
             if (GameManager.Instance.player != null)
                 GameManager.Instance.player.playerDash -= OnPlayerDash;
         }
 
-        private void OnPlayerDash() => StartCoroutine(MoveToIdlePosition(" el dashsito"));
+        private void OnPlayerDash()
+        {
+            if (gesturesHolderController.gesturesLoaded)
+                StartCoroutine(MoveToIdlePosition());
+        }
 
-        private IEnumerator MoveToIdlePosition(string sdf)
+        private IEnumerator MoveToIdlePosition()
         {
             Vector3 destiny = new Vector3(0, 0, Mathf.Abs(GameManager.Instance.mainCamera.transform.position.z));
-            while (Vector3.Distance(transform.localPosition,destiny) > 0)
-            {
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, destiny, _flyingSpeed * Time.deltaTime);
-                yield return null;
-            }
-            _gesturesHolderController.ActivateGestures();
+            Tween moveTween = transform.DOLocalMove(destiny, 1);
+
+            yield return moveTween.WaitForCompletion();
+            
+            gesturesHolderController.ActivateGestures();
         }
 
         // Called in Spawn Animation
         public void OnSpawn()
         {
-            GameManager.Instance.level.flyingEnemiesGesturesHolderController.Add(_gesturesHolderController);
+            GameManager.Instance.level.flyingEnemiesGesturesHolderController.Add(gesturesHolderController);
             _enemyArea = FindPosition();
             _enemyArea.isPositionOccupied = true;
-            transform.SetParent(_enemyArea.area);
-            _gesturesHolderController.isMoving = true;
+            transform.SetParent(_enemyArea.transform);
+            gesturesHolderController.isMoving = true;
 
-            StartCoroutine(MoveToIdlePosition("el spawnsito"));
+            StartCoroutine(MoveToIdlePosition());
         }
 
         private void OnDeactivate()
         {
             _enemyArea.isPositionOccupied = false;
             _enemyAreasColumn.isColumnOccupied = false;
-            GameManager.Instance.level.flyingEnemiesGesturesHolderController.Remove(_gesturesHolderController);
+            GameManager.Instance.level.flyingEnemiesGesturesHolderController.Remove(gesturesHolderController);
         }
 
         private FlyingEnemyArea FindPosition()

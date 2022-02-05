@@ -92,9 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8215798905352145268}
   - component: {fileID: 8215798905352145275}
+  - component: {fileID: 105168867004832885}
   - component: {fileID: 8215798905352145274}
   - component: {fileID: -486155800986443433}
-  - component: {fileID: 5432753869513944484}
   m_Layer: 16
   m_Name: Enemy
   m_TagString: StatsHolder
@@ -170,6 +170,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &105168867004832885
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8215798905352145273}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &8215798905352145274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215,18 +234,7 @@ MonoBehaviour:
   _distanceToSpawn: 0
   _healthpoints: 5
   _enablesLevelLoop: 0
---- !u!114 &5432753869513944484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8215798905352145273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b154f3eaeb48634e8d3f33c267ef6b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  activateGesturesManually: 0
 --- !u!1001 &1240700900646799650
 PrefabInstance:
   m_ObjectHideFlags: 0

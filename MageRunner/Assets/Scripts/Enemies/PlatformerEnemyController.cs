@@ -14,18 +14,14 @@ namespace MageRunner.Enemies
         [SerializeField] private float _patrolSpeed;
         [SerializeField] private int _collisionDamage;
         [SerializeField] private Transform _groundDetector;
-
-        protected GesturesHolderController gesturesHolderController;
-    
+        
         private Vector2 _direction = Vector2.left;
         private LayerMask _notGroundLayerMask;
 
-        protected override void Start()
+        protected virtual void Start()
         {
-            base.Start();
             _direction = _facingLeft ? Vector2.left : Vector2.right;
             _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
-            gesturesHolderController = GetComponent<GesturesHolderController>();
         }
 
         protected virtual void Update()
@@ -74,6 +70,7 @@ namespace MageRunner.Enemies
                 GameManager.Instance.player.stateHandler.EnableState(EPlayerState.GroundJumping);
                 GameManager.Instance.player.Running();
             }
+            //TODO: platformer enemy collision
             else
             {
                 // Kill Player

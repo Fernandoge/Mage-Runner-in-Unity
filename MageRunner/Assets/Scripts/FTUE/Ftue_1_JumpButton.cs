@@ -42,8 +42,7 @@ namespace MageRunner.FTUE
             
             GameManager.Instance.player.Jump();
             
-            GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message
-                ("that was good", 1.5f, 1f, false, false, false, null));
+            GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("that was good", 1.5f, 1f));
         }
     }
 }

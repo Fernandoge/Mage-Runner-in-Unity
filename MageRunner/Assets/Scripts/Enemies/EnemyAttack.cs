@@ -1,4 +1,5 @@
-﻿using MageRunner.Combat;
+﻿using System;
+using MageRunner.Combat;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
 
@@ -8,7 +9,9 @@ namespace MageRunner.Enemies
     {
         [SerializeField] private int attackDamage;
         public Rigidbody2D rigBody;
-    
+
+        private void OnBecameInvisible() => Destroy(gameObject, 5f);
+
         private void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.gameObject.layer != LayerMask.NameToLayer("Player")) 

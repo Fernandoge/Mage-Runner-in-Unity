@@ -45,6 +45,7 @@ namespace MageRunner.Levels
             GameManager.Instance.activeGestures.Clear();
             GameManager.Instance.ResetGestures();
             GameManager.Instance.ToggleCinematicMode(false);
+            GameManager.Instance.ResetCameraPosition();
             GameManager.Instance.player.stateHandler.DisableAllStates();
             GameManager.Instance.player.Running();
             GameManager.Instance.player.companionChatBubble.ForceClose();

@@ -14,8 +14,10 @@ namespace MageRunner.Dialogues
         public bool enablePlayerIdleCast;
         public bool changeLevelMovingState;
         public UnityEvent onTextShowed;
+        public Action onTextClosed;
 
-        public Message (string text, float secondsToStart, float secondsToContinue, bool waitForAction, bool enablePlayerIdleCast, bool changeLevelMovingState, UnityEvent onTextShowed)
+        public Message (string text, float secondsToStart, float secondsToContinue, bool waitForAction = false, 
+            bool enablePlayerIdleCast = false, bool changeLevelMovingState = false, UnityEvent onTextShowed = null, Action onTextClosed = null)
         {
             this.text = text;
             this.secondsToStart = secondsToStart;
@@ -24,6 +26,7 @@ namespace MageRunner.Dialogues
             this.enablePlayerIdleCast = enablePlayerIdleCast;
             this.changeLevelMovingState = changeLevelMovingState;
             this.onTextShowed = onTextShowed;
+            this.onTextClosed = onTextClosed;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MageRunner.Gestures;
+using UnityEngine;
 
 namespace MageRunner.Enemies
 {
@@ -6,11 +7,18 @@ namespace MageRunner.Enemies
     {
         // [Header("Base Enemy Fields")]
         private SpriteRenderer _spriteRenderer;
-        private BoxCollider2D _boxCollider;
-        private float _distanceBetweenPlayerX;
-    
-        protected SpriteRenderer spriteRenderer => _spriteRenderer;
+        private GesturesHolderController _gesturesHolderController;
+        private Animator _animator;
 
-        protected virtual void Start() => _spriteRenderer = GetComponent<SpriteRenderer>();
+        protected SpriteRenderer spriteRenderer => _spriteRenderer;
+        protected GesturesHolderController gesturesHolderController => _gesturesHolderController;
+        protected Animator animator => _animator;
+
+        protected virtual void Awake()
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _gesturesHolderController = GetComponent<GesturesHolderController>();
+            _animator = GetComponent<Animator>();
+        }
     }
 }

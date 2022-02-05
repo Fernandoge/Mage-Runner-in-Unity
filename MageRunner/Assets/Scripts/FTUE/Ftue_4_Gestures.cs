@@ -24,8 +24,8 @@ namespace MageRunner.FTUE
         {
             _ftueHand.SetActive(false);
             GameManager.Instance.level.EnableMovement();
-            GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("wow you still got it", 1.2f, 1f, false, false, false, null));
-            GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("prepare for more!", 1.2f, 1f, false, false, false, null));
+            GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("wow you still got it", 1.2f, 1f));
+            GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("prepare for more!", 1.2f, 1f));
         }
     }
 }

@@ -6,7 +6,7 @@ namespace MageRunner.Enemies
     [Serializable]
     public class FlyingEnemyArea
     {
-        public Transform area;
+        public Transform transform;
         public bool isPositionOccupied;
     }
 }

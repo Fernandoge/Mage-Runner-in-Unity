@@ -3,23 +3,26 @@ using UnityEngine;
 
 namespace MageRunner.Levels
 {
-    public class MovingParticles : MonoBehaviour
+    public class MovingParticle : MonoBehaviour
     {
         private bool _usesVelocityOverLifetime;
         private ParticleSystem.VelocityOverLifetimeModule _particleSystemVelocityModule;
+        private ParticleSystem.MainModule _particleSystemMainModule;
         private float originalVelocity;
     
         private void Start()
         {
             GameManager.Instance.level.movingParticles.Add(this);
-            _particleSystemVelocityModule = GetComponent<ParticleSystem>().velocityOverLifetime;
+            ParticleSystem particleSystem = GetComponent<ParticleSystem>();
+            _particleSystemMainModule = particleSystem.main;
+            _particleSystemVelocityModule = particleSystem.velocityOverLifetime;
             originalVelocity = _particleSystemVelocityModule.xMultiplier;
-        
-            if (_particleSystemVelocityModule.enabled)
-            {
-                _usesVelocityOverLifetime = true;
-                _particleSystemVelocityModule.enabled = false;
-            }
+
+            if (!_particleSystemVelocityModule.enabled) 
+                return;
+            
+            _usesVelocityOverLifetime = true;
+            _particleSystemVelocityModule.enabled = false;
         }
 
         public void EnableVelocityOverLifetime()
@@ -36,8 +39,7 @@ namespace MageRunner.Levels
 
         public void ModifyVelocityOverLifetimeSpeed(float value)
         {
-            // _particleSystemVelocityModule.xMultiplier = (value + _particleSystemVelocityModule.xMultiplier) - (value - GameManager.Instance.level.movingSpeed);
-            _particleSystemVelocityModule.xMultiplier = (value + _particleSystemVelocityModule.xMultiplier) - (GameManager.Instance.level.movingSpeed - _particleSystemVelocityModule.xMultiplier);
+            _particleSystemVelocityModule.xMultiplier = value * _particleSystemVelocityModule.xMultiplier / GameManager.Instance.level.movingSpeed;
         }
 
         public void ResetVelocityOverLifetimeSpeed()

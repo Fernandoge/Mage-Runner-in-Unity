@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Febucci.UI;
 using MageRunner.Managers.GameManager;
@@ -23,7 +24,8 @@ namespace MageRunner.Dialogues
         private bool _levelMovingStateChangedInThisChat;
         private bool _isFullyClosed = true;
         private readonly List<Message> messagesQueued = new List<Message>();
-        private UnityAction _activeListener;
+        private UnityAction _onTextShowedListener;
+        private Action _onTextClosed;
 
         public void StartChatCoroutine(Message message) => StartCoroutine(Chat(message));
 
@@ -49,10 +51,11 @@ namespace MageRunner.Dialogues
                 _secondsToContinue = message.secondsToContinue;
                 _changeLevelMovingState = message.changeLevelMovingState;
                 _waitForAction = message.waitForAction;
+                _onTextClosed = message.onTextClosed;
                 if (message.onTextShowed != null)
                 {
                     _animatorPlayer.onTextShowed.AddListener(message.onTextShowed.Invoke);
-                    _activeListener = message.onTextShowed.Invoke;
+                    _onTextShowedListener = message.onTextShowed.Invoke;
                 }
                 GameManager.Instance.player.idleCastEnabled = message.enablePlayerIdleCast;
 
@@ -66,8 +69,8 @@ namespace MageRunner.Dialogues
 
         private void NextChat()
         {
-            if (_activeListener != null)
-                _animatorPlayer.onTextShowed.RemoveListener(_activeListener);
+            if (_onTextShowedListener != null)
+                _animatorPlayer.onTextShowed.RemoveListener(_onTextShowedListener);
             
             if (messagesQueued.Count == 0)
             {
@@ -95,6 +98,8 @@ namespace MageRunner.Dialogues
 
             if (_waitForAction == false)
                 NextChat();
+
+            _onTextClosed?.Invoke();
         }
 
         public void ForceClose()

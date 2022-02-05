@@ -28,6 +28,7 @@ namespace MageRunner.Managers.GameManager
         [NonSerialized] public DialogueController dialoguePlaying;
 
         private int _currency;
+        private Vector3 _cameraInitialPosition;
 
         public List<Gesture> activeGestures { get; } = new List<Gesture>();
 
@@ -35,6 +36,8 @@ namespace MageRunner.Managers.GameManager
         {
             if (Instance == null)
                 Instance = this;
+
+            _cameraInitialPosition = mainCamera.transform.localPosition;
         }
 
         public void AddGesture(Gesture gesture)
@@ -51,6 +54,8 @@ namespace MageRunner.Managers.GameManager
 
         public void ResetGestures() => _recognizer.patterns = _recognizer.patterns.GetRange(0, player.gestureSpellsController.basicSpellsDict.Count);
 
+        public void ResetCameraPosition() => mainCamera.transform.localPosition = _cameraInitialPosition;
+        
         public void UpdateCurrency(int value)
         {
             _currency += value;

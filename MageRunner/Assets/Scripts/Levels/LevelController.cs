@@ -17,19 +17,18 @@ namespace MageRunner.Levels
         public TimeFrame[] timeFrames;
 
         [NonSerialized] public List<MovingBG> movingBgs = new List<MovingBG>();
-        [NonSerialized] public List<MovingParticles> movingParticles = new List<MovingParticles>();
+        [NonSerialized] public List<MovingParticle> movingParticles = new List<MovingParticle>();
         [NonSerialized] public bool isMoving;
         [NonSerialized] public CheckpointController currentCheckpoint;
         [NonSerialized] public List<GesturesHolderController> flyingEnemiesGesturesHolderController = new List<GesturesHolderController>();
-
-        [SerializeField] private List<RepeatingSegment> _repeatingSegments;
+        [NonSerialized] public bool isLooping;
 
         private int _currency;
-        private bool _looping;
         private float _repeatingStartX;
         private float _repeatingEndX;
-        private readonly List<List<GesturesHolderController>> _timeFramesGesturesHolders = new List<List<GesturesHolderController>>();
         private float _distanceBetweenPlayerX;
+        private Action<float> _loopCallback;
+        private readonly List<List<GesturesHolderController>> _timeFramesGesturesHolders = new List<List<GesturesHolderController>>();
 
         public List<GesturesHolderController> gesturesHolders { get; private set; } = new List<GesturesHolderController>();
         public int currentTimeFrameIndex { get; private set; }
@@ -48,23 +47,34 @@ namespace MageRunner.Levels
     
         private void Update()
         {
+#if UNITY_EDITOR
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                    print("Debugging moving objects current position: " + movingObjects.transform.localPosition);
+            }
+#endif
+            
             //TODO: Optimize the game objects positions if they are high values to avoid floating-point precision limitations
         
             if (GameManager.Instance.level.isMoving)
                 movingObjects.Translate(Vector2.right * movingSpeed * Time.deltaTime);
-        
+            
             // Level looping logic
-            if (_looping && movingObjects.transform.localPosition.x >= _repeatingEndX)
+            if (isLooping && GameManager.Instance.player.transform.position.x >= _repeatingEndX)
             {
-                float distanceReturned = _repeatingEndX - _repeatingStartX;
-                transform.position = new Vector2(transform.position.x + distanceReturned, transform.position.y);
-                movingObjects.transform.localPosition = new Vector2(_repeatingStartX, movingObjects.transform.localPosition.y);
+                if (_loopCallback == null)
+                    movingObjects.transform.localPosition = new Vector2(_repeatingStartX, movingObjects.transform.localPosition.y);
+                else
+                {
+                    float distanceReturned = _repeatingEndX - _repeatingStartX;
+                    _loopCallback.Invoke(distanceReturned);
+                }
             }
         
             // Gestures holders activation
             if (currentGesturesHolderIndex == gesturesHolders.Count)
                 return;
-        
+         
             ActivateNextGesturesHolder();
         }
 
@@ -76,14 +86,15 @@ namespace MageRunner.Levels
             if (_distanceBetweenPlayerX > currentGesturesHolder.distanceToSpawn) 
                 return;
 
-            if (currentGesturesHolder.activateGesturesManually == false)
-                currentGesturesHolder.ActivateGestures();
-
-            currentGesturesHolder.gameObject.SetActive(true);
             currentGesturesHolderIndex += 1;
             
-            // if (currentEnemy.enablesLevelLoop)
-            //     GameManager.Instance.level.StartLooping();
+            // Extra condition for testing, used when player initial position is changed so it doesn't spawn flying enemies on the left
+            if (_distanceBetweenPlayerX < 0)
+                return;
+
+            currentGesturesHolder.gameObject.SetActive(true);
+            if (currentGesturesHolder.activateGesturesManually == false)
+                currentGesturesHolder.ActivateGestures();
         }
 
         public void EnableMovement()
@@ -91,7 +102,7 @@ namespace MageRunner.Levels
             isMoving = true;
             GameManager.Instance.player.stateHandler.DisableState(EPlayerState.Idle);
             GameManager.Instance.player.jumpButton.interactable = true;
-            foreach (MovingParticles particle in movingParticles)
+            foreach (MovingParticle particle in movingParticles)
                 particle.EnableVelocityOverLifetime();
         }
 
@@ -100,23 +111,18 @@ namespace MageRunner.Levels
             isMoving = false;
             GameManager.Instance.player.stateHandler.EnableState(EPlayerState.Idle);
             GameManager.Instance.player.jumpButton.interactable = false;
-            foreach (MovingParticles particle in movingParticles)
+            foreach (MovingParticle particle in movingParticles)
                 particle.DisableVelocityOverLifetime();
         }
 
-        public void StartLooping()
+        public void StartLooping(float startX, float endX, Action<float> loopCallback = null) 
         {
-            _repeatingStartX = _repeatingSegments[0].StartX;
-            _repeatingEndX = _repeatingSegments[0].EndX;
-            _looping = true;
+            _repeatingStartX = startX;
+            _repeatingEndX = endX;
+            _loopCallback = loopCallback;
+            isLooping = true;
         }
 
-        public void StopLooping()
-        {
-            _looping = false;
-            _repeatingSegments.RemoveAt(0);
-        }
-    
         public void ResetLevel()
         {
             if (currentCheckpoint == null)

@@ -22,6 +22,7 @@ namespace MageRunner.Combat
 
             _healthpointsBarHolder.localScale = new Vector3(barValue, _healthpointsBarHolder.localScale.y, _healthpointsBarHolder.localScale.z);
         
+            //TODO: Player death
             if (_currentHealthpoints <= 0)
                 Debug.LogError("PLAYER DIED, WIP");
         }
