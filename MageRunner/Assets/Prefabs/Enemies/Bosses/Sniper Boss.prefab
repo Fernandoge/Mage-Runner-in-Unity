@@ -88,6 +88,10 @@ MonoBehaviour:
   _weapon: {fileID: 1843058034090654864}
   _quickSnipeShootSpeed: 30
   _jumpSpeed: 15
+  _loops:
+  - startX: 913
+    endX: 1105.99
+  HPPerLoop: 05000000
 --- !u!1 &3454963063456126612
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +356,16 @@ PrefabInstance:
       propertyPath: _enablesLevelLoop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -486155800986443433, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
+        type: 3}
+      propertyPath: infiniteGestures
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -486155800986443433, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
+        type: 3}
+      propertyPath: _healthpoints
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 105168867004832885, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}
       propertyPath: m_Enabled
@@ -426,6 +440,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sniper Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215798905352145274, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8215798905352145275, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}

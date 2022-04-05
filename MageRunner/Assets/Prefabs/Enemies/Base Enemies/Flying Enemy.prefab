@@ -31,8 +31,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f87e5df62c665d4a90763e0fa2e6fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _idealPosition: 0
   _flyingSpeed: 10
-  _gesturesHolderController: {fileID: 4793695986200771328}
 --- !u!1001 &4307256288389323351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48,6 +48,11 @@ PrefabInstance:
     - target: {fileID: -486155800986443433, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
         type: 3}
       propertyPath: activateGesturesManually
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -486155800986443433, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
+        type: 3}
+      propertyPath: loadGesturesManually
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8215798905352145268, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
@@ -119,15 +124,3 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4307256288389323351}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4793695986200771328 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -486155800986443433, guid: bb547f57a5f0f2d4ba69e1bff00c3e71,
-    type: 3}
-  m_PrefabInstance: {fileID: 4307256288389323351}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5314831767143551790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20046647f4bf1ce438f96d61bd3a421a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

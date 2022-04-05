@@ -42,7 +42,7 @@ namespace MageRunner.Levels
             }
             
             // Clear lists, disable player states and reset backgrounds positions
-            GameManager.Instance.activeGestures.Clear();
+            GameManager.Instance.gameActiveGestures.Clear();
             GameManager.Instance.ResetGestures();
             GameManager.Instance.ToggleCinematicMode(false);
             GameManager.Instance.ResetCameraPosition();
@@ -63,6 +63,7 @@ namespace MageRunner.Levels
                 gesturesHolderController.gesturesLoaded = false;
                 gesturesHolderController.gameObject.SetActive(false);
                 gesturesHolderController.ResetOriginalPosition();
+                gesturesHolderController.ResetHP();
                 foreach (Gesture gesture in gesturesHolderController.gestures)
                     gesture.iconRenderer.gameObject.SetActive(false);
             }

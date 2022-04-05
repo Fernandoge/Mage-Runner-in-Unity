@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using MageRunner.Enemies;
 using MageRunner.FTUE;
 using MageRunner.Gestures;
@@ -17,9 +18,14 @@ namespace MageRunner.Player
         [SerializeField] private ParticleSystem[] _particlesToActivate;
         
         private bool _isVisible;
+        private int _healthpoints;
         private GesturesHolderController _target;
 
-        private void OnDisable() => ActivateParticles();
+        private void OnDisable()
+        {
+            ActivateParticles();
+            GameManager.Instance.gameActivePlayerSpells.Remove(this);
+        }
 
         private void OnBecameVisible() => _isVisible = true;
 
@@ -37,26 +43,36 @@ namespace MageRunner.Player
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            // Handle attack to interact with the attackTarget gestures
-
             if (collider.gameObject != _target.gameObject)
                 return;
             
-            if (_reduceDurationVisible == false)
+            if (!_reduceDurationVisible)
                 Destroy(gameObject);
 
             _target.activeGestures -= 1;
                 
             if (_target.activeGestures != 0) 
                 return;
-                
-            // TODO: Improve gestures holder dead
-            _target.Deactivate();
+
+            if (_target.infiniteGestures)
+                RemoveHP();
+            else
+            {
+                // TODO: Improve gestures holder dead
+                _target.Deactivate();
+            }
 
             if (collider.GetComponent<ForceFtueGesture>() != null)
                 FtueManager.Instance.CurrentFtueDestroyedStep();
         }
 
+        private void RemoveHP()
+        {
+            _target.currentHealthpoints -= 1;
+            if (_target.currentHealthpoints <= 0)
+                _target.ZeroHpCallback();
+        }
+        
         public void StartMovingToTarget(GesturesHolderController attackTarget, float speed, GameObject playerSpellShooter)
         {
             _target = attackTarget;

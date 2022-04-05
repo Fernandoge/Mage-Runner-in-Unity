@@ -30,7 +30,8 @@ namespace MageRunner.Managers.GameManager
         private int _currency;
         private Vector3 _cameraInitialPosition;
 
-        public List<Gesture> activeGestures { get; } = new List<Gesture>();
+        public List<Gesture> gameActiveGestures { get; } = new List<Gesture>();
+        public List<PlayerAttackSpell> gameActivePlayerSpells = new List<PlayerAttackSpell>();
 
         private void Awake()
         {
@@ -42,13 +43,13 @@ namespace MageRunner.Managers.GameManager
 
         public void AddGesture(Gesture gesture)
         {
-            activeGestures.Add(gesture);
+            gameActiveGestures.Add(gesture);
             _recognizer.patterns.Add(gesture.pattern);
         }
 
         public void RemoveGesture(Gesture gesture)
         {
-            activeGestures.Remove(gesture);
+            gameActiveGestures.Remove(gesture);
             _recognizer.patterns.Remove(gesture.pattern);
         }
 

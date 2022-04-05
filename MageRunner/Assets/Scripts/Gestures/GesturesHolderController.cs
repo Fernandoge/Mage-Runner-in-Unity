@@ -17,10 +17,8 @@ namespace MageRunner.Gestures
         
         [Header("")]
         [SerializeField] private float _distanceToSpawn;
-        [SerializeField] private int _healthpoints;
         // [SerializeField] private Transform _healthpointsBarHolder;
-
-        private float _currentHealthpoints;
+        
         private float _distanceBetweenPlayerX;
         private float _timeInvisible;
         private Vector3 _originalPosition;
@@ -28,15 +26,21 @@ namespace MageRunner.Gestures
         private bool _gesturesDeactivated;
         private bool _isInvisible;
 
-        public bool activateGesturesManually;
+        [NonSerialized] public Gesture previousGesture;
+
+        public bool loadGesturesManually;
+        public bool infiniteGestures;
+        [SerializeField] private int _healthpoints;
         
         public float distanceToSpawn => _distanceToSpawn;
         public float distanceBetweenPlayerX => _distanceBetweenPlayerX;
+        public int currentHealthpoints { get; set; }
         public bool gesturesLoaded { get; set; }
         public int activeGestures { get; set; }
         public bool isMoving { get; set; }
         
         public event Action deactivate;
+        public event Action zeroHpCallback;
 
         private void OnDestroy()
         {
@@ -55,7 +59,7 @@ namespace MageRunner.Gestures
 
         protected void Awake()
         {
-            _currentHealthpoints = _healthpoints;
+            currentHealthpoints = _healthpoints;
             _originalPosition = transform.position;
             _originalParent = transform.parent;
         }
@@ -88,6 +92,16 @@ namespace MageRunner.Gestures
             transform.SetParent(_originalParent);
         }
         
+        public void ZeroHpCallback() => zeroHpCallback?.Invoke();
+
+        public void ResetHP() => currentHealthpoints = _healthpoints;
+        
+        public void Deactivate()
+        {
+            deactivate?.Invoke();
+            gameObject.SetActive(false);
+        }
+
         private void LoadFtueGesture(ForceFtueGesture forceFtueGesture)
         {
             gestures.Remove(forceFtueGesture.gesture);
@@ -98,7 +112,7 @@ namespace MageRunner.Gestures
             loadedFtueGesture.iconRenderer.gameObject.SetActive(true);
         }
 
-        public void ActivateGestures()
+        public void LoadGestures()
         {
             if (gesturesLoaded)
                 return;
@@ -112,17 +126,20 @@ namespace MageRunner.Gestures
             {
                 activeGestures = 0;
                 
-                GesturesDifficultyData gesturesDataModified = Instantiate(GameManager.Instance.gesturesDifficultyData);
-                foreach (Gesture gesture in GameManager.Instance.activeGestures)
-                    RemoveGestureFromData(gesture, gesturesDataModified);
+                GesturesDifficultyData gesturesData = Instantiate(GameManager.Instance.gesturesDifficultyData);
+                foreach (Gesture gesture in GameManager.Instance.gameActiveGestures)
+                    RemoveGestureFromData(gesture, gesturesData);
+                
+                if (infiniteGestures)
+                    RemoveGestureFromData(previousGesture, gesturesData);
                 
                 foreach (Gesture gesture in gestures.ToArray())
                 {
                     gestures.Remove(gesture);
-                    GesturePattern pattern = PickRandomGesture(gesture.difficulty, gesturesDataModified);
+                    GesturePattern pattern = PickRandomGesture(gesture.difficulty, gesturesData);
                     gesture.iconRenderer.sprite = pattern.icon;
                     Gesture loadedGesture = new Gesture(gesture.spell, gesture.difficulty, gesture.iconRenderer, pattern, this, false);
-                    RemoveGestureFromData(loadedGesture, gesturesDataModified);
+                    RemoveGestureFromData(loadedGesture, gesturesData);
                     gestures.Add(loadedGesture);
                 
                     activeGestures += 1;
@@ -140,12 +157,6 @@ namespace MageRunner.Gestures
                 gesture.iconRenderer.gameObject.SetActive(false);
                 GameManager.Instance.RemoveGesture(gesture);
             }
-        }
-
-        public void Deactivate()
-        {
-            deactivate?.Invoke();
-            gameObject.SetActive(false);
         }
         
         private void RemoveGestureFromData(Gesture gesture, GesturesDifficultyData gesturesDataModified)

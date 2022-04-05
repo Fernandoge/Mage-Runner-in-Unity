@@ -43,7 +43,7 @@ namespace MageRunner.Enemies
 
             yield return moveTween.WaitForCompletion();
             
-            gesturesHolderController.ActivateGestures();
+            gesturesHolderController.LoadGestures();
         }
 
         // Called in Spawn Animation

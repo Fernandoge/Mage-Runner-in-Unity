@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using MageRunner.Constants;
 using MageRunner.Dialogues;
 using MageRunner.Levels;
 using MageRunner.Managers.GameManager;
+using MageRunner.Player;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
@@ -35,6 +37,13 @@ namespace MageRunner.Enemies.Bosses
 
         [Header("Jumping Values")] 
         [SerializeField] private float _jumpSpeed;
+
+        // For now use vector X and Y as the loop start and end X respectively
+        [Header("Loops")] 
+        [SerializeField] private LoopValues[] _loops;
+
+        [Header("Health")]
+        [SerializeField] private int[] HPPerLoop;
         
         private SpriteRenderer _sniperIndicatorSpriteRender;
         private bool _isSniping;
@@ -42,9 +51,15 @@ namespace MageRunner.Enemies.Bosses
         private bool _introCompleted;
         private bool _isPlayingIntro;
         private bool _isPlatformJumping;
-        private bool _isLoopingLevel;
+        private bool _isLevelBeingLooped;
+        private int _loopIndex = 0;
+        private int _currentPhase = 0;
         private LayerMask _notGroundLayerMask;
 
+        private void OnEnable() => gesturesHolderController.zeroHpCallback += OnZeroHP;
+        
+        private void OnDisable() => gesturesHolderController.zeroHpCallback -= OnZeroHP;
+        
         private void OnBecameVisible()
         {
             enabled = true;
@@ -69,7 +84,6 @@ namespace MageRunner.Enemies.Bosses
             _sniperIndicatorSpriteRender = _SniperIndicator.GetComponent<SpriteRenderer>();
             
             //TODO: Make melee enemies and FTUE block during the snipe
-            //TODO: Define when boss snipes again
             StartCoroutine(Snipe(_snipeNoFlashDuration));
         }
 
@@ -81,7 +95,7 @@ namespace MageRunner.Enemies.Bosses
                 float weaponLookAngle = Mathf.Atan2(weaponLookDirection.y, weaponLookDirection.x) * Mathf.Rad2Deg;
                 _weapon.transform.rotation = Quaternion.Euler(0f, 0f, weaponLookAngle);
 
-                if (gesturesHolderController.distanceBetweenPlayerX < 20)
+                if (gesturesHolderController.distanceBetweenPlayerX < Constant.SniperQuickSnipeDistance)
                 {
                     SnipeShoot(_weapon.transform, _weapon.transform.right, _quickSnipeShootSpeed, GameManager.Instance.level.movingObjects);
                     _isQuickSniping = false;
@@ -89,26 +103,37 @@ namespace MageRunner.Enemies.Bosses
                 }
             }
 
-            if (gesturesHolderController.distanceBetweenPlayerX > 15) 
+            if (gesturesHolderController.distanceBetweenPlayerX > Constant.SniperPlatformJumpDistance) 
                 return;
             
             if (!_introCompleted && !_isPlayingIntro)
-            {
-                // Begin Boss intro
-                _isPlayingIntro = true;
-                _chatBubble.StartChatCoroutine(new Message("sup, I'm the boss", 0f, 3f, changeLevelMovingState: true));
-                _chatBubble.StartChatCoroutine(new Message("it's time to d-d-d-d-duel", 0f, 3f, changeLevelMovingState: true, onTextClosed: () => _introCompleted = true));
-            }
-            else if (_introCompleted && !_isPlatformJumping)
-            {
-                if (!GameManager.Instance.level.isLooping)
-                    //TODO: Insert variables for looping
-                    GameManager.Instance.level.StartLooping(913, 1105.99f, distanceReturned => StartCoroutine(TryLoopLevel(distanceReturned)));
-                if (!_isLoopingLevel)
-                    StartCoroutine(PlatformJump());
-            }
+                PlayIntro();
+            else if (_introCompleted && !_isPlatformJumping && !_isLevelBeingLooped)
+                StartCoroutine(PlatformJump());
         }
 
+        private void PlayIntro()
+        {
+            _isPlayingIntro = true;
+            _chatBubble.StartChatCoroutine(new Message("sup, I'm the boss", 0f, 3f, changeLevelMovingState: true));
+            _chatBubble.StartChatCoroutine(new Message("it's time to d-d-d-d-duel", 0f, 3f, changeLevelMovingState: true, onTextClosed: () => StartPhase(1)));
+        }
+        
+        private void StartPhase(int phaseNumber)
+        {
+            switch (phaseNumber)
+            {
+                case 1:
+                    _introCompleted = true;
+                    GameManager.Instance.level.StartLooping(_loops[_loopIndex].startX, _loops[_loopIndex].endX, distanceReturned => StartCoroutine(TryLoopLevel(distanceReturned)));
+                    gesturesHolderController.currentHealthpoints = HPPerLoop[_loopIndex];
+                    break;
+                case 2:
+                    //TODO: Make a big jump to the right and start sniping again
+                    break;
+            }
+        }
+        
         private IEnumerator Snipe(float durationSniping, float delayToStartAiming = 0, int disableFrame = 0, int enableFrame = 0)
         {
             if (!_isSniping)
@@ -195,24 +220,28 @@ namespace MageRunner.Enemies.Bosses
 
         private IEnumerator TryLoopLevel(float distanceReturned)
         {
-            if (_isLoopingLevel)
+            if (_isLevelBeingLooped)
                 yield break;
             
-            _isLoopingLevel = true;
-            while (_isLoopingLevel)
+            _isLevelBeingLooped = true;
+            while (_isLevelBeingLooped)
             {
                 yield return null;
                 
                 if (_isPlatformJumping) 
                     continue;
-                
-                Vector3 movingObjectsLocalPosition = GameManager.Instance.level.movingObjects.transform.localPosition;
-                float diff = movingObjectsLocalPosition.x - 1105.99f;
-                GameManager.Instance.level.movingObjects.transform.localPosition = new Vector2(913 + diff, movingObjectsLocalPosition.y);
 
-                transform.position = new Vector3(transform.position.x - distanceReturned, transform.position.y, transform.position.z);
-                _isLoopingLevel = false;
+                LevelController currentLevel = GameManager.Instance.level;
+                Vector3 movingObjectsLocalPosition = currentLevel.movingObjects.transform.localPosition;
+                float diff = movingObjectsLocalPosition.x - currentLevel.repeatingEndX;
                 
+                // Move moving objects, player and player spells to make the loop 
+                GameManager.Instance.level.movingObjects.transform.localPosition = new Vector2(currentLevel.repeatingStartX + diff, movingObjectsLocalPosition.y);
+                transform.position = new Vector3(transform.position.x - distanceReturned, transform.position.y, transform.position.z);
+                foreach (PlayerAttackSpell spell in GameManager.Instance.gameActivePlayerSpells) 
+                    spell.transform.position = new Vector3(spell.transform.position.x - distanceReturned, spell.transform.position.y, spell.transform.position.z);
+
+                _isLevelBeingLooped = false;
                 print("level looped");
             }
         }
@@ -225,6 +254,14 @@ namespace MageRunner.Enemies.Bosses
             var bossPosition = transform.position;
             Physics2D.OverlapArea(new Vector2(bossPosition.x + 15, 10), new Vector2(bossPosition.x + 20, -10), contactFilter, platformsList);
             return platformsList;
+        }
+
+        private void OnZeroHP()
+        {
+            GameManager.Instance.level.StopLooping();
+
+            _currentPhase += 1;
+            StartPhase(_currentPhase);
         }
     }
 }

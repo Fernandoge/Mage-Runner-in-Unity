@@ -34,21 +34,26 @@ namespace MageRunner.Player
         {
             if (_basicSpellsIds.Contains(id))
                 basicSpellsDict[id]();
-        
             else
             {
                 bool gestureFound = false;
-                foreach (Gesture gesture in GameManager.Instance.activeGestures.ToList())
+                foreach (Gesture gesture in GameManager.Instance.gameActiveGestures.ToList())
                 {
-                    if (gesture.pattern.id == id)
-                    {
-                        gestureFound = true;
-                        gesture.iconRenderer.gameObject.SetActive(false);
-                        _targetedGesturesHolder = gesture.holder;
-                        GameManager.Instance.RemoveGesture(gesture);
-                        
-                        _spellsDict[gesture.spell]();
-                    }
+                    if (gesture.pattern.id != id) 
+                        continue;
+                    
+                    gestureFound = true;
+                    _targetedGesturesHolder = gesture.holder;
+                    _targetedGesturesHolder.gesturesLoaded = false;
+                    GameManager.Instance.RemoveGesture(gesture);
+                    
+                    _spellsDict[gesture.spell]();
+
+                    if (!_targetedGesturesHolder.infiniteGestures) 
+                        continue;
+                    
+                    _targetedGesturesHolder.previousGesture = gesture;
+                    _targetedGesturesHolder.LoadGestures();
                 }
 
                 if (gestureFound == false)
@@ -56,7 +61,6 @@ namespace MageRunner.Player
             }
         }
 
-    
         public void ShootSpell()
         {
             _player.spellShooter.transform.localPosition = _playerShooterSpellOriginalPos;
@@ -78,6 +82,7 @@ namespace MageRunner.Player
             Transform spellParent = _targetedGesturesHolder.isMoving ? currentTimeFrame.movingGO.transform : currentTimeFrame.staticGO.transform;
             GameObject objectShot = UnityEngine.Object.Instantiate(_spellToShoot, _player.spellShooter.transform.position, _player.spellShooter.transform.rotation, spellParent);
             PlayerAttackSpell attackSpellShot = objectShot.GetComponent<PlayerAttackSpell>();
+            GameManager.Instance.gameActivePlayerSpells.Add(attackSpellShot);
             float speedBoost = _targetedGesturesHolder.isMoving ? 0f : currentLevel.movingSpeed;
             float speedReduction = currentLevel.isMoving == false ? 0f : (_spellToShootSpeed.Equals(0f) ? 0f : currentLevel.movingSpeed / 2);
             attackSpellShot.StartMovingToTarget(_targetedGesturesHolder, _spellToShootSpeed + speedBoost - speedReduction, _player.spellShooter);
@@ -124,9 +129,9 @@ namespace MageRunner.Player
                 if (_player.groundCollider == null)
                     return;
             
+                //TODO: Disable collider if fast fall is called twice to avoid falling through platforms by accidental recognition
                 fastFallGroundCollider = _player.groundCollider;
                 fastFallGroundCollider.enabled = false;
-                
             };
             basicSpellsDict.Add(fastFall.gesture.id, fastFallCast);
 

@@ -21,11 +21,12 @@ namespace MageRunner.Levels
         [NonSerialized] public bool isMoving;
         [NonSerialized] public CheckpointController currentCheckpoint;
         [NonSerialized] public List<GesturesHolderController> flyingEnemiesGesturesHolderController = new List<GesturesHolderController>();
+        [NonSerialized] public float repeatingEndX;
+        [NonSerialized] public float repeatingStartX;
         [NonSerialized] public bool isLooping;
 
         private int _currency;
-        private float _repeatingStartX;
-        private float _repeatingEndX;
+        
         private float _distanceBetweenPlayerX;
         private Action<float> _loopCallback;
         private readonly List<List<GesturesHolderController>> _timeFramesGesturesHolders = new List<List<GesturesHolderController>>();
@@ -60,13 +61,13 @@ namespace MageRunner.Levels
                 movingObjects.Translate(Vector2.right * movingSpeed * Time.deltaTime);
             
             // Level looping logic
-            if (isLooping && GameManager.Instance.player.transform.position.x >= _repeatingEndX)
+            if (isLooping && GameManager.Instance.player.transform.position.x >= repeatingEndX)
             {
                 if (_loopCallback == null)
-                    movingObjects.transform.localPosition = new Vector2(_repeatingStartX, movingObjects.transform.localPosition.y);
+                    movingObjects.transform.localPosition = new Vector2(repeatingStartX, movingObjects.transform.localPosition.y);
                 else
                 {
-                    float distanceReturned = _repeatingEndX - _repeatingStartX;
+                    float distanceReturned = repeatingEndX - repeatingStartX;
                     _loopCallback.Invoke(distanceReturned);
                 }
             }
@@ -93,8 +94,8 @@ namespace MageRunner.Levels
                 return;
 
             currentGesturesHolder.gameObject.SetActive(true);
-            if (currentGesturesHolder.activateGesturesManually == false)
-                currentGesturesHolder.ActivateGestures();
+            if (currentGesturesHolder.loadGesturesManually == false)
+                currentGesturesHolder.LoadGestures();
         }
 
         public void EnableMovement()
@@ -117,11 +118,13 @@ namespace MageRunner.Levels
 
         public void StartLooping(float startX, float endX, Action<float> loopCallback = null) 
         {
-            _repeatingStartX = startX;
-            _repeatingEndX = endX;
+            repeatingStartX = startX;
+            repeatingEndX = endX;
             _loopCallback = loopCallback;
             isLooping = true;
         }
+
+        public void StopLooping() => isLooping = false;
 
         public void ResetLevel()
         {
