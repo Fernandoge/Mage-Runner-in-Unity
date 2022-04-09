@@ -22,6 +22,8 @@ namespace MageRunner.Player
         private float _spellToShootSpeed;
         
         public Dictionary<string, Action> basicSpellsDict = new Dictionary<string, Action>();
+        
+        public event Action highJumpCallback;
 
         public GestureSpellsController(PlayerController player)
         {
@@ -112,6 +114,8 @@ namespace MageRunner.Player
                 _player.rigidBody.velocity = Vector2.up * highJump.jumpSpeed;
                 _player.stateHandler.EnableState(EPlayerState.HighJumping);
                 _player.stateHandler.DisableState(EPlayerState.Blocking);
+
+                highJumpCallback?.Invoke();
             };
             basicSpellsDict.Add(highJump.gesture.id, highJumpCast);
        

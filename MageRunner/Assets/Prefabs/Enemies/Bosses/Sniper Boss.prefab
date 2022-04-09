@@ -91,7 +91,7 @@ MonoBehaviour:
   _loops:
   - startX: 913
     endX: 1105.99
-  HPPerLoop: 05000000
+  HpPerLoop: 03000000
 --- !u!1 &3454963063456126612
 GameObject:
   m_ObjectHideFlags: 0

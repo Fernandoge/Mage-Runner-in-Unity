@@ -43,7 +43,7 @@ namespace MageRunner.Enemies.Bosses
         [SerializeField] private LoopValues[] _loops;
 
         [Header("Health")]
-        [SerializeField] private int[] HPPerLoop;
+        [SerializeField] private int[] HpPerLoop;
         
         private SpriteRenderer _sniperIndicatorSpriteRender;
         private bool _isSniping;
@@ -126,7 +126,7 @@ namespace MageRunner.Enemies.Bosses
                 case 1:
                     _introCompleted = true;
                     GameManager.Instance.level.StartLooping(_loops[_loopIndex].startX, _loops[_loopIndex].endX, distanceReturned => StartCoroutine(TryLoopLevel(distanceReturned)));
-                    gesturesHolderController.currentHealthpoints = HPPerLoop[_loopIndex];
+                    gesturesHolderController.currentHealthpoints = HpPerLoop[_loopIndex];
                     break;
                 case 2:
                     //TODO: Make a big jump to the right and start sniping again
