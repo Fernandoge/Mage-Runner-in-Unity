@@ -10,20 +10,16 @@ namespace MageRunner.FTUE
         [SerializeField] private GameObject _ftueHand;
         [SerializeField] private AnimationClip highJumpGestureAnimation;
         
-        public override void FirstStep()
-        {
-            _firstStepDialogue.StartDialogue();
-        }
+        public override void FirstStep() => _firstStepDialogue.StartDialogue();
         
         // Called after the first step dialogue finishes
         public void SecondStep()
         {
             Time.timeScale = 0;
             
-            
             Animator handAnimator = _ftueHand.GetComponent<Animator>();
             AnimatorOverrideController handAnimatorController = (AnimatorOverrideController) handAnimator.runtimeAnimatorController;
-            handAnimatorController["First Gesture FTUE"] = highJumpGestureAnimation;
+            handAnimatorController["Gestures FTUE"] = highJumpGestureAnimation;
             _ftueHand.SetActive(true);
 
             GameManager.Instance.player.gestureSpellsController.highJumpCallback += ThirdStep;
@@ -37,13 +33,5 @@ namespace MageRunner.FTUE
             Time.timeScale = 1;
             
         }
-
-        // public override void StepAfterDestroyed()
-        // {
-        //     _ftueHand.SetActive(false);
-        //     GameManager.Instance.level.EnableMovement();
-        //     GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("wow you still got it", 1.2f, 1f));
-        //     GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("prepare for more!", 1.2f, 1f));
-        // }
     }
 }

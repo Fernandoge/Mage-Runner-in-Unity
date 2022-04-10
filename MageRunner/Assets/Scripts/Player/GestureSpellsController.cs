@@ -24,6 +24,7 @@ namespace MageRunner.Player
         public Dictionary<string, Action> basicSpellsDict = new Dictionary<string, Action>();
         
         public event Action highJumpCallback;
+        public event Action fastFallCallBack;
 
         public GestureSpellsController(PlayerController player)
         {
@@ -130,6 +131,8 @@ namespace MageRunner.Player
                 _player.stateHandler.DisableState(EPlayerState.Blocking);
                 _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
 
+                fastFallCallBack?.Invoke();
+                
                 if (_player.groundCollider == null)
                     return;
             

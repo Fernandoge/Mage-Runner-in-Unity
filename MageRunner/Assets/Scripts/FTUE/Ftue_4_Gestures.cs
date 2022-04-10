@@ -8,15 +8,16 @@ namespace MageRunner.FTUE
     {
         [SerializeField] private DialogueController _firstStepDialogue;
         [SerializeField] private GameObject _ftueHand;
+        [SerializeField] private AnimationClip gesturesFtueAnimation;
         
-        public override void FirstStep()
-        {
-            _firstStepDialogue.StartDialogue();
-        }
+        public override void FirstStep() => _firstStepDialogue.StartDialogue();
 
         // Called after the first step dialogue finishes
         public void SecondStep()
         {
+            Animator handAnimator = _ftueHand.GetComponent<Animator>();
+            AnimatorOverrideController handAnimatorController = (AnimatorOverrideController) handAnimator.runtimeAnimatorController;
+            handAnimatorController["Gestures FTUE"] = gesturesFtueAnimation;
             _ftueHand.SetActive(true);
         }
 
