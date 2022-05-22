@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = System.Random;
 
 namespace MageRunner.Player
 {
@@ -87,6 +88,7 @@ namespace MageRunner.Player
 
                 case EPlayerState.Shooting:
                     DisableState(EPlayerState.Blocking);
+                    _player.animator.SetInteger("ShootIndex", UnityEngine.Random.Range(0, 2));
                     _player.animator.SetTrigger("Shoot");
                     _player.animator.SetInteger("StateNumber", 5);
                     break;
