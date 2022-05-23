@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using DG.Tweening;
 using MageRunner.Combat;
+using MageRunner.Constants;
 using MageRunner.Dialogues;
 using MageRunner.Enemies;
 using MageRunner.Gestures;
@@ -34,16 +35,18 @@ namespace MageRunner.Player
         [NonSerialized] public bool airJumpAvailable;
         [NonSerialized] public bool highJumpAvailable;
         [NonSerialized] public bool idleCastEnabled;
+        [NonSerialized] public bool readyToPlatformFall;
         [NonSerialized] public float glideSpeed;
         [NonSerialized] public Rigidbody2D rigidBody;
         [NonSerialized] public Animator animator;
         [NonSerialized] public PlayerStateHandler stateHandler;
-        [NonSerialized] public Collider2D groundCollider; 
-    
+        [NonSerialized] public Collider2D groundCollider;
+
         [SerializeField] private Transform _feetPos;
         
         private Camera _mainCamera;
         private LayerMask _notGroundLayerMask;
+        private float _platformFallDelay;
         
         public GestureSpellsController gestureSpellsController { get; private set; }
         public event Action playerDash;
@@ -74,6 +77,14 @@ namespace MageRunner.Player
             else
                 groundJumpAvailable = false;
 
+            if (readyToPlatformFall)
+            {
+                _platformFallDelay -= Time.deltaTime;
+                if (_platformFallDelay < 0)
+                    readyToPlatformFall = false;
+            }
+                
+                
 #if UNITY_EDITOR
             PlayerInputDebug();
 #endif
@@ -105,7 +116,15 @@ namespace MageRunner.Player
             if (groundJumpAvailable)
                 stateHandler.EnableState(EPlayerState.GroundJumping);
             else if (airJumpAvailable)
+            {
                 stateHandler.EnableState(EPlayerState.AirJumping);
+                
+                if (gestureSpellsController.fastFallGroundCollider == null)
+                    return;
+            
+                if (gestureSpellsController.fastFallGroundCollider.enabled == false)
+                    gestureSpellsController.fastFallGroundCollider.enabled = true;
+            }
         }
 
         private void HighJump()
@@ -163,6 +182,12 @@ namespace MageRunner.Player
                 particle.ResetVelocityOverLifetimeSpeed();
     
             stateHandler.DisableState(EPlayerState.Dashing);
+        }
+
+        public void StartPlatformFall()
+        {
+            readyToPlatformFall = true;
+            _platformFallDelay = Constant.PlatformFallDelay;
         }
 
         public void BeginCastingSpell(string id) => gestureSpellsController.CastSpell(id);

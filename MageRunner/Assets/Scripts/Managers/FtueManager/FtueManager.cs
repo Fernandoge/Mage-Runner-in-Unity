@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 namespace MageRunner.Managers.FtueManager
 {
-    //TODO: Fast Fall FTUE
-    //TODO: Get Down Platform FTUE
-    //TODO: High Jump FTUE
     public class FtueManager : MonoBehaviour
     {
         public static FtueManager Instance;

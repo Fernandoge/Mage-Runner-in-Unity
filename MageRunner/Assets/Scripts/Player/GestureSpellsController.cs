@@ -127,18 +127,26 @@ namespace MageRunner.Player
                 if ((_player.groundCollider != null && _player.groundCollider.gameObject.layer == LayerMask.NameToLayer("BottomGround")) || _player.stateHandler.isDashing)
                     return;
                 
-                _player.stateHandler.EnableState(EPlayerState.FastFalling);
-                _player.stateHandler.DisableState(EPlayerState.Blocking);
-                _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
-
                 fastFallCallBack?.Invoke();
-                
+
+                if (_player.readyToPlatformFall || _player.groundCollider == null)
+                {
+                    _player.stateHandler.EnableState(EPlayerState.FastFalling);
+                    _player.stateHandler.DisableState(EPlayerState.Blocking);
+                    _player.rigidBody.velocity = Vector2.down * fastFall.fallSpeed;
+                }
+
                 if (_player.groundCollider == null)
                     return;
-            
-                //TODO: Disable collider if fast fall is called twice to avoid falling through platforms by accidental recognition
-                fastFallGroundCollider = _player.groundCollider;
-                fastFallGroundCollider.enabled = false;
+
+                if (_player.readyToPlatformFall)
+                {
+                    fastFallGroundCollider = _player.groundCollider;
+                    fastFallGroundCollider.enabled = false;
+                }
+                else
+                    _player.StartPlatformFall();
+                
             };
             basicSpellsDict.Add(fastFall.gesture.id, fastFallCast);
 

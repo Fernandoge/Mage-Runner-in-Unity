@@ -96,9 +96,10 @@ namespace MageRunner.Dialogues
             if (_changeLevelMovingState && GameManager.Instance.level.isMoving == false && _levelMovingStateChangedInThisChat == false)
                 GameManager.Instance.level.EnableMovement();
 
-            if (_waitForAction == false)
-                NextChat();
-
+            if (_waitForAction)
+                yield break;
+                
+            NextChat();
             _onTextClosed?.Invoke();
         }
 
