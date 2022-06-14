@@ -48,6 +48,7 @@ namespace MageRunner.FTUE
             GameManager.Instance.player.gestureSpellsController.fastFallCallBack -= FourthStep;
             GameManager.Instance.level.EnableMovement();
             _ftueHand.SetActive(false);
+            chatBubble.ForceClose();
         }
     }
 }
