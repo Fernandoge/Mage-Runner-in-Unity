@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using MageRunner.Levels;
 using MageRunner.Managers.GameManager;
-using MageRunner.Scenes;
 using UnityEngine;
 
 namespace MageRunner.Enemies
@@ -18,7 +18,7 @@ namespace MageRunner.Enemies
         private void OnEnable()
         {
             gesturesHolderController.deactivate += OnDeactivate;
-            if (GameManager.Instance.player != null) 
+            if (GameManager.Instance != null && GameManager.Instance.player != null) 
                 GameManager.Instance.player.playerDash += OnPlayerDash;
 
         }
@@ -70,13 +70,13 @@ namespace MageRunner.Enemies
             if (_idealPosition == 0)
                 _idealPosition = Random.Range(1, 4);
             
-            LevelSceneController levelScene = GameManager.Instance.levelScene;
-            for (int i = 0; i < levelScene.flyingEnemyAreas.Length; i++)
+            LevelController level = GameManager.Instance.level;
+            for (int i = 0; i < level.flyingEnemyAreas.Length; i++)
             {
-                if (levelScene.flyingEnemyAreas[i].isColumnOccupied)
+                if (level.flyingEnemyAreas[i].isColumnOccupied)
                     continue;
                 
-                _enemyAreasColumn = levelScene.flyingEnemyAreas[i];
+                _enemyAreasColumn = level.flyingEnemyAreas[i];
 
                 if (_enemyAreasColumn.enemyAreas[_idealPosition].isPositionOccupied == false)
                     return _enemyAreasColumn.enemyAreas[_idealPosition];

@@ -5,7 +5,6 @@ using MageRunner.Dialogues;
 using MageRunner.Gestures;
 using MageRunner.Levels;
 using MageRunner.Player;
-using MageRunner.Scenes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,15 +15,14 @@ namespace MageRunner.Managers.GameManager
         public static GameManager Instance;
         
         public Camera mainCamera;
+        public PlayerController player;
+        public LevelController level;
         public GesturesDifficultyData gesturesDifficultyData;
         public Text currencyText;
         
         [SerializeField] private GameObject _spellsDrawArea;
         [SerializeField] private Recognizer _recognizer;
         
-        [NonSerialized] public PlayerController player;
-        [NonSerialized] public LevelSceneController levelScene;
-        [NonSerialized] public LevelController level;
         [NonSerialized] public DialogueController dialoguePlaying;
 
         private int _currency;

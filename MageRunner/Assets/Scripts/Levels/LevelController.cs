@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MageRunner.Cameras;
+using MageRunner.Enemies;
 using MageRunner.Gestures;
 using MageRunner.Managers.GameManager;
 using MageRunner.Player;
@@ -15,6 +16,7 @@ namespace MageRunner.Levels
         public float movingSpeed;
         public Transform movingObjects;
         public TimeFrame[] timeFrames;
+        public FlyingEnemyAreasColumn[] flyingEnemyAreas;
 
         [NonSerialized] public List<MovingBG> movingBgs = new List<MovingBG>();
         [NonSerialized] public List<MovingParticle> movingParticles = new List<MovingParticle>();
@@ -35,15 +37,13 @@ namespace MageRunner.Levels
         public int currentTimeFrameIndex { get; private set; }
         public  int currentGesturesHolderIndex { get; private set; }
 
-        private void Awake() => GameManager.Instance.level = this;
+        // private void Awake() => GameManager.Instance.level = this;
 
         private void Start()
         {
             InitializeGesturesHolders();
-            GameManager.Instance.player.transform.SetParent(movingObjects);
             Camera mainCamera = GameManager.Instance.mainCamera;
             mainCamera.GetComponent<CameraController>().ScaleLevelCamera(transform);
-            mainCamera.transform.SetParent(movingObjects);
         } 
     
         private void Update()
