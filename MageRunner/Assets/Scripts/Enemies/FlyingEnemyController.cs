@@ -47,7 +47,7 @@ namespace MageRunner.Enemies
         }
 
         // Called in Spawn Animation
-        public void OnSpawn()
+        private void OnSpawn()
         {
             GameManager.Instance.level.flyingEnemiesGesturesHolderController.Add(gesturesHolderController);
             _enemyArea = FindPosition();

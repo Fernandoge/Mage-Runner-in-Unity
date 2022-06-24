@@ -127,9 +127,12 @@ namespace MageRunner.Gestures
                 activeGestures = 0;
                 
                 GesturesDifficultyData gesturesData = Instantiate(GameManager.Instance.gesturesDifficultyData);
+                
+                // Remove gestures from data so it doesn't repeat ones already active on screen 
                 foreach (Gesture gesture in GameManager.Instance.gameActiveGestures)
                     RemoveGestureFromData(gesture, gesturesData);
                 
+                //Remove gestures from data so it doesn't repeat the one casted previously
                 if (infiniteGestures)
                     RemoveGestureFromData(previousGesture, gesturesData);
                 

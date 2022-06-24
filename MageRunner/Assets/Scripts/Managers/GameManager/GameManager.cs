@@ -18,12 +18,13 @@ namespace MageRunner.Managers.GameManager
         public PlayerController player;
         public LevelController level;
         public GesturesDifficultyData gesturesDifficultyData;
+        public Recognizer recognizer;
         public Text currencyText;
         
         [SerializeField] private GameObject _spellsDrawArea;
-        [SerializeField] private Recognizer _recognizer;
         
         [NonSerialized] public DialogueController dialoguePlaying;
+        [NonSerialized] public int basicSpellsUnlocked;
 
         private int _currency;
         private Vector3 _cameraInitialPosition;
@@ -42,16 +43,16 @@ namespace MageRunner.Managers.GameManager
         public void AddGesture(Gesture gesture)
         {
             gameActiveGestures.Add(gesture);
-            _recognizer.patterns.Add(gesture.pattern);
+            recognizer.patterns.Add(gesture.pattern);
         }
 
         public void RemoveGesture(Gesture gesture)
         {
             gameActiveGestures.Remove(gesture);
-            _recognizer.patterns.Remove(gesture.pattern);
+            recognizer.patterns.Remove(gesture.pattern);
         }
 
-        public void ResetGestures() => _recognizer.patterns = _recognizer.patterns.GetRange(0, player.gestureSpellsController.basicSpellsDict.Count);
+        public void ResetGestures() => recognizer.patterns = recognizer.patterns.GetRange(0, basicSpellsUnlocked);
 
         public void ResetCameraPosition() => mainCamera.transform.localPosition = _cameraInitialPosition;
         

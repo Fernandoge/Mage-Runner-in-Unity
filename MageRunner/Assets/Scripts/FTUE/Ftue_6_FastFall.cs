@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using GestureRecognizer;
 using MageRunner.Dialogues;
+using MageRunner.Gestures;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
 
@@ -9,18 +11,31 @@ namespace MageRunner.FTUE
     {
         [SerializeField] private GameObject _ftueHand;
         [SerializeField] private AnimationClip fastFallGestureAnimation;
+        [SerializeField] private GesturePattern _ftuePattern;
 
-        public override void FirstStep()
+        private List<GesturePattern> _activePatterns;
+
+        protected override void FirstStep()
         {
             ChatBubbleController chatBubble = GameManager.Instance.player.companionChatBubble;
             chatBubble.StartChatCoroutine(new Message("this seems a hard fall", 0f, 2f, changeLevelMovingState: true, onTextClosed: () => GameManager.Instance.level.EnableMovement()));
         }
         
-        private void OnTriggerEnter2D(Collider2D other) => SecondStep();
+        private new void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_ftueStarted)
+                SecondStep();
+            else
+                base.OnTriggerEnter2D(other);
+        }
         
         private void SecondStep()
         {
             Time.timeScale = 0;
+            
+            UnlockBasicSpell(_ftuePattern);
+            _activePatterns = GameManager.Instance.recognizer.patterns;
+            GameManager.Instance.recognizer.patterns = new List<GesturePattern>(1) { _ftuePattern };
             
             Animator handAnimator = _ftueHand.GetComponent<Animator>();
             AnimatorOverrideController handAnimatorController = (AnimatorOverrideController) handAnimator.runtimeAnimatorController;
@@ -33,6 +48,7 @@ namespace MageRunner.FTUE
         private void ThirdStep()
         {
             GameManager.Instance.player.gestureSpellsController.fastFallCallBack -= ThirdStep;
+            GameManager.Instance.recognizer.patterns = _activePatterns;
             _ftueHand.SetActive(false);
             Time.timeScale = 1;
         }

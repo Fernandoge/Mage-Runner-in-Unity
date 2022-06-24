@@ -8,7 +8,7 @@ namespace MageRunner.FTUE
         [SerializeField] private DialogueController _firstStepDialogue;
 
         // Dialogue to start FTUE
-        public override void FirstStep() => _firstStepDialogue.StartDialogue();
+        protected override void FirstStep() => _firstStepDialogue.StartDialogue();
     }
 }
 

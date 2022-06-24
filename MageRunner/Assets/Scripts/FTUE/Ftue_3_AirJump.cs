@@ -12,13 +12,19 @@ namespace MageRunner.FTUE
         [SerializeField] private DialogueController _firstStepDialogue;
         
         // Dialogue to start FTUE
-        public override void FirstStep()
+        protected override void FirstStep()
         {
             GameManager.Instance.ToggleCinematicMode(true);
             _firstStepDialogue.StartDialogue();
         }
-        
-        private void OnTriggerEnter2D(Collider2D other) => SecondStep();
+
+        private new void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_ftueStarted)
+                SecondStep();
+            else
+                base.OnTriggerEnter2D(other);
+        }
 
         private void SecondStep()
         {

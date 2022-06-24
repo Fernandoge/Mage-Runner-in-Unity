@@ -160,6 +160,12 @@ Transform:
   m_Father: {fileID: 1433411660}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4280251 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5456072131564472088, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &16346254
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,78 +212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.008
---- !u!1 &19410253
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 19410254}
-  - component: {fileID: 19410256}
-  - component: {fileID: 19410255}
-  m_Layer: 0
-  m_Name: '[2] Double Jump FTUE Trigger'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &19410254
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19410253}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 99.90001, y: -1.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981200880}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &19410255
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19410253}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08794308, y: 1.4914551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5340276, y: 16.57}
-  m_EdgeRadius: 0
---- !u!114 &19410256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19410253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ftueNumber: 2
 --- !u!114 &31773112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9083924134097904370, guid: a40f68619b360a7489b5ac2f764ed991,
@@ -1449,6 +1383,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04aa7390bcdaa04eaa391fa7d3a081a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &140938295 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3848952159996752814, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &144509048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,6 +2112,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &188718512 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1635557242183095756, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &221014241
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,6 +3217,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &310147941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310147942}
+  - component: {fileID: 310147943}
+  m_Layer: 0
+  m_Name: FTUE 5 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &310147942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310147941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1372208836}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &310147943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310147941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: uh, it's time to high jump <rainb>protagonist name</rainb>!
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 1
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+    - text: draw the gesture
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 1
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1372208837}
+            m_TargetAssemblyTypeName: MageRunner.FTUE.Ftue_5_HighJump, Assembly-CSharp
+            m_MethodName: SecondStep
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
 --- !u!1 &311620397
 GameObject:
   m_ObjectHideFlags: 0
@@ -8435,6 +8459,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!4 &393630316 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7869593453531751575, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &406007095
 GameObject:
   m_ObjectHideFlags: 0
@@ -9130,6 +9160,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &461784826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 461784827}
+  - component: {fileID: 461784828}
+  m_Layer: 0
+  m_Name: Timelines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &461784827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461784826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 823654311}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &461784828
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461784826}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 506202aca3d747b439a1cbfd3da00988, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -1944767386947364058, guid: 506202aca3d747b439a1cbfd3da00988, type: 2}
+    value: {fileID: 823654314}
+  - key: {fileID: 5048925748717716553, guid: 506202aca3d747b439a1cbfd3da00988, type: 2}
+    value: {fileID: 1531361848}
+  m_ExposedReferences:
+    m_References:
+    - d1e9b13d6588dd8498ff64b612920d71: {fileID: 935212016}
 --- !u!224 &474644081 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9083924134413110549, guid: a40f68619b360a7489b5ac2f764ed991,
@@ -9431,6 +9515,83 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 497896136}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &499515888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499515889}
+  - component: {fileID: 499515890}
+  - component: {fileID: 499515891}
+  m_Layer: 0
+  m_Name: '[4] Gestures FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &499515889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499515888}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1819067785}
+  m_Father: {fileID: 981200880}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &499515890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499515888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a8f123083ae9f4686029801b624305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 4
+  _firstStepDialogue: {fileID: 1819067786}
+  _ftueHand: {fileID: 8088917236104284716}
+  gesturesFtueAnimation: {fileID: 7400000, guid: 044a448fdd349d344a5ef46b8f92ba70,
+    type: 2}
+--- !u!61 &499515891
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499515888}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 32.65, y: 0.13}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5340276, y: 16.57}
+  m_EdgeRadius: 0
 --- !u!1 &509435662
 GameObject:
   m_ObjectHideFlags: 0
@@ -9948,6 +10109,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 359477859}
     m_Modifications:
+    - target: {fileID: 130733842, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
       propertyPath: jumpButton
       value: 
@@ -9960,10 +10125,95 @@ PrefabInstance:
       propertyPath: healthController
       value: 
       objectReference: {fileID: 139039242}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 1295933812}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 1753121566}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 1915951360}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[3]
+      value: 
+      objectReference: {fileID: 752782775}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[4]
+      value: 
+      objectReference: {fileID: 393630316}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[5]
+      value: 
+      objectReference: {fileID: 687974762}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[6]
+      value: 
+      objectReference: {fileID: 2142390091}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[7]
+      value: 
+      objectReference: {fileID: 1133081650}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[8]
+      value: 
+      objectReference: {fileID: 4280251}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[9]
+      value: 
+      objectReference: {fileID: 2135145073}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[10]
+      value: 
+      objectReference: {fileID: 140938295}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[11]
+      value: 
+      objectReference: {fileID: 852375716}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[12]
+      value: 
+      objectReference: {fileID: 2122334134}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[13]
+      value: 
+      objectReference: {fileID: 188718512}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[14]
+      value: 
+      objectReference: {fileID: 814829693}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[15]
+      value: 
+      objectReference: {fileID: 1271982669}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[16]
+      value: 
+      objectReference: {fileID: 1669515541}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[17]
+      value: 
+      objectReference: {fileID: 1669515541}
+    - target: {fileID: 753229090, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+      propertyPath: _bones.Array.data[18]
+      value: 
+      objectReference: {fileID: 1669515541}
+    - target: {fileID: 158942882172011707, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.0021756887
+      objectReference: {fileID: 0}
     - target: {fileID: 158942882172011707, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.0015254617
+      value: 0.0015249848
       objectReference: {fileID: 0}
     - target: {fileID: 555663095209429458, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10078,12 +10328,12 @@ PrefabInstance:
     - target: {fileID: 1807927829750657921, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.00000008940697
+      value: -0.0000039041042
       objectReference: {fileID: 0}
     - target: {fileID: 1807927829750657921, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0
+      value: 0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: 1807927829750657921, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10094,6 +10344,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 1.6049999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080257446917510624, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: 0.002286017
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080257446917510624, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.000000834465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080257446917510624, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.6195886
       objectReference: {fileID: 0}
     - target: {fileID: 2258346959382827403, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10163,7 +10428,7 @@ PrefabInstance:
     - target: {fileID: 2712698742461845292, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.000000029802322
+      value: -0.000005751848
       objectReference: {fileID: 0}
     - target: {fileID: 2712698742461845292, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10183,12 +10448,12 @@ PrefabInstance:
     - target: {fileID: 3659836917739802943, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.0062300116
+      value: -0.0062281042
       objectReference: {fileID: 0}
     - target: {fileID: 3659836917739802943, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.0022354424
+      value: 0.0022349656
       objectReference: {fileID: 0}
     - target: {fileID: 3669725955693909464, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10228,22 +10493,22 @@ PrefabInstance:
     - target: {fileID: 3719174972612931177, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: 0.0018059313
+      value: 0.001804024
       objectReference: {fileID: 0}
     - target: {fileID: 3719174972612931177, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.0010547042
+      value: 0.0010549426
       objectReference: {fileID: 0}
     - target: {fileID: 3719174972612931177, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Extent.x
-      value: 0.34819406
+      value: 0.34819597
       objectReference: {fileID: 0}
     - target: {fileID: 3719174972612931177, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 0.6839447
+      value: 0.68394494
       objectReference: {fileID: 0}
     - target: {fileID: 3848952159996752814, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10288,22 +10553,32 @@ PrefabInstance:
     - target: {fileID: 4578800332116708616, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.002434671
+      value: -0.0024413466
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578800332116708616, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.00093108416
       objectReference: {fileID: 0}
     - target: {fileID: 4578800332116708616, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Extent.x
-      value: 0.71256506
+      value: 0.7125641
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578800332116708616, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.70407015
       objectReference: {fileID: 0}
     - target: {fileID: 4825857185971062261, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: 0.00020697713
+      value: 0.00021460652
       objectReference: {fileID: 0}
     - target: {fileID: 4825857185971062261, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.0000045597553
+      value: -0.000004082918
       objectReference: {fileID: 0}
     - target: {fileID: 4825857185971062261, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10314,6 +10589,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.36228502
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011971965258728859, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5456072131564472088, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10383,12 +10663,12 @@ PrefabInstance:
     - target: {fileID: 6482105401585599618, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: 0.002355054
+      value: 0.0023569614
       objectReference: {fileID: 0}
     - target: {fileID: 6482105401585599618, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.046304584
+      value: -0.04630506
       objectReference: {fileID: 0}
     - target: {fileID: 6482105401585599618, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10402,8 +10682,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6572900101801389808, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.0009430945
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572900101801389808, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.009999514
+      value: -0.00999999
       objectReference: {fileID: 0}
     - target: {fileID: 6653604584048326163, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10493,7 +10778,7 @@ PrefabInstance:
     - target: {fileID: 7692043060404832007, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.96
+      value: -5.14
       objectReference: {fileID: 0}
     - target: {fileID: 7692043060404832007, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10573,7 +10858,7 @@ PrefabInstance:
     - target: {fileID: 7824145710377960405, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.00017046928
+      value: 0.00017094612
       objectReference: {fileID: 0}
     - target: {fileID: 7869593453531751575, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10613,7 +10898,12 @@ PrefabInstance:
     - target: {fileID: 7922667871895650037, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.001420021
+      value: -0.0014181137
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922667871895650037, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7922667871895650037, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10658,12 +10948,22 @@ PrefabInstance:
     - target: {fileID: 8861994387955351947, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.0013100356
+      value: -0.0013128966
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861994387955351947, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: 0.00000035762787
       objectReference: {fileID: 0}
     - target: {fileID: 8861994387955351947, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
       propertyPath: m_Bounds.m_Extent.x
-      value: 0.20794004
+      value: 0.207941
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861994387955351947, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+        type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.71499956
       objectReference: {fileID: 0}
     - target: {fileID: 9125868185426309143, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
         type: 3}
@@ -10707,6 +11007,84 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1156927795}
   m_SourcePrefab: {fileID: 100100000, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
+--- !u!1 &550162740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550162741}
+  - component: {fileID: 550162742}
+  m_Layer: 0
+  m_Name: FTUE 1 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &550162741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550162740}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 736446494}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &550162742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550162740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: <rainb> <shake> oh no
+      secondsToStart: 0
+      secondsToContinue: 1
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 1
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+    - text: Remember how to jump?
+      secondsToStart: 0
+      secondsToContinue: 0
+      waitForAction: 1
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 736446495}
+            m_TargetAssemblyTypeName: MageRunner.FTUE.FtueOne, Assembly-CSharp
+            m_MethodName: SecondStep
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
 --- !u!1 &560794793
 GameObject:
   m_ObjectHideFlags: 0
@@ -10838,72 +11216,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &578547625
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 578547626}
-  - component: {fileID: 578547627}
-  m_Layer: 0
-  m_Name: FTUE 2 Dialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &578547626
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578547625}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 915679389}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &578547627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578547625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueSections:
-  - isCompanionChatBubble: 1
-    chatBubble: {fileID: 0}
-    messages:
-    - text: Here comes a bigger jump
-      secondsToStart: 0
-      secondsToContinue: 1.2
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
-    - text: Tap the Jump button in the air to do an Air Jump!
-      secondsToStart: 0
-      secondsToContinue: 1.2
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
 --- !u!1 &579461924
 GameObject:
   m_ObjectHideFlags: 0
@@ -11031,7 +11343,7 @@ PrefabInstance:
     - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 957.7
+      value: 735.5
       objectReference: {fileID: 0}
     - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
         type: 3}
@@ -11415,78 +11727,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &638469971
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 638469972}
-  - component: {fileID: 638469974}
-  - component: {fileID: 638469973}
-  m_Layer: 0
-  m_Name: '[7] Fall Platform FTUE Trigger '
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &638469972
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638469971}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 613.6099, y: -1.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981200880}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &638469973
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638469971}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08794308, y: 1.4914551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5340276, y: 16.57}
-  m_EdgeRadius: 0
---- !u!114 &638469974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638469971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ftueNumber: 7
 --- !u!1 &650801786
 GameObject:
   m_ObjectHideFlags: 0
@@ -12392,6 +12632,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &736446493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736446494}
+  - component: {fileID: 736446495}
+  - component: {fileID: 736446496}
+  m_Layer: 0
+  m_Name: '[1] Jump Button FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &736446494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736446493}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 72.21, y: -0.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 550162741}
+  m_Father: {fileID: 981200880}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &736446495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736446493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0274c85835217e42994b73d87f6e142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 1
+  _ftueJumpButton: {fileID: 1605908562}
+  _firstStepDialogue: {fileID: 550162742}
+--- !u!61 &736446496
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736446493}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08794308, y: 1.4914551}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5340276, y: 16.57}
+  m_EdgeRadius: 0
 --- !u!1 &743479965
 GameObject:
   m_ObjectHideFlags: 0
@@ -12535,78 +12850,6 @@ Transform:
   m_Father: {fileID: 1022673143}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &752188746
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 752188747}
-  - component: {fileID: 752188749}
-  - component: {fileID: 752188748}
-  m_Layer: 0
-  m_Name: '[3] Air Jump FTUE Trigger'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &752188747
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752188746}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 173.8, y: -1.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981200880}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &752188748
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752188746}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08794308, y: 1.4914551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5340276, y: 16.57}
-  m_EdgeRadius: 0
---- !u!114 &752188749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752188746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ftueNumber: 3
 --- !u!4 &752782775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5857495321017983064, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
@@ -13227,6 +13470,115 @@ Transform:
   m_Father: {fileID: 1022673143}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &814234231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 814234232}
+  - component: {fileID: 814234235}
+  - component: {fileID: 814234234}
+  - component: {fileID: 814234233}
+  m_Layer: 0
+  m_Name: '[6] Fast Fall FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &814234232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814234231}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 981200880}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &814234233
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814234231}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 565.74, y: 0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5340276, y: 16.57}
+  m_EdgeRadius: 0
+--- !u!61 &814234234
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814234231}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 569, y: 3.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &814234235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814234231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e9f0863205cd47a262ec07762afcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 6
+  _ftueHand: {fileID: 8088917236104284716}
+  fastFallGestureAnimation: {fileID: 7400000, guid: 21fff25ded66d044e8d7f54d3a816017,
+    type: 2}
+  _ftuePattern: {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
+--- !u!4 &814829693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2463312910137599503, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823654310
 GameObject:
   m_ObjectHideFlags: 0
@@ -13237,6 +13589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 823654311}
   - component: {fileID: 823654313}
+  - component: {fileID: 823654314}
   m_Layer: 0
   m_Name: Level Controller
   m_TagString: Untagged
@@ -13256,6 +13609,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 461784827}
   - {fileID: 474644081}
   - {fileID: 423824833}
   m_Father: {fileID: 0}
@@ -13295,6 +13649,51 @@ MonoBehaviour:
     - transform: {fileID: 518942359}
       isPositionOccupied: 0
     isColumnOccupied: 0
+--- !u!114 &823654314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823654310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 1c89513d01a409549bc077b663c8dc23, type: 2}
+    - {fileID: 11400000, guid: 7aba9e88cb448e247abb2ac5ed338332, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 823654313}
+          m_TargetAssemblyTypeName: MageRunner.Levels.LevelController, Assembly-CSharp
+          m_MethodName: EnableMovement
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 823654313}
+          m_TargetAssemblyTypeName: MageRunner.Levels.LevelController, Assembly-CSharp
+          m_MethodName: DisableMovement
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &841722510
 GameObject:
   m_ObjectHideFlags: 0
@@ -13395,6 +13794,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &852375716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3669725955693909464, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &854169460
 GameObject:
   m_ObjectHideFlags: 0
@@ -13938,53 +14343,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &915679388
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 915679389}
-  - component: {fileID: 915679391}
-  m_Layer: 0
-  m_Name: '[2] Double Jump FTUE'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &915679389
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915679388}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 578547626}
-  m_Father: {fileID: 1462247415}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &915679391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915679388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4df3a387cb8b074bb40475ae35e54eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FtueID: 2
-  _firstStepDialogue: {fileID: 578547627}
 --- !u!1 &917558847
 GameObject:
   m_ObjectHideFlags: 0
@@ -14247,6 +14605,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &935212016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7692043060404832005, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &936957507
 GameObject:
   m_ObjectHideFlags: 0
@@ -14630,84 +14994,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &957249469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 957249470}
-  - component: {fileID: 957249471}
-  m_Layer: 0
-  m_Name: FTUE 5 Dialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &957249470
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957249469}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1721998083}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &957249471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957249469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueSections:
-  - isCompanionChatBubble: 1
-    chatBubble: {fileID: 0}
-    messages:
-    - text: uh, it's time to high jump <rainb>protagonist name</rainb>!
-      secondsToStart: 0
-      secondsToContinue: 1.2
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 1
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
-    - text: draw the gesture
-      secondsToStart: 0
-      secondsToContinue: 1.2
-      waitForAction: 0
-      enablePlayerIdleCast: 1
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1721998084}
-            m_TargetAssemblyTypeName: MageRunner.FTUE.Ftue_5_HighJump, Assembly-CSharp
-            m_MethodName: SecondStep
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!1 &957447721
 GameObject:
   m_ObjectHideFlags: 0
@@ -14931,20 +15217,20 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981200879}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1859424509}
-  - {fileID: 19410254}
-  - {fileID: 752188747}
-  - {fileID: 2025167313}
-  - {fileID: 2095218235}
-  - {fileID: 1878541593}
-  - {fileID: 638469972}
+  - {fileID: 736446494}
+  - {fileID: 1266842941}
+  - {fileID: 1823269146}
+  - {fileID: 499515889}
+  - {fileID: 1372208836}
+  - {fileID: 814234232}
+  - {fileID: 1682651657}
   m_Father: {fileID: 1022673143}
-  m_RootOrder: 4
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &981846404
 GameObject:
@@ -15790,10 +16076,10 @@ Transform:
   - {fileID: 806676108}
   - {fileID: 725706058}
   - {fileID: 237373427}
-  - {fileID: 1036253896}
-  - {fileID: 981200880}
   - {fileID: 1254736734}
   - {fileID: 749809637}
+  - {fileID: 1036253896}
+  - {fileID: 981200880}
   m_Father: {fileID: 1807833690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16105,7 +16391,7 @@ Transform:
   - {fileID: 607873052}
   - {fileID: 1368185265}
   m_Father: {fileID: 1022673143}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1062608060
 GameObject:
@@ -16495,84 +16781,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1095692340
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1095692341}
-  - component: {fileID: 1095692342}
-  m_Layer: 0
-  m_Name: FTUE 4 Dialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1095692341
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095692340}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1289697890}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1095692342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095692340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueSections:
-  - isCompanionChatBubble: 1
-    chatBubble: {fileID: 0}
-    messages:
-    - text: uh, it's time to use spells <rainb>protagonist name</rainb>!
-      secondsToStart: 0
-      secondsToContinue: 1.2
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 1
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
-    - text: draw the gesture that appears on top of the obstacle to cast a fireball
-      secondsToStart: 0
-      secondsToContinue: 1.2
-      waitForAction: 0
-      enablePlayerIdleCast: 1
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1289697891}
-            m_TargetAssemblyTypeName: MageRunner.FTUE.Ftue_4_Gestures, Assembly-CSharp
-            m_MethodName: SecondStep
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!1 &1099143001
 GameObject:
   m_ObjectHideFlags: 0
@@ -16866,6 +17074,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1133081650 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8656711803605790468, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1137492430
 GameObject:
   m_ObjectHideFlags: 0
@@ -17570,54 +17784,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1202645790
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1202645791}
-  - component: {fileID: 1202645793}
-  m_Layer: 0
-  m_Name: '[1] Jump Button FTUE'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1202645791
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202645790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1993025465}
-  m_Father: {fileID: 1462247415}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1202645793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202645790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0274c85835217e42994b73d87f6e142, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FtueID: 1
-  _ftueJumpButton: {fileID: 1605908562}
-  _firstStepDialogue: {fileID: 1993025466}
 --- !u!1 &1211465454
 GameObject:
   m_ObjectHideFlags: 0
@@ -18048,6 +18214,86 @@ Transform:
   m_Father: {fileID: 1022673143}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1266842940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266842941}
+  - component: {fileID: 1266842943}
+  - component: {fileID: 1266842942}
+  m_Layer: 0
+  m_Name: '[2] Double Jump FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1266842941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266842940}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 100.01, y: -1.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1717975426}
+  m_Father: {fileID: 981200880}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1266842942
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266842940}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08794308, y: 1.4914551}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5340276, y: 16.57}
+  m_EdgeRadius: 0
+--- !u!114 &1266842943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266842940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4df3a387cb8b074bb40475ae35e54eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 2
+  _firstStepDialogue: {fileID: 1717975427}
+--- !u!4 &1271982669 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6653604584048326163, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1274751368 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9083924135978621496, guid: a40f68619b360a7489b5ac2f764ed991,
@@ -18317,56 +18563,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1289697889
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1289697890}
-  - component: {fileID: 1289697891}
-  m_Layer: 0
-  m_Name: '[4] Gestures FTUE'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1289697890
+--- !u!4 &1295933812 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7211995605820841795, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289697889}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1095692341}
-  m_Father: {fileID: 1462247415}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1289697891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289697889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a8f123083ae9f4686029801b624305, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FtueID: 4
-  _firstStepDialogue: {fileID: 1095692342}
-  _ftueHand: {fileID: 8088917236104284716}
-  gesturesFtueAnimation: {fileID: 7400000, guid: 044a448fdd349d344a5ef46b8f92ba70,
-    type: 2}
 --- !u!1 &1297955504
 GameObject:
   m_ObjectHideFlags: 0
@@ -18512,9 +18714,9 @@ MonoBehaviour:
   level: {fileID: 823654313}
   gesturesDifficultyData: {fileID: 11400000, guid: 00ac1f9f65ea556438fbca368d6576d8,
     type: 2}
+  recognizer: {fileID: 872194374}
   currencyText: {fileID: 1274751368}
   _spellsDrawArea: {fileID: 8088917236104284715}
-  _recognizer: {fileID: 872194374}
   gameActivePlayerSpells: []
 --- !u!4 &1307894219
 Transform:
@@ -18883,7 +19085,7 @@ PrefabInstance:
     - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1182.0701
+      value: 922.3
       objectReference: {fileID: 0}
     - target: {fileID: 4558537530745039025, guid: 4498bef614d5bad44b816bdf84b5d477,
         type: 3}
@@ -18969,6 +19171,84 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1368185264}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1372208835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1372208836}
+  - component: {fileID: 1372208837}
+  - component: {fileID: 1372208838}
+  m_Layer: 0
+  m_Name: '[5] High Jump FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1372208836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372208835}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 539.38, y: -1.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 310147942}
+  m_Father: {fileID: 981200880}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372208837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372208835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4073046d0472d3c45ba7668a43636abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 5
+  _firstStepDialogue: {fileID: 310147943}
+  _ftueHand: {fileID: 8088917236104284716}
+  _highJumpGestureAnimation: {fileID: 7400000, guid: cd9dc8660a162a34e9f8155ffd6e5a5f,
+    type: 2}
+  _ftuePattern: {fileID: 11400000, guid: 2b58f08faca317f4b90b42f73e9a858a, type: 2}
+--- !u!61 &1372208838
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372208835}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08794308, y: 1.4914551}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5340276, y: 16.57}
+  m_EdgeRadius: 0
 --- !u!1 &1379488704
 GameObject:
   m_ObjectHideFlags: 0
@@ -25112,14 +25392,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1202645791}
-  - {fileID: 915679389}
-  - {fileID: 2106722647}
-  - {fileID: 1289697890}
-  - {fileID: 1721998083}
-  - {fileID: 2004960167}
-  - {fileID: 1851549377}
+  m_Children: []
   m_Father: {fileID: 2118329892}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25505,7 +25778,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 539948044}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 935212016}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1788f3d5394c84aa133f320d2f8276, type: 3}
@@ -25514,6 +25787,12 @@ MonoBehaviour:
 --- !u!4 &1531361847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7692043060404832007, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1531361848 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 130733842, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
     type: 3}
   m_PrefabInstance: {fileID: 539948044}
   m_PrefabAsset: {fileID: 0}
@@ -26043,63 +26322,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1568459604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1568459605}
-  - component: {fileID: 1568459606}
-  m_Layer: 0
-  m_Name: FTUE 3 Dialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1568459605
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568459604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2106722647}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1568459606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568459604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueSections:
-  - isCompanionChatBubble: 1
-    chatBubble: {fileID: 0}
-    messages:
-    - text: If you fall from a platform, you can still do an Air Jump
-      secondsToStart: 0
-      secondsToContinue: 2.4
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
 --- !u!1001 &1570089792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26827,6 +27049,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1667124373}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1669515541 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 829025031790594843, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1670764854
 GameObject:
   m_ObjectHideFlags: 0
@@ -26958,6 +27186,124 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1682651656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682651657}
+  - component: {fileID: 1682651660}
+  - component: {fileID: 1682651659}
+  - component: {fileID: 1682651658}
+  m_Layer: 0
+  m_Name: '[7] Fall Platform FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682651657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682651656}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 981200880}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1682651658
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682651656}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 613.68, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5340276, y: 16.57}
+  m_EdgeRadius: 0
+--- !u!61 &1682651659
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682651656}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 657.4, y: 1.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 13.98}
+  m_EdgeRadius: 0
+--- !u!114 &1682651660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682651656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674197be1c28ffb4da0d31496f015349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 7
+  _ftueHand: {fileID: 8088917236104284716}
+  _platformFallGestureAnimation: {fileID: 7400000, guid: 6115d6d2dda11bb4a9c94ab78d231240,
+    type: 2}
+  _ftuePattern: {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
+  _textShownEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1682651660}
+        m_TargetAssemblyTypeName: MageRunner.FTUE.Ftue_7_FallPlatform, Assembly-CSharp
+        m_MethodName: ThirdStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1690016940
 GameObject:
   m_ObjectHideFlags: 0
@@ -27297,6 +27643,72 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1717975425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1717975426}
+  - component: {fileID: 1717975427}
+  m_Layer: 0
+  m_Name: FTUE 2 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1717975426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717975425}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1266842941}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717975427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717975425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: Here comes a bigger jump
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+    - text: Tap the Jump button in the air to do an Air Jump!
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!1001 &1720124409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27385,56 +27797,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f15fc3ebda61d74098bd5c904b0e76b, type: 3}
---- !u!1 &1721998082
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1721998083}
-  - component: {fileID: 1721998084}
-  m_Layer: 0
-  m_Name: '[5] High Jump FTUE'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1721998083
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721998082}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 957249470}
-  m_Father: {fileID: 1462247415}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1721998084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721998082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4073046d0472d3c45ba7668a43636abb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FtueID: 5
-  _firstStepDialogue: {fileID: 957249471}
-  _ftueHand: {fileID: 8088917236104284716}
-  highJumpGestureAnimation: {fileID: 7400000, guid: cd9dc8660a162a34e9f8155ffd6e5a5f,
-    type: 2}
 --- !u!1 &1738379589
 GameObject:
   m_ObjectHideFlags: 0
@@ -27692,6 +28054,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1753121566 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9125868185426309143, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1753339158
 GameObject:
   m_ObjectHideFlags: 0
@@ -28280,6 +28648,243 @@ Transform:
   m_Father: {fileID: 106817972}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1813051006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1813051007}
+  - component: {fileID: 1813051008}
+  m_Layer: 0
+  m_Name: FTUE 3 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1813051007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813051006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1823269146}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1813051008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813051006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: If you fall from a platform, you can still do an Air Jump
+      secondsToStart: 0
+      secondsToContinue: 2.4
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+--- !u!1 &1819067784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819067785}
+  - component: {fileID: 1819067786}
+  m_Layer: 0
+  m_Name: FTUE 4 Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1819067785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819067784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 499515889}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1819067786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819067784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueSections:
+  - isCompanionChatBubble: 1
+    chatBubble: {fileID: 0}
+    messages:
+    - text: uh, it's time to use spells <rainb>protagonist name</rainb>!
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 0
+      changeLevelMovingState: 1
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls: []
+    - text: draw the gesture that appears on top of the obstacle to cast a fireball
+      secondsToStart: 0
+      secondsToContinue: 1.2
+      waitForAction: 0
+      enablePlayerIdleCast: 1
+      changeLevelMovingState: 0
+      onTextShowed:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 499515890}
+            m_TargetAssemblyTypeName: MageRunner.FTUE.Ftue_4_Gestures, Assembly-CSharp
+            m_MethodName: SecondStep
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+--- !u!1 &1823269145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1823269146}
+  - component: {fileID: 1823269149}
+  - component: {fileID: 1823269148}
+  - component: {fileID: 1823269147}
+  m_Layer: 0
+  m_Name: '[3] Air Jump FTUE'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1823269146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823269145}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1813051007}
+  m_Father: {fileID: 981200880}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1823269147
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823269145}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 227.61, y: -5.76}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.84, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &1823269148
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823269145}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 176.73, y: 1.4914551}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5340276, y: 16.57}
+  m_EdgeRadius: 0
+--- !u!114 &1823269149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823269145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7575db2748f231f4eaff6b7b93ed0f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FtueID: 3
+  _ftueJumpButton: {fileID: 1605908562}
+  _firstStepDialogue: {fileID: 1813051008}
 --- !u!1001 &1849937927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28420,168 +29025,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
---- !u!1 &1851549376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1851549377}
-  - component: {fileID: 1851549379}
-  - component: {fileID: 1851549378}
-  m_Layer: 0
-  m_Name: '[7] Fall Platform FTUE'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1851549377
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851549376}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1462247415}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1851549378
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851549376}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 657.4, y: 1.1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.2, y: 13.98}
-  m_EdgeRadius: 0
---- !u!114 &1851549379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851549376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 674197be1c28ffb4da0d31496f015349, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FtueID: 7
-  _ftueHand: {fileID: 8088917236104284716}
-  _platformFallGestureAnimation: {fileID: 7400000, guid: 6115d6d2dda11bb4a9c94ab78d231240,
-    type: 2}
-  _textShownEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1851549379}
-        m_TargetAssemblyTypeName: MageRunner.FTUE.Ftue_7_FallPlatform, Assembly-CSharp
-        m_MethodName: ThirdStep
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1 &1859424508
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1859424509}
-  - component: {fileID: 1859424511}
-  - component: {fileID: 1859424510}
-  m_Layer: 0
-  m_Name: '[1] Jump Button FTUE Trigger'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1859424509
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859424508}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73.31, y: -1.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981200880}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1859424510
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859424508}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08794308, y: 1.4914551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5340276, y: 16.57}
-  m_EdgeRadius: 0
---- !u!114 &1859424511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859424508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ftueNumber: 1
 --- !u!1 &1873291872
 GameObject:
   m_ObjectHideFlags: 0
@@ -28792,78 +29235,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1878541592
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1878541593}
-  - component: {fileID: 1878541595}
-  - component: {fileID: 1878541594}
-  m_Layer: 0
-  m_Name: '[6] Fast Fall FTUE Trigger'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1878541593
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878541592}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 565.5099, y: -1.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981200880}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1878541594
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878541592}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08794308, y: 1.4914551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5340276, y: 16.57}
-  m_EdgeRadius: 0
---- !u!114 &1878541595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878541592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ftueNumber: 6
 --- !u!4 &1882586563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7692043060404832007, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
@@ -29506,6 +29877,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1915951360 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7812634249777803354, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1919569561
 GameObject:
   m_ObjectHideFlags: 0
@@ -30287,84 +30664,6 @@ Transform:
   m_Father: {fileID: 2118329892}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1993025464
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1993025465}
-  - component: {fileID: 1993025466}
-  m_Layer: 0
-  m_Name: FTUE 1 Dialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1993025465
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993025464}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1202645791}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1993025466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993025464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd7fe719c1d17048b9d6fc6a5ffe822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueSections:
-  - isCompanionChatBubble: 1
-    chatBubble: {fileID: 0}
-    messages:
-    - text: <rainb> <shake> oh no
-      secondsToStart: 0
-      secondsToContinue: 1
-      waitForAction: 0
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 1
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls: []
-    - text: Remember how to jump?
-      secondsToStart: 0
-      secondsToContinue: 0
-      waitForAction: 1
-      enablePlayerIdleCast: 0
-      changeLevelMovingState: 0
-      onTextShowed:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1202645793}
-            m_TargetAssemblyTypeName: MageRunner.FTUE.FtueOne, Assembly-CSharp
-            m_MethodName: SecondStep
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!1 &1994641189
 GameObject:
   m_ObjectHideFlags: 0
@@ -30476,81 +30775,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2004960166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2004960167}
-  - component: {fileID: 2004960169}
-  - component: {fileID: 2004960168}
-  m_Layer: 0
-  m_Name: '[6] Fast Fall FTUE'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2004960167
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004960166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1462247415}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2004960168
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004960166}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 569, y: 3.2}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.2, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &2004960169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004960166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45e9f0863205cd47a262ec07762afcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FtueID: 6
-  _ftueHand: {fileID: 8088917236104284716}
-  fastFallGestureAnimation: {fileID: 7400000, guid: 21fff25ded66d044e8d7f54d3a816017,
-    type: 2}
 --- !u!1 &2015400096
 GameObject:
   m_ObjectHideFlags: 0
@@ -30677,78 +30901,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2025167312
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2025167313}
-  - component: {fileID: 2025167315}
-  - component: {fileID: 2025167314}
-  m_Layer: 0
-  m_Name: '[4] Gestures FTUE Trigger'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2025167313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025167312}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.32, y: -1.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981200880}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2025167314
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025167312}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08794308, y: 1.4914551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5340276, y: 16.57}
-  m_EdgeRadius: 0
---- !u!114 &2025167315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025167312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ftueNumber: 4
 --- !u!1 &2034348026
 GameObject:
   m_ObjectHideFlags: 0
@@ -30862,7 +31014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073413068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.99, y: -0.99, z: 0}
+  m_LocalPosition: {x: 48.24, y: -0.99, z: 0}
   m_LocalScale: {x: 0.48, y: 4.68, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31128,78 +31280,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2095218234
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2095218235}
-  - component: {fileID: 2095218237}
-  - component: {fileID: 2095218236}
-  m_Layer: 0
-  m_Name: '[5] High Jump FTUE Trigger'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2095218235
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095218234}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 539.1, y: -1.51, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981200880}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2095218236
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095218234}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08794308, y: 1.4914551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5340276, y: 16.57}
-  m_EdgeRadius: 0
---- !u!114 &2095218237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095218234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2153c408e8445534495b0dd67a7b20bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ftueNumber: 5
 --- !u!1001 &2095694135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31282,81 +31362,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2095694135}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2106722646
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2106722647}
-  - component: {fileID: 2106722649}
-  - component: {fileID: 2106722650}
-  m_Layer: 0
-  m_Name: '[3] Air Jump FTUE'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2106722647
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106722646}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1568459605}
-  m_Father: {fileID: 1462247415}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2106722649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106722646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7575db2748f231f4eaff6b7b93ed0f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FtueID: 3
-  _ftueJumpButton: {fileID: 1605908562}
-  _firstStepDialogue: {fileID: 1568459606}
---- !u!61 &2106722650
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106722646}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 227.61, y: -5.76}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.84, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &2109860471
 GameObject:
   m_ObjectHideFlags: 0
@@ -31551,6 +31556,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2122334134 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7030935208480776460, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2135145073 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 835357320740516156, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2140048956
 GameObject:
   m_ObjectHideFlags: 0
@@ -31635,6 +31652,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &2142390091 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2258346959382827403, guid: 5f15fc3ebda61d74098bd5c904b0e76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 539948044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2143343410
 GameObject:
   m_ObjectHideFlags: 0
@@ -31935,6 +31958,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 882353822}
+    - target: {fileID: 9083924134662923448, guid: a40f68619b360a7489b5ac2f764ed991,
+        type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9083924134662923448, guid: a40f68619b360a7489b5ac2f764ed991,
         type: 3}
       propertyPath: moveWithCustomTransform

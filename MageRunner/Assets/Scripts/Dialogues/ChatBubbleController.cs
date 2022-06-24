@@ -112,7 +112,7 @@ namespace MageRunner.Dialogues
         }
     
         // Methods called in the chat bubble animation too
-        public void EnableText() => chatBubbleText.gameObject.SetActive(true);
+        private void EnableText() => chatBubbleText.gameObject.SetActive(true);
 
         public void ChatBubbleFullyClosed() => _isFullyClosed = true;
 

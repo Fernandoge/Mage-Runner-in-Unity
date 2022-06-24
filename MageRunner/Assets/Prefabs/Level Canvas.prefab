@@ -5350,8 +5350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfThreads: 4
   patterns:
-  - {fileID: 11400000, guid: 2b58f08faca317f4b90b42f73e9a858a, type: 2}
-  - {fileID: 11400000, guid: 0ddb90270c45cc6478577d8a0cf791d4, type: 2}
   - {fileID: 11400000, guid: fba0ef350e4b9d94d8e580ab62b0bc9c, type: 2}
   - {fileID: 11400000, guid: e649e6fab8712c545a7b8cdd3e8727f8, type: 2}
 --- !u!1 &9083924135256083049

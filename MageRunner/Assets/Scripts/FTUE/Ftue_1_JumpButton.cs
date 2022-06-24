@@ -2,7 +2,6 @@
 using MageRunner.Managers.FtueManager;
 using MageRunner.Managers.GameManager;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MageRunner.FTUE
@@ -11,9 +10,10 @@ namespace MageRunner.FTUE
     {
         [SerializeField] private Button _ftueJumpButton;
         [SerializeField] private DialogueController _firstStepDialogue;
+        
 
         // Dialogue to start FTUE
-        public override void FirstStep()
+        protected override void FirstStep()
         {
             GameManager.Instance.ToggleCinematicMode(true);
             _firstStepDialogue.StartDialogue();
@@ -21,7 +21,7 @@ namespace MageRunner.FTUE
         
         // Highlighting jump button and activating the FTUE hand
         // Called in the last message of FirstStep dialogue
-        public void SecondStep()
+        private void SecondStep()
         {
             GameManager.Instance.ToggleCinematicMode(false);
             FtueManager.Instance.ftuePanel.SetActive(true);
@@ -32,7 +32,7 @@ namespace MageRunner.FTUE
 
         // Jump button was pressed
         // Called in Jump Button FTUE GameObject
-        public void ThirdStep()
+        private void ThirdStep()
         {
             GameManager.Instance.level.EnableMovement();
             GameManager.Instance.player.companionChatBubble.ForceClose();

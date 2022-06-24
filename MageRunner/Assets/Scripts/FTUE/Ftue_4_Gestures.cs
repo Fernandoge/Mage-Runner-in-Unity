@@ -9,8 +9,8 @@ namespace MageRunner.FTUE
         [SerializeField] private DialogueController _firstStepDialogue;
         [SerializeField] private GameObject _ftueHand;
         [SerializeField] private AnimationClip gesturesFtueAnimation;
-        
-        public override void FirstStep() => _firstStepDialogue.StartDialogue();
+
+        protected override void FirstStep() => _firstStepDialogue.StartDialogue();
 
         // Called after the first step dialogue finishes
         public void SecondStep()
@@ -24,9 +24,9 @@ namespace MageRunner.FTUE
         public override void StepAfterDestroyed()
         {
             _ftueHand.SetActive(false);
+            
             GameManager.Instance.level.EnableMovement();
             GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("wow you still got it", 1.2f, 1f));
-            GameManager.Instance.player.companionChatBubble.StartChatCoroutine(new Message("prepare for more!", 1.2f, 1f));
         }
     }
 }

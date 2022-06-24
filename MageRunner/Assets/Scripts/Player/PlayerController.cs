@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using MageRunner.Combat;
 using MageRunner.Constants;
 using MageRunner.Dialogues;
-using MageRunner.Enemies;
 using MageRunner.Gestures;
 using MageRunner.Levels;
 using MageRunner.Managers.GameManager;
@@ -63,6 +62,9 @@ namespace MageRunner.Player
             rigidBody = GetComponent<Rigidbody2D>();
             originalGravity = rigidBody.gravityScale;
             _notGroundLayerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("BottomGround");
+            
+            //TODO: Spawn?
+            stateHandler.EnableState(EPlayerState.Idle);
         }
 
         private void Update()
@@ -110,7 +112,7 @@ namespace MageRunner.Player
 
         public void Jump()
         {
-            if (GameManager.Instance.level.isMoving == false || stateHandler.isDashing)
+            if (GameManager.Instance.level.isMoving == false || stateHandler.isDashing || !jumpButton.IsActive())
                 return;
 
             if (groundJumpAvailable)
